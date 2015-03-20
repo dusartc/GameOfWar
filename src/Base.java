@@ -1,10 +1,13 @@
 
 public class Base extends Cellule {
 	
-	private final static int soin = 2;
+	public final static int soin = 2;
 	
-	
-	@Override
+	public Base(int largeur, int hauteur) {
+      super(largeur, hauteur);
+	}
+
+    @Override
 	void deplaceSur(Robot robot) {
 		// TODO Auto-generated method stub
 
