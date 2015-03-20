@@ -35,6 +35,7 @@ public class Plateau {
   
   public Plateau(int longueur, int largeur, int x, int y, int direction){
     this.plateau = new Cellule[largeur][longueur];
+    // TODO
   }
   
   public Cellule getCellule(int x, int y){
