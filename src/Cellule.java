@@ -15,6 +15,10 @@ public abstract class Cellule {
 		return this.mine;
 	}
 	
+	public void poseMine(){
+	  this.mine++;
+	}
+	
 	public int estBase() {
 		return this.base;
 	}
@@ -38,5 +42,9 @@ public abstract class Cellule {
 	abstract void ajoute(int equipe);
 	
 	abstract void videCase();
+	
+	abstract boolean estVide();
+	
+	
 	
 }

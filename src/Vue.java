@@ -6,5 +6,8 @@ public class Vue {
   public Vue() {
     
   }
-  
+
+  public Plateau getPlateau(){
+    return this.plateau;
+  }
 }

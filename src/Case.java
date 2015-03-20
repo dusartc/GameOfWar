@@ -2,6 +2,11 @@
 public class Case extends Cellule {
   
   private int mur = 0;
+  
+  public Case(int largeur, int hauteur, int mur){
+    super(largeur, hauteur);
+    this.mur = mur;
+  }
 
   public Case(int largeur, int hauteur) {
     super(largeur, hauteur);
@@ -31,6 +36,12 @@ public class Case extends Cellule {
   
   public boolean estPassable(){
     return this.mur == 0;
+  }
+
+  @Override
+  boolean estVide() {
+    // TODO Auto-generated method stub
+    return false;
   }
 
 }

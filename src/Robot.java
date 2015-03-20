@@ -7,7 +7,8 @@ public abstract class Robot {
   private int energie;
   private int equipe;
   private Vue vue;
-
+  
+  
   public Robot(Vue vue, int l, int h, int equipe) {
 
   }
