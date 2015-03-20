@@ -97,6 +97,10 @@ public abstract class Cellule {
    */
   abstract void videCase();
 
-  abstract void estVide();
+  abstract boolean estVide();
+
+  public void poseMine() {
+    this.mine++;    
+  }
   
 }
