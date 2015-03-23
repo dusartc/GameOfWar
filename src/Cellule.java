@@ -28,8 +28,7 @@ public abstract class Cellule {
    *    Pour donner une coordonnees a la cellule, ici la largeur.
    * @param hauteur
    *    Pour donner une coordonnees a la cellule, ici la Hauteur.
-   */
-  
+   */  
   public Cellule(int largeur, int hauteur) {
     this.coordonnees = new Coordonnees(largeur, hauteur);
   }
