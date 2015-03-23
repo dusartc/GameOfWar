@@ -12,5 +12,7 @@ public class Constante {
   public static final int X_MAX = 25;
   public static final int Y_MIN = 10;
   public static final int Y_MAX = 25;
+  public static final int OBSTACLES_MIN = 20;
+  public static final int OBSTACLES_MAX = 50;
   
 }
