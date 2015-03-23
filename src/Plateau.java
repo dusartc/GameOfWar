@@ -12,6 +12,10 @@ public class Plateau {
 //  private static final int BAS    = 4;
   
   public Plateau(int longueur, int largeur, int pourcentageObstacle) {
+    this.plateau = new Cellule[largeur][longueur];
+    this.longueur = longueur;
+    this.largeur = largeur;
+    
     if (pourcentageObstacle > Constante.OBSTACLES_MAX) {
       System.err.println("trop d'obstacles ; "+Constante.OBSTACLES_MAX+" sera utiliser");
       pourcentageObstacle = Constante.OBSTACLES_MAX;
@@ -20,7 +24,7 @@ public class Plateau {
       System.err.println("pas assez d'obstacles ; "+Constante.OBSTACLES_MIN+" sera utiliser");
       pourcentageObstacle = Constante.OBSTACLES_MIN;
     }
-    this.plateau = new Cellule[largeur][longueur];
+    
     for (int i = 0; i < plateau.length; i++) {          //
       for (int j = 0; j < plateau[0].length; j++) {     // remplissage vide
         this.plateau[i][j] = new Case(j, i);            //
