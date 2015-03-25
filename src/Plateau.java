@@ -4,8 +4,6 @@ import java.util.Random;
 public class Plateau {
 
   private Cellule[][] plateau;
-  private int longueur;
-  private int largeur;
 //  private static final int DROITE = 1;
 //  private static final int GAUCHE = 2;
 //  private static final int HAUT   = 3;
@@ -21,9 +19,9 @@ public class Plateau {
       pourcentageObstacle = Constante.OBSTACLES_MIN;
     }
     this.plateau = new Cellule[largeur][longueur];
-    for (int i = 0; i < plateau.length; i++) {          //
-      for (int j = 0; j < plateau[0].length; j++) {     // remplissage vide
-        this.plateau[i][j] = new Case(j, i);            //
+    for (int i = 0; i < plateau.length; i++) {   //
+      for (int j = 0; j < plateau[0].length; j++) {    // remplissage vide
+        this.plateau[i][j] = new Case(j, i);        //
       }
     }
     this.plateau[0][0] = new Base(0, 0);                                //
@@ -55,14 +53,6 @@ public class Plateau {
   public Cellule getCelluleByCoordonnees(Coordonnees coordonnees){
     return null;
   }
-  
-  public int getLargeur() {
-    return largeur;
-  }
-  
-  public int getLongueur() {
-    return longueur;
-  } 
   
   @Override
   public String toString() {
