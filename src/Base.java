@@ -25,9 +25,4 @@ public class Base extends Cellule {
 
 	}
 
-	@Override
-	boolean estVide() {
-	  return false;
-	}
-
 }
