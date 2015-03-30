@@ -38,6 +38,7 @@ public abstract class Cellule {
    * @return si la cellule est une mine ou non.
    */
   public int contientMine(){
+    // TODO corriger les conneries de Mathieu
     if (this.coordonnees.equals(robot.getCoordonnees())) {
       return this.mine;
     }
@@ -48,7 +49,8 @@ public abstract class Cellule {
    * 
    * @return si la cellulle est une base ou non.
    */
-  public int estBase(){ 
+  public int estBase(){
+    // TODO corriger les conneries de Mathieu
     if (this.coordonnees.equals(robot.getCoordonnees())) {
       return this.base;
     }
