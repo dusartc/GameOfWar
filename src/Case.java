@@ -41,7 +41,7 @@ public class Case extends Cellule {
   @Override
   boolean estVide() {
     // TODO Auto-generated method stub
-    return true;
+    return this.mur == 0;
   }
 
 }
