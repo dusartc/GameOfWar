@@ -31,7 +31,7 @@ public class Plateau {
       }
     }
     this.plateau[0][0] = new Base(0, 0);                                //
-    this.plateau[this.plateau.length - 1][this.plateau[0].length - 1] = // base par default
+    this.plateau[this.plateau.length - 1][this.plateau[0].length - 1] = // base par default aka plantage de choux
         new Base(this.plateau.length - 1, this.plateau[0].length - 1);  //
     
     double nbObstacles = ((double) pourcentageObstacle / 100) * (this.plateau[0].length * this.plateau.length);
