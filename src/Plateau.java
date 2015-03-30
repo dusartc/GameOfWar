@@ -30,9 +30,9 @@ public class Plateau {
         this.plateau[i][j] = new Case(j, i);            //
       }
     }
-    this.plateau[0][0] = new Base(0, 0);                                //
+    this.plateau[0][0] = new Base(0, 0, 1);                                //
     this.plateau[this.plateau.length - 1][this.plateau[0].length - 1] = // base par default aka plantage de choux
-        new Base(this.plateau.length - 1, this.plateau[0].length - 1);  //
+        new Base(this.plateau.length - 1, this.plateau[0].length - 1 , 2);  //
     
     double nbObstacles = ((double) pourcentageObstacle / 100) * (this.plateau[0].length * this.plateau.length);
     int currentObstacles = 0;
@@ -41,7 +41,7 @@ public class Plateau {
       int rdX = rd.nextInt(this.plateau.length - 2) + 1;
       int rdY = rd.nextInt(this.plateau[0].length - 2) + 1;
       if (getCellule(rdY, rdX).estVide()) {
-        this.plateau[rdX][rdY] = new Case(rdX, rdY, 1);
+        this.plateau[rdX][rdY] = new Case(rdX, rdY, true);
         currentObstacles += 1;
       }
     }
@@ -70,7 +70,7 @@ public class Plateau {
   
   @Override
   public String toString() {
-    String ans= quadrillage() + "\n| B ";
+    String ans= quadrillage();
     for (int i = 0; i < plateau.length; i++) {
       for (int j = 0; j < plateau[0].length; j++) {
         if (plateau[i][j] instanceof Case) {
@@ -83,11 +83,20 @@ public class Plateau {
             ans += "|";
           }
         }
+        if (plateau[i][j] instanceof Base) {
+			Base test = (Base) plateau[i][j];
+			if (test.estBase() == 1) {
+				ans += "\n| B ";
+			}
+			else if(test.estBase() == 2){
+				ans += "| b |\n";
+			}
+		}
       }if(i < plateau.length - 1) {
         ans += "\n"+quadrillage()+"\n";
       }
     }
-    return ans + "| b |\n" + quadrillage();    
+    return ans + quadrillage();    
   }
   
   private String quadrillage(){
@@ -97,4 +106,9 @@ public class Plateau {
     }    
     return ans;
   }
+  
+  public static void main(String[] args) {
+	Plateau test = new Plateau(5, 10, 20);
+	System.out.println(test);
+}
 }

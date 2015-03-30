@@ -1,18 +1,18 @@
 
 public class Case extends Cellule {
   
-  private int mur = 0;
+  private boolean mur;
   
-  public Case(int largeur, int hauteur, int mur){
-    super(largeur, hauteur);
-    this.mur = mur;
-  }
-
-  public Case(int largeur, int hauteur) {
-    super(largeur, hauteur);
+  public Case(int largeur, int hauteur){
+	    super(largeur, hauteur);
   }
   
-  public void setMur(int mur) {
+  public Case(int largeur, int hauteur, boolean mur){
+    this(largeur, hauteur);
+    this.setMur(mur);
+  }
+  
+  public void setMur(boolean mur) {
     this.mur = mur;
   }
 
@@ -30,18 +30,17 @@ public class Case extends Cellule {
 
   @Override
   void videCase() {
-    // TODO Auto-generated method stub
-
+    this.mur = false;
   }
   
   public boolean estPassable(){
-    return this.mur == 0;
+    return this.mur;
   }
 
   @Override
   boolean estVide() {
     // TODO Auto-generated method stub
-    return this.mur == 0;
+    return this.mur;
   }
 
 }

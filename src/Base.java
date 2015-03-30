@@ -1,33 +1,29 @@
 
 public class Base extends Cellule {
 	
-	public final static int soin = 2;
-	
-	public Base(int largeur, int hauteur) {
+	public Base(int largeur, int hauteur, int equipe) {
       super(largeur, hauteur);
+      this.ajoute(equipe);
 	}
 
     @Override
 	void deplaceSur(Robot robot) {
-		// TODO Auto-generated method stub
-
+    	
 	}
 
 	@Override
 	void ajoute(int equipe) {
-		// TODO Auto-generated method stub
-
+		this.poseBase(equipe);
 	}
 
 	@Override
 	void videCase() {
-		// TODO Auto-generated method stub
-
+		this.poseBase(0);
 	}
 
 	@Override
 	boolean estVide() {
-	  return false;
+	  return this.estBase() > 0;
 	}
 
 }

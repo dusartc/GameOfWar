@@ -41,22 +41,24 @@ public abstract class Cellule {
     // TODO corriger les conneries de Mathieu
     if (this.coordonnees.equals(robot.getCoordonnees())) {
       return this.mine;
-    }
-    return 0;
+    } return -1;
   }
+  
+  public void poseMine(int equipe) {
+	    this.mine = equipe;
+	  }
   
   /**
    * 
    * @return si la cellulle est une base ou non.
    */
   public int estBase(){
-    // TODO corriger les conneries de Mathieu
-    if (this.coordonnees.equals(robot.getCoordonnees())) {
       return this.base;
-    }
-    return 0;
   }
   
+  public void poseBase(int equipe){
+	  this.base = equipe;
+  }
   /**
    * 
    * @return retourne l'attribut robot.
@@ -65,6 +67,12 @@ public abstract class Cellule {
     return this.robot;
   }
   
+  public int estRobot(){
+	  if (this.robot == null) {
+		return 0;
+	}
+	  return this.robot.getEquipe();
+  }
   /**
    * 
    * @return retourne l'attribut coordonnees.
@@ -72,6 +80,10 @@ public abstract class Cellule {
   public Coordonnees getCoordonnees() {
     return this.coordonnees;
   }
+  
+  public void setCoordonnees(Coordonnees coord) {
+	    this.coordonnees = coord;
+	  }
 
   @Override
   public String toString() {
@@ -100,8 +112,6 @@ public abstract class Cellule {
 
   abstract boolean estVide();
 
-  public void poseMine() {
-    this.mine++;    
-  }
+
   
 }

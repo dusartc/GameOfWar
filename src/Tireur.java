@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -6,20 +7,22 @@ public class Tireur extends Robot {
   private final int DEGATS_TIRS = 4;
   private final int DEGATS_MINES = 0;
   
+  private List<Coordonnees> coordonnees;
+  
   public Tireur(Vue vue, int l, int h, int equipe) {
     super(vue, l, h, equipe);
+    this.coordonnees = new ArrayList<Coordonnees>();
+    this.coordonnees = Constante.depTireurPiegeur;
     // TODO Auto-generated constructor stub
   }
 
   @Override
   public int getCoupDep() {
-    // TODO Auto-generated method stub
-    return 0;
+    return 1;
   }
 
   @Override
   public int getCoutAction() {
-    // TODO Auto-generated method stub
     return 0;
   }
 
@@ -35,19 +38,16 @@ public class Tireur extends Robot {
 
   @Override
   public List<Coordonnees> getDeplacements() {
-    // TODO Auto-generated method stub
-    return null;
+    return this.coordonnees;
   }
 
   @Override
   public String getType() {
-    // TODO Auto-generated method stub
-    return null;
+    return getClass().getName();
   }
 
   @Override
   public boolean peutTirer() {
-    // TODO Auto-generated method stub
     return false;
   }
 

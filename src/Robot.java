@@ -10,7 +10,9 @@ public abstract class Robot {
   
   
   public Robot(Vue vue, int l, int h, int equipe) {
-
+	  this.coordonnees = new Coordonnees(l, h);
+	  this.equipe = equipe;
+	  this.vue = vue;
   }
 
   public boolean estSurBase() {
@@ -53,10 +55,6 @@ public abstract class Robot {
 
   public void setEnergie(int energie) {
     this.energie = energie;
-  }
-
-  public void setVue(Vue vue) {
-    this.vue = vue;
   }
 
   public void subitMine() {
