@@ -12,7 +12,7 @@ public class Tireur extends Robot {
   public Tireur(Vue vue, int l, int h, int equipe) {
     super(vue, l, h, equipe);
     this.coordonnees = new ArrayList<Coordonnees>();
-    this.coordonnees = Constante.depTireurPiegeur;
+    this.coordonnees = Constante.DEP_TIREUR;
     // TODO Auto-generated constructor stub
   }
 
