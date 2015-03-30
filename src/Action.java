@@ -6,7 +6,8 @@ public abstract class Action {
 	private Robot robot;
 	
 	public Action(Robot robot, Coordonnees direction) {
-		
+		this.robot = robot;
+		this.direction = direction;
 	}
 	
 	public Robot getRobot() {

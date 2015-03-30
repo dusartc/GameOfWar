@@ -52,13 +52,13 @@ public class Piegeur extends Robot {
     return false;
   }
   
-  public boolean poseMine() {
+  /*public boolean poseMine() {
     if (this.nbMines <= 0) {
       return false;
     }if (getVue().getPlateau().getCelluleByCoordonnees(getCoordonnees()).estVide()) {
       getVue().getPlateau().getCelluleByCoordonnees(getCoordonnees()).poseMine();
       return true;
     }return false;
-  }
+  }*/
 
 }

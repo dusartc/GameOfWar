@@ -7,14 +7,11 @@ public class Deplacement extends Action {
     super(robot, direction);
     // TODO Auto-generated constructor stub
   }
-  
-  public void moveTo(){
-    
-  }
+
 
   @Override
   void agit() {
-    // TODO Auto-generated method stub
+		this.getRobot().setCoordonnees(this.getRobot().getCoordonnees().ajout(getDirection()));
 
   }
 
