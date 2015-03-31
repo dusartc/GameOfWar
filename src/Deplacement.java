@@ -11,7 +11,9 @@ public class Deplacement extends Action {
 
   @Override
   void agit() {
-		this.getRobot().setCoordonnees(this.getRobot().getCoordonnees().ajout(getDirection()));
+	if (this.getRobot() instanceof Tireur || this.getRobot() instanceof Piegeur) {
+		
+	}
 
   }
 
