@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -7,8 +8,12 @@ public class Piegeur extends Robot {
   private final int DEGATS_MINES = 10;
   private int nbMines = 0;
   
+  private List<Coordonnees> coordonnees;
+  
   public Piegeur(Vue vue, int l, int h, int equipe) {
     super(vue, l, h, equipe);
+    this.coordonnees = new ArrayList<Coordonnees>();
+    this.coordonnees = Constante.DEP_PIEGEUR;
     // TODO Auto-generated constructor stub
   }
 
@@ -36,14 +41,12 @@ public class Piegeur extends Robot {
 
   @Override
   public List<Coordonnees> getDeplacements() {
-    // TODO Auto-generated method stub
-    return null;
+	    return this.coordonnees;
   }
 
   @Override
   public String getType() {
-    // TODO Auto-generated method stub
-    return null;
+    return this.getClass().getName();
   }
 
   @Override
@@ -52,13 +55,13 @@ public class Piegeur extends Robot {
     return false;
   }
   
-  /*public boolean poseMine() {
+  public boolean poseMine() {
     if (this.nbMines <= 0) {
       return false;
     }if (getVue().getPlateau().getCelluleByCoordonnees(getCoordonnees()).estVide()) {
-      getVue().getPlateau().getCelluleByCoordonnees(getCoordonnees()).poseMine();
+      getVue().getPlateau().getCelluleByCoordonnees(getCoordonnees()).poseMine(this.getEquipe());
       return true;
     }return false;
-  }*/
+  }
 
 }
