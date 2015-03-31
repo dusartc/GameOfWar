@@ -5,10 +5,11 @@
  * @author Game of war.
  * @version 1.0.
  */
-public abstract class Cellule {
+public class Cellule {
   
-  protected int mine = 0;
-  protected int base = 0;
+  private int mine = 0;
+  private int base = 0;
+  private boolean mur;
   /**
    * Correspond au robot sur la cellule.
    * 
@@ -43,8 +44,14 @@ public abstract class Cellule {
   
   public void poseMine(int equipe) {
 	    this.mine = equipe;
-	  }
+ }
   
+ public boolean estMur(){
+	 return this.mur;
+ }
+  public void setMur(boolean mur){
+	  this.mur = mur;
+  }
   /**
    * 
    * @return si la cellulle est une base ou non.
@@ -81,34 +88,42 @@ public abstract class Cellule {
   public void setCoordonnees(Coordonnees coord) {
 	    this.coordonnees = coord;
 	  }
-
-  @Override
-  public String toString() {
-    return "Cellule [mine=" + this.mine + ", base=" + this.base + ", robot=" + this.robot + ", coordonnees="
-        + this.coordonnees + ", image=" + this.image + "]";
-  }
-  
+//
+//  @Override
+//  public String toString() {
+//    return "Cellule [mine=" + this.mine + ", base=" + this.base + ", robot=" + this.robot + ", coordonnees="
+//        + this.coordonnees + ", image=" + this.image + "]";
+//  }
+//  
   /**
    * 
    * @param robot
    *    qui correspond du déplacement d'un robot sur une case.
    */
-  abstract void deplaceSur(Robot robot);
+  //abstract void deplaceSur(Robot robot);
   
   /**
    * 
    * @param equipe
    */
-  abstract void ajoute(int equipe);
+  //abstract void ajoute(int equipe);
   
   /**
    * 
    * Vide la case.
    */
-  abstract void videCase();
-
-  abstract boolean estVide();
-
+  public boolean estVide(){
+	  if (this.estMur() || this.estBase() > 0 || this.estRobot() != 0 || contientMine() > 0) {
+		return false;
+	}
+	  return true;
+  }
+  public void videCase(){
+	  this.base = 0;
+	  this.mine = 0;
+	  this.mur = false;
+	  this.robot = null;
+  }
 
   
 }
