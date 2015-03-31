@@ -15,12 +15,15 @@ public abstract class Robot {
 	  this.vue = vue;
   }
 
-  public boolean estSurBase() {
-    return false;
+  public boolean estSurBase(int x, int y) {
+	 if (this.getEquipe() == this.vue.getPlateau().getCellule(x, y).estBase()) {
+		return true;
+	}
+	 return false;
   }
 
   public Coordonnees getCoordonnees() {
-    return coordonnees;
+    return this.coordonnees;
   }
 
   abstract public int getCoupDep();
@@ -34,17 +37,17 @@ public abstract class Robot {
   abstract public List<Coordonnees> getDeplacements();
 
   public int getEnergie() {
-    return energie;
+    return this.energie;
   }
 
   public int getEquipe() {
-    return equipe;
+    return this.equipe;
   }
 
   abstract public String getType();
 
   public Vue getVue() {
-    return vue;
+    return this.vue;
   }
 
   abstract public boolean peutTirer();
