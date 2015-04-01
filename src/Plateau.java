@@ -48,7 +48,6 @@ public class Plateau {
   
   public Plateau(int longueur, int largeur, int x, int y, int direction){
     this.plateau = new Cellule[largeur][longueur];
-    // TODO
   }
   
   public Cellule getCellule(int x, int y){
@@ -66,6 +65,31 @@ public class Plateau {
   public int getLongueur() {
     return this.longueur;
   } 
+  
+  public boolean estMur(int x, int y){
+	  return plateau[x][y].estMur();
+  }
+  
+  public int estBase(int x, int y){
+	  return plateau[x][y].estBase();
+  }
+  
+  public int estMine(int x, int y){
+	  return plateau[x][y].contientMine();
+  }
+  
+  public int estRobot(int x, int y){
+	  return plateau[x][y].estRobot();
+  }
+  
+  public void poserUneMine(int x, int y, int equipe){
+	  if (this.estBase(x,y) != 0 && !this.estMur(x, y)) {
+		if (this.estRobot(x, x) != 0) {
+			//Action d'explosion sur le robot cible.
+		}
+		this.plateau[x][y].poseMine(equipe);
+	}
+  }
   
   @Override
   public String toString() {
@@ -111,8 +135,8 @@ public class Plateau {
   
   public static void main(String[] args) {
 	Plateau test = new Plateau(5, 10, 20);
-	Vue test2 = new Vue(test);
-	Tireur test3 = new Tireur(test2, 3, 5, 1);
+	//Vue test2 = new Vue(test);
+	//Tireur test3 = new Tireur(test2, 3, 5, 1);
 	//test2.poserRobot(robot, coordonnees);
 	System.out.println(test);
 }
