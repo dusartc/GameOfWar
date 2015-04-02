@@ -12,6 +12,9 @@ public class Constante {
   public static final int SOIN = 2;
   public static final int EQUIPE_UN = 1;
   public static final int EQUIPE_DEUX = 2;
+  public static final int DEGATSTIREUR = 3;
+  public static final int DEGATSPIEGEUR = 2;
+  public static final int DEGATSCHAR = 6;
   
   /// plateau ///
   public static final int X_MIN = 5;
