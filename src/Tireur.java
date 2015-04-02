@@ -51,4 +51,16 @@ public class Tireur extends Robot {
     return false;
   }
 
+@Override
+public void subitMine() {
+	// TODO Auto-generated method stub
+	
+}
+
+@Override
+public void subitTir() {
+	// TODO Auto-generated method stub
+	
+}
+
 }
