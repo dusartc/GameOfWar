@@ -60,13 +60,8 @@ public abstract class Robot {
     this.energie = energie;
   }
 
-  public void subitMine() {
-
-  }
-
-  public void subitTir() {
-
-  }
+  abstract public void subitMine();
+  abstract public void subitTir();
   
   public void estSoigne(){
     if (this.estSurBase(this.coordonnees.getLargeur(), this.coordonnees.getHauteur())) {
