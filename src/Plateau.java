@@ -67,28 +67,37 @@ public class Plateau {
   } 
   
   public boolean estMur(int x, int y){
-	  return plateau[x][y].estMur();
+	  return plateau[y][x].estMur();
   }
   
   public int estBase(int x, int y){
-	  return plateau[x][y].estBase();
+	  return plateau[y][x].estBase();
   }
   
   public int estMine(int x, int y){
-	  return plateau[x][y].contientMine();
+	  return plateau[y][x].contientMine();
   }
   
   public int estRobot(int x, int y){
-	  return plateau[x][y].estRobot();
+	  return plateau[y][x].estRobot();
   }
   
+  public void libereCellule(int x, int y){
+	  this.plateau[y][x].videCase();
+  }
   public void poserUneMine(int x, int y, int equipe){
-	  if (this.estBase(x,y) != 0 && !this.estMur(x, y)) {
-		if (this.estRobot(x, x) != 0) {
-			//Action d'explosion sur le robot cible.
-		}
-		this.plateau[x][y].poseMine(equipe);
-	}
+	  if (this.estBase(y,x) != 0 && !this.estMur(x, y) && this.estRobot(y, x) == 0) {
+		this.plateau[y][x].poseMine(equipe);
+	  }
+	  else{
+		  System.err.println("Erreur, placement impossible");
+	  }
+  }
+  
+  public void poserRobot(int x, int y, Robot robot){
+	  if(!this.estMur(y,x) && this.estBase(x,y) > 0 && this.estMine(x,y) == 0){
+			 this.plateau[y][x].poserRobot(robot);
+	  }
   }
   
   @Override
