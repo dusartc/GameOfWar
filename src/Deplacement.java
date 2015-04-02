@@ -12,7 +12,10 @@ public class Deplacement extends Action {
   @Override
   void agit() {
 	if (this.getRobot() instanceof Tireur || this.getRobot() instanceof Piegeur) {
-		
+		if (true) {
+			
+		}
+		this.getRobot().setCoordonnees(getObjectif());
 	}
 
   }
