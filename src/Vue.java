@@ -9,7 +9,11 @@ public class Vue {
   }
 
   public void poserRobot(Robot robot, Coordonnees coordonnees){
-	  robot.setCoordonnees(coordonnees);
+	  this.plateau.poserRobot(coordonnees.getLargeur(), coordonnees.getHauteur(), robot);
+  }
+  
+  public void setMine(Robot robot, Coordonnees coordonnees){
+	  this.plateau.poserUneMine(coordonnees.getLargeur(), coordonnees.getHauteur(), robot.getEquipe());
   }
   public Plateau getPlateau(){
     return this.plateau;
