@@ -46,6 +46,10 @@ public class Cellule {
 	    this.mine = equipe;
  }
   
+  public void retirerMine(){
+	  this.mine = 0;
+  }
+  
  public boolean estMur(){
 	 return this.mur;
  }
@@ -69,6 +73,10 @@ public class Cellule {
    */
   public Robot getRobot() {
     return this.robot;
+  }
+  
+  public void poserRobot(Robot robot){
+	  this.robot = robot;
   }
   
   public int estRobot(){
