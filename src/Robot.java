@@ -69,7 +69,9 @@ public abstract class Robot {
   }
   
   public void estSoigne(){
-    
+    if (this.estSurBase(this.coordonnees.getLargeur(), this.coordonnees.getHauteur())) {
+		this.energie += Constante.SOIN;
+	}
   }
 
   @Override
