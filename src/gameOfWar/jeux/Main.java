@@ -39,7 +39,7 @@ public class Main {
       neo = current.choisitRobot();
       System.out.println(neo);
       act = neo.choisitAction();
-      if (equipes[joueur%2].perdu() || equipes[((joueur%2)+1)%2].perdu()) {
+      if (equipes[joueur%2].perdu() || equipes[(joueur+1)%2].perdu()) {
         fini = true;
       }
     }
