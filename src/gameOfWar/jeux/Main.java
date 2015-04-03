@@ -1,11 +1,9 @@
 package gameOfWar.jeux;
 
-import gameOfWar.action.Action;
 import gameOfWar.config.Constante;
 import gameOfWar.config.Coordonnees;
 import gameOfWar.robot.Char;
 import gameOfWar.robot.Piegeur;
-import gameOfWar.robot.Robot;
 import gameOfWar.robot.Tireur;
 
 
@@ -24,25 +22,27 @@ public class Main {
       joueur.addRobot(new Char(joueur.getVue(), joueur.getEquipe()));
     }
     
-    for (Equipe equipe : equipes) {
-      System.out.println(equipe.toString());
-    }
+//    for (Equipe equipe : equipes) {
+//      System.out.println(equipe.toString());
+//    }
+//    
+//    boolean fini = false;
+//    int joueur = 0;
+//    Robot neo;
+//    Action act;
+//    Equipe current;
+//    while (!fini) {
+//      joueur++;
+//      current = equipes[joueur%2];
+//      neo = current.choisitRobot();
+//      System.out.println(neo);
+//      act = neo.choisitAction();
+//      if (equipes[joueur%2].perdu() || equipes[(joueur+1)%2].perdu()) {
+//        fini = true;
+//      }
+//    }
     
-    boolean fini = false;
-    int joueur = 0;
-    Robot neo;
-    Action act;
-    Equipe current;
-    while (!fini) {
-      joueur++;
-      current = equipes[joueur%2];
-      neo = current.choisitRobot();
-      System.out.println(neo);
-      act = neo.choisitAction();
-      if (equipes[joueur%2].perdu() || equipes[(joueur+1)%2].perdu()) {
-        fini = true;
-      }
-    }
+    System.out.println(plateau);
   }
 
 }
