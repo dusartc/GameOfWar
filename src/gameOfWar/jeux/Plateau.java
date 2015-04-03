@@ -163,7 +163,29 @@ public class Plateau {
         ans += "\n"+quadrillage()+"\n";
       }
     }
-    return ans + quadrillage();    
+    return ans + quadrillage() + "\n\n" + legende();    
+  }
+  
+  private String legende() {
+    String ans = "+";
+    for (int i = 0; i < 63; i++) {
+      ans += "-";
+    } ans += "+\n";
+    ans += "|\tMAJUSCULES\t%\tminuscules\t\t\t|\n";
+    String[] chabadabada = new String[] {
+        "base","tireur","piegeur","char","mine"
+    };
+    for (int i = 0; i < chabadabada.length; i++) {
+      ans += "|\t\t" + chabadabada[i].substring(0, 1).toUpperCase() + "\t|\t\t" + chabadabada[i].substring(0, 1) + "\t" + chabadabada[i] + "\t\t|\n";
+    }ans += "|\t";
+    for (int i = 0; i < 47; i++) {
+      ans += "-";
+    }ans += "\t\t|\n";
+    ans += "|\t\to\tobstacles\t\t\t\t|\n+";
+    for (int i = 0; i < 63; i++) {
+      ans += "-";
+    }
+    return ans + "+";
   }
 
   private String quadrillage(){
