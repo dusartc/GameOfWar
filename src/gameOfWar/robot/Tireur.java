@@ -22,12 +22,12 @@ public class Tireur extends Robot {
 
   @Override
   public int getCoupDep() {
-    return 1;
+    return Constante.COUP_DEPLACEMENTS_TIREUR;
   }
 
   @Override
   public int getCoutAction() {
-    return 0;
+    return Constante.COUP_ACTION_TIREUR;
   }
 
   @Override
