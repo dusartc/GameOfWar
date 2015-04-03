@@ -8,8 +8,9 @@ public class PoseMine extends Action{
 
 	public PoseMine(Robot robot, Coordonnees direction) {
 		super(robot, direction);
-		this.agit();
+		//this.agit();
 	}
+	
 	public void agit(){
 		if (this.getRobot() instanceof Piegeur) {
 			this.getRobot().getVue().setMine(getRobot(), getObjectif());

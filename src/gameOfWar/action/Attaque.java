@@ -9,11 +9,10 @@ public class Attaque extends Action {
 		super(robot, direction);
 	}
 	
-	@Override
 	void agit() {
-		while (this.getRobot().getCoordonnees() != this.getObjectif()) {
-			
-		}
+//		while (this.getRobot().getCoordonnees() != this.getObjectif()) {
+//			
+//		}
 	}
 
 }
