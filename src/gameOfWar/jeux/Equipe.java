@@ -39,6 +39,7 @@ public class Equipe {
   
   public void addRobot(Robot robot) {
     this.robots.add(robot);
+    this.vue.poserRobot(robot, getCoordBase());
   }
   
   public void removeRobot(Robot robot) {
@@ -71,8 +72,13 @@ public class Equipe {
   
   @Override
   public String toString() {
-    return this.nom + "\n" + this.coordBase.toString() 
-        + "\n " + this.robots.toString()
-        + "\n" + this.mines.toString();
-  }  
+    String ans = this.nom + "\n" + this.coordBase.toString() + " \n Robots : \n";
+    for (Robot ro : this.robots) {
+      ans += ro.toString()+"\n";
+    }return ans;
+  }
+  
+  public boolean perdu() {
+    return this.robots.isEmpty();
+  }
 }
