@@ -11,7 +11,7 @@ import java.util.Random;
 
 
 /**
- * @author user
+ * @author dusartc
  *
  */
 public class Plateau {
@@ -28,11 +28,11 @@ public class Plateau {
     this.longueur = longueur;
     this.largeur = largeur;
     if (pourcentageObstacle > Constante.OBSTACLES_MAX) {
-      System.err.println("trop d'obstacles ; "+Constante.OBSTACLES_MAX+" sera utilisé");
+      System.err.println("trop d'obstacles ; " + Constante.OBSTACLES_MAX + " sera utilisé");
       pourcentageObstacle = Constante.OBSTACLES_MAX;
     }
     if (pourcentageObstacle < Constante.OBSTACLES_MIN) {
-      System.err.println("pas assez d'obstacles ; "+Constante.OBSTACLES_MIN+" sera utilisé");
+      System.err.println("pas assez d'obstacles ; " + Constante.OBSTACLES_MIN + " sera utilisé");
       pourcentageObstacle = Constante.OBSTACLES_MIN;
     }
     this.plateau = new Cellule[largeur][longueur];
@@ -70,7 +70,13 @@ public class Plateau {
   }
 
   public Cellule getCelluleByCoordonnees(Coordonnees coordonnees){
-    return null;
+    for (Cellule[] cellules : plateau) {
+      for (Cellule cellule : cellules) {
+        if (cellule.getCoordonnees().equals(coordonnees)) {
+          return cellule;
+        }
+      }
+    }return null;
   }
 
   public int getLargeur() {
