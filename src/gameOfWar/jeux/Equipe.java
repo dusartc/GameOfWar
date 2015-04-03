@@ -5,6 +5,7 @@ import gameOfWar.robot.Robot;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 
 public class Equipe {
@@ -80,5 +81,21 @@ public class Equipe {
   
   public boolean perdu() {
     return this.robots.isEmpty();
+  }
+
+  public Robot choisitRobot() {
+    int i = 1;
+    for (Robot robot : robots) {
+      System.out.println("choix : " + i + "\n\t" + robot.toString());
+      i += 1;
+    }
+    Scanner sc = new Scanner(System.in);
+    if (sc.hasNextInt()) {
+      i = sc.nextInt();
+      sc.close();
+      return this.robots.get(i-1);
+    }
+    sc.close();
+    return null;
   }
 }
