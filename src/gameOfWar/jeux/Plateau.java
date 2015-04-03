@@ -36,20 +36,20 @@ public class Plateau {
     }
     this.plateau = new Cellule[largeur][longueur];
     for (int i = 0; i < plateau.length; i++) {          //
-      for (int j = 0; j < plateau[0].length; j++) {     // remplissage vide
-        this.plateau[i][j] = new Cellule(j, i);            //
+      for (int j = 0; j < plateau[0].length; j++) {     // Remplissage vide
+        this.plateau[i][j] = new Cellule(j, i);         //
       }
     }
-    this.plateau[0][0] = new Base(0, 0, Constante.EQUIPE_UN); //
-    this.plateau[this.plateau.length - 1][this.plateau[0].length - 1] = // base par default
-        new Base(this.plateau.length - 1, this.plateau[0].length - 1, Constante.EQUIPE_DEUX);  //
+    this.plateau[0][0] = new Base(0, 0, Constante.EQUIPE_UN);                  //
+    this.plateau[this.longueur - 1][this.largeur - 1] =                        // base par default
+        new Base(this.longueur - 1, this.largeur - 1, Constante.EQUIPE_DEUX);  //
 
     double nbObstacles = ((double) pourcentageObstacle / 100) * (this.plateau[0].length * this.plateau.length);
     int currentObstacles = 0;
     Random rd = new Random();
     while (currentObstacles < nbObstacles) {
-      int rdX = rd.nextInt(this.plateau.length - 2) + 1;
-      int rdY = rd.nextInt(this.plateau[0].length - 2) + 1;
+      int rdX = rd.nextInt(this.longueur - 3) + 1;
+      int rdY = rd.nextInt(this.largeur - 3) + 1;
       if (!getCellule(rdY, rdX).estMur() &&
           getCellule(rdY, rdX).estBase() == 0 &&
           getCellule(rdY, rdX).contientMine() == 0 &&
@@ -134,6 +134,8 @@ public class Plateau {
           Mur test = (Mur) plateau[i][j];
           if(test.estMur()) {
             ans += "| X ";
+          }if (j == plateau[0].length - 1) {
+            ans += "|";
           }
         }
         else if (plateau[i][j] instanceof Base) {
@@ -156,7 +158,7 @@ public class Plateau {
         }
         else if (plateau[i][j] instanceof Cellule){
           ans += "|   ";
-          if (j == plateau[0].length-1) {
+          if (j == plateau[0].length -1) {
             ans += "|";
           }
         }
