@@ -67,7 +67,7 @@ public abstract class Robot {
   }
 
   abstract public void subitMine();
-  abstract public void subitTir();
+  abstract public void subitTirDe(Robot rob);
   
   public void estSoigne(){
     if (this.estSurBase(this.coordonnees.getLargeur(), this.coordonnees.getHauteur())) {

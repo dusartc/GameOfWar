@@ -62,7 +62,7 @@ public class Tireur extends Robot {
   }
 
   @Override
-  public void subitTir() {
+  public void subitTirDe(Robot robot) {
     // TODO Auto-generated method stub
   }
   

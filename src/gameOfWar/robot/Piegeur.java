@@ -68,13 +68,10 @@ public class Piegeur extends Robot {
 
   @Override
   public void subitMine() {
-    // TODO Auto-generated method stub
-    setEnergie(getEnergie()-2);
+    setEnergie(getEnergie()-Constante.DEGATS_PIEGEUR);
   }
 
-  @Override
-  public void subitTir() {
-    // TODO Auto-generated method stub
+  public void subitTirDe(Robot robot) {
     setEnergie(getEnergie()-2);
   }
   
