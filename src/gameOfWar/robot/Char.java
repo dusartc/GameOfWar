@@ -18,6 +18,7 @@ public class Char extends Robot{
     super(vue, equipe);
     this.coordonnees = new ArrayList<Coordonnees>();
     this.coordonnees = Constante.DEP_TIREUR;
+    this.setEnergie(Constante.ENERGIE_CHAR);
   }
 
   @Override
