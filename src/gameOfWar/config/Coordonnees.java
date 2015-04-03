@@ -18,7 +18,7 @@ public class Coordonnees {
   
   @Override
   public String toString(){
-    return "Coordonnées : ("+this.largeur+","+this.hauteur+")";
+    return "Coordonnees : ("+this.largeur+","+this.hauteur+")";
   }
   
   public Coordonnees ajout(Coordonnees coord){
