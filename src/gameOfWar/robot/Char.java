@@ -14,21 +14,21 @@ public class Char extends Robot{
   
   private List<Coordonnees> coordonnees;
   
-  public Char(Vue vue, int l, int h, int equipe) {
-    super(vue, l, h, equipe);
+  public Char(Vue vue, int equipe) {
+    super(vue, equipe);
     this.coordonnees = new ArrayList<Coordonnees>();
     this.coordonnees = Constante.DEP_TIREUR;
-    // TODO Auto-generated constructor stub
+    this.setEnergie(Constante.ENERGIE_CHAR);
   }
 
   @Override
   public int getCoupDep() {
-    return 1;
+    return Constante.COUP_DEPLACEMENTS_CHAR;
   }
 
   @Override
   public int getCoutAction() {
-    return 0;
+    return Constante.COUP_ACTION_CHAR;
   }
 
   @Override
@@ -56,15 +56,20 @@ public class Char extends Robot{
     return false;
   }
 
-@Override
-public void subitMine() {
+  @Override
+  public void subitMine() {
     // TODO Auto-generated method stub
-    
-}
 
-@Override
-public void subitTir() {
+  }
+
+  @Override
+  public void subitTirDe(Robot robot) {
     // TODO Auto-generated method stub
-    
-}
+
+  }
+  
+  @Override
+  public String toString() {
+    return this.getClass().getName() + " " + super.toString();
+  }
 }

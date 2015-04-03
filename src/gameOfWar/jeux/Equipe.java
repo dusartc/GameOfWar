@@ -5,6 +5,7 @@ import gameOfWar.robot.Robot;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 
 public class Equipe {
@@ -13,9 +14,13 @@ public class Equipe {
   private List<Robot> robots;
   private List<Mine> mines;
   private Vue vue;
+  private int equipe;
+  private Coordonnees coordBase;
   
-  public Equipe(String nom, Plateau plateau) {
+  public Equipe(String nom, Plateau plateau, int equipe, Coordonnees coord) {
     this.nom = nom;
+    this.equipe = equipe;
+    this.coordBase = coord;
     this.robots = new ArrayList<Robot>();
     this.mines = new ArrayList<Mine>();
     this.vue = new Vue(plateau);
@@ -29,8 +34,13 @@ public class Equipe {
     return this.vue;
   }
   
+  public Coordonnees getCoordBase() {
+    return this.coordBase;
+  }
+  
   public void addRobot(Robot robot) {
     this.robots.add(robot);
+    this.vue.poserRobot(robot, getCoordBase());
   }
   
   public void removeRobot(Robot robot) {
@@ -55,5 +65,37 @@ public class Equipe {
   
   public void removeMines(Mine mine) {
 	this.mines.remove(mine);
+  }
+
+  public int getEquipe() {
+   return this.equipe;
+  }
+  
+  @Override
+  public String toString() {
+    String ans = this.nom + "\n" + this.coordBase.toString() + " \n Robots : \n";
+    for (Robot ro : this.robots) {
+      ans += ro.toString()+"\n";
+    }return ans;
+  }
+  
+  public boolean perdu() {
+    return this.robots.isEmpty();
+  }
+
+  public Robot choisitRobot() {
+    int i = 1;
+    for (Robot robot : robots) {
+      System.out.println("choix : " + i + "\n\t" + robot.toString());
+      i += 1;
+    }
+    Scanner sc = new Scanner(System.in);
+    if (sc.hasNextInt()) {
+      i = sc.nextInt();
+      sc.close();
+      return this.robots.get(i-1);
+    }
+    sc.close();
+    return null;
   }
 }

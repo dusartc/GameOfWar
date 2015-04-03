@@ -3,47 +3,42 @@ package gameOfWar.robot;
 import gameOfWar.config.Constante;
 import gameOfWar.config.Coordonnees;
 import gameOfWar.jeux.Vue;
-import java.util.ArrayList;
+
 import java.util.List;
 
 
 public class Piegeur extends Robot {
 
-  private final int DEGATS_TIR = 2; /*degats qu'il se prend après un tir*/
-  private final int DEGATS_MINES = 2; /*degats qu'il se prend après une mine*/
-  private final int COUP_DEP = 2; /*degats qu'il se prend en se deplaçant*/
-  private final int COUP_ACTION = 2; /*degats qu'il se prend en posant une mine*/
   private int nbMines = 10;
   
   private List<Coordonnees> coordonnees;
   
-  public Piegeur(Vue vue, int l, int h, int equipe) {
-    super(vue, l, h, equipe);
-    this.coordonnees = new ArrayList<Coordonnees>();
+  public Piegeur(Vue vue, int equipe) {
+    super(vue, equipe);
+    this.setEnergie(Constante.ENERGIE_PIEGEUR);
     this.coordonnees = Constante.DEP_PIEGEUR;
-    // TODO Auto-generated constructor stub
   }
-
-  @Override
-  public int getCoupDep() {
-    // TODO Auto-generated method stub
-    return this.COUP_DEP;
-  }
-
-  @Override
-  public int getCoutAction() {
-    // TODO Auto-generated method stub
-    return this.COUP_ACTION;
-  }
-
+  
   @Override
   public int getDegatMine() {
-    return this.DEGATS_MINES;
+    // TODO Auto-generated method stub
+    return 0;
   }
 
   @Override
   public int getDegatTir() {
-    return this.DEGATS_TIR;
+    // TODO Auto-generated method stub
+    return 0;
+  }
+
+  @Override
+  public int getCoupDep() {
+    return Constante.COUP_DEPLACEMENTS_PIEGEUR;
+  }
+
+  @Override
+  public int getCoutAction() {
+    return Constante.COUP_ACTION_TIREUR;
   }
 
   @Override
@@ -71,16 +66,18 @@ public class Piegeur extends Robot {
     }return false;
   }
 
-@Override
-public void subitMine() {
-	// TODO Auto-generated method stub
-	setEnergie(getEnergie()-2);
-}
+  @Override
+  public void subitMine() {
+    setEnergie(getEnergie()-Constante.DEGATS_PIEGEUR);
+  }
 
-@Override
-public void subitTir() {
-	// TODO Auto-generated method stub
-	setEnergie(getEnergie()-2);
-}
+  public void subitTirDe(Robot robot) {
+    setEnergie(getEnergie()-2);
+  }
+  
+  @Override
+  public String toString() {
+    return this.getClass().getName() + " " + super.toString();
+  }
 
 }
