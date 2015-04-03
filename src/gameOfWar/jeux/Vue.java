@@ -11,6 +11,17 @@ public class Vue {
     this.plateau = plateau;
     //TODO ne vois qu'une partie du plateau en fonction de son equipe;
   }
+  
+  public boolean estOK(Coordonnees coordonnees){
+    return coordonnees.getLargeur() > 0
+        && coordonnees.getHauteur() > 0
+        && coordonnees.getLargeur() < this.plateau.getLargeur() 
+        && coordonnees.getLargeur() < this.plateau.getLongueur();
+  }
+  
+  public void libereCelulle(Coordonnees coordonnees){
+    this.plateau.libereCellule(coordonnees.getLargeur(), coordonnees.getHauteur());
+  }
 
   public void poserRobot(Robot robot, Coordonnees coordonnees){
 	  this.plateau.poserRobot(coordonnees.getLargeur(), coordonnees.getHauteur(), robot);
