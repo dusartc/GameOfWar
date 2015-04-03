@@ -3,6 +3,7 @@ package gameOfWar.robot;
 import gameOfWar.config.Constante;
 import gameOfWar.config.Coordonnees;
 import gameOfWar.jeux.Vue;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,8 +18,8 @@ public class Piegeur extends Robot {
   
   private List<Coordonnees> coordonnees;
   
-  public Piegeur(Vue vue, int l, int h, int equipe) {
-    super(vue, l, h, equipe);
+  public Piegeur(Vue vue, int equipe) {
+    super(vue, equipe);
     this.coordonnees = new ArrayList<Coordonnees>();
     this.coordonnees = Constante.DEP_PIEGEUR;
     // TODO Auto-generated constructor stub

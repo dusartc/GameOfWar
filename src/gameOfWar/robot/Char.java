@@ -14,8 +14,8 @@ public class Char extends Robot{
   
   private List<Coordonnees> coordonnees;
   
-  public Char(Vue vue, int l, int h, int equipe) {
-    super(vue, l, h, equipe);
+  public Char(Vue vue, int equipe) {
+    super(vue, equipe);
     this.coordonnees = new ArrayList<Coordonnees>();
     this.coordonnees = Constante.DEP_TIREUR;
     // TODO Auto-generated constructor stub

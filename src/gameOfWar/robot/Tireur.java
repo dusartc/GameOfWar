@@ -3,8 +3,8 @@ import gameOfWar.config.Constante;
 import gameOfWar.config.Coordonnees;
 import gameOfWar.jeux.Vue;
 
-import java.util.ArrayList; // Touche moi cette belle ArrayList(I).
 import java.util.List;
+// Touche moi cette belle ArrayList(I).
 
 
 public class Tireur extends Robot {
@@ -14,8 +14,8 @@ public class Tireur extends Robot {
   
   private List<Coordonnees> coordonnees; //A méditer (voir : direction et objectif) CLEMENT !
   
-  public Tireur(Vue vue, int l, int h, int equipe) {
-    super(vue, l, h, equipe);
+  public Tireur(Vue vue, int equipe) {
+    super(vue, equipe);
     this.setEnergie(Constante.ENERGIE_TIREUR);
     // TODO Auto-generated constructor stub
   }
