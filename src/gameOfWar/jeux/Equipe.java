@@ -13,9 +13,11 @@ public class Equipe {
   private List<Robot> robots;
   private List<Mine> mines;
   private Vue vue;
+  private int equipe;
   
-  public Equipe(String nom, Plateau plateau) {
+  public Equipe(String nom, Plateau plateau, int equipe) {
     this.nom = nom;
+    this.equipe = equipe;
     this.robots = new ArrayList<Robot>();
     this.mines = new ArrayList<Mine>();
     this.vue = new Vue(plateau);
@@ -55,5 +57,9 @@ public class Equipe {
   
   public void removeMines(Mine mine) {
 	this.mines.remove(mine);
+  }
+
+  public int getEquipe() {
+   return this.equipe;
   }
 }
