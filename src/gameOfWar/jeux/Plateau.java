@@ -18,20 +18,16 @@ public class Plateau {
   private Cellule[][] plateau;
   private int longueur;
   private int largeur;
-  //  private static final int DROITE = 1;
-  //  private static final int GAUCHE = 2;
-  //  private static final int HAUT   = 3;
-  //  private static final int BAS    = 4;
 
   public Plateau(int longueur, int largeur, int pourcentageObstacle) {
     this.longueur = longueur;
     this.largeur = largeur;
     if (pourcentageObstacle > Constante.OBSTACLES_MAX) {
-      System.err.println("trop d'obstacles ; " + Constante.OBSTACLES_MAX + " sera utilisé");
+      System.err.println("trop d'obstacles ; " + Constante.OBSTACLES_MAX + " sera utilise");
       pourcentageObstacle = Constante.OBSTACLES_MAX;
     }
     if (pourcentageObstacle < Constante.OBSTACLES_MIN) {
-      System.err.println("pas assez d'obstacles ; " + Constante.OBSTACLES_MIN + " sera utilisé");
+      System.err.println("pas assez d'obstacles ; " + Constante.OBSTACLES_MIN + " sera utilise");
       pourcentageObstacle = Constante.OBSTACLES_MIN;
     }
     this.plateau = new Cellule[largeur][longueur];
