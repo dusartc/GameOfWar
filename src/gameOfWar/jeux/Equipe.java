@@ -14,10 +14,12 @@ public class Equipe {
   private List<Mine> mines;
   private Vue vue;
   private int equipe;
+  private Coordonnees coordBase;
   
-  public Equipe(String nom, Plateau plateau, int equipe) {
+  public Equipe(String nom, Plateau plateau, int equipe, Coordonnees coord) {
     this.nom = nom;
     this.equipe = equipe;
+    this.coordBase = coord;
     this.robots = new ArrayList<Robot>();
     this.mines = new ArrayList<Mine>();
     this.vue = new Vue(plateau);
@@ -29,6 +31,10 @@ public class Equipe {
   
   public Vue getVue() {
     return this.vue;
+  }
+  
+  public Coordonnees getCoordBase() {
+    return this.coordBase;
   }
   
   public void addRobot(Robot robot) {
