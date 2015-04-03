@@ -101,7 +101,7 @@ public class Plateau {
 
 
 	public void poserUneMine(int x, int y, int equipe){
-		if (this.estBase(y,x) != 0 && !this.estMur(x, y) && this.estRobot(y, x) == 0) {
+		if (this.estBase(y,x) == 0 && !this.estMur(y, x) && this.estRobot(y, x) == 0) {
 			this.plateau[y][x] = new Mine(y, x, equipe);
 		}
 		else{
@@ -136,6 +136,15 @@ public class Plateau {
 					}
 					else if(test.estBase() == 2){
 						ans += "| b |\n";
+					}
+				}
+				else if (plateau[i][j] instanceof Mine) {
+					Mine testMine = (Mine) plateau[i][j];
+					if (testMine.contientMine() == 1) {
+						ans += "| O ";
+					}
+					if (testMine.contientMine() == 2) {
+						ans += "| o ";
 					}
 				}
 				else if (plateau[i][j] instanceof Cellule){

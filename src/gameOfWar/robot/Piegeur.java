@@ -1,17 +1,19 @@
+
 package gameOfWar.robot;
 import gameOfWar.config.Constante;
 import gameOfWar.config.Coordonnees;
 import gameOfWar.jeux.Vue;
-
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class Piegeur extends Robot {
 
-  private final int DEGATS_TIRS = 0;
-  private final int DEGATS_MINES = 10;
-  private int nbMines = 0;
+  private final int DEGATS_TIR = 2; /*degats qu'il se prend après un tir*/
+  private final int DEGATS_MINES = 2; /*degats qu'il se prend après une mine*/
+  private final int COUP_DEP = 2; /*degats qu'il se prend en se deplaçant*/
+  private final int COUP_ACTION = 2; /*degats qu'il se prend en posant une mine*/
+  private int nbMines = 10;
   
   private List<Coordonnees> coordonnees;
   
@@ -25,13 +27,13 @@ public class Piegeur extends Robot {
   @Override
   public int getCoupDep() {
     // TODO Auto-generated method stub
-    return 0;
+    return this.COUP_DEP;
   }
 
   @Override
   public int getCoutAction() {
     // TODO Auto-generated method stub
-    return 0;
+    return this.COUP_ACTION;
   }
 
   @Override
@@ -41,7 +43,7 @@ public class Piegeur extends Robot {
 
   @Override
   public int getDegatTir() {
-    return this.DEGATS_TIRS;
+    return this.DEGATS_TIR;
   }
 
   @Override
@@ -72,13 +74,13 @@ public class Piegeur extends Robot {
 @Override
 public void subitMine() {
 	// TODO Auto-generated method stub
-	
+	setEnergie(getEnergie()-2);
 }
 
 @Override
 public void subitTir() {
 	// TODO Auto-generated method stub
-	
+	setEnergie(getEnergie()-2);
 }
 
 }

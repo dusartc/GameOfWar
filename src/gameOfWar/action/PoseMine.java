@@ -8,7 +8,7 @@ public class PoseMine extends Action{
 
 	public PoseMine(Robot robot, Coordonnees direction) {
 		super(robot, direction);
-		// TODO Auto-generated constructor stub
+		this.agit();
 	}
 	public void agit(){
 		if (this.getRobot() instanceof Piegeur) {

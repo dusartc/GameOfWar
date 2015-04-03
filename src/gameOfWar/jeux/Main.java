@@ -9,6 +9,13 @@ public class Main {
     //Tireur test3 = new Tireur(test2, 3, 5, 1);
     //test2.poserRobot(robot, coordonnees);
     System.out.println(test);
+    
+    test.poserUneMine(3, 0, 1);
+    System.out.println(test);
+    
+    
+    test.poserUneMine(0, 3, 2);
+    System.out.println(test);
   }
 
 }
