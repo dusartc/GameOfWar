@@ -20,20 +20,17 @@ public class Case extends Cellule {
     this.mur = mur;
   }
 
-  @Override
   void deplaceSur(Robot robot) {
     // TODO Auto-generated method stub
 
   }
 
-  @Override
   void ajoute(int equipe) {
     // TODO Auto-generated method stub
 
   }
 
-  @Override
-  void videCase() {
+  public void videCase() {
     this.mur = false;
   }
   
@@ -41,8 +38,8 @@ public class Case extends Cellule {
     return this.mur;
   }
 
-  @Override
-  boolean estVide() {
+  
+  public boolean estVide() {
     // TODO Auto-generated method stub
     return this.mur;
   }
