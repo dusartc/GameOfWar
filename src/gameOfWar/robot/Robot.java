@@ -77,7 +77,6 @@ public abstract class Robot {
 
   @Override
   public String toString() {
-    // TODO Auto-generated method stub
-    return super.toString();
+    return this.energie + " " + this.coordonnees.toString();
   }
 }

@@ -72,16 +72,21 @@ public class Piegeur extends Robot {
     }return false;
   }
 
-@Override
-public void subitMine() {
-	// TODO Auto-generated method stub
-	setEnergie(getEnergie()-2);
-}
+  @Override
+  public void subitMine() {
+    // TODO Auto-generated method stub
+    setEnergie(getEnergie()-2);
+  }
 
-@Override
-public void subitTir() {
-	// TODO Auto-generated method stub
-	setEnergie(getEnergie()-2);
-}
+  @Override
+  public void subitTir() {
+    // TODO Auto-generated method stub
+    setEnergie(getEnergie()-2);
+  }
+  
+  @Override
+  public String toString() {
+    return this.getClass().getName() + "\n" + super.toString();
+  }
 
 }

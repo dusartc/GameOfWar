@@ -18,7 +18,6 @@ public class Char extends Robot{
     super(vue, equipe);
     this.coordonnees = new ArrayList<Coordonnees>();
     this.coordonnees = Constante.DEP_TIREUR;
-    // TODO Auto-generated constructor stub
   }
 
   @Override
@@ -56,15 +55,20 @@ public class Char extends Robot{
     return false;
   }
 
-@Override
-public void subitMine() {
+  @Override
+  public void subitMine() {
     // TODO Auto-generated method stub
-    
-}
 
-@Override
-public void subitTir() {
+  }
+
+  @Override
+  public void subitTir() {
     // TODO Auto-generated method stub
-    
-}
+
+  }
+  
+  @Override
+  public String toString() {
+    return this.getClass().getName() + "\n" + super.toString();
+  }
 }
