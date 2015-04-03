@@ -70,6 +70,6 @@ public class Char extends Robot{
   
   @Override
   public String toString() {
-    return this.getClass().getName() + "\n" + super.toString();
+    return this.getClass().getName() + " " + super.toString();
   }
 }

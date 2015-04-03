@@ -12,7 +12,6 @@ import java.util.Random;
 
 /**
  * @author dusartc
- *
  */
 public class Plateau {
 
