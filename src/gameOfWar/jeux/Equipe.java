@@ -68,4 +68,11 @@ public class Equipe {
   public int getEquipe() {
    return this.equipe;
   }
+  
+  @Override
+  public String toString() {
+    return this.nom + "\n" + this.coordBase.toString() 
+        + "\n " + this.robots.toString()
+        + "\n" + this.mines.toString();
+  }  
 }
