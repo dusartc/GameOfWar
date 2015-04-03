@@ -15,8 +15,8 @@ public abstract class Robot {
   
   
   public Robot(Vue vue, int equipe) {
-	  this.coordonnees = new Coordonnees((equipe == 0) ? 0 : vue.getPlateau().getLargeur(),
-	                                      (equipe == 0) ? 0 : vue.getPlateau().getLongueur());
+	  this.coordonnees = new Coordonnees((equipe == 0) ? 0 : vue.getPlateau().getLargeur()-1,
+	                                      (equipe == 0) ? 0 : vue.getPlateau().getLongueur()-1);
 	  this.equipe = equipe;
 	  this.vue = vue;
   }
