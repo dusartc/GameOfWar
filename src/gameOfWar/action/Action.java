@@ -1,5 +1,6 @@
 package gameOfWar.action;
 
+import gameOfWar.config.Cellule;
 import gameOfWar.config.Coordonnees;
 import gameOfWar.robot.Robot;
 
@@ -40,6 +41,6 @@ public abstract class Action {
 	/**
 	 * agit realise l'action du robot
 	 */
-	abstract void agit();
+	abstract void agit(Cellule c);
 	
 }

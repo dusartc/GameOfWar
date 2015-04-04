@@ -1,4 +1,5 @@
 package gameOfWar.action;
+import gameOfWar.config.Cellule;
 import gameOfWar.config.Coordonnees;
 import gameOfWar.robot.Robot;
 
@@ -9,7 +10,7 @@ public class Attaque extends Action {
 		super(robot, direction);
 	}
 	
-	void agit() {
+	void agit(Cellule c) {
 //		while (this.getRobot().getCoordonnees() != this.getObjectif()) {
 //			
 //		}

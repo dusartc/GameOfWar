@@ -1,3 +1,4 @@
+package gameOfWar.config;
 
 public class Coordonnees {
   private int largeur;

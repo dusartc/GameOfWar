@@ -1,4 +1,5 @@
 package gameOfWar.action;
+import gameOfWar.config.Cellule;
 import gameOfWar.config.Coordonnees;
 import gameOfWar.robot.Piegeur;
 import gameOfWar.robot.Robot;
@@ -11,7 +12,7 @@ public class PoseMine extends Action{
 		//this.agit();
 	}
 	
-	public void agit(){
+	public void agit(Cellule c){
 		if (this.getRobot() instanceof Piegeur) {
 			this.getRobot().getVue().setMine(getRobot(), getObjectif());
 		}

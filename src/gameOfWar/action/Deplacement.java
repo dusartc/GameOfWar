@@ -1,3 +1,13 @@
+package gameOfWar.action;
+
+import gameOfWar.config.Cellule;
+import gameOfWar.config.Constante;
+import gameOfWar.config.Coordonnees;
+import gameOfWar.robot.Char;
+import gameOfWar.robot.Piegeur;
+import gameOfWar.robot.Robot;
+import gameOfWar.robot.Tireur;
+
 import java.util.ArrayList;
 
 
