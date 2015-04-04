@@ -64,9 +64,9 @@ public class Constante {
 	  DEP_PIEGEUR.addAll(DEP_TIREUR);
 	  
 	  DEP_CHAR = new ArrayList<Coordonnees>();
-	  DEP_CHAR.add(HAUT_CHAR);
-	  DEP_CHAR.add(BAS_CHAR);
-	  DEP_CHAR.add(DROITE_CHAR);
-	  DEP_CHAR.add(GAUCHE_CHAR);
+	  DEP_CHAR.add(HAUT);
+	  DEP_CHAR.add(BAS);
+	  DEP_CHAR.add(DROITE);
+	  DEP_CHAR.add(GAUCHE);
   }
 }
