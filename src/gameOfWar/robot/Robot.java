@@ -16,6 +16,7 @@ public abstract class Robot {
 
 
   public Robot(Vue vue, int equipe) {
+    /** calcul des coordonnees de la base en fonction de son num d'equipe */
     this.coordonnees = new Coordonnees((equipe == Constante.EQUIPE_UN) ? 0 : vue.getPlateau().getLargeur()-1,
         (equipe == Constante.EQUIPE_UN) ? 0 : vue.getPlateau().getLongueur()-1);
     this.equipe = equipe;
@@ -23,10 +24,9 @@ public abstract class Robot {
   }
 
   public boolean estSurBase(int x, int y) {
-    if (this.getEquipe() == this.vue.getPlateau().getCellule(x, y).estBase()) {
-      return true;
-    }
-    return false;
+    /** calcul des coordonnees de la base */
+    return this.coordonnees.equals(new Coordonnees((equipe == Constante.EQUIPE_UN) ? 0 : vue.getPlateau().getLargeur()-1, 
+          (equipe == Constante.EQUIPE_UN) ? 0 : vue.getPlateau().getLongueur()-1));
   }
 
   public Coordonnees getCoordonnees() {
@@ -82,6 +82,7 @@ public abstract class Robot {
   }
 
   public Action choisitAction() {
+    /** on propose un choix d'action et la renvoie */
     // TODO Auto-generated method stub
     return null;
   }
