@@ -20,6 +20,9 @@ public class Plateau {
   private int largeur;
 
   public Plateau(int longueur, int largeur, int pourcentageObstacle) {
+    /** on doit avoir un chemin entre les deux bases :
+     *  on met des murs seulements au coordonnees 0+1 et max-1 pour avoir un chemin qui fait le tour
+     */
     this.longueur = longueur;
     this.largeur = largeur;
     if (pourcentageObstacle > Constante.OBSTACLES_MAX) {
@@ -65,6 +68,9 @@ public class Plateau {
   }
 
   public Cellule getCelluleByCoordonnees(Coordonnees coordonnees){
+    /** un simple parcourt des cellules
+     *  on renvoie celle possedans les memes coordonnees que param
+     */
     for (Cellule[] cellules : plateau) {
       for (Cellule cellule : cellules) {
         if (cellule.getCoordonnees().equals(coordonnees)) {
@@ -104,7 +110,8 @@ public class Plateau {
 
 
   public void poserUneMine(int x, int y, int equipe){
-    if (this.estBase(y,x) == 0 && !this.estMur(y, x) && this.estRobot(y, x) == 0) {
+    /** on peut poser une mine seulement sur une case vide */
+    if (this.plateau[y][x].estVide()) {
       this.plateau[y][x] = new Mine(y, x, equipe);
     }
     else{
