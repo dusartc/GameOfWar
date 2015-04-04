@@ -39,6 +39,7 @@ public class Equipe {
   }
   
   public void addRobot(Robot robot) {
+    /** ajouter un robot le pose egalement sur le plateau */
     this.robots.add(robot);
     this.vue.poserRobot(robot, getCoordBase());
   }
@@ -48,11 +49,12 @@ public class Equipe {
   }
   
   public Robot getRobotByCoordonnees(Coordonnees coordonnees) {
+    /** parcourt de tous les robots et on renvoie celui avec les memes coordonnees */
     for (Robot robot : robots) {
       if (robot.getCoordonnees().equals(coordonnees)) {
         return robot;
       }
-    	}return null;
+    }return null;
   }
   
   public Robot getRobotByIndex(int i) {
@@ -84,6 +86,7 @@ public class Equipe {
   }
 
   public Robot choisitRobot() {
+    /** parcourt des robots, on le decris et lui fixe un numero et on renvoie celui correspondant au num */
     int i = 1;
     for (Robot robot : robots) {
       System.out.println("choix : " + i + "\n\t" + robot.toString());
