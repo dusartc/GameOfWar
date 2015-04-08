@@ -34,11 +34,12 @@ public class Plateau {
       pourcentageObstacle = Constante.OBSTACLES_MIN;
     }
     this.plateau = new Cellule[largeur][longueur];
+    System.out.println("toto");
     for (int i = 0; i < plateau.length; i++) {          //
       for (int j = 0; j < plateau[0].length; j++) {     // Remplissage vide
         this.plateau[i][j] = new Cellule(j, i);         //
       }
-    }
+    }System.out.println("hehe");
     this.plateau[0][0] = new Base(0, 0, Constante.EQUIPE_UN);                  //
     this.plateau[this.longueur - 1][this.largeur - 1] =                        // base par default
         new Base(this.longueur - 1, this.largeur - 1, Constante.EQUIPE_DEUX);  //
@@ -56,7 +57,7 @@ public class Plateau {
         this.plateau[rdX][rdY] = new Mur(rdX, rdY);
         currentObstacles += 1;
       }
-    }
+    }System.out.println("done");
   }
 
   public Plateau(int longueur, int largeur, int x, int y, int direction){
@@ -69,7 +70,7 @@ public class Plateau {
 
   public Cellule getCelluleByCoordonnees(Coordonnees coordonnees){
     /** un simple parcourt des cellules
-     *  on renvoie celle possedans les memes coordonnees que param
+     *  on renvoie celle possedant les memes coordonnees que param
      */
     for (Cellule[] cellules : plateau) {
       for (Cellule cellule : cellules) {
@@ -133,47 +134,48 @@ public class Plateau {
 
   @Override
   public String toString() {
-    String ans= quadrillage();
+    StringBuilder ans = new StringBuilder();
+    ans.insert(ans.length(), quadrillage());
     for (int i = 0; i < plateau.length; i++) {
       for (int j = 0; j < plateau[0].length; j++) {
         if (plateau[i][j] instanceof Mur) {
           Mur test = (Mur) plateau[i][j];
           if(test.estMur()) {
-            ans += "| X ";
+            ans.insert(ans.length(), "| X ");
           }if (j == plateau[0].length - 1) {
-            ans += "|";
+            ans.insert(ans.length(), "|");
           }
         }
         else if (plateau[i][j] instanceof Base) {
           Base test = (Base) plateau[i][j];
           if (test.estBase() == 1) {
-            ans += "\n| B ";
+            ans.insert(ans.length(), "\n| B ");
           }
           else if(test.estBase() == 2){
-            ans += "| b |\n";
+            ans.insert(ans.length(),"| b |\n");
           }
         }
         else if (plateau[i][j] instanceof Mine) {
           Mine testMine = (Mine) plateau[i][j];
           if (testMine.contientMine() == 1) {
-            ans += "| O ";
+            ans.insert(ans.length(),"| O ");
           }
           if (testMine.contientMine() == 2) {
-            ans += "| o ";
+            ans.insert(ans.length(),"| o ");
           }
         }
         else if (plateau[i][j] instanceof Cellule){
-          ans += "|   ";
+          ans.insert(ans.length(),"|   ");
           if (j == plateau[0].length -1) {
-            ans += "|";
+            ans.insert(ans.length(),"|");
           }
         }
 
       }if(i < plateau.length - 1) {
-        ans += "\n"+quadrillage()+"\n";
+        ans.insert(ans.length(),"\n"+quadrillage()+"\n");
       }
-    }
-    return ans + quadrillage() + "\n\n" + legende();    
+    }ans.insert(ans.length(),quadrillage() + "\n\n" + legende());
+    return ans.toString();  
   }
   
   private String legende() {
@@ -186,7 +188,10 @@ public class Plateau {
         "base","tireur","piegeur","char","mine"
     };
     for (int i = 0; i < chabadabada.length; i++) {
-      ans += "|\t\t" + chabadabada[i].substring(0, 1).toUpperCase() + "\t|\t\t" + chabadabada[i].substring(0, 1) + "\t" + chabadabada[i] + "\t\t|\n";
+      ans += "|\t\t" 
+          + chabadabada[i].substring(0, 1).toUpperCase()
+          + "\t|\t\t" + chabadabada[i].substring(0, 1) + "\t"
+          + chabadabada[i] + "\t\t|\n";
     }ans += "|\t";
     for (int i = 0; i < 47; i++) {
       ans += "-";
