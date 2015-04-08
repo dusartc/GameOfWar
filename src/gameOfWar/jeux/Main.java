@@ -1,16 +1,18 @@
 package gameOfWar.jeux;
 
+import gameOfWar.action.Action;
 import gameOfWar.config.Constante;
 import gameOfWar.config.Coordonnees;
 import gameOfWar.robot.Char;
 import gameOfWar.robot.Piegeur;
+import gameOfWar.robot.Robot;
 import gameOfWar.robot.Tireur;
 
 
 public class Main {
 
   public static void main(String[] args) {
-    Plateau plateau = new Plateau(Constante.X_MAX, Constante.Y_MAX, Constante.OBSTACLES_MIN);
+    Plateau plateau = new Plateau(10000, 10000, 1);
     Equipe[] equipes = new Equipe[] {
         new Equipe("joueur1", plateau, Constante.EQUIPE_UN, new Coordonnees(0, 0)),
         new Equipe("joueur2", plateau, Constante.EQUIPE_DEUX, new Coordonnees(plateau.getLongueur()-1, 
