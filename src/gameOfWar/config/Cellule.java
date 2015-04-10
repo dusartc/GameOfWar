@@ -81,6 +81,10 @@ public class Cellule {
 	public void poserRobot(Robot robot){
 		this.robot = robot;
 	}
+	
+	public void retirerRobot() {
+	  this.robot = null;
+	}
 
 	public int estRobot(){
 		if (this.robot == null) {
