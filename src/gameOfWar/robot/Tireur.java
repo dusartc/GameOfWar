@@ -8,9 +8,9 @@ import java.util.List;
 
 
 public class Tireur extends Robot {
-  
+
   private List<Coordonnees> coordonnees; //A mediter (voir : direction et objectif) CLEMENT !
-  
+
   public Tireur(Vue vue, int equipe) {
     super(vue, equipe);
     this.setEnergie(Constante.ENERGIE_TIREUR);
@@ -81,7 +81,7 @@ public class Tireur extends Robot {
       System.err.println("Impossible de subir un Tir");
     }
   }
-  
+
   @Override
   public String toString() {
     return this.getType() + ", " + super.toString();

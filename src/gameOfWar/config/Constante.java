@@ -25,7 +25,7 @@ public class Constante {
   public static final int DEGATS_MINES_TIREUR = 0;
   public static final int DEGATS_MINES_CHAR = 0;
   public static final int DEGATS_TIRS_PIEGEUR = 0;
-  
+
   /// plateau ///
   public static final int X_MIN = 5;
   public static final int X_MAX = 25;
@@ -33,8 +33,8 @@ public class Constante {
   public static final int Y_MAX = 25;
   public static final int OBSTACLES_MIN = 20;
   public static final int OBSTACLES_MAX = 50;
-  
-  
+
+
   /// Déplacement pour Tireur et Piegeur ///
   public static final Coordonnees HAUT = new Coordonnees(0, -1);
   public static final Coordonnees HAUT_DROITE = new Coordonnees(1, -1);
@@ -51,25 +51,25 @@ public class Constante {
   public static List<Coordonnees> DEP_TIREUR;
   public static List<Coordonnees> DEP_PIEGEUR;
   public static List<Coordonnees> DEP_CHAR;
-  
+
   static{
-	  DEP_TIREUR = new ArrayList<Coordonnees>();
-	  DEP_PIEGEUR = new ArrayList<Coordonnees>();
-	  DEP_TIREUR.add(HAUT);
-	  DEP_TIREUR.add(HAUT_DROITE);
-	  DEP_TIREUR.add(HAUT_GAUCHE);
-	  DEP_TIREUR.add(BAS);
-	  DEP_TIREUR.add(BAS_DROITE);
-	  DEP_TIREUR.add(BAS_GAUCHE);
-	  DEP_TIREUR.add(DROITE);
-	  DEP_TIREUR.add(GAUCHE);
-	  
-	  DEP_PIEGEUR.addAll(DEP_TIREUR);
-	  
-	  DEP_CHAR = new ArrayList<Coordonnees>();
-	  DEP_CHAR.add(HAUT_CHAR);
-	  DEP_CHAR.add(BAS_CHAR);
-	  DEP_CHAR.add(DROITE_CHAR);
-	  DEP_CHAR.add(GAUCHE_CHAR);
+    DEP_TIREUR = new ArrayList<Coordonnees>();
+    DEP_PIEGEUR = new ArrayList<Coordonnees>();
+    DEP_TIREUR.add(HAUT);
+    DEP_TIREUR.add(HAUT_DROITE);
+    DEP_TIREUR.add(HAUT_GAUCHE);
+    DEP_TIREUR.add(BAS);
+    DEP_TIREUR.add(BAS_DROITE);
+    DEP_TIREUR.add(BAS_GAUCHE);
+    DEP_TIREUR.add(DROITE);
+    DEP_TIREUR.add(GAUCHE);
+
+    DEP_PIEGEUR.addAll(DEP_TIREUR);
+
+    DEP_CHAR = new ArrayList<Coordonnees>();
+    DEP_CHAR.add(HAUT_CHAR);
+    DEP_CHAR.add(BAS_CHAR);
+    DEP_CHAR.add(DROITE_CHAR);
+    DEP_CHAR.add(GAUCHE_CHAR);
   }
 }

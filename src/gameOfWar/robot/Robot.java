@@ -26,7 +26,7 @@ public abstract class Robot {
   public boolean estSurBase(int x, int y) {
     /** calcul des coordonnees de la base */
     return this.coordonnees.equals(new Coordonnees((equipe == Constante.EQUIPE_UN) ? 0 : vue.getPlateau().getLargeur()-1, 
-          (equipe == Constante.EQUIPE_UN) ? 0 : vue.getPlateau().getLongueur()-1));
+        (equipe == Constante.EQUIPE_UN) ? 0 : vue.getPlateau().getLongueur()-1));
   }
 
   public Coordonnees getCoordonnees() {

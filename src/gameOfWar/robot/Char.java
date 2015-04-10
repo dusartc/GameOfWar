@@ -3,16 +3,15 @@ import gameOfWar.config.Constante;
 import gameOfWar.config.Coordonnees;
 import gameOfWar.jeux.Vue;
 
-
 //import java.util.ArrayList;
 import java.util.List;
 //Touche moi cette belle ArrayList(I).
 
 
 public class Char extends Robot{
-  
+
   private List<Coordonnees> coordonnees; //A mediter (voir : direction et objectif) CLEMENT !
-  
+
   public Char(Vue vue, int equipe) {
     super(vue, equipe);
     this.setEnergie(Constante.ENERGIE_CHAR);
@@ -82,7 +81,7 @@ public class Char extends Robot{
       System.err.println("Impossible de subir un Tir");
     }
   }
-  
+
   @Override
   public String toString() {
     return this.getType() + ", " + super.toString();

@@ -10,65 +10,67 @@ import gameOfWar.robot.Tireur;
 
 
 public class Deplacement extends Action {
-  
-  
+
+
   public Deplacement(Robot robot, Coordonnees direction) {
     super(robot, direction);
     // TODO Auto-generated constructor stub
   }
 
   public boolean deplacementPossible(Cellule c){
-	  if(this.getRobot() instanceof Tireur || this.getRobot() instanceof Piegeur){
-		  Cellule inter = new Cellule(this.getRobot().getCoordonnees().getLargeur(),this.getRobot().getCoordonnees().getHauteur());
-		  Coordonnees coord = inter.getCoordonnees().calculCoordonnees(c.getCoordonnees());
-		  for(int i=0;i<Constante.DEP_TIREUR.size();i++){
-			  if(coord.equals(Constante.DEP_TIREUR.get(i))) {
-				  if(c.estVide() || c.contientMine()>0 || c.estBase()>0){
-					  return true;
-				  }
-			  }
-		  }
-	  }
-	  if(this.getRobot() instanceof Char){
-		  Cellule inter = new Cellule(this.getRobot().getCoordonnees().getLargeur(), this.getRobot().getCoordonnees().getHauteur());
-		  //cree une cellule avec les coordonnes du robot courant
-		  Coordonnees coord = inter.getCoordonnees().calculCoordonnees(c.getCoordonnees());
-		  //renvoit a la fonction dans la classe cellule qui calule la distance entre les coordonnes du robot et celles de la cellule passee en parametre
-		  for(int i=0;i<Constante.DEP_CHAR.size();i++){
-			  //parcourt le tableau des deplacements du char
-			  if(coord.equals(Constante.DEP_CHAR.get(i))) {
-				  //si les coordonnees calculees sont egales a une des coordonnees de la constante DEP_CHAR
-				  if(c.estVide()){
-					  //et si la cellule est vide alors le deplacement est possible
-					  return true;
-				  }
-			  }
-		  }
-	  }
-	  return false;
+    if(this.getRobot() instanceof Tireur || this.getRobot() instanceof Piegeur){
+      Cellule inter = new Cellule(this.getRobot().getCoordonnees().getLargeur(),this.getRobot().getCoordonnees().getHauteur());
+      Coordonnees coord = inter.getCoordonnees().calculCoordonnees(c.getCoordonnees());
+      for(int i=0;i<Constante.DEP_TIREUR.size();i++){
+        if(coord.equals(Constante.DEP_TIREUR.get(i))) {
+          if(c.estVide() || c.contientMine()>0 || c.estBase()>0){
+            return true;
+          }
+        }
+      }
+    }
+    if(this.getRobot() instanceof Char){
+      Cellule inter = new Cellule(this.getRobot().getCoordonnees().getLargeur(), this.getRobot().getCoordonnees().getHauteur());
+      //cree une cellule avec les coordonnes du robot courant
+      Coordonnees coord = inter.getCoordonnees().calculCoordonnees(c.getCoordonnees());
+      //renvoit a la fonction dans la classe cellule qui calule la distance entre les coordonnes du robot et celles de la cellule passee en parametre
+      for(int i=0;i<Constante.DEP_CHAR.size();i++){
+        //parcourt le tableau des deplacements du char
+        if(coord.equals(Constante.DEP_CHAR.get(i))) {
+          //si les coordonnees calculees sont egales a une des coordonnees de la constante DEP_CHAR
+          if(c.estVide()){
+            //et si la cellule est vide alors le deplacement est possible
+            return true;
+          }
+        }
+      }
+    }
+    return false;
   }
-  
-  
+
+
   @Override
   public void agit(Cellule c) {
-	if (this.getRobot() instanceof Tireur || this.getRobot() instanceof Piegeur || this.getRobot() instanceof Char) {
-		if(this.deplacementPossible(c)){
-			//si le deplacmeent est possible
-			this.getRobot().setEnergie(this.getRobot().getEnergie()-this.getRobot().getCoupDep());
-			//le robot perd de l'energie en se deplacant (energie du robot - cout de deplacement)
-			this.moveTo(c.getCoordonnees());
-			//les coordonnees du robot deviennent les coordonnees de la cellule sur laquelle il se deplace
-			if(c.contientMine()>0){
-				//s'il marche sur une mine
-				this.getRobot().setEnergie(this.getRobot().getEnergie()-this.getRobot().getDegatMine());
-				//le robot perd de l'energie encore une fois (energie du robot - degat de la mine)
-			}
-		}
-	}
+    if (this.getRobot() instanceof Tireur || this.getRobot() instanceof Piegeur || this.getRobot() instanceof Char) {
+      if(this.deplacementPossible(c)){
+        //si le deplacmeent est possible
+        this.getRobot().setEnergie(this.getRobot().getEnergie()-this.getRobot().getCoupDep());
+        //le robot perd de l'energie en se deplacant (energie du robot - cout de deplacement)
+        this.moveTo(c.getCoordonnees());
+        //les coordonnees du robot deviennent les coordonnees de la cellule sur laquelle il se deplace
+        if(c.contientMine()>0){
+          //s'il marche sur une mine
+          this.getRobot().setEnergie(this.getRobot().getEnergie()-this.getRobot().getDegatMine());
+          //le robot perd de l'energie encore une fois (energie du robot - degat de la mine)
+        }
+      }
+    }
   }
-  
+
   public void moveTo(Coordonnees c){
-	  this.getRobot().setCoordonnees(c);
+    this.getRobot().getVue().getPlateau().getCelluleByCoordonnees(this.getRobot().getCoordonnees()).retirerRobot();  
+    this.getRobot().setCoordonnees(c);
+    this.getRobot().getVue().getPlateau().getCelluleByCoordonnees(c).poserRobot(getRobot());
   }
 }
 

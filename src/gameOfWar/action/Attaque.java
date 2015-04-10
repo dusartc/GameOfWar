@@ -6,14 +6,14 @@ import gameOfWar.robot.Robot;
 
 public class Attaque extends Action {
 
-	public Attaque(Robot robot, Coordonnees direction) {
-		super(robot, direction);
-	}
-	
-	void agit(Cellule c) {
-//		while (this.getRobot().getCoordonnees() != this.getObjectif()) {
-//			
-//		}
-	}
+  public Attaque(Robot robot, Coordonnees direction) {
+    super(robot, direction);
+  }
+
+  void agit(Cellule c) {
+    //		while (this.getRobot().getCoordonnees() != this.getObjectif()) {
+    //			
+    //		}
+  }
 
 }

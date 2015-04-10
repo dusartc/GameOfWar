@@ -10,14 +10,14 @@ import java.util.List;
 public class Piegeur extends Robot {
 
   private int nbMines = 10;
-  
+
   private List<Coordonnees> coordonnees; //A mediter (voir : direction et objectif) CLEMENT !
-  
+
   public Piegeur(Vue vue, int equipe) {
     super(vue, equipe);
     this.setEnergie(Constante.ENERGIE_PIEGEUR);
   }
-  
+
   @Override
   public int getDegatMine() {
     return Constante.DEGATS_PIEGEUR;
@@ -40,7 +40,7 @@ public class Piegeur extends Robot {
 
   @Override
   public List<Coordonnees> getDeplacements() {
-	    return this.coordonnees;
+    return this.coordonnees;
   }
 
   @Override
@@ -52,7 +52,7 @@ public class Piegeur extends Robot {
   public boolean peutTirer() {
     return false;
   }
-  
+
   public boolean poseMine() {
     if (this.nbMines <= 0) {
       return false;
@@ -91,7 +91,7 @@ public class Piegeur extends Robot {
       System.err.println("Impossible de subir un Tir");
     }
   }
-  
+
   @Override
   public String toString() {
     return this.getType() + ", " + super.toString();

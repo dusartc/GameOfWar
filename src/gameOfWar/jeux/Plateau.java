@@ -177,7 +177,7 @@ public class Plateau {
     }ans.insert(ans.length(),quadrillage() + "\n\n" + legende());
     return ans.toString();  
   }
-  
+
   private String legende() {
     String ans = "+";
     for (int i = 0; i < 63; i++) {

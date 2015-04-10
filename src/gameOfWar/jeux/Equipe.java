@@ -16,7 +16,7 @@ public class Equipe {
   private Vue vue;
   private int equipe;
   private Coordonnees coordBase;
-  
+
   public Equipe(String nom, Plateau plateau, int equipe, Coordonnees coord) {
     this.nom = nom;
     this.equipe = equipe;
@@ -25,29 +25,29 @@ public class Equipe {
     this.mines = new ArrayList<Mine>();
     this.vue = new Vue(plateau);
   }
-  
+
   public String getNom() {
     return this.nom;
   }
-  
+
   public Vue getVue() {
     return this.vue;
   }
-  
+
   public Coordonnees getCoordBase() {
     return this.coordBase;
   }
-  
+
   public void addRobot(Robot robot) {
     /** ajouter un robot le pose egalement sur le plateau */
     this.robots.add(robot);
     this.vue.poserRobot(robot, getCoordBase());
   }
-  
+
   public void removeRobot(Robot robot) {
     this.robots.remove(robot);
   }
-  
+
   public Robot getRobotByCoordonnees(Coordonnees coordonnees) {
     /** parcourt de tous les robots et on renvoie celui avec les memes coordonnees */
     for (Robot robot : robots) {
@@ -56,23 +56,23 @@ public class Equipe {
       }
     }return null;
   }
-  
+
   public Robot getRobotByIndex(int i) {
     return this.robots.get(i);
   }
-  
+
   public void addMines(Mine mine) {
-	this.mines.add(mine);
+    this.mines.add(mine);
   }
-  
+
   public void removeMines(Mine mine) {
-	this.mines.remove(mine);
+    this.mines.remove(mine);
   }
 
   public int getEquipe() {
-   return this.equipe;
+    return this.equipe;
   }
-  
+
   @Override
   public String toString() {
     String ans = this.nom + "\n" + this.coordBase.toString() + " \n Robots : \n";
@@ -80,7 +80,7 @@ public class Equipe {
       ans += ro.toString()+"\n";
     }return ans;
   }
-  
+
   public boolean perdu() {
     return this.robots.isEmpty();
   }
