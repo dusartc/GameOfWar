@@ -3,7 +3,8 @@ import gameOfWar.config.Constante;
 import gameOfWar.config.Coordonnees;
 import gameOfWar.jeux.Vue;
 
-import java.util.ArrayList;
+
+//import java.util.ArrayList;
 import java.util.List;
 //Touche moi cette belle ArrayList(I).
 
@@ -55,8 +56,8 @@ public class Char extends Robot{
   @Override
   public void subitMine(Robot robot) {
     if(robot instanceof Piegeur){
-      if(robot.getEquipe != this.getEquipe()){
-        setEnergie(getEnergie()-(Piegeur)robot.getDegatMine());
+      if(robot.getEquipe() != this.getEquipe()){
+        setEnergie(getEnergie()-robot.getDegatMine());
       }
       else{
         setEnergie(getEnergie());
@@ -69,17 +70,9 @@ public class Char extends Robot{
 
   @Override
   public void subitTirDe(Robot robot) {
-    if(robot instanceof Tirreur){
+    if(robot instanceof Tireur || robot instanceof Char){
       if(robot.getEquipe() != this.getEquipe()){
-        this.setEnergie(this.getEnergie()-(Tirreur)robot.getDegatTir());
-      }
-      else{
-        setEnergie(getEnergie());
-      }
-    }
-    else if (robot instanceof Char){
-      if(robot.getEquipe() != this.getEquipe()){
-        this.setEnergie(this.getEnergie()-(Char)robot.getDegatTir());
+        this.setEnergie(this.getEnergie()-robot.getDegatTir());
       }
       else{
         setEnergie(getEnergie());
