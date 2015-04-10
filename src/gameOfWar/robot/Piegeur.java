@@ -22,13 +22,13 @@ public class Piegeur extends Robot {
   @Override
   public int getDegatMine() {
     // TODO Auto-generated method stub
-    return 0;
+    return Constante.DEGATS_PIEGEUR;
   }
 
   @Override
   public int getDegatTir() {
     // TODO Auto-generated method stub
-    return 0;
+    return Constante.DEGATS_PIEGEUR;
   }
 
   @Override
@@ -72,7 +72,7 @@ public class Piegeur extends Robot {
   }
 
   public void subitTirDe(Robot robot) {
-    setEnergie(getEnergie()-2);
+    setEnergie(getEnergie()-Constante.DEGATS_PIEGEUR);
   }
   
   @Override
