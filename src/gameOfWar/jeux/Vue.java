@@ -9,7 +9,7 @@ public class Vue {
 
   public Vue(Plateau plateau) {
     this.plateau = plateau;
-    //TODO ne vois qu'une partie du plateau en fonction de son equipe;
+    //TODO ne vois qu'une partie du plateau en fonction de son equipe; osef a faire dans le toString
   }
 
   public boolean estOK(Coordonnees coordonnees){
@@ -25,6 +25,10 @@ public class Vue {
 
   public void poserRobot(Robot robot, Coordonnees coordonnees){
     this.plateau.poserRobot(coordonnees.getLargeur(), coordonnees.getHauteur(), robot);
+  }
+  
+  public void retirerRobot(Coordonnees coordonnees) {
+    this.plateau.retirerRobot(coordonnees);
   }
 
   public void setMine(Robot robot, Coordonnees coordonnees){

@@ -68,9 +68,9 @@ public class Deplacement extends Action {
   }
 
   public void moveTo(Coordonnees c){
-    this.getRobot().getVue().getPlateau().getCelluleByCoordonnees(this.getRobot().getCoordonnees()).retirerRobot();  
+    this.getRobot().getVue().retirerRobot(this.getRobot().getCoordonnees());  
     this.getRobot().setCoordonnees(c);
-    this.getRobot().getVue().getPlateau().getCelluleByCoordonnees(c).poserRobot(getRobot());
+    this.getRobot().getVue().poserRobot(getRobot(), c);
   }
 }
 

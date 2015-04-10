@@ -131,6 +131,10 @@ public class Plateau {
       System.err.println("Erreur, placement impossible");
     }
   }
+  
+  public void retirerRobot(Coordonnees coordonnees) {
+    this.plateau[coordonnees.getHauteur()][coordonnees.getLargeur()].retirerRobot();
+  }
 
   @Override
   public String toString() {
