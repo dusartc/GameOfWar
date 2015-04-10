@@ -22,6 +22,9 @@ public class Constante {
   public static final int COUP_ACTION_TIREUR = 2;
   public static final int COUP_ACTION_PIEGEUR = 2;
   public static final int COUP_ACTION_CHAR = 1;
+  public static final int DEGATS_MINES_TIREUR = 0;
+  public static final int DEGATS_MINES_CHAR = 0;
+  public static final int DEGATS_TIRS_PIEGEUR = 0;
   
   /// plateau ///
   public static final int X_MIN = 5;
