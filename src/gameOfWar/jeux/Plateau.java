@@ -122,7 +122,7 @@ public class Plateau {
 
   public void poserRobot(int x, int y, Robot robot){
     /** on peut poser un robot seulement sur une base
-     * on test si la cellulle passer en param n'est pas un mur, qu'elle ne contienne pas de mine et que cela correspond bien a une mine
+     * on test si la cellule passer en param n'est pas un mur, qu'elle ne contienne pas de mine et que cela correspond bien a une mine
      */
     if(!this.estMur(y,x) && this.estBase(x,y) > 0 && this.estMine(x,y) == 0){
       this.plateau[y][x].poserRobot(robot);
