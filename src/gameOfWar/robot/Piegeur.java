@@ -5,18 +5,17 @@ import gameOfWar.config.Coordonnees;
 import gameOfWar.jeux.Vue;
 
 import java.util.List;
-
+//Touche moi cette belle ArrayList(I).
 
 public class Piegeur extends Robot {
 
   private int nbMines = 10;
   
-  private List<Coordonnees> coordonnees;
+  private List<Coordonnees> coordonnees; //A mediter (voir : direction et objectif) CLEMENT !
   
   public Piegeur(Vue vue, int equipe) {
     super(vue, equipe);
     this.setEnergie(Constante.ENERGIE_PIEGEUR);
-    this.coordonnees = Constante.DEP_PIEGEUR;
   }
   
   @Override
@@ -26,7 +25,7 @@ public class Piegeur extends Robot {
 
   @Override
   public int getDegatTir() {
-    return Constante.DEGATS_PIEGEUR;
+    return Constante.DEGATS_TIRS_PIEGEUR; // Vaut 0
   }
 
   @Override
@@ -64,17 +63,46 @@ public class Piegeur extends Robot {
   }
 
   @Override
-  public void subitMine() {
-    setEnergie(getEnergie()-Constante.DEGATS_PIEGEUR);
+  public void subitMine(Robot robot) {
+    if(robot instanceof Piegeur){
+      if(robot.getEquipe != this.getEquipe()){
+        setEnergie(getEnergie()-(Piegeur)robot.getDegatMine());
+      }
+      else{
+        setEnergie(getEnergie());
+      }
+    }
+    else {
+      System.err.println("Impossible de subir une Mine");
+    }
   }
 
+  @Override
   public void subitTirDe(Robot robot) {
-    setEnergie(getEnergie()-Constante.DEGATS_PIEGEUR);
+    if(robot instanceof Tirreur){
+      if(robot.getEquipe() != this.getEquipe()){
+        this.setEnergie(this.getEnergie()-(Tirreur)robot.getDegatTir());
+      }
+      else{
+        setEnergie(getEnergie());
+      }
+    }
+    else if (robot instanceof Char){
+      if(robot.getEquipe() != this.getEquipe()){
+        this.setEnergie(this.getEnergie()-(Char)robot.getDegatTir());
+      }
+      else{
+        setEnergie(getEnergie());
+      }
+    }
+    else {
+      System.err.println("Impossible de subir un Tir");
+    }
   }
   
   @Override
   public String toString() {
-    return this.getType() + " " + super.toString();
+    return this.getType() + ", " + super.toString();
   }
 
 }

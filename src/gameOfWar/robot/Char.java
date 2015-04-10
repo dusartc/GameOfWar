@@ -5,19 +5,15 @@ import gameOfWar.jeux.Vue;
 
 import java.util.ArrayList;
 import java.util.List;
+//Touche moi cette belle ArrayList(I).
 
 
 public class Char extends Robot{
   
-  private final int DEGATS_TIRS = 4;
-  private final int DEGATS_MINES = 0;
-  
-  private List<Coordonnees> coordonnees;
+  private List<Coordonnees> coordonnees; //A mediter (voir : direction et objectif) CLEMENT !
   
   public Char(Vue vue, int equipe) {
     super(vue, equipe);
-    this.coordonnees = new ArrayList<Coordonnees>();
-    this.coordonnees = Constante.DEP_TIREUR;
     this.setEnergie(Constante.ENERGIE_CHAR);
   }
 
@@ -33,12 +29,12 @@ public class Char extends Robot{
 
   @Override
   public int getDegatMine() {
-    return this.DEGATS_MINES;
+    return Constante.DEGATS_MINES_CHAR;
   }
 
   @Override
   public int getDegatTir() {
-    return this.DEGATS_TIRS;
+    return Constante.DEGATS_CHAR;
   }
 
   @Override
@@ -53,23 +49,49 @@ public class Char extends Robot{
 
   @Override
   public boolean peutTirer() {
-    return false;
+    return true;
   }
 
   @Override
-  public void subitMine() {
-    // TODO Auto-generated method stub
-
+  public void subitMine(Robot robot) {
+    if(robot instanceof Piegeur){
+      if(robot.getEquipe != this.getEquipe()){
+        setEnergie(getEnergie()-(Piegeur)robot.getDegatMine());
+      }
+      else{
+        setEnergie(getEnergie());
+      }
+    }
+    else {
+      System.err.println("Impossible de subir une Mine");
+    }
   }
 
   @Override
   public void subitTirDe(Robot robot) {
-    // TODO Auto-generated method stub
-
+    if(robot instanceof Tirreur){
+      if(robot.getEquipe() != this.getEquipe()){
+        this.setEnergie(this.getEnergie()-(Tirreur)robot.getDegatTir());
+      }
+      else{
+        setEnergie(getEnergie());
+      }
+    }
+    else if (robot instanceof Char){
+      if(robot.getEquipe() != this.getEquipe()){
+        this.setEnergie(this.getEnergie()-(Char)robot.getDegatTir());
+      }
+      else{
+        setEnergie(getEnergie());
+      }
+    }
+    else {
+      System.err.println("Impossible de subir un Tir");
+    }
   }
   
   @Override
   public String toString() {
-    return this.getClass().getName() + " " + super.toString();
+    return this.getType() + ", " + super.toString();
   }
 }

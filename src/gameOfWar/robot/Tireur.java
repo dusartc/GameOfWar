@@ -8,11 +8,8 @@ import java.util.List;
 
 
 public class Tireur extends Robot {
-
-  private final int DEGATS_TIRS = 4;
-  private final int DEGATS_MINES = 0;
   
-  private List<Coordonnees> coordonnees; //A méditer (voir : direction et objectif) CLEMENT !
+  private List<Coordonnees> coordonnees; //A mediter (voir : direction et objectif) CLEMENT !
   
   public Tireur(Vue vue, int equipe) {
     super(vue, equipe);
@@ -32,12 +29,12 @@ public class Tireur extends Robot {
 
   @Override
   public int getDegatMine() {
-    return this.DEGATS_MINES;
+    return Constante.DEGATS_MINES_TIREUR;
   }
 
   @Override
   public int getDegatTir() {
-    return this.DEGATS_TIRS;
+    return Constante.DEGATS_TIREUR;
   }
 
   @Override
@@ -52,23 +49,49 @@ public class Tireur extends Robot {
 
   @Override
   public boolean peutTirer() {
-    return false;
+    return true;
   }
 
   @Override
-  public void subitMine() {
-    // TODO Auto-generated method stub
-
+  public void subitMine(Robot robot) {
+    if(robot instanceof Piegeur){
+      if(robot.getEquipe != this.getEquipe()){
+        setEnergie(getEnergie()-(Piegeur)robot.getDegatMine());
+      }
+      else{
+        setEnergie(getEnergie());
+      }
+    }
+    else {
+      System.err.println("Impossible de subir une Mine");
+    }
   }
 
   @Override
   public void subitTirDe(Robot robot) {
-    // TODO Auto-generated method stub
+    if(robot instanceof Tirreur){
+      if(robot.getEquipe() != this.getEquipe()){
+        this.setEnergie(this.getEnergie()-(Tirreur)robot.getDegatTir());
+      }
+      else{
+        setEnergie(getEnergie());
+      }
+    }
+    else if (robot instanceof Char){
+      if(robot.getEquipe() != this.getEquipe()){
+        this.setEnergie(this.getEnergie()-(Char)robot.getDegatTir());
+      }
+      else{
+        setEnergie(getEnergie());
+      }
+    }
+    else {
+      System.err.println("Impossible de subir un Tir");
+    }
   }
   
   @Override
   public String toString() {
-    return this.getClass().getName() + ", " + super.toString();
+    return this.getType() + ", " + super.toString();
   }
-
 }
