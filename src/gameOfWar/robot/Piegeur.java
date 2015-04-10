@@ -18,6 +18,13 @@ public class Piegeur extends Robot {
     this.setEnergie(Constante.ENERGIE_PIEGEUR);
   }
 
+  public int getNbMines(){
+    return this.nbMines;
+  }
+  
+  public void setNbMines(int nbMines){
+    this.nbMines = nbMines;
+  }
   @Override
   public int getDegatMine() {
     return Constante.DEGATS_PIEGEUR;
@@ -54,10 +61,11 @@ public class Piegeur extends Robot {
   }
 
   public boolean poseMine() {
-    if (this.nbMines <= 0) {
+    if (this.getNbMines() <= 0) {
       return false;
     }if (getVue().getPlateau().getCelluleByCoordonnees(getCoordonnees()).estVide()) {
       getVue().getPlateau().getCelluleByCoordonnees(getCoordonnees()).poseMine(this.getEquipe());
+      this.setNbMines(getNbMines()-1);
       return true;
     }return false;
   }
