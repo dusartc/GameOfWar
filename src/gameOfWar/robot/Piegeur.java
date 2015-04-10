@@ -21,13 +21,11 @@ public class Piegeur extends Robot {
   
   @Override
   public int getDegatMine() {
-    // TODO Auto-generated method stub
     return Constante.DEGATS_PIEGEUR;
   }
 
   @Override
   public int getDegatTir() {
-    // TODO Auto-generated method stub
     return Constante.DEGATS_PIEGEUR;
   }
 
@@ -53,7 +51,6 @@ public class Piegeur extends Robot {
 
   @Override
   public boolean peutTirer() {
-    // TODO Auto-generated method stub
     return false;
   }
   
@@ -77,7 +74,7 @@ public class Piegeur extends Robot {
   
   @Override
   public String toString() {
-    return this.getClass().getName() + " " + super.toString();
+    return this.getType() + " " + super.toString();
   }
 
 }
