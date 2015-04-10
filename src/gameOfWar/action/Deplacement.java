@@ -8,8 +8,6 @@ import gameOfWar.robot.Piegeur;
 import gameOfWar.robot.Robot;
 import gameOfWar.robot.Tireur;
 
-import java.util.ArrayList;
-
 
 public class Deplacement extends Action {
   
@@ -52,7 +50,7 @@ public class Deplacement extends Action {
   
   
   @Override
-  void agit(Cellule c) {
+  public void agit(Cellule c) {
 	if (this.getRobot() instanceof Tireur || this.getRobot() instanceof Piegeur || this.getRobot() instanceof Char) {
 		if(this.deplacementPossible(c)){
 			//si le deplacmeent est possible
@@ -69,7 +67,7 @@ public class Deplacement extends Action {
 	}
   }
   
-  void moveTo(Coordonnees c){
+  public void moveTo(Coordonnees c){
 	  this.getRobot().setCoordonnees(c);
   }
 }
