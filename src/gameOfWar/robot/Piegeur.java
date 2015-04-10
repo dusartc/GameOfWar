@@ -35,7 +35,7 @@ public class Piegeur extends Robot {
 
   @Override
   public int getCoutAction() {
-    return Constante.COUP_ACTION_TIREUR;
+    return Constante.COUP_ACTION_PIEGEUR;
   }
 
   @Override
