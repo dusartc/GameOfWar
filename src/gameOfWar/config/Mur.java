@@ -8,6 +8,6 @@ public class Mur extends Cellule {
     this.setMur(true);
   }
   public boolean estPassable(){
-    return this.estMur();
+    return !this.estMur();
   }
 }
