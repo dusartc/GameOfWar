@@ -11,9 +11,7 @@ public class Attaque extends Action {
   }
 
   void agit(Cellule c) {
-    //		while (this.getRobot().getCoordonnees() != this.getObjectif()) {
-    //			
-    //		}
+    
   }
 
 }

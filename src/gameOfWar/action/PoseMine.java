@@ -13,12 +13,5 @@ public class PoseMine extends Action{
   }
 
   public void agit(Cellule c){
-    if (this.getRobot() instanceof Piegeur) {
-      this.getRobot().getVue().setMine(getRobot(), getObjectif());
-    }
-    else {
-      System.err.println("Erreur, placement impossible.");
-    }
-  }
-
+   
 }
