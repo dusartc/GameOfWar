@@ -13,5 +13,7 @@ public class PoseMine extends Action{
   }
 
   public void agit(Cellule c){
+    
+  }
    
 }
