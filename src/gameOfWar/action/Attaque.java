@@ -10,7 +10,17 @@ public class Attaque extends Action {
     super(robot, direction);
   }
 
-  void agit(Cellule c) {
+ 
+  void agit(Cellule c) { // En cours 
+    if(this.getRobot() instanceof Tireur){
+    	
+    }
+    else if (this.getRobot() instanceof Piegeur){
+    	
+    }
+    else if (this.getRobot() instanceof Char){
+    	
+    }
     
   }
 
