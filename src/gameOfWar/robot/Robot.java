@@ -67,7 +67,7 @@ public abstract class Robot {
     this.energie = energie;
   }
 
-  abstract public void subitMine(Robot robot);
+  abstract public void subitMine();
   abstract public void subitTirDe(Robot robot);
 
   public void estSoigne(){

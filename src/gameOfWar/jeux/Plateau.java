@@ -48,8 +48,8 @@ public class Plateau {
     int currentObstacles = 0;
     Random rd = new Random();
     while (currentObstacles < nbObstacles) {
-      int rdX = rd.nextInt(this.longueur - 3) + 1;
-      int rdY = rd.nextInt(this.largeur - 3) + 1;
+      int rdX = rd.nextInt(this.longueur - 2) + 1;
+      int rdY = rd.nextInt(this.largeur - 2) + 1;
       if (!getCellule(rdY, rdX).estMur() &&
           getCellule(rdY, rdX).estBase() == 0 &&
           getCellule(rdY, rdX).contientMine() == 0 &&
@@ -114,9 +114,10 @@ public class Plateau {
     /** on peut poser une mine seulement sur une case vide */
     if (this.plateau[y][x].estVide()) {
       this.plateau[y][x] = new Mine(y, x, equipe);
+      System.out.println("Mine posée pour l'équipe :"+equipe+" Au coordonnée ("+x+","+y+")");
     }
     else{
-      System.err.println("Erreur, placement impossible");
+      System.err.println("Erreur, placement impossible au coordonnée ("+x+","+y+")");
     }
   }
 
@@ -134,84 +135,5 @@ public class Plateau {
   
   public void retirerRobot(Coordonnees coordonnees) {
     this.plateau[coordonnees.getHauteur()][coordonnees.getLargeur()].retirerRobot();
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder ans = new StringBuilder();
-    ans.insert(ans.length(), quadrillage());
-    for (int i = 0; i < plateau.length; i++) {
-      for (int j = 0; j < plateau[0].length; j++) {
-        if (plateau[i][j] instanceof Mur) {
-          Mur test = (Mur) plateau[i][j];
-          if(test.estMur()) {
-            ans.insert(ans.length(), "| X ");
-          }if (j == plateau[0].length - 1) {
-            ans.insert(ans.length(), "|");
-          }
-        }
-        else if (plateau[i][j] instanceof Base) {
-          Base test = (Base) plateau[i][j];
-          if (test.estBase() == 1) {
-            ans.insert(ans.length(), "\n| B ");
-          }
-          else if(test.estBase() == 2){
-            ans.insert(ans.length(),"| b |\n");
-          }
-        }
-        else if (plateau[i][j] instanceof Mine) {
-          Mine testMine = (Mine) plateau[i][j];
-          if (testMine.contientMine() == 1) {
-            ans.insert(ans.length(),"| O ");
-          }
-          if (testMine.contientMine() == 2) {
-            ans.insert(ans.length(),"| o ");
-          }
-        }
-        else if (plateau[i][j] instanceof Cellule){
-          ans.insert(ans.length(),"|   ");
-          if (j == plateau[0].length -1) {
-            ans.insert(ans.length(),"|");
-          }
-        }
-
-      }if(i < plateau.length - 1) {
-        ans.insert(ans.length(),"\n"+quadrillage()+"\n");
-      }
-    }ans.insert(ans.length(),quadrillage() + "\n\n" + legende());
-    return ans.toString();  
-  }
-
-  private String legende() {
-    String ans = "+";
-    for (int i = 0; i < 63; i++) {
-      ans += "-";
-    } ans += "+\n";
-    ans += "|\tMAJUSCULES\t%\tminuscules\t\t\t|\n";
-    String[] chabadabada = new String[] {
-        "base","tireur","piegeur","char","mine"
-    };
-    for (int i = 0; i < chabadabada.length; i++) {
-      ans += "|\t\t" 
-          + chabadabada[i].substring(0, 1).toUpperCase()
-          + "\t|\t\t" + chabadabada[i].substring(0, 1) + "\t"
-          + chabadabada[i] + "\t\t|\n";
-    }ans += "|\t";
-    for (int i = 0; i < 47; i++) {
-      ans += "-";
-    }ans += "\t\t|\n";
-    ans += "|\t\to\tobstacles\t\t\t\t|\n+";
-    for (int i = 0; i < 63; i++) {
-      ans += "-";
-    }
-    return ans + "+";
-  }
-
-  private String quadrillage(){
-    String ans = "+";
-    for (int i = 0; i < plateau[0].length ; i++) {
-      ans += "---+";
-    }    
-    return ans;
   }
 }
