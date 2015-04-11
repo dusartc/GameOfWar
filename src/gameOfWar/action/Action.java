@@ -41,6 +41,6 @@ public abstract class Action {
   /**
    * agit realise l'action du robot
    */
-  abstract void agit(Cellule c);
+  abstract void agit(Cellule caseCible); // Modif du paramètre de type Cellule en caseCible pour moins d'ambigûtée
 
 }
