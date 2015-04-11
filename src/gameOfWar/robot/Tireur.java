@@ -14,7 +14,6 @@ public class Tireur extends Robot {
   public Tireur(Vue vue, int equipe) {
     super(vue, equipe);
     this.setEnergie(Constante.ENERGIE_TIREUR);
-    // TODO Auto-generated constructor stub
   }
 
   @Override
@@ -53,19 +52,15 @@ public class Tireur extends Robot {
   }
 
   @Override
-  public void subitMine(Robot robot) {
-    if(robot instanceof Piegeur){
-      if(robot.getEquipe() != this.getEquipe()){
-        setEnergie(getEnergie()-robot.getDegatMine());
+  public void subitMine() {
+      if(this.getVue().getPlateau().estMine(this.getCoordonnees().getLargeur(), this.getCoordonnees().getHauteur()) 
+          != this.getEquipe()){
+        setEnergie(getEnergie()-Constante.DEGATS_PIEGEUR);
       }
       else{
         setEnergie(getEnergie());
       }
     }
-    else {
-      System.err.println("Impossible de subir une Mine");
-    }
-  }
 
   @Override
   public void subitTirDe(Robot robot) {
