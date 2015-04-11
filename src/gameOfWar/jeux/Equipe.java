@@ -23,7 +23,7 @@ public class Equipe {
     this.coordBase = coord;
     this.robots = new ArrayList<Robot>();
     this.mines = new ArrayList<Mine>();
-    this.vue = new Vue(plateau);
+    this.vue = new Vue(plateau, equipe);
   }
 
   public String getNom() {
