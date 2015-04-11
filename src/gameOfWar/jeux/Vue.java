@@ -1,15 +1,20 @@
 package gameOfWar.jeux;
+import gameOfWar.config.Base;
+import gameOfWar.config.Cellule;
 import gameOfWar.config.Coordonnees;
+import gameOfWar.config.Mine;
+import gameOfWar.config.Mur;
 import gameOfWar.robot.Robot;
 
 
 public class Vue {
 
   private Plateau plateau;
-
-  public Vue(Plateau plateau) {
+  private int equipe;
+  
+  public Vue(Plateau plateau, int equipe) {
     this.plateau = plateau;
-    //TODO ne vois qu'une partie du plateau en fonction de son equipe; osef a faire dans le toString
+    this.equipe = equipe;
   }
 
   public boolean estOK(Coordonnees coordonnees){
@@ -36,6 +41,99 @@ public class Vue {
   }
   public Plateau getPlateau(){
     return this.plateau;
+  }
+  
+  public int getEquipe(){
+    return this.equipe;
+  }
+  
+  public String apparitionMine(int equipe){
+    String res ="";
+    if (equipe == 1) {
+      res += "| M ";
+    }
+    else if(equipe == 2){
+      res += "| m ";
+    }
+    else{
+      res += "|   ";
+    }
+    return res;
+  }
+  
+  @Override
+  public String toString() {
+    StringBuilder ans = new StringBuilder();
+    ans.insert(ans.length(), quadrillage());
+    for (int i = 0; i < this.plateau.getLongueur(); i++) {
+      for (int j = 0; j < this.plateau.getLargeur(); j++) {
+        if (this.plateau.getCellule(i, j) instanceof Mur) {
+          Mur test = (Mur) this.plateau.getCellule(i, j);
+          if(test.estMur()) {
+            ans.insert(ans.length(), "| O ");
+          }if (j == this.plateau.getLargeur() - 1) {
+            ans.insert(ans.length(), "|");
+          }
+        }
+        else if (this.plateau.getCellule(i, j) instanceof Base) {
+          Base test = (Base) this.plateau.getCellule(i, j);
+          if (test.estBase() == 1) {
+            ans.insert(ans.length(), "\n| B ");
+          }
+          else if(test.estBase() == 2){
+            ans.insert(ans.length(),"| b |\n");
+          }
+        }
+        else if (this.plateau.getCellule(i, j) instanceof Mine) {
+          Mine testMine = (Mine) this.plateau.getCellule(i, j);
+            ans.insert(ans.length(), (testMine.contientMine() == this.getEquipe())?
+                this.apparitionMine(this.getEquipe()):"|   ");
+        }
+        else if (this.plateau.getCellule(i, j) instanceof Cellule){
+          ans.insert(ans.length(),"|   ");
+          if (j == this.plateau.getLargeur() -1) {
+            ans.insert(ans.length(),"|");
+          }
+        }
+
+      }if(i < plateau.getLongueur() - 1) {
+        ans.insert(ans.length(),"\n"+quadrillage()+"\n");
+      }
+    }ans.insert(ans.length(),quadrillage() + "\n\n" + legende());
+    return ans.toString();  
+  }
+
+  private String legende() {
+    String ans = "+";
+    for (int i = 0; i < 63; i++) {
+      ans += "-";
+    } ans += "+\n";
+    ans += "|\tMAJUSCULES\t%\tminuscules\t\t\t|\n";
+    String[] chabadabada = new String[] {
+        "base","tireur","piegeur","char","mine"
+    };
+    for (int i = 0; i < chabadabada.length; i++) {
+      ans += "|\t\t" 
+          + chabadabada[i].substring(0, 1).toUpperCase()
+          + "\t|\t\t" + chabadabada[i].substring(0, 1) + "\t"
+          + chabadabada[i] + "\t\t|\n";
+    }ans += "|\t";
+    for (int i = 0; i < 47; i++) {
+      ans += "-";
+    }ans += "\t\t|\n";
+    ans += "|\t\to\tobstacles\t\t\t\t|\n+";
+    for (int i = 0; i < 63; i++) {
+      ans += "-";
+    }
+    return ans + "+";
+  }
+
+  private String quadrillage(){
+    String ans = "+";
+    for (int i = 0; i < this.plateau.getLargeur() ; i++) {
+      ans += "---+";
+    }    
+    return ans;
   }
 
 }
