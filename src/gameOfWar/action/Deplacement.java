@@ -23,7 +23,8 @@ public class Deplacement extends Action {
       Coordonnees coord = inter.getCoordonnees().calculCoordonnees(c.getCoordonnees());
       for(int i=0;i<Constante.DEP_TIREUR.size();i++){
         if(coord.equals(Constante.DEP_TIREUR.get(i))) {
-          if(c.estVide() || c.contientMine()>0 || c.estBase()>0){
+          if(c.estRobot() == 0 || c.contientMine() >= 0 ||
+              c.estBase() == this.getRobot().getEquipe() || !c.estMur()){
             return true;
           }
         }
@@ -58,10 +59,8 @@ public class Deplacement extends Action {
         //le robot perd de l'energie en se deplacant (energie du robot - cout de deplacement)
         this.moveTo(c.getCoordonnees());
         //les coordonnees du robot deviennent les coordonnees de la cellule sur laquelle il se deplace
-        if(c.contientMine()>0){
-          //s'il marche sur une mine
-          this.getRobot().setEnergie(this.getRobot().getEnergie()-this.getRobot().getDegatMine());
-          //le robot perd de l'energie encore une fois (energie du robot - degat de la mine)
+        if (c.contientMine() != this.getRobot().getEquipe()) {
+          this.getRobot().subitMine();
         }
       }
     }

@@ -12,6 +12,12 @@ public class PoseMine extends Action{
     //this.agit();
   }
 
+  public boolean estPosable(Cellule cellule){
+    if (this.getRobot() instanceof Piegeur) {
+      
+    }
+    return false;
+  }
   public void agit(Cellule c){
     
   }
