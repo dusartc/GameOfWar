@@ -3,7 +3,7 @@ import gameOfWar.config.Cellule;
 import gameOfWar.robot.Robot;
 
 /**
- * 
+ * Une classe enlever du programme mais garder au cas ou.
  * @author Personne.
  *
  */
