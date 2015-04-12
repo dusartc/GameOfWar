@@ -12,6 +12,8 @@ import gameOfWar.robot.Robot;
  */
 public class PoseMine extends Action{
 
+public Piegeur p;
+
   public PoseMine(Robot robot, Coordonnees direction) {
     super(robot, direction);
   }
@@ -30,7 +32,7 @@ public class PoseMine extends Action{
     			c.getRobot().subitMine();
     		}
     		c.retirerMine();
-    		//reste à décrémenter le nbMines
+    		p.setNbMines(p.getNbMines()-1);
     	}
     }
   }
