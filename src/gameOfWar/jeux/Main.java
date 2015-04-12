@@ -10,7 +10,7 @@ import gameOfWar.robot.Tireur;
 
 
 /**
- * 
+ * La ou le coeur de la maison chez schmit ce joue.
  * @author Clement, Mathieu.
  *
  */
