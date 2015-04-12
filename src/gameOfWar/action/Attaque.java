@@ -5,7 +5,7 @@ import gameOfWar.robot.*;
 
 /**
  *  La classe Attaque permet de produire une action de tir.
- * @author Samantha
+ * @author Samantha, Mariam
  *
  */
 public class Attaque extends Action {
