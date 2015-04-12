@@ -136,4 +136,80 @@ public class Plateau {
   public void retirerRobot(Coordonnees coordonnees) {
     this.plateau[coordonnees.getHauteur()][coordonnees.getLargeur()].retirerRobot();
   }
+  
+  public void retirerMine(Coordonnees coordonnees) {
+    this.plateau[coordonnees.getHauteur()][coordonnees.getLargeur()].retirerMine();
+  }
+  
+  @Override
+  public String toString() {
+    StringBuilder ans = new StringBuilder();
+    ans.insert(ans.length(), quadrillage());
+    for (int i = 0; i < this.plateau.length; i++) {
+      for (int j = 0; j < this.plateau[0].length; j++) {
+        if (this.plateau[i][j] instanceof Mur) {
+          if(this.plateau[i][j].estMur()) {
+            ans.insert(ans.length(), "| O ");
+          }
+        }
+        else if (this.plateau[i][j] instanceof Base) {
+          if (this.estBase(i,j) == 1) {
+            ans.insert(ans.length(), "\n| B ");
+          }
+          else if(this.estBase(i,j) == 2){
+            ans.insert(ans.length(),"| b |\n");
+          }
+        }
+        else if (this.plateau[i][j] instanceof Mine) {
+          if (this.estMine(i, j) == 1) {
+            ans.insert(ans.length(),"| M ");
+          }
+          if (this.estMine(i, j) == 2) {
+            ans.insert(ans.length(),"| m ");
+          }
+        }
+        else if (this.plateau[i][j] instanceof Cellule){
+          ans.insert(ans.length(),"|   ");
+          if (j == this.plateau[0].length -1) {
+            ans.insert(ans.length(),"|");
+          }
+        }
+      }if(i < this.plateau.length - 1) {
+        ans.insert(ans.length(),"\n"+quadrillage()+"\n");
+      }
+    }ans.insert(ans.length(),quadrillage() + "\n\n" + legende());
+    return ans.toString();
+  }
+  private String legende() {
+    String ans = "+";
+    for (int i = 0; i < 63; i++) {
+      ans += "-";
+    } ans += "+\n";
+    ans += "|\tMAJUSCULES\t%\tminuscules\t\t\t|\n";
+    String[] chabadabada = new String[] {
+        "base","tireur","piegeur","char","mine"
+    };
+    for (int i = 0; i < chabadabada.length; i++) {
+      ans += "|\t\t"
+          + chabadabada[i].substring(0, 1).toUpperCase()
+          + "\t|\t\t" + chabadabada[i].substring(0, 1) + "\t"
+          + chabadabada[i] + "\t\t|\n";
+    }ans += "|\t";
+    for (int i = 0; i < 47; i++) {
+      ans += "-";
+    }ans += "\t\t|\n";
+    ans += "|\t\to\tobstacles\t\t\t\t|\n+";
+    for (int i = 0; i < 63; i++) {
+      ans += "-";
+    }
+    return ans + "+";
+  }
+  private String quadrillage(){
+    String ans = "+";
+    for (int i = 0; i < plateau[0].length ; i++) {
+      ans += "---+";
+    }
+    return ans;
+  }
+
 }
