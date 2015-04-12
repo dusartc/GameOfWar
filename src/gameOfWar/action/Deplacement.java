@@ -10,18 +10,28 @@ import gameOfWar.robot.Tireur;
 
 
 /**
- * 
+ * La classe Deplacement permet de produire une action de deplacement des robots.
  * @author Aurelia
  *
  */
 public class Deplacement extends Action {
 
 
+  /**
+   * On donne les directions en fonction du robot
+   * @param robot
+   * @param direction
+   */
   public Deplacement(Robot robot, Coordonnees direction) {
     super(robot, direction);
     // TODO Auto-generated constructor stub
   }
 
+  /**
+   * Test avec une Cellule donné si le deplacement est possible vers cette Cellule et retourne Vrai ou Faux.
+   * @param c
+   * @return
+   */
   public boolean deplacementPossible(Cellule c){
     if(this.getRobot() instanceof Tireur || this.getRobot() instanceof Piegeur){
       Cellule inter = new Cellule(this.getRobot().getCoordonnees().getLargeur(),this.getRobot().getCoordonnees().getHauteur());
@@ -44,7 +54,8 @@ public class Deplacement extends Action {
         //parcourt le tableau des deplacements du char
         if(coord.equals(Constante.DEP_CHAR.get(i))) {
           //si les coordonnees calculees sont egales a une des coordonnees de la constante DEP_CHAR
-          if(c.estVide()){
+          if(c.estRobot() == 0 || c.contientMine() >= 0 ||
+              c.estBase() == this.getRobot().getEquipe() || !c.estMur()){
             //et si la cellule est vide alors le deplacement est possible
             return true;
           }
@@ -55,6 +66,9 @@ public class Deplacement extends Action {
   }
 
 
+  /**
+   * Agit() produit le deplacement.
+   */
   @Override
   public void agit(Cellule c) {
     if (this.getRobot() instanceof Tireur || this.getRobot() instanceof Piegeur || this.getRobot() instanceof Char) {
@@ -64,13 +78,19 @@ public class Deplacement extends Action {
         //le robot perd de l'energie en se deplacant (energie du robot - cout de deplacement)
         this.moveTo(c.getCoordonnees());
         //les coordonnees du robot deviennent les coordonnees de la cellule sur laquelle il se deplace
-        if (c.contientMine() != this.getRobot().getEquipe()) {
+        if (c.contientMine() > 0) {
+          System.out.println("EEEEEH BOOOM !!!");
           this.getRobot().subitMine();
+          c.retirerMine();
         }
       }
     }
   }
 
+  /**
+   * Fait bouger le robot dans la coordonnees données.
+   * @param c
+   */
   public void moveTo(Coordonnees c){
     this.getRobot().getVue().retirerRobot(this.getRobot().getCoordonnees());  
     this.getRobot().setCoordonnees(c);
