@@ -4,7 +4,7 @@ import gameOfWar.config.*;
 import gameOfWar.robot.*;
 
 /**
- * 
+ *  La classe Attaque permet de produire une action de tir.
  * @author Samantha
  *
  */
@@ -28,7 +28,7 @@ public class Attaque extends Action {
     return PORTEE_CHAR;
   }
   @Override
-  void agit(Cellule caseCible) {
+  public void agit(Cellule caseCible) {
     // TODO Stub de la méthode généré automatiquement
     // Calcul de la portée de l'attaque : On prend la portée définie dans
     // l'attaque, selon le type de personnage.
