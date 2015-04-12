@@ -39,26 +39,17 @@ public class Vue {
   public void setMine(Robot robot, Coordonnees coordonnees){
     this.plateau.poserUneMine(coordonnees.getLargeur(), coordonnees.getHauteur(), robot.getEquipe());
   }
+  
+  public void retirerMine(Coordonnees coordonnees) {
+    this.plateau.retirerMine(coordonnees);
+  }
+  
   public Plateau getPlateau(){
     return this.plateau;
   }
   
   public int getEquipe(){
     return this.equipe;
-  }
-  
-  public String apparitionMine(int equipe){
-    String res ="";
-    if (equipe == 1) {
-      res += "| M ";
-    }
-    else if(equipe == 2){
-      res += "| m ";
-    }
-    else{
-      res += "|   ";
-    }
-    return res;
   }
   
   @Override
@@ -68,26 +59,29 @@ public class Vue {
     for (int i = 0; i < this.plateau.getLongueur(); i++) {
       for (int j = 0; j < this.plateau.getLargeur(); j++) {
         if (this.plateau.getCellule(i, j) instanceof Mur) {
-          Mur test = (Mur) this.plateau.getCellule(i, j);
-          if(test.estMur()) {
+          if(this.plateau.getCellule(i, j).estMur()) {
             ans.insert(ans.length(), "| O ");
-          }if (j == this.plateau.getLargeur() - 1) {
-            ans.insert(ans.length(), "|");
           }
         }
         else if (this.plateau.getCellule(i, j) instanceof Base) {
-          Base test = (Base) this.plateau.getCellule(i, j);
-          if (test.estBase() == 1) {
+          if (this.plateau.estBase(i,j) == 1) {
             ans.insert(ans.length(), "\n| B ");
           }
-          else if(test.estBase() == 2){
+          else if(this.plateau.estBase(i,j) == 2){
             ans.insert(ans.length(),"| b |\n");
           }
         }
         else if (this.plateau.getCellule(i, j) instanceof Mine) {
           Mine testMine = (Mine) this.plateau.getCellule(i, j);
-            ans.insert(ans.length(), (testMine.contientMine() == this.getEquipe())?
-                this.apparitionMine(this.getEquipe()):"|   ");
+          String res ="";
+          if (this.equipe == 1) {
+            res += "| M ";
+          }
+          else if(this.equipe == 2){
+            res += "| m ";
+          }
+          ans.insert(ans.length(), (testMine.contientMine() == this.getEquipe())?
+            res:"|   ");
         }
         else if (this.plateau.getCellule(i, j) instanceof Cellule){
           ans.insert(ans.length(),"|   ");
@@ -96,7 +90,7 @@ public class Vue {
           }
         }
 
-      }if(i < plateau.getLongueur() - 1) {
+      }if(i < this.plateau.getLongueur() - 1) {
         ans.insert(ans.length(),"\n"+quadrillage()+"\n");
       }
     }ans.insert(ans.length(),quadrillage() + "\n\n" + legende());
