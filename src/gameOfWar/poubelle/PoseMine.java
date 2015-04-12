@@ -14,17 +14,27 @@ public class PoseMine extends Action{
 
   public PoseMine(Robot robot, Coordonnees direction) {
     super(robot, direction);
-    //this.agit();
   }
 
-  public boolean estPosable(Cellule cellule){
-    if (this.getRobot() instanceof Piegeur) {
-      
-    }
-    return false;
+  public boolean estPosable(Cellule c){
+    return(this.getRobot() instanceof Piegeur && !c.estMur() && c.estBase()==0);
   }
+  
   public void agit(Cellule c){
-    
+    if(this.getRobot() instanceof Piegeur){
+    	if(this.estPosable(c)){
+    		this.getRobot().setEnergie(this.getRobot().getEnergie()-this.getRobot().getCoutAction());
+    		if(c.contientMine()>0){
+    			c.retirerMine();
+    		}else if(c.estRobot()>0){
+    			c.getRobot().subitMine();
+    		}
+    		c.retirerMine();
+    		//reste à décrémenter le nbMines
+    	}
+    }
   }
+  
+  
    
 }
