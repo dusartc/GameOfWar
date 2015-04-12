@@ -53,13 +53,7 @@ public class Tireur extends Robot {
 
   @Override
   public void subitMine() {
-      if(this.getVue().getPlateau().estMine(this.getCoordonnees().getLargeur(), this.getCoordonnees().getHauteur()) 
-          != this.getEquipe()){
-        setEnergie(getEnergie()-Constante.DEGATS_PIEGEUR);
-      }
-      else{
-        setEnergie(getEnergie());
-      }
+      setEnergie(getEnergie()-Constante.DEGATS_PIEGEUR);
     }
 
   @Override
@@ -67,9 +61,6 @@ public class Tireur extends Robot {
     if(robot instanceof Tireur || robot instanceof Char){
       if(robot.getEquipe() != this.getEquipe()){
         this.setEnergie(this.getEnergie()-robot.getDegatTir());
-      }
-      else{
-        setEnergie(getEnergie());
       }
     }
     else {
