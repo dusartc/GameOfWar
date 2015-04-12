@@ -12,7 +12,11 @@ import gameOfWar.robot.Tireur;
 public class Main {
 
   public static void main(String[] args) {
-    Plateau plateau = new Plateau(10000, 10000, 1);
+
+    Plateau plateau = new Plateau(10, 10, 20);
+    Vue equipeUne = new Vue(plateau, Constante.EQUIPE_UN);
+    Vue equipeDeux = new Vue(plateau, Constante.EQUIPE_DEUX);
+    
     Equipe[] equipes = new Equipe[] {
         new Equipe("joueur1", plateau, Constante.EQUIPE_UN, new Coordonnees(0, 0)),
         new Equipe("joueur2", plateau, Constante.EQUIPE_DEUX, new Coordonnees(plateau.getLongueur()-1, 
@@ -24,6 +28,19 @@ public class Main {
       joueur.addRobot(new Char(joueur.getVue(), joueur.getEquipe()));
     }
     
+    equipeUne.setMine(new Piegeur(equipeUne, equipes[0].getEquipe()), new Coordonnees(0, 3));
+
+    equipeDeux.setMine(new Piegeur(equipeDeux, equipes[1].getEquipe()), new Coordonnees(3, 0));
+
+    equipeUne.setMine(new Piegeur(equipeUne, equipes[0].getEquipe()), new Coordonnees(0, 5));
+    
+    equipeDeux.setMine(new Piegeur(equipeDeux, equipes[1].getEquipe()), new Coordonnees(5, 0));
+
+    equipeDeux.setMine(new Piegeur(equipeDeux, equipes[1].getEquipe()), new Coordonnees(0, 5));
+    
+    System.out.println(equipeUne);
+    System.out.println(equipeDeux);
+    System.out.println(plateau);
 //    for (Equipe equipe : equipes) {
 //      System.out.println(equipe.toString());
 //    }
@@ -44,7 +61,8 @@ public class Main {
 //      }
 //    }
     
-    System.out.println(plateau);
+    //System.out.println(equipeVue1);
+    //System.out.println(equipeVue2);
   }
 
 }
