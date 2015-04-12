@@ -4,29 +4,25 @@ import gameOfWar.robot.Robot;
 /**
  * <p>Cellule est une classe abstraite representer une cellule d'un tableau.<p>
  * 
- * @author Game of war
+ * @author Mathieu
  */
 public class Cellule {
 
-  /** 0 si aucune mine, numero de l'equipe qui la possede sinon */
+  /** 0 si la mine appartient a aucune equipe, 1 pour l'equipe une et 2 pour l'equipe deux.*/
   private int mine = 0;
-  /** 0 si aucune base, numero de l'equipe qui la sinon */
+  /** 0 si la base appartient a aucune equipe, 1 pour l'equipe une et 2 pour l'equipe deux.*/
   private int base = 0;
-
+  /** Mettre un mur a la Cellule ou non.*/
   private boolean mur;
-  /**
-   * Correspond au robot sur la cellule. 
-   * @see Robot
-   */
+  /** Permettre de mettre un robot sur une Cellue.*/
   private Robot robot;
-  /**
-   * @see Coordonnees et les coordonnees d'une cellule.
-   */
+  /** Les coordonnees d'une Cellulue.*/
   private Coordonnees coordonnees;
+  /** Correspond a l'image de la Cellule.*/
   String image;
 
   /**
-   * Le constructeur cellule qui construit ça cellule avec son coordonnees.
+   * Le constructeur Cellule qui construit une Cellule avec des coordonnees donnees.
    * 
    * @param largeur
    *    Pour donner une coordonnees a la cellule, ici la largeur.
@@ -38,94 +34,120 @@ public class Cellule {
   }
 
   /**
-   * 
-   * @return si la cellule est une mine ou non.
+   * @return la valeur de la Mine, c'est a dire a qu'elle equipe elle appartient.
    */
   public int contientMine(){
     return this.mine;
   }
 
+  /**
+   * Pose une Mine sur la cellule avec le numero de l'equipe.
+   * @param equipe donne a une Mine ça correspondance a l'equipe.
+   */
   public void poseMine(int equipe) {
     this.mine = equipe;
   }
 
+  /**
+   * Retire la Mine de la cellule.
+   */
   public void retirerMine(){
     this.mine = 0;
   }
 
+  /**
+   * @return Retourne si la Cellule est un mur ou non.
+   */
   public boolean estMur(){
     return this.mur;
   }
+
+  /**
+   * Pose un mur.
+   * @param mur
+   */
   public void setMur(boolean mur){
     this.mur = mur;
   }
+
   /**
-   * 
-   * @return si la cellulle est une base ou non.
+   * Retourne le numéro de la base par rapport a l'équipe, 0 si il n'y a pas de base.
+   * @return la valeur de l'equipe.
    */
   public int estBase(){ 
     return this.base;
   }
 
+  /**
+   * Pose une Base par rapport a une numéro d'equipe
+   * @param equipe
+   */
   public void poseBase(int equipe){
     this.base = equipe;
   }
+
   /**
    * 
-   * @return retourne l'attribut robot.
+   * @return retourne le robot sur la Cellule.
    */
   public Robot getRobot() {
     return this.robot;
   }
 
+  /**
+   * Pose une robot sur la Cellule.
+   * @param robot
+   */
   public void poserRobot(Robot robot){
     this.robot = robot;
   }
 
+  /**
+   * Retire un robot de la Cellule.
+   */
   public void retirerRobot() {
     this.robot = null;
   }
 
+  /**
+   * Regarde si la Cellule a un robot.
+   * @return 0 si il n'y a pas de robot sinon retourne le numéro de l'equipe.
+   */
   public int estRobot(){
     if (this.robot == null) {
       return 0;
     }
     return this.robot.getEquipe();
   }
+
   /**
    * 
-   * @return retourne l'attribut coordonnees.
+   * @return retourne les coordonnées de la Cellule.
    */
   public Coordonnees getCoordonnees() {
     return this.coordonnees;
   }
 
+  /**
+   * Modifie les coordonnée de la Cellule.
+   * @param coord
+   */
   public void setCoordonnees(Coordonnees coord) {
     this.coordonnees = coord;
   }
-  //
-  //  @Override
-  //  public String toString() {
-  //    return "Cellule [mine=" + this.mine + ", base=" + this.base + ", robot=" + this.robot + ", coordonnees="
-  //        + this.coordonnees + ", image=" + this.image + "]";
-  //  }
-  //  
-  /**
-   * 
-   * @param robot
-   *    qui correspond du déplacement d'un robot sur une case.
-   */
-  //abstract void deplaceSur(Robot robot);
 
   /**
-   * 
-   * @param equipe
+   * Affiche ce que possede la Cellule.
    */
-  //abstract void ajoute(int equipe);
-
+  @Override
+  public String toString() {
+    return "Cellule [mine=" + this.mine + ", base=" + this.base + ", robot=" + this.robot + ", coordonnees="
+        + this.coordonnees + ", image=" + this.image + "]";
+  }
+ 
   /**
-   * 
-   * Vide la case.
+   * Regarde si la Celulle est Vide.
+   * @return
    */
   public boolean estVide(){
     if (this.estMur() || this.estBase() > 0 || this.estRobot() != 0 || contientMine() > 0) {
@@ -133,6 +155,10 @@ public class Cellule {
     }
     return true;
   }
+  
+  /**
+   * Vide la Cellule.
+   */
   public void videCase(){
     this.base = 0;
     this.mine = 0;

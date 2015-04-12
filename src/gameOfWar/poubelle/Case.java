@@ -2,7 +2,11 @@ package gameOfWar.poubelle;
 import gameOfWar.config.Cellule;
 import gameOfWar.robot.Robot;
 
-
+/**
+ * 
+ * @author Personne.
+ *
+ */
 public class Case extends Cellule {
   
   private boolean mur;

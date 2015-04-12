@@ -11,7 +11,7 @@ import java.util.Random;
 
 
 /**
- * @author dusartc
+ * @author Clement
  */
 public class Plateau {
 
@@ -186,14 +186,14 @@ public class Plateau {
       ans += "-";
     } ans += "+\n";
     ans += "|\tMAJUSCULES\t%\tminuscules\t\t\t|\n";
-    String[] chabadabada = new String[] {
+    String[] legende = new String[] {
         "base","tireur","piegeur","char","mine"
     };
-    for (int i = 0; i < chabadabada.length; i++) {
+    for (int i = 0; i < legende.length; i++) {
       ans += "|\t\t"
-          + chabadabada[i].substring(0, 1).toUpperCase()
-          + "\t|\t\t" + chabadabada[i].substring(0, 1) + "\t"
-          + chabadabada[i] + "\t\t|\n";
+          + legende[i].substring(0, 1).toUpperCase()
+          + "\t|\t\t" + legende[i].substring(0, 1) + "\t"
+          + legende[i] + "\t\t|\n";
     }ans += "|\t";
     for (int i = 0; i < 47; i++) {
       ans += "-";

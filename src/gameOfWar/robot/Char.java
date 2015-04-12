@@ -7,7 +7,11 @@ import gameOfWar.jeux.Vue;
 import java.util.List;
 //Touche moi cette belle ArrayList(I).
 
-
+/**
+ * 
+ * @author Aurelia, Mathieu, Clement
+ *
+ */
 public class Char extends Robot{
 
   private List<Coordonnees> coordonnees; //A mediter (voir : direction et objectif) CLEMENT !

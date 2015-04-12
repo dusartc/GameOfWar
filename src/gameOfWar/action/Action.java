@@ -3,7 +3,8 @@ import gameOfWar.config.Cellule;
 import gameOfWar.config.Coordonnees;
 import gameOfWar.robot.Robot;
 /**
- * La Classe Action permet de gérer les actions des robots sur le plateau
+ * La Classe Action permet de gérer les actions des robots sur le plateau.
+ * @author Alexandre
  */
 public abstract class Action {
   /** La direction que doit emprunter le robot*/

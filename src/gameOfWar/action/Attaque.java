@@ -3,6 +3,11 @@ package gameOfWar.action;
 import gameOfWar.config.*;
 import gameOfWar.robot.*;
 
+/**
+ * 
+ * @author Samantha
+ *
+ */
 public class Attaque extends Action {
   //Encapsulation de la classe Robot en tant que cible
   Robot cible;

@@ -7,6 +7,11 @@ import gameOfWar.config.Mur;
 import gameOfWar.robot.Robot;
 
 
+/**
+ * 
+ * @author Clement, Mathieu
+ *
+ */
 public class Vue {
 
   private Plateau plateau;

@@ -8,6 +8,11 @@ import java.util.List;
 import java.util.Scanner;
 
 
+/**
+ * 
+ * @author Clement.
+ *
+ */
 public class Equipe {
 
   private String nom;

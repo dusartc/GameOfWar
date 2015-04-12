@@ -7,6 +7,11 @@ import java.util.List;
 // Touche moi cette belle ArrayList(I).
 
 
+/**
+ * 
+ * @author Samantha, Mathieu, Clément
+ *
+ */
 public class Tireur extends Robot {
 
   private List<Coordonnees> coordonnees; //A mediter (voir : direction et objectif) CLEMENT !

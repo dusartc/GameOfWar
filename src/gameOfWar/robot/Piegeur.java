@@ -7,6 +7,11 @@ import gameOfWar.jeux.Vue;
 import java.util.List;
 //Touche moi cette belle ArrayList(I).
 
+/**
+ * 
+ * @author Mariam, Mathieu, Clement
+ *
+ */
 public class Piegeur extends Robot {
 
   private int nbMines = 10;

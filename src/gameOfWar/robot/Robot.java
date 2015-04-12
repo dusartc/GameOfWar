@@ -7,6 +7,11 @@ import gameOfWar.jeux.Vue;
 import java.util.List;
 
 
+/**
+ * 
+ * @author Alexandre, Clement
+ *
+ */
 public abstract class Robot {
 
   private Coordonnees coordonnees;

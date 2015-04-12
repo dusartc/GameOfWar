@@ -9,6 +9,11 @@ import gameOfWar.robot.Robot;
 import gameOfWar.robot.Tireur;
 
 
+/**
+ * 
+ * @author Aurelia
+ *
+ */
 public class Deplacement extends Action {
 
 

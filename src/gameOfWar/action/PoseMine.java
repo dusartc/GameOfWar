@@ -4,7 +4,11 @@ import gameOfWar.config.Coordonnees;
 import gameOfWar.robot.Piegeur;
 import gameOfWar.robot.Robot;
 
-
+/**
+ * 
+ * @author Mariam
+ *
+ */
 public class PoseMine extends Action{
 
   public PoseMine(Robot robot, Coordonnees direction) {
