@@ -19,6 +19,7 @@ public abstract class Robot {
   private int energie;
   private Equipe equipe;
   private Vue vue;
+  private Coordonnees objectif;
 
 
   public Robot(Vue vue, Equipe equipe) {
