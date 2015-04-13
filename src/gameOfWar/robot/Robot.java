@@ -2,6 +2,7 @@ package gameOfWar.robot;
 import gameOfWar.action.Action;
 import gameOfWar.config.Constante;
 import gameOfWar.config.Coordonnees;
+import gameOfWar.jeux.Equipe;
 import gameOfWar.jeux.Vue;
 
 import java.util.List;
@@ -16,22 +17,22 @@ public abstract class Robot {
 
   private Coordonnees coordonnees;
   private int energie;
-  private int equipe;
+  private Equipe equipe;
   private Vue vue;
 
 
-  public Robot(Vue vue, int equipe) {
+  public Robot(Vue vue, Equipe equipe) {
     /** calcul des coordonnees de la base en fonction de son num d'equipe */
-    this.coordonnees = new Coordonnees((equipe == Constante.EQUIPE_UN) ? 0 : vue.getPlateau().getLargeur()-1,
-        (equipe == Constante.EQUIPE_UN) ? 0 : vue.getPlateau().getLongueur()-1);
+    this.coordonnees = new Coordonnees((equipe.getEquipe() == Constante.EQUIPE_UN) ? 0 : vue.getPlateau().getLargeur()-1,
+        (equipe.getEquipe() == Constante.EQUIPE_UN) ? 0 : vue.getPlateau().getLongueur()-1);
     this.equipe = equipe;
     this.vue = vue;
   }
 
-  public boolean estSurBase(int x, int y) {
+  public boolean estSurBase() {
     /** calcul des coordonnees de la base */
-    return this.coordonnees.equals(new Coordonnees((equipe == Constante.EQUIPE_UN) ? 0 : vue.getPlateau().getLargeur()-1, 
-        (equipe == Constante.EQUIPE_UN) ? 0 : vue.getPlateau().getLongueur()-1));
+    return this.coordonnees.equals(new Coordonnees((equipe.getEquipe() == Constante.EQUIPE_UN) ? 0 : vue.getPlateau().getLargeur()-1, 
+        (equipe.getEquipe() == Constante.EQUIPE_UN) ? 0 : vue.getPlateau().getLongueur()-1));
   }
 
   public Coordonnees getCoordonnees() {
@@ -52,7 +53,11 @@ public abstract class Robot {
     return this.energie;
   }
 
-  public int getEquipe() {
+  public int getNumEquipe() {
+    return this.equipe.getEquipe();
+  }
+  
+  public Equipe getEquipe() {
     return this.equipe;
   }
 
@@ -76,9 +81,7 @@ public abstract class Robot {
   abstract public void subitTirDe(Robot robot);
 
   public void estSoigne(){
-    if (this.estSurBase(this.coordonnees.getLargeur(), this.coordonnees.getHauteur())) {
-      this.setEnergie(this.getEnergie() + Constante.SOIN);
-    }
+    this.setEnergie(this.getEnergie() + Constante.SOIN);
   }
 
   @Override
@@ -90,5 +93,13 @@ public abstract class Robot {
     /** on propose un choix d'action et la renvoie */
     // TODO Auto-generated method stub
     return null;
+  }
+  
+  public boolean estMort() {
+    return this.energie <= 0;
+  }
+  
+  public void disparait() {
+    this.equipe.removeRobot(this);
   }
 }
