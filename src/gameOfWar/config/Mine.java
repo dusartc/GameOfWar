@@ -7,7 +7,7 @@ import gameOfWar.robot.Piegeur;
  * @author Mathieu
  *
  */
-public class Mine extends Cellule {
+public class Mine {
 
   /**
    * Le constructeur construit une Mine par rapport aux coordonnees donnees et a l'equipe
@@ -15,19 +15,19 @@ public class Mine extends Cellule {
    * @param hauteur
    * @param equipe, l'equipe de la Mine.
    */
-  public Mine(int largeur, int hauteur, int equipe) {
-    super(largeur, hauteur);
-    this.poseMine(equipe);
-  }
-  
-  public Mine(Coordonnees coordonnees, int equipes) {
-    super(coordonnees.getLargeur(), coordonnees.getHauteur());
-    this.poseMine(equipes);
-  }
+//  public Mine(int largeur, int hauteur, int equipe) {
+//    super(largeur, hauteur);
+//    this.poseMine(equipe);
+//  }
+//  
+//  public Mine(Coordonnees coordonnees, int equipes) {
+//    super(coordonnees.getLargeur(), coordonnees.getHauteur());
+//    this.poseMine(equipes);
+//  }
   
   public Mine(Piegeur piegeur) {
-    super(piegeur.getObjectif().getLargeur(), piegeur.getObjectif().getHauteur());
-    this.poseMine(piegeur.getNumEquipe());
+    piegeur.getVue().getPlateau().getCelluleByCoordonnees(piegeur.getObjectif()).poseMine(piegeur.getNumEquipe());
+    //this.poseMine(piegeur.getNumEquipe());
     piegeur.perdUneMine();
   }
 }
