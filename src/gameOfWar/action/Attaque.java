@@ -4,8 +4,8 @@ import gameOfWar.config.*;
 import gameOfWar.robot.*;
 
 /**
- *  La classe Attaque permet de produire une action de tir.
- * @author Samantha
+ *  La classe Attaque permet de produire une action de tir ou de poser une mine.
+ * @author Samantha, Mariam.
  *
  */
 public class Attaque extends Action {
