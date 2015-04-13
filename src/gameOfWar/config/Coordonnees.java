@@ -8,34 +8,26 @@ package gameOfWar.config;
 public class Coordonnees {
   
   /** La largeur ou x d'une coordonnees sur l'axe des abscisses. */
-  private int largeur;
+  private int x;
   /** La longeur ou y d'une coordonnees sur l'axe des ordonnees. */
-  private int hauteur;
+  private int y;
 
   /**
    * Construit un point de l'axe.
    * @param largeur
    * @param hauteur
    */
-  public Coordonnees(int largeur, int hauteur) {
-    this.largeur = largeur;
-    this.hauteur = hauteur;
+  public Coordonnees(int x, int y) {
+    this.x = x;
+    this.y = y;
   }
 
-  /**
-   * Retournesi la mine appartient a aucune equipe, 1 pour l'equipe une et 2 pour l'equipe deux. la largeur.
-   * @return
-   */
   public int getLargeur() {
-    return largeur;
+    return this.x;
   }
   
-  /**
-   * Retourne la longueur.
-   * @return
-   */
   public int getHauteur() {
-    return hauteur;
+    return this.y;
   }
 
   /**
@@ -44,7 +36,7 @@ public class Coordonnees {
    * @return
    */
   public boolean equals(Coordonnees c){
-    if(this.largeur == c.largeur && this.hauteur == c.hauteur) {
+    if(this.x == c.x && this.y == c.y) {
       return true;
     }
     return false;
@@ -56,7 +48,7 @@ public class Coordonnees {
    * @return
    */
   public Coordonnees calculCoordonnees(Coordonnees c){
-    Coordonnees inter = new Coordonnees(this.largeur - c.largeur, this.hauteur - c.hauteur);
+    Coordonnees inter = new Coordonnees(this.x - c.x, this.y - c.y);
     return inter;
   }
 
@@ -65,7 +57,7 @@ public class Coordonnees {
    */
   @Override
   public String toString(){
-    return "Coordonnées : ("+this.largeur+","+this.hauteur+")";
+    return "Coordonnées : ("+this.x+","+this.y+")";
   }
 
   /**
@@ -74,7 +66,7 @@ public class Coordonnees {
    * @return
    */
   public Coordonnees ajout(Coordonnees coord){
-    return new Coordonnees(coord.largeur + this.largeur, coord.hauteur + this.hauteur);
+    return new Coordonnees(coord.x + this.x, coord.y + this.y);
   }
 
 
