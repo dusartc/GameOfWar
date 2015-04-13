@@ -21,6 +21,8 @@ public class Plateau {
   private Cellule[][] plateau;
   private int longueur;
   private int largeur;
+  private int x;
+  private int y;
 
   public Plateau(int longueur, int largeur, int pourcentageObstacle) {
     /** on doit avoir un chemin entre les deux bases :
@@ -28,6 +30,8 @@ public class Plateau {
      */
     this.longueur = longueur;
     this.largeur = largeur;
+    this.x = largeur;
+    this.y = longueur;
     if (pourcentageObstacle > Constante.OBSTACLES_MAX) {
       System.err.println("trop d'obstacles ; " + Constante.OBSTACLES_MAX + " sera utilise");
       pourcentageObstacle = Constante.OBSTACLES_MAX;
@@ -36,15 +40,15 @@ public class Plateau {
       System.err.println("pas assez d'obstacles ; " + Constante.OBSTACLES_MIN + " sera utilise");
       pourcentageObstacle = Constante.OBSTACLES_MIN;
     }
-    this.plateau = new Cellule[largeur][longueur];
+    this.plateau = new Cellule[y][x];
     for (int i = 0; i < plateau.length; i++) {          //
       for (int j = 0; j < plateau[0].length; j++) {     // Remplissage vide
         this.plateau[i][j] = new Cellule(j, i);         //
       }
     }
     this.plateau[0][0] = new Base(0, 0, Constante.EQUIPE_UN);                  //
-    this.plateau[this.longueur - 1][this.largeur - 1] =                        // base par default
-        new Base(this.longueur - 1, this.largeur - 1, Constante.EQUIPE_DEUX);  //
+    this.plateau[this.y - 1][this.x - 1] =                        // base par default
+        new Base(this.y - 1, this.x - 1, Constante.EQUIPE_DEUX);  //
 
     double nbObstacles = ((double) pourcentageObstacle / 100) * (this.plateau[0].length * this.plateau.length);
     int currentObstacles = 0;
@@ -111,23 +115,11 @@ public class Plateau {
     this.plateau[y][x].videCase();
   }
 
-
-//  public void poserUneMine(int x, int y, int equipe){
-//    /** on peut poser une mine seulement sur une case vide */
-//    if (this.plateau[y][x].estVide()) {
-//      this.plateau[y][x] = new Mine(y, x, equipe);
-//      System.out.println("Mine posée pour l'équipe :"+equipe+" Au coordonnée ("+x+","+y+")");
-//    }
-//    else{
-//      System.err.println("Erreur, placement impossible au coordonnée ("+x+","+y+")");
-//    }
-//  }
-
   public void poserRobot(int x, int y, Robot robot){
     /** on peut poser un robot seulement sur une base
      * on test si la cellule passer en param n'est pas un mur, qu'elle ne contienne pas de mine et que cela correspond bien a une base
      */
-    if(!this.estMur(y,x)){
+    if(!this.estMur(x,y)){
       this.getCellule(x, y).poserRobot(robot);
     }
     else{
