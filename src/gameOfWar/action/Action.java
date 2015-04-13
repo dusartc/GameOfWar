@@ -1,5 +1,4 @@
 package gameOfWar.action;
-import gameOfWar.config.Cellule;
 import gameOfWar.config.Coordonnees;
 import gameOfWar.robot.Robot;
 /**
@@ -23,6 +22,7 @@ public abstract class Action {
   public Action(Robot robot, Coordonnees direction) {
     this.robot = robot;
     this.direction = direction;
+    this.objectif = robot.getObjectif();
   }
   
   /**
@@ -33,23 +33,16 @@ public abstract class Action {
     return this.robot;
   }
   
-  /**
-   * Retour les coordonnees de la direction.
-   * @return
-   */
   public Coordonnees getDirection() {
     return this.direction;
   }
   
-  /**
-   * Retour les coordonnees de l'objectif.
-   * @return
-   */
   public Coordonnees getObjectif() {
     return this.objectif;
   }
+  
   /**
    * agit realise l'action du robot
    */
-  public abstract void agit(Cellule caseCible); // Modif du paramètre de type Cellule en caseCible pour moins d'ambigûtée
+  public abstract void agit();
 }
