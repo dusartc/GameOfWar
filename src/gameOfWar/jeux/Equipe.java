@@ -151,12 +151,7 @@ public class Equipe {
       i += 1;
     }
     Scanner sc = new Scanner(System.in);
-    if (sc.hasNextInt()) {
-      i = sc.nextInt();
-      sc.close();
-      return this.robots.get(i-1);
-    }
-    sc.close();
-    return null;
+    i = sc.nextInt();
+    return this.robots.get(i-1);
   }
 }
