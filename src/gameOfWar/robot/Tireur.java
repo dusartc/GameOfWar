@@ -1,6 +1,7 @@
 package gameOfWar.robot;
 import gameOfWar.config.Constante;
 import gameOfWar.config.Coordonnees;
+import gameOfWar.jeux.Equipe;
 import gameOfWar.jeux.Vue;
 
 import java.util.List;
@@ -16,7 +17,7 @@ public class Tireur extends Robot {
 
   private List<Coordonnees> coordonnees; //A mediter (voir : direction et objectif) CLEMENT !
 
-  public Tireur(Vue vue, int equipe) {
+  public Tireur(Vue vue, Equipe equipe) {
     super(vue, equipe);
     this.setEnergie(Constante.ENERGIE_TIREUR);
   }
@@ -66,6 +67,9 @@ public class Tireur extends Robot {
     if(robot instanceof Tireur || robot instanceof Char){
       if(robot.getEquipe() != this.getEquipe()){
         this.setEnergie(this.getEnergie()-robot.getDegatTir());
+        
+      }else {
+        System.err.println("meme equipe ; affrontement impossible entre "+this.toString()+" et "+robot.toString());
       }
     }
     else {

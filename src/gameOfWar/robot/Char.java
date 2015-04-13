@@ -1,6 +1,7 @@
 package gameOfWar.robot;
 import gameOfWar.config.Constante;
 import gameOfWar.config.Coordonnees;
+import gameOfWar.jeux.Equipe;
 import gameOfWar.jeux.Vue;
 
 //import java.util.ArrayList;
@@ -16,7 +17,7 @@ public class Char extends Robot{
 
   private List<Coordonnees> coordonnees; //A mediter (voir : direction et objectif) CLEMENT !
 
-  public Char(Vue vue, int equipe) {
+  public Char(Vue vue, Equipe equipe) {
     super(vue, equipe);
     this.setEnergie(Constante.ENERGIE_CHAR);
   }
