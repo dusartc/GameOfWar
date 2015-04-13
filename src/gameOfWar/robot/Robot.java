@@ -49,6 +49,14 @@ public abstract class Robot {
   abstract public int getDegatTir();
 
   abstract public List<Coordonnees> getDeplacements();
+  
+  public Coordonnees getObjectif() {
+    return this.objectif;
+  }
+  
+  public void setObjectif(Coordonnees objectif) {
+    this.objectif = objectif;
+  }
 
   public int getEnergie() {
     return this.energie;
