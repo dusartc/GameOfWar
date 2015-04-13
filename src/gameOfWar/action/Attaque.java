@@ -11,10 +11,7 @@ import gameOfWar.robot.*;
 public class Attaque extends Action {
   //Encapsulation de la classe Robot en tant que cible
   Robot cible;
-  //Déclaration des constantes de portee de robot
-  private final int PORTEE_TIREUR = 3;
-  private final int PORTEE_PIEGEUR = 1;
-  private final int PORTEE_CHAR = 10;
+  
   public Attaque(Robot robot, Coordonnees direction ) {
     super(robot, direction);
   }
@@ -35,7 +32,7 @@ public class Attaque extends Action {
     int porteeAtt ;
     while (this.getObjectif().equals(true)) {
       if(this.getRobot() instanceof Piegeur && (cible instanceof Piegeur || cible instanceof Tireur || cible instanceof Char)){
-        porteeAtt = PORTEE_PIEGEUR;
+        porteeAtt = Constante.PORTEE_PIEGEUR;
         this.getRobot().setEnergie(this.getRobot().getEnergie()-this.getRobot().getCoutAction());
         //le robot perd de l'energie en posant des Mines (energie du robot - cout de son action)
         if(caseCible.contientMine() > 0 && caseCible.equals(porteeAtt)){
@@ -45,7 +42,7 @@ public class Attaque extends Action {
         }
       }
       else if (this.getRobot() instanceof Tireur && (cible instanceof Piegeur || cible instanceof Tireur || cible instanceof Char)){
-        porteeAtt = PORTEE_TIREUR;
+        porteeAtt = Constante.PORTEE_TIREUR;
         this.getRobot().setEnergie(this.getRobot().getEnergie()-this.getRobot().getCoutAction());
         //le robot perd de l'energie en tirant (energie du robot - cout de son action)
         if(caseCible.equals(porteeAtt)){
@@ -55,7 +52,7 @@ public class Attaque extends Action {
         }
       }
       else if (this.getRobot() instanceof Char && (cible instanceof Piegeur || cible instanceof Tireur || cible instanceof Char)){
-        porteeAtt = PORTEE_CHAR;
+        porteeAtt = Constante.PORTEE_CHAR;
         this.getRobot().setEnergie(this.getRobot().getEnergie()-this.getRobot().getCoutAction());
         //le robot perd de l'energie en tirant (energie du robot - cout de son action)
         if(caseCible.equals(porteeAtt)){
