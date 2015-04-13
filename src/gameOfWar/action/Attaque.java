@@ -15,15 +15,7 @@ public class Attaque extends Action {
   public Attaque(Robot robot, Coordonnees direction ) {
     super(robot, direction);
   }
-  public int getPORTEE_TIREUR() {
-    return PORTEE_TIREUR;
-  }
-  public int getPORTEE_PIEGEUR() {
-    return PORTEE_PIEGEUR;
-  }
-  public int getPORTEE_CHAR() {
-    return PORTEE_CHAR;
-  }
+  
   @Override
   public void agit(Cellule caseCible) {
     // TODO Stub de la méthode généré automatiquement
