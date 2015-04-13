@@ -1,8 +1,6 @@
 package gameOfWar.jeux;
 
 import gameOfWar.action.Action;
-import gameOfWar.action.Deplacement;
-import gameOfWar.config.Cellule;
 import gameOfWar.config.Constante;
 import gameOfWar.config.Coordonnees;
 import gameOfWar.robot.Char;
@@ -21,8 +19,6 @@ public class Main {
   public static void main(String[] args) {
 
     Plateau plateau = new Plateau(10, 10, 20);
-    Vue equipeUne = new Vue(plateau, Constante.EQUIPE_UN);
-    Vue equipeDeux = new Vue(plateau, Constante.EQUIPE_DEUX);
     
     Equipe[] equipes = new Equipe[] {
         new Equipe("joueur1", plateau, Constante.EQUIPE_UN, new Coordonnees(0, 0)),
@@ -30,31 +26,47 @@ public class Main {
                                                                               plateau.getLargeur()-1))
     };
     for (Equipe joueur : equipes) {
-      joueur.addRobot(new Tireur(joueur.getVue(), joueur.getEquipe()));
-      joueur.addRobot(new Piegeur(joueur.getVue(), joueur.getEquipe()));
-      joueur.addRobot(new Char(joueur.getVue(), joueur.getEquipe()));
+      joueur.addRobot(new Tireur(joueur.getVue(), joueur));
+      joueur.addRobot(new Piegeur(joueur.getVue(), joueur));
+      joueur.addRobot(new Char(joueur.getVue(), joueur));
     }
     
-    equipeUne.setMine(new Piegeur(equipeUne, equipes[0].getEquipe()), new Coordonnees(0, 3));
-
-    equipeDeux.setMine(new Piegeur(equipeDeux, equipes[1].getEquipe()), new Coordonnees(3, 0));
-
-    equipeUne.setMine(new Piegeur(equipeUne, equipes[0].getEquipe()), new Coordonnees(0, 5));
+    boolean finis = false;
+    Robot neo;
+    Action action;
+    int i = 0;
+    while (!finis) {
+      neo = equipes[i%2].choisitRobot();
+      action = neo.choisitAction();
+      action.agit();
+      i += 1;
+      for (Equipe joueur : equipes) {
+        if (joueur.perdu()) {
+          finis = true;
+        }
+      }
+    }
     
-    equipeDeux.setMine(new Piegeur(equipeDeux, equipes[1].getEquipe()), new Coordonnees(5, 0));
+    
 
-    equipeDeux.setMine(new Piegeur(equipeDeux, equipes[1].getEquipe()), new Coordonnees(0, 5));
-    
-    System.out.println(equipeUne);
-    System.out.println(equipeDeux);
-    System.out.println(plateau);
-    
-   Piegeur testPiegeur = new Piegeur(equipeUne, equipes[0].getEquipe());
-    equipeUne.poserRobot(testPiegeur, equipes[0].getCoordBase());
-    Action dep = new Deplacement(testPiegeur, new Coordonnees(0,1));
-    System.out.println(plateau);
-    dep.agit(new Cellule(0, 1));
-    System.out.println(plateau);
+//    equipeDeux.setMine(new Piegeur(equipeDeux, equipes[1].getEquipe()), new Coordonnees(3, 0));
+//
+//    equipeUne.setMine(new Piegeur(equipeUne, equipes[0].getEquipe()), new Coordonnees(0, 5));
+//    
+//    equipeDeux.setMine(new Piegeur(equipeDeux, equipes[1].getEquipe()), new Coordonnees(5, 0));
+//
+//    equipeDeux.setMine(new Piegeur(equipeDeux, equipes[1].getEquipe()), new Coordonnees(0, 5));
+//    
+//    System.out.println(equipeUne);
+//    System.out.println(equipeDeux);
+//    System.out.println(plateau);
+//    
+//    Piegeur testPiegeur = new Piegeur(equipeUne, equipes[0].getEquipe());
+//    equipeUne.poserRobot(testPiegeur, equipes[0].getCoordBase());
+//    Action dep = new Deplacement(testPiegeur, new Coordonnees(0,1));
+//    System.out.println(plateau);
+//    dep.agit(new Cellule(0, 1));
+//    System.out.println(plateau);
 //    for (Equipe equipe : equipes) {
 //      System.out.println(equipe.toString());
 //    }
