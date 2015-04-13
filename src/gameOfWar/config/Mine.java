@@ -17,4 +17,9 @@ public class Mine extends Cellule {
     super(largeur, hauteur);
     this.poseMine(equipe);
   }
+  
+  public Mine(Coordonnees coordonnees, int equipes) {
+    super(coordonnees.getLargeur(), coordonnees.getHauteur());
+    this.poseMine(equipes);
+  }
 }
