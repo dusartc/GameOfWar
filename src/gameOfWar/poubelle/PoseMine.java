@@ -12,7 +12,7 @@ import gameOfWar.robot.Robot;
  */
 public class PoseMine extends Action{
 
-public Piegeur p;
+  public Piegeur p;
 
   public PoseMine(Robot robot, Coordonnees direction) {
     super(robot, direction);
