@@ -1,10 +1,14 @@
 package gameOfWar.jeux;
 import gameOfWar.config.Base;
 import gameOfWar.config.Cellule;
+import gameOfWar.config.Constante;
 import gameOfWar.config.Coordonnees;
 import gameOfWar.config.Mine;
 import gameOfWar.config.Mur;
+import gameOfWar.robot.Char;
+import gameOfWar.robot.Piegeur;
 import gameOfWar.robot.Robot;
+import gameOfWar.robot.Tireur;
 
 
 /**
@@ -77,16 +81,50 @@ public class Vue {
           }
         }
         else if (this.plateau.getCellule(i, j) instanceof Mine) {
-          Mine testMine = (Mine) this.plateau.getCellule(i, j);
+         // Mine testMine = (Mine) this.plateau.getCellule(i, j);
           String res ="";
-          if (this.equipe == 1) {
+          if (this.equipe == Constante.EQUIPE_UN) {
             res += "| M ";
           }
-          else if(this.equipe == 2){
+          else if(this.equipe == Constante.EQUIPE_DEUX){
             res += "| m ";
           }
-          ans.insert(ans.length(), (testMine.contientMine() == this.getEquipe())?
+          ans.insert(ans.length(), (this.plateau.estMine(i, j) == this.getEquipe())?
             res:"|   ");
+        }
+        else if (this.plateau.getCellule(i, j).getRobot() instanceof Piegeur) {
+          if (this.plateau.estRobot(i, j) == 1) {
+            ans.insert(ans.length(), "| P ");
+          }
+          else if (this.plateau.estRobot(i, j) == 2) {
+            ans.insert(ans.length(), "| p ");
+          }
+          else {
+            ans.insert(ans.length(),"|   ");
+          }
+          
+        }
+        else if (this.plateau.getCellule(i, j).getRobot() instanceof Tireur) {
+          if (this.plateau.estRobot(i, j) == 1) {
+            ans.insert(ans.length(), "| T ");
+          }
+          else if (this.plateau.estRobot(i, j) == 2) {
+            ans.insert(ans.length(), "| t ");
+          }
+          else {
+            ans.insert(ans.length(),"|   ");
+          }
+        }
+        else if (this.plateau.getCellule(i, j).getRobot() instanceof Char) {
+          if (this.plateau.estRobot(i, j) == 1) {
+            ans.insert(ans.length(), "| C ");
+          }
+          else if (this.plateau.estRobot(i, j) == 2) {
+            ans.insert(ans.length(), "| c ");
+          }
+          else {
+            ans.insert(ans.length(),"|   ");
+          }
         }
         else if (this.plateau.getCellule(i, j) instanceof Cellule){
           ans.insert(ans.length(),"|   ");

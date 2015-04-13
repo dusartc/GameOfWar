@@ -1,11 +1,15 @@
 package gameOfWar.jeux;
+
 import gameOfWar.config.Base;
 import gameOfWar.config.Cellule;
 import gameOfWar.config.Constante;
 import gameOfWar.config.Coordonnees;
 import gameOfWar.config.Mine;
 import gameOfWar.config.Mur;
+import gameOfWar.robot.Piegeur;
 import gameOfWar.robot.Robot;
+import gameOfWar.robot.Tireur;
+import gameOfWar.robot.Char;
 
 import java.util.Random;
 
@@ -125,7 +129,7 @@ public class Plateau {
     /** on peut poser un robot seulement sur une base
      * on test si la cellule passer en param n'est pas un mur, qu'elle ne contienne pas de mine et que cela correspond bien a une mine
      */
-    if(!this.estMur(y,x) && this.estBase(x,y) > 0 && this.estMine(x,y) == 0){
+    if(!this.estMur(y,x) && (this.estBase(y,x) == robot.getEquipe() || this.estBase(y, x) == 0)&& this.estMine(y,x) == 0){
       this.plateau[y][x].poserRobot(robot);
     }
     else{
@@ -166,6 +170,40 @@ public class Plateau {
           }
           if (this.estMine(i, j) == 2) {
             ans.insert(ans.length(),"| m ");
+          }
+        }
+        else if (this.plateau[i][j].getRobot() instanceof Piegeur) {
+          if (this.estRobot(i, j) == 1) {
+            ans.insert(ans.length(), "| P ");
+          }
+          else if (this.estRobot(i, j) == 2) {
+            ans.insert(ans.length(), "| p ");
+          }
+          else {
+            ans.insert(ans.length(),"|   ");
+          }
+          
+        }
+        else if (this.plateau[i][j].getRobot() instanceof Tireur) {
+          if (this.estRobot(i, j) == 1) {
+            ans.insert(ans.length(), "| T ");
+          }
+          else if (this.estRobot(i, j) == 2) {
+            ans.insert(ans.length(), "| t ");
+          }
+          else {
+            ans.insert(ans.length(),"|   ");
+          }
+        }
+        else if (this.plateau[i][j].getRobot() instanceof Char) {
+          if (this.estRobot(i, j) == 1) {
+            ans.insert(ans.length(), "| C ");
+          }
+          else if (this.estRobot(i, j) == 2) {
+            ans.insert(ans.length(), "| c ");
+          }
+          else {
+            ans.insert(ans.length(),"|   ");
           }
         }
         else if (this.plateau[i][j] instanceof Cellule){

@@ -1,6 +1,8 @@
 package gameOfWar.jeux;
 
 import gameOfWar.action.Action;
+import gameOfWar.action.Deplacement;
+import gameOfWar.config.Cellule;
 import gameOfWar.config.Constante;
 import gameOfWar.config.Coordonnees;
 import gameOfWar.robot.Char;
@@ -45,6 +47,13 @@ public class Main {
     
     System.out.println(equipeUne);
     System.out.println(equipeDeux);
+    System.out.println(plateau);
+    
+   Piegeur testPiegeur = new Piegeur(equipeUne, equipes[0].getEquipe());
+    equipeUne.poserRobot(testPiegeur, equipes[0].getCoordBase());
+    Action dep = new Deplacement(testPiegeur, new Coordonnees(0,1));
+    System.out.println(plateau);
+    dep.agit(new Cellule(0, 1));
     System.out.println(plateau);
 //    for (Equipe equipe : equipes) {
 //      System.out.println(equipe.toString());
