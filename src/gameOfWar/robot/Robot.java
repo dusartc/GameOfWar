@@ -89,9 +89,7 @@ public abstract class Robot {
   abstract public void subitMine();
   abstract public void subitTirDe(Robot robot);
 
-  public void estSoigne(){
-    this.setEnergie(this.getEnergie() + Constante.SOIN);
-  }
+  abstract public void estSoigne();
 
   @Override
   public String toString() {
