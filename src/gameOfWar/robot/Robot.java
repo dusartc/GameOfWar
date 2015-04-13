@@ -98,11 +98,7 @@ public abstract class Robot {
     return "energie : " + this.energie + ", " + this.coordonnees.toString();
   }
 
-  public Action choisitAction() {
-    /** on propose un choix d'action et la renvoie */
-    // TODO Auto-generated method stub
-    return null;
-  }
+  abstract public Action choisitAction();
   
   public boolean estMort() {
     return this.energie <= 0;

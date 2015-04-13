@@ -3,7 +3,6 @@ import gameOfWar.config.Base;
 import gameOfWar.config.Cellule;
 import gameOfWar.config.Constante;
 import gameOfWar.config.Coordonnees;
-import gameOfWar.config.Mine;
 import gameOfWar.config.Mur;
 import gameOfWar.robot.Char;
 import gameOfWar.robot.Piegeur;
@@ -45,9 +44,9 @@ public class Vue {
     this.plateau.retirerRobot(coordonnees);
   }
 
-  public void setMine(Robot robot, Coordonnees coordonnees){
-    this.plateau.poserUneMine(coordonnees.getLargeur(), coordonnees.getHauteur(), robot.getEquipe());
-  }
+//  public void setMine(Robot robot, Coordonnees coordonnees){
+//    this.plateau.poserUneMine(coordonnees.getLargeur(), coordonnees.getHauteur(), robot.getEquipe());
+//  }
   
   public void retirerMine(Coordonnees coordonnees) {
     this.plateau.retirerMine(coordonnees);
@@ -80,7 +79,7 @@ public class Vue {
             ans.insert(ans.length(),"| b |\n");
           }
         }
-        else if (this.plateau.getCellule(i, j) instanceof Mine) {
+        else if (this.plateau.getCellule(i, j).contientMine() > 0 ) {
          // Mine testMine = (Mine) this.plateau.getCellule(i, j);
           String res ="";
           if (this.equipe == Constante.EQUIPE_UN) {
