@@ -1,11 +1,17 @@
 
 package gameOfWar.robot;
+import gameOfWar.action.Action;
+import gameOfWar.action.Deplacement;
 import gameOfWar.config.Constante;
 import gameOfWar.config.Coordonnees;
+import gameOfWar.config.Mine;
+import gameOfWar.jeux.Equipe;
 import gameOfWar.jeux.Vue;
 
+import java.util.ArrayList;
 import java.util.List;
 //Touche moi cette belle ArrayList(I).
+import java.util.Scanner;
 
 /**
  * 
@@ -18,7 +24,7 @@ public class Piegeur extends Robot {
 
   private List<Coordonnees> coordonnees; //A mediter (voir : direction et objectif) CLEMENT !
 
-  public Piegeur(Vue vue, int equipe) {
+  public Piegeur(Vue vue, Equipe equipe) {
     super(vue, equipe);
     this.setEnergie(Constante.ENERGIE_PIEGEUR);
   }
@@ -68,9 +74,9 @@ public class Piegeur extends Robot {
   public boolean poseMine() {
     if (this.getNbMines() <= 0) {
       return false;
-    }if (getVue().getPlateau().getCelluleByCoordonnees(getCoordonnees()).estVide()) {
-      getVue().getPlateau().getCelluleByCoordonnees(getCoordonnees()).poseMine(this.getEquipe());
-      this.setNbMines(getNbMines()-1);
+    }if (getVue().getPlateau().getCelluleByCoordonnees(getObjectif()).estVide()) {
+      new Mine(this);
+      //getVue().getPlateau().getCelluleByCoordonnees(getCoordonnees()).poseMine(this.getNumEquipe());
       return true;
     }return false;
   }
@@ -95,6 +101,53 @@ public class Piegeur extends Robot {
   @Override
   public String toString() {
     return this.getType() + ", " + super.toString();
+  }
+  
+  public void perdUneMine() {
+    this.setNbMines(this.getNbMines()-1);
+  }
+
+  @Override
+  public Action choisitAction() {
+    System.out.println("Vous pouvez :\n\t1 - deplacer\n\t2 - mine");
+    List<Coordonnees> dep = new ArrayList<Coordonnees>();
+    for (Coordonnees coordonnees : Constante.DEP_PIEGEUR) {
+      dep.add(this.getCoordonnees().ajout(coordonnees));
+    }
+    for (Coordonnees c : dep) {
+      if (c.getHauteur() < 0 || c.getLargeur() < 0
+          || c.getHauteur() >= this.getVue().getPlateau().getLongueur()
+          || c.getLargeur() >= this.getVue().getPlateau().getLargeur()) {
+        dep.remove(c);
+      }if (this.getVue().getPlateau().getCelluleByCoordonnees(c).estMur()) {
+        dep.remove(c);
+      }
+    }
+    Scanner sc = new Scanner(System.in);
+    int i = sc.nextInt();
+    switch (i) {
+      case 1:
+        int j = 0;
+        System.out.println("vous pouvez aller en :");
+        for (Coordonnees c : dep) {
+          System.out.println(j+": "+c);
+          j += 1;
+        }
+        this.setObjectif(dep.get(sc.nextInt() - 1));
+        return new Deplacement(this);
+      case 2:
+        int h = 0;
+        System.out.println("vous pouvez poser une mine en :");
+        for (Coordonnees c : dep) {
+          System.out.println(h+": "+c);
+          h += 1;
+        }
+        this.setObjectif(dep.get(sc.nextInt() - 1));
+        new Mine(this);
+        return null;
+      default:
+        return null;
+    }
   }
 
 }
