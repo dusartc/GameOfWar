@@ -24,7 +24,10 @@ public class Deplacement extends Action {
    */
   public Deplacement(Robot robot, Coordonnees direction) {
     super(robot, direction);
-    // TODO Auto-generated constructor stub
+  }
+  
+  public Deplacement(Robot robot) {
+    this(robot, robot.getObjectif());
   }
 
   /**
@@ -39,7 +42,7 @@ public class Deplacement extends Action {
       for(int i=0;i<Constante.DEP_TIREUR.size();i++){
         if(coord.equals(Constante.DEP_TIREUR.get(i))) {
           if(c.estRobot() == 0 || c.contientMine() >= 0 ||
-              c.estBase() == this.getRobot().getEquipe() || !c.estMur()){
+              c.estBase() == this.getRobot().getEquipe().getEquipe() || !c.estMur()){
             return true;
           }
         }
@@ -55,7 +58,7 @@ public class Deplacement extends Action {
         if(coord.equals(Constante.DEP_CHAR.get(i))) {
           //si les coordonnees calculees sont egales a une des coordonnees de la constante DEP_CHAR
           if(c.estRobot() == 0 || c.contientMine() >= 0 ||
-              c.estBase() == this.getRobot().getEquipe() || !c.estMur()){
+              c.estBase() == this.getRobot().getEquipe().getEquipe() || !c.estMur()){
             //et si la cellule est vide alors le deplacement est possible
             return true;
           }
@@ -69,7 +72,6 @@ public class Deplacement extends Action {
   /**
    * Agit() produit le deplacement.
    */
-  @Override
   public void agit(Cellule c) {
     if (this.getRobot() instanceof Tireur || this.getRobot() instanceof Piegeur || this.getRobot() instanceof Char) {
       if(this.deplacementPossible(c)){
@@ -96,5 +98,11 @@ public class Deplacement extends Action {
     this.getRobot().setCoordonnees(c);
     this.getRobot().getVue().poserRobot(getRobot(), c);
   }
+  
+  @Override
+  public void agit() {
+    agit(this.getRobot().getVue().getPlateau().getCelluleByCoordonnees(this.getRobot().getObjectif()));
+  }
+
 }
 

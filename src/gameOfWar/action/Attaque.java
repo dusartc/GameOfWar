@@ -1,16 +1,16 @@
 package gameOfWar.action;
 
-import gameOfWar.config.*;
-import gameOfWar.robot.*;
+import gameOfWar.config.Cellule;
+import gameOfWar.config.Constante;
+import gameOfWar.config.Coordonnees;
+import gameOfWar.robot.Char;
+import gameOfWar.robot.Piegeur;
+import gameOfWar.robot.Robot;
+import gameOfWar.robot.Tireur;
 
 /**
-<<<<<<< HEAD
  *  La classe Attaque permet de produire une action de tir ou de poser une mine.
  * @author Samantha, Mariam.
-=======
- *  La classe Attaque permet de produire une action de tir.
- * @author Samantha, Mariam
->>>>>>> 224c742975817442fa7b728a8eba2b21c9a164ef
  *
  */
 public class Attaque extends Action {
@@ -21,7 +21,6 @@ public class Attaque extends Action {
     super(robot, direction);
   }
   
-  @Override
   public void agit(Cellule caseCible) {
     // TODO Stub de la méthode généré automatiquement
     // Calcul de la portée de l'attaque : On prend la portée définie dans
@@ -60,4 +59,10 @@ public class Attaque extends Action {
       }
     }
   }
+
+  @Override
+  public void agit() {
+    agit(this.cible.getVue().getPlateau().getCelluleByCoordonnees(this.cible.getObjectif()));
+  }
+
 }
