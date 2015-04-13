@@ -49,11 +49,11 @@ public class Constante {
   /** Correspond au degat d'un tir pour un Piegeur . */
   public static final int DEGATS_TIRS_PIEGEUR = 0;
    /** Correspond à la portée d'un tir pour un Tireur . */
-  private final int PORTEE_TIREUR = 3;
+  public static int PORTEE_TIREUR = 3;
    /** Correspond à la portée d'une mine pour un Piegeur . */
-  private final int PORTEE_PIEGEUR = 1;
+  public static int PORTEE_PIEGEUR = 1;
   /** Correspond à la portée d'un tir pour un Char . */
-	private final int PORTEE_CHAR = 10;
+  public static int PORTEE_CHAR = 10;
   
 
   /// les données du plateau ///
