@@ -34,7 +34,7 @@ public class Attaque extends Action {
     // l'attaque, selon le type de personnage.
     int porteeAtt ;
     while (this.getObjectif().equals(true)) {
-      if(this.getRobot() instanceof Piegeur && cible instanceof Piegeur || cible instanceof Tireur || cible instanceof Char){
+      if(this.getRobot() instanceof Piegeur && (cible instanceof Piegeur || cible instanceof Tireur || cible instanceof Char)){
         porteeAtt = PORTEE_PIEGEUR;
         this.getRobot().setEnergie(this.getRobot().getEnergie()-this.getRobot().getCoutAction());
         //le robot perd de l'energie en posant des Mines (energie du robot - cout de son action)
@@ -44,7 +44,7 @@ public class Attaque extends Action {
           //le robot cible perd de l'energie (energie du robot cible - degat de la mine)
         }
       }
-      else if (this.getRobot() instanceof Tireur && cible instanceof Piegeur || cible instanceof Tireur || cible instanceof Char){
+      else if (this.getRobot() instanceof Tireur && (cible instanceof Piegeur || cible instanceof Tireur || cible instanceof Char)){
         porteeAtt = PORTEE_TIREUR;
         this.getRobot().setEnergie(this.getRobot().getEnergie()-this.getRobot().getCoutAction());
         //le robot perd de l'energie en tirant (energie du robot - cout de son action)
@@ -54,7 +54,7 @@ public class Attaque extends Action {
           //le robot cible perd de l'energie (energie du robot cible - degat du tir)
         }
       }
-      else if (this.getRobot() instanceof Char && cible instanceof Piegeur || cible instanceof Tireur || cible instanceof Char){
+      else if (this.getRobot() instanceof Char && (cible instanceof Piegeur || cible instanceof Tireur || cible instanceof Char)){
         porteeAtt = PORTEE_CHAR;
         this.getRobot().setEnergie(this.getRobot().getEnergie()-this.getRobot().getCoutAction());
         //le robot perd de l'energie en tirant (energie du robot - cout de son action)
