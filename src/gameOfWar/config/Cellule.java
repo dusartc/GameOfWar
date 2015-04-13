@@ -55,9 +55,6 @@ public class Cellule {
     this.mine = 0;
   }
 
-  /**
-   * @return Retourne si la Cellule est un mur ou non.
-   */
   public boolean estMur(){
     return this.mur;
   }
@@ -117,7 +114,7 @@ public class Cellule {
     if (this.robot == null) {
       return 0;
     }
-    return this.robot.getEquipe();
+    return this.robot.getEquipe().getEquipe();
   }
 
   /**
