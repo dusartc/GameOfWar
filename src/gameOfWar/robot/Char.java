@@ -1,12 +1,14 @@
 package gameOfWar.robot;
+import gameOfWar.action.Action;
 import gameOfWar.config.Constante;
 import gameOfWar.config.Coordonnees;
 import gameOfWar.jeux.Equipe;
 import gameOfWar.jeux.Vue;
 
-//import java.util.ArrayList;
-import java.util.List;
-//Touche moi cette belle ArrayList(I).
+
+//import java.util.ArrayList;import java.util.List;t;
+//Touche moi cette belle ArrayList(I
+
 
 /**
  * 
@@ -77,5 +79,16 @@ public class Char extends Robot{
   @Override
   public String toString() {
     return this.getType() + ", " + super.toString();
+  }
+
+  @Override
+  public Action choisitAction() {
+    // TODO Auto-generated method stub
+    return null;
+  }
+  
+  @Override
+  public void estSoigne() {
+    this.setEnergie(Math.min(Constante.ENERGIE_CHAR, getEnergie() + Constante.SOIN));
   }
 }

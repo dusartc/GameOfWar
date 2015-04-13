@@ -1,4 +1,5 @@
 package gameOfWar.robot;
+import gameOfWar.action.Action;
 import gameOfWar.config.Constante;
 import gameOfWar.config.Coordonnees;
 import gameOfWar.jeux.Equipe;
@@ -80,5 +81,16 @@ public class Tireur extends Robot {
   @Override
   public String toString() {
     return this.getType() + ", " + super.toString();
+  }
+
+  @Override
+  public Action choisitAction() {
+    // TODO Auto-generated method stub
+    return null;
+  }
+  
+  @Override
+  public void estSoigne() {
+    this.setEnergie(Math.min(Constante.ENERGIE_TIREUR, getEnergie() + Constante.SOIN));
   }
 }

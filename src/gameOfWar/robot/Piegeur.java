@@ -158,5 +158,10 @@ public class Piegeur extends Robot {
         return null;
     }
   }
+  
+  @Override
+  public void estSoigne() {
+    this.setEnergie(Math.min(Constante.ENERGIE_PIEGEUR, getEnergie() + Constante.SOIN));
+  }
 
 }
