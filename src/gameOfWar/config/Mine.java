@@ -1,5 +1,7 @@
 package gameOfWar.config;
 
+import gameOfWar.robot.Piegeur;
+
 /**
  * La classe Mine correspond au placement d'une mine.
  * @author Mathieu
@@ -21,5 +23,11 @@ public class Mine extends Cellule {
   public Mine(Coordonnees coordonnees, int equipes) {
     super(coordonnees.getLargeur(), coordonnees.getHauteur());
     this.poseMine(equipes);
+  }
+  
+  public Mine(Piegeur piegeur) {
+    super(piegeur.getObjectif().getLargeur(), piegeur.getObjectif().getHauteur());
+    this.poseMine(piegeur.getNumEquipe());
+    piegeur.perdUneMine();
   }
 }
