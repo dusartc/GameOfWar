@@ -106,21 +106,30 @@ public class Piegeur extends Robot {
   public void perdUneMine() {
     this.setNbMines(this.getNbMines()-1);
   }
+  
+  public void perdEnergieApresAction() {
+    this.setEnergie(getEnergie() - getCoutAction());
+  }
 
   @Override
   public Action choisitAction() {
     System.out.println("Vous pouvez :\n\t1 - deplacer\n\t2 - mine");
     List<Coordonnees> dep = new ArrayList<Coordonnees>();
+    List<Coordonnees> caillou = new ArrayList<Coordonnees>();
     for (Coordonnees coordonnees : Constante.DEP_PIEGEUR) {
       dep.add(this.getCoordonnees().ajout(coordonnees));
-    }
-    for (Coordonnees c : dep) {
+    }caillou.addAll(dep);
+    for (Coordonnees c : caillou) {
       if (c.getHauteur() < 0 || c.getLargeur() < 0
           || c.getHauteur() >= this.getVue().getPlateau().getLongueur()
           || c.getLargeur() >= this.getVue().getPlateau().getLargeur()) {
         dep.remove(c);
-      }if (this.getVue().getPlateau().getCelluleByCoordonnees(c).estMur()) {
-        dep.remove(c);
+      }try {
+        if (this.getVue().getPlateau().getCelluleByCoordonnees(c).estMur()) {
+          dep.remove(c);
+        }
+      } catch (Exception e) {
+        System.err.println("null pointer");
       }
     }
     Scanner sc = new Scanner(System.in);
@@ -133,7 +142,7 @@ public class Piegeur extends Robot {
           System.out.println(j+": "+c);
           j += 1;
         }
-        this.setObjectif(dep.get(sc.nextInt() - 1));
+        this.setObjectif(dep.get(sc.nextInt()));
         return new Deplacement(this);
       case 2:
         int h = 0;
@@ -142,7 +151,7 @@ public class Piegeur extends Robot {
           System.out.println(h+": "+c);
           h += 1;
         }
-        this.setObjectif(dep.get(sc.nextInt() - 1));
+        this.setObjectif(dep.get(sc.nextInt()));
         new Mine(this);
         return null;
       default:
