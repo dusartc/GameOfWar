@@ -105,7 +105,9 @@ public class Constante {
   /** List des deplacement pour Char.*/
   public static List<Coordonnees> DEP_CHAR;
   
+  /** List des coordonnees pouvant etre cible par char */
   public static List<Coordonnees> L_PORTEE_CHAR;
+  /** List des coordonnees pouvant etre cible par tireur */
   public static List<Coordonnees> L_PORTEE_TIREUR;
 
   /**
