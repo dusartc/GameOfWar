@@ -27,7 +27,7 @@ public class Mine {
   
   public Mine(Piegeur piegeur) {
     piegeur.getVue().getPlateau().getCelluleByCoordonnees(piegeur.getObjectif()).poseMine(piegeur.getNumEquipe());
-    //this.poseMine(piegeur.getNumEquipe());
     piegeur.perdUneMine();
+    piegeur.perdEnergieApresAction();
   }
 }
