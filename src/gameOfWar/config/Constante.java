@@ -11,11 +11,11 @@ public class Constante {
 
   // les données des robots.
   /** Correspond a l'énergie du Piegeur. */
-  public static final int ENERGIE_PIEGEUR = 30;
+  public static final int ENERGIE_PIEGEUR = 50;
   /** Correspond a l'énergie du Tireur. */
-  public static final int ENERGIE_TIREUR  = 20;
+  public static final int ENERGIE_TIREUR  = 40;
   /** Correspond a l'énergie du Char. */
-  public static final int ENERGIE_CHAR    = 50;
+  public static final int ENERGIE_CHAR    = 60;
   /** Correspond au nombre de robot maximun par equipe. */
   public static final int NB_MAX_ROBOTS_PAR_EQUIPE = 5;
   /** Correspond au soin donnees aux bases*/
@@ -43,9 +43,9 @@ public class Constante {
   /** Correspond au coup d'une action du Char. */
   public static final int COUP_ACTION_CHAR = 1;
   /** Correspond au degat d'une mine pour un Tireur. */
-  public static final int DEGATS_MINES_TIREUR = 0;
+  public static final int DEGATS_MINES_TIREUR = 3;
   /** Correspond au degat d'une mine pour un Char. */
-  public static final int DEGATS_MINES_CHAR = 0;
+  public static final int DEGATS_MINES_CHAR = 6;
   /** Correspond au degat d'un tir pour un Piegeur . */
   public static final int DEGATS_TIRS_PIEGEUR = 0;
    /** Correspond à la portée d'un tir pour un Tireur . */
