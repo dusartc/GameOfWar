@@ -66,20 +66,20 @@ public class Vue {
     ans.insert(ans.length(), quadrillage());
     for (int i = 0; i < this.plateau.getLongueur(); i++) {
       for (int j = 0; j < this.plateau.getLargeur(); j++) {
-        if (this.plateau.getCellule(i, j) instanceof Mur) {
-          if(this.plateau.getCellule(i, j).estMur()) {
+        if (this.plateau.getCellule(j, i) instanceof Mur) {
+          if(this.plateau.getCellule(j, i).estMur()) {
             ans.insert(ans.length(), "| O ");
           }
         }
-        else if (this.plateau.getCellule(i, j) instanceof Base) {
-          if (this.plateau.estBase(i,j) == 1) {
+        else if (this.plateau.getCellule(j, i) instanceof Base) {
+          if (this.plateau.estBase(j,i) == 1) {
             ans.insert(ans.length(), "\n| B ");
           }
-          else if(this.plateau.estBase(i,j) == 2){
+          else if(this.plateau.estBase(j,i) == 2){
             ans.insert(ans.length(),"| b |\n");
           }
         }
-        else if (this.plateau.getCellule(i, j).contientMine() > 0 ) {
+        else if (this.plateau.getCellule(j, i).contientMine() > 0 ) {
          // Mine testMine = (Mine) this.plateau.getCellule(i, j);
           String res ="";
           if (this.equipe == Constante.EQUIPE_UN) {
@@ -88,14 +88,14 @@ public class Vue {
           else if(this.equipe == Constante.EQUIPE_DEUX){
             res += "| m ";
           }
-          ans.insert(ans.length(), (this.plateau.estMine(i, j) == this.getEquipe())?
+          ans.insert(ans.length(), (this.plateau.estMine(j, i) == this.getEquipe())?
             res:"|   ");
         }
-        else if (this.plateau.getCellule(i, j).getRobot() instanceof Piegeur) {
-          if (this.plateau.estRobot(i, j) == 1) {
+        else if (this.plateau.getCellule(j, i).getRobot() instanceof Piegeur) {
+          if (this.plateau.estRobot(j, i) == 1) {
             ans.insert(ans.length(), "| P ");
           }
-          else if (this.plateau.estRobot(i, j) == 2) {
+          else if (this.plateau.estRobot(j, i) == 2) {
             ans.insert(ans.length(), "| p ");
           }
           else {
@@ -103,29 +103,29 @@ public class Vue {
           }
           
         }
-        else if (this.plateau.getCellule(i, j).getRobot() instanceof Tireur) {
-          if (this.plateau.estRobot(i, j) == 1) {
+        else if (this.plateau.getCellule(j, i).getRobot() instanceof Tireur) {
+          if (this.plateau.estRobot(j, i) == 1) {
             ans.insert(ans.length(), "| T ");
           }
-          else if (this.plateau.estRobot(i, j) == 2) {
+          else if (this.plateau.estRobot(j, i) == 2) {
             ans.insert(ans.length(), "| t ");
           }
           else {
             ans.insert(ans.length(),"|   ");
           }
         }
-        else if (this.plateau.getCellule(i, j).getRobot() instanceof Char) {
-          if (this.plateau.estRobot(i, j) == 1) {
+        else if (this.plateau.getCellule(j, i).getRobot() instanceof Char) {
+          if (this.plateau.estRobot(j, i) == 1) {
             ans.insert(ans.length(), "| C ");
           }
-          else if (this.plateau.estRobot(i, j) == 2) {
+          else if (this.plateau.estRobot(j, i) == 2) {
             ans.insert(ans.length(), "| c ");
           }
           else {
             ans.insert(ans.length(),"|   ");
           }
         }
-        else if (this.plateau.getCellule(i, j) instanceof Cellule){
+        else if (this.plateau.getCellule(j, i) instanceof Cellule){
           ans.insert(ans.length(),"|   ");
           if (j == this.plateau.getLargeur() -1) {
             ans.insert(ans.length(),"|");
