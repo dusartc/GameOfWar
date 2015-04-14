@@ -1,6 +1,7 @@
 package gameOfWar.config;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * Regroupe toute les constantes du projet.
@@ -103,6 +104,9 @@ public class Constante {
   public static List<Coordonnees> DEP_PIEGEUR;
   /** List des deplacement pour Char.*/
   public static List<Coordonnees> DEP_CHAR;
+  
+  public static List<Coordonnees> L_PORTEE_CHAR;
+  public static List<Coordonnees> L_PORTEE_TIREUR;
 
   /**
    * Ajout des deplacement a leurs listes.
@@ -126,5 +130,41 @@ public class Constante {
     DEP_CHAR.add(BAS_CHAR);
     DEP_CHAR.add(DROITE_CHAR);
     DEP_CHAR.add(GAUCHE_CHAR);
+    
+    L_PORTEE_CHAR = new ArrayList<Coordonnees>();
+    L_PORTEE_TIREUR = new ArrayList<Coordonnees>();    
+    for (int i = 0; i < PORTEE_CHAR; i++) {
+      L_PORTEE_CHAR.add(new Coordonnees(0, i));
+    }for (int i = 0; i < PORTEE_CHAR; i++) {
+      L_PORTEE_CHAR.add(new Coordonnees(i, 0));
+    }for (int i = 0; i < PORTEE_CHAR; i++) {
+      L_PORTEE_CHAR.add(new Coordonnees(0, 0-i));
+    }for (int i = 0; i < PORTEE_CHAR; i++) {
+      L_PORTEE_CHAR.add(new Coordonnees(0-i, 0));
+    }
+    
+    for (int i = 0; i < PORTEE_TIREUR; i++) {
+      L_PORTEE_TIREUR.add(new Coordonnees(0, i));
+    }for (int i = 0; i < PORTEE_TIREUR; i++) {
+      L_PORTEE_TIREUR.add(new Coordonnees(i, 0));
+    }for (int i = 0; i < PORTEE_TIREUR; i++) {
+      L_PORTEE_TIREUR.add(new Coordonnees(0, 0-i));
+    }for (int i = 0; i < PORTEE_TIREUR; i++) {
+      L_PORTEE_TIREUR.add(new Coordonnees(0-i, 0));
+    }
+  }
+  
+  @SuppressWarnings("resource")
+  public static int secureInput(int min, int max) {
+    Scanner sc = new Scanner(System.in); // impossible de fermer car re appeler plus tard
+    int ans;
+    do {
+      System.out.println("entrez un nombre compris entre "+min+" inclus et "+max+" inclus");
+      while (!sc.hasNextInt()) {
+        sc.next();
+      }
+      ans = sc.nextInt();
+    } while (ans < min || ans > max);
+    return ans;
   }
 }
