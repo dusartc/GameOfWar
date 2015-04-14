@@ -1,11 +1,11 @@
 package gameOfWar.jeux;
+import gameOfWar.config.Constante;
 import gameOfWar.config.Coordonnees;
 import gameOfWar.config.Mine;
 import gameOfWar.robot.Robot;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 
 /**
@@ -81,24 +81,6 @@ public class Equipe {
   public void removeRobot(Robot robot) {
     this.robots.remove(robot);
   }
-  
-  /** parcourt de tous les robots et on renvoie celui avec les memes coordonnees */
-  public Robot getRobotByCoordonnees(Coordonnees coordonnees) {
-    for (Robot robot : robots) {
-      if (robot.getCoordonnees().equals(coordonnees)) {
-        return robot;
-      }
-    }return null;
-  }
-
-  /**
-   * Retour le robot a l'indice i
-   * @param i
-   * @return
-   */
-  public Robot getRobotByIndex(int i) {
-    return this.robots.get(i);
-  }
 
   /**
    * Ajout une Mines passer en parametre.
@@ -150,8 +132,7 @@ public class Equipe {
       System.out.println("choix : " + i + "\n\t" + robot.toString());
       i += 1;
     }
-    Scanner sc = new Scanner(System.in);
-    i = sc.nextInt();
+    i = Constante.secureInput(1, i-1);
     return this.robots.get(i-1);
   }
   
