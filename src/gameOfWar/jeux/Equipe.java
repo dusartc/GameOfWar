@@ -154,4 +154,8 @@ public class Equipe {
     i = sc.nextInt();
     return this.robots.get(i-1);
   }
+  
+  public List<Robot> getRobots(){
+    return this.robots;
+  }
 }
