@@ -18,7 +18,7 @@ public class Main {
 
   public static void main(String[] args) {
 
-    Plateau plateau = new Plateau(10, 5, 20);
+    Plateau plateau = new Plateau(15, 15, 20);
     System.out.println(plateau);
     
     Equipe[] equipes = new Equipe[] {
@@ -48,6 +48,9 @@ public class Main {
         if (joueur.perdu()) {
           finis = true;
         }for (Robot r : joueur.getRobots()) {
+          if (r.estMort()) {
+            r.disparait();
+          }
           if (r.estSurBase()) {
             r.estSoigne();
           }
