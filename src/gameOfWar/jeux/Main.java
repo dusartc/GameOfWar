@@ -31,13 +31,13 @@ public class Main extends Menu{
   public static void main(String[] args) {
     //Menu test = new Menu("Game of War.");
     
-    javax.swing.SwingUtilities.invokeLater(new Runnable() {
+    /*javax.swing.SwingUtilities.invokeLater(new Runnable() {
       @Override
       public void run(){
         // TODO Auto-generated method stub
         new Menu("Game Of War");
       }
-    });
+    });*/
     
     Plateau plateau = new Plateau(/*test.getX()*/15, 15/*test.getY()*/, 20);
     System.out.println(plateau);
