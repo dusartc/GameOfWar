@@ -18,12 +18,13 @@ public class Main {
 
   public static void main(String[] args) {
 
-    Plateau plateau = new Plateau(10, 10, 20);
+    Plateau plateau = new Plateau(10, 5, 20);
+    System.out.println(plateau);
     
     Equipe[] equipes = new Equipe[] {
         new Equipe("joueur1", plateau, Constante.EQUIPE_UN, new Coordonnees(0, 0)),
-        new Equipe("joueur2", plateau, Constante.EQUIPE_DEUX, new Coordonnees(plateau.getLongueur()-1, 
-                                                                              plateau.getLargeur()-1))
+        new Equipe("joueur2", plateau, Constante.EQUIPE_DEUX, new Coordonnees(plateau.getLargeur()-1, 
+                                                                              plateau.getLongueur()-1))
     };
     for (Equipe joueur : equipes) {
       joueur.addRobot(new Tireur(joueur.getVue(), joueur));
@@ -37,12 +38,19 @@ public class Main {
     int i = 0;
     while (!finis) {
       neo = equipes[i%2].choisitRobot();
+      System.out.println(neo.getVue().toString());
       action = neo.choisitAction();
-      action.agit();
+      if (action != null) {
+        action.agit();
+      }      
       i += 1;
       for (Equipe joueur : equipes) {
         if (joueur.perdu()) {
           finis = true;
+        }for (Robot r : joueur.getRobots()) {
+          if (r.estSurBase()) {
+            r.estSoigne();
+          }
         }
       }
     }
