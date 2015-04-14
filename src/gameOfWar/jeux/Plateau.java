@@ -147,26 +147,26 @@ public class Plateau {
           }
         }
         else if (this.plateau[i][j] instanceof Base) {
-          if (this.estBase(i,j) == 1) {
+          if (this.estBase(j,i) == 1) {
             ans.insert(ans.length(), "\n| B ");
           }
-          else if(this.estBase(i,j) == 2){
+          else if(this.estBase(j,i) == 2){
             ans.insert(ans.length(),"| b |\n");
           }
         }
         else if (this.plateau[i][j].contientMine() > 0 ) {
-          if (this.estMine(i, j) == 1) {
+          if (this.estMine(j, i) == 1) {
             ans.insert(ans.length(),"| M ");
           }
-          if (this.estMine(i, j) == 2) {
+          if (this.estMine(j, i) == 2) {
             ans.insert(ans.length(),"| m ");
           }
         }
         else if (this.plateau[i][j].getRobot() instanceof Piegeur) {
-          if (this.estRobot(i, j) == 1) {
+          if (this.estRobot(j, i) == 1) {
             ans.insert(ans.length(), "| P ");
           }
-          else if (this.estRobot(i, j) == 2) {
+          else if (this.estRobot(j, i) == 2) {
             ans.insert(ans.length(), "| p ");
           }
           else {
@@ -175,10 +175,10 @@ public class Plateau {
           
         }
         else if (this.plateau[i][j].getRobot() instanceof Tireur) {
-          if (this.estRobot(i, j) == 1) {
+          if (this.estRobot(j, i) == 1) {
             ans.insert(ans.length(), "| T ");
           }
-          else if (this.estRobot(i, j) == 2) {
+          else if (this.estRobot(j, i) == 2) {
             ans.insert(ans.length(), "| t ");
           }
           else {
@@ -186,10 +186,10 @@ public class Plateau {
           }
         }
         else if (this.plateau[i][j].getRobot() instanceof Char) {
-          if (this.estRobot(i, j) == 1) {
+          if (this.estRobot(j, i) == 1) {
             ans.insert(ans.length(), "| C ");
           }
-          else if (this.estRobot(i, j) == 2) {
+          else if (this.estRobot(j, i) == 2) {
             ans.insert(ans.length(), "| c ");
           }
           else {
