@@ -57,49 +57,5 @@ public class Main {
         }
       }
     }
-    
-    
-
-//    equipeDeux.setMine(new Piegeur(equipeDeux, equipes[1].getEquipe()), new Coordonnees(3, 0));
-//
-//    equipeUne.setMine(new Piegeur(equipeUne, equipes[0].getEquipe()), new Coordonnees(0, 5));
-//    
-//    equipeDeux.setMine(new Piegeur(equipeDeux, equipes[1].getEquipe()), new Coordonnees(5, 0));
-//
-//    equipeDeux.setMine(new Piegeur(equipeDeux, equipes[1].getEquipe()), new Coordonnees(0, 5));
-//    
-//    System.out.println(equipeUne);
-//    System.out.println(equipeDeux);
-//    System.out.println(plateau);
-//    
-//    Piegeur testPiegeur = new Piegeur(equipeUne, equipes[0].getEquipe());
-//    equipeUne.poserRobot(testPiegeur, equipes[0].getCoordBase());
-//    Action dep = new Deplacement(testPiegeur, new Coordonnees(0,1));
-//    System.out.println(plateau);
-//    dep.agit(new Cellule(0, 1));
-//    System.out.println(plateau);
-//    for (Equipe equipe : equipes) {
-//      System.out.println(equipe.toString());
-//    }
-//    
-//    boolean fini = false;
-//    int joueur = 0;
-//    Robot neo;
-//    Action act;
-//    Equipe current;
-//    while (!fini) {
-//      joueur++;
-//      current = equipes[joueur%2];
-//      neo = current.choisitRobot();
-//      System.out.println(neo);
-//      act = neo.choisitAction();
-//      if (equipes[joueur%2].perdu() || equipes[(joueur+1)%2].perdu()) {
-//        fini = true;
-//      }
-//    }
-    
-    //System.out.println(equipeVue1);
-    //System.out.println(equipeVue2);
   }
-
 }
