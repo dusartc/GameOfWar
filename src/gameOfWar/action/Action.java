@@ -1,9 +1,10 @@
 package gameOfWar.action;
 import gameOfWar.config.Coordonnees;
 import gameOfWar.robot.Robot;
+
 /**
  * La Classe Action permet de gérer les actions des robots sur le plateau.
- * @author Alexandre
+ * @author Alexandre, Clement
  */
 public abstract class Action {
   
@@ -25,10 +26,10 @@ public abstract class Action {
     this.objectif = robot.getObjectif();
   }
   
-  /**
-   * Retourne le robot.
-   * @return
-   */
+  public Action(Robot robot) {
+    this(robot, null);
+  }
+  
   public Robot getRobot() {
     return this.robot;
   }
