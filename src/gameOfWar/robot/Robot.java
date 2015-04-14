@@ -76,8 +76,6 @@ public abstract class Robot {
     return this.vue;
   }
 
-  abstract public boolean peutTirer();
-
   public void setCoordonnees(Coordonnees coordonnees) {
     this.coordonnees = coordonnees;
   }
@@ -103,6 +101,11 @@ public abstract class Robot {
   }
   
   public void disparait() {
+    this.vue.getPlateau().getCelluleByCoordonnees(this.coordonnees).videCase();
     this.equipe.removeRobot(this);
+  }
+  
+  public void perdEnergieApresAction() {
+    this.setEnergie(getEnergie() - getCoutAction());
   }
 }
