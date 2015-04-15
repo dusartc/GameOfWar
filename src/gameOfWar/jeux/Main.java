@@ -1,6 +1,7 @@
 package gameOfWar.jeux;
 
 import gameOfWar.action.Action;
+import gameOfWar.affichage.Menu;
 import gameOfWar.config.Constante;
 import gameOfWar.config.Coordonnees;
 import gameOfWar.robot.Char;
@@ -14,11 +15,31 @@ import gameOfWar.robot.Tireur;
  * @author Clement, Mathieu.
  *
  */
-public class Main {
+public class Main extends Menu{
 
+  /**
+   * 
+   */
+  private static final long serialVersionUID = 1L;
+
+  public Main(String nom) {
+    super(nom);
+    // TODO Auto-generated constructor stub
+  }
+
+  
   public static void main(String[] args) {
-
-    Plateau plateau = new Plateau(15, 15, 20);
+    //Menu test = new Menu("Game of War.");
+    
+    /*javax.swing.SwingUtilities.invokeLater(new Runnable() {
+      @Override
+      public void run(){
+        // TODO Auto-generated method stub
+        new Menu("Game Of War");
+      }
+    });*/
+    
+    Plateau plateau = new Plateau(/*test.getX()*/15, 15/*test.getY()*/, 20);
     System.out.println(plateau);
     
     Equipe[] equipes = new Equipe[] {
