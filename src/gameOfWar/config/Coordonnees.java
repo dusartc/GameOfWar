@@ -22,12 +22,23 @@ public class Coordonnees {
     this.y = y;
   }
 
-  public int getLargeur() {
-    return this.x;
+  /**
+   * Ajout des coordonnees par rapport a l'initial.
+   * @param coord
+   * @return
+   */
+  public Coordonnees ajout(Coordonnees coord){
+    return new Coordonnees(coord.x + this.x, coord.y + this.y);
   }
   
-  public int getHauteur() {
-    return this.y;
+  /**
+   * Calcule les coordonnees.
+   * @param c
+   * @return
+   */
+  public Coordonnees calculCoordonnees(Coordonnees c){
+    Coordonnees inter = new Coordonnees(this.x - c.x, this.y - c.y);
+    return inter;
   }
 
   /**
@@ -42,14 +53,12 @@ public class Coordonnees {
     return false;
   }
 
-  /**
-   * Calcule les coordonnees.
-   * @param c
-   * @return
-   */
-  public Coordonnees calculCoordonnees(Coordonnees c){
-    Coordonnees inter = new Coordonnees(this.x - c.x, this.y - c.y);
-    return inter;
+  public int getHauteur() {
+    return this.y;
+  }
+
+  public int getLargeur() {
+    return this.x;
   }
 
   /**
@@ -58,15 +67,6 @@ public class Coordonnees {
   @Override
   public String toString(){
     return "Coordonnées : ("+this.x+","+this.y+")";
-  }
-
-  /**
-   * Ajout des coordonnees par rapport a l'initial.
-   * @param coord
-   * @return
-   */
-  public Coordonnees ajout(Coordonnees coord){
-    return new Coordonnees(coord.x + this.x, coord.y + this.y);
   }
 
 
