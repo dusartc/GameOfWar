@@ -58,6 +58,7 @@ public class Main extends Menu{
     Action action;
     int i = 0;
     while (!finis) {
+      System.out.println("A "+equipes[i%2].getNom()+" de jouer");
       neo = equipes[i%2].choisitRobot();
       System.out.println(neo.getVue().toString());
       action = neo.choisitAction();
