@@ -32,14 +32,14 @@ public class Plateau {
     this.largeur = largeur;
     this.x = largeur;
     this.y = longueur;
-    if (pourcentageObstacle > Constante.OBSTACLES_MAX) {
+   /* if (pourcentageObstacle > Constante.OBSTACLES_MAX) {
       System.err.println("trop d'obstacles ; " + Constante.OBSTACLES_MAX + " sera utilise");
       pourcentageObstacle = Constante.OBSTACLES_MAX;
     }
     if (pourcentageObstacle < Constante.OBSTACLES_MIN) {
       System.err.println("pas assez d'obstacles ; " + Constante.OBSTACLES_MIN + " sera utilise");
       pourcentageObstacle = Constante.OBSTACLES_MIN;
-    }
+    }*/
     this.plateau = new Cellule[y][x];
     for (int i = 0; i < plateau.length; i++) {          //
       for (int j = 0; j < plateau[0].length; j++) {     // Remplissage vide
@@ -147,53 +147,81 @@ public class Plateau {
           }
         }
         else if (this.plateau[i][j] instanceof Base) {
-          if (this.estBase(i,j) == 1) {
+          if (this.estBase(j,i) == 1) {
             ans.insert(ans.length(), "\n| B ");
           }
-          else if(this.estBase(i,j) == 2){
+          else if(this.estBase(j,i) == 2){
             ans.insert(ans.length(),"| b |\n");
           }
         }
         else if (this.plateau[i][j].contientMine() > 0 ) {
-          if (this.estMine(i, j) == 1) {
+          if (this.estMine(j, i) == 1) {
             ans.insert(ans.length(),"| M ");
           }
-          if (this.estMine(i, j) == 2) {
+          if (this.estMine(j, i) == 2) {
             ans.insert(ans.length(),"| m ");
           }
         }
         else if (this.plateau[i][j].getRobot() instanceof Piegeur) {
-          if (this.estRobot(i, j) == 1) {
+          if (this.estRobot(j, i) == 1) {
             ans.insert(ans.length(), "| P ");
+            if (j == this.plateau[0].length -1) {
+              ans.insert(ans.length(), "|");
+            }
           }
-          else if (this.estRobot(i, j) == 2) {
+          else if (this.estRobot(j, i) == 2) {
             ans.insert(ans.length(), "| p ");
+            if (j == this.plateau[0].length -1) {
+              ans.insert(ans.length(), "|");
+            }
           }
-          else {
+          else if (j != this.plateau[0].length -1) {
             ans.insert(ans.length(),"|   ");
+          }
+          else{
+            ans.insert(ans.length(),"|");
           }
           
         }
         else if (this.plateau[i][j].getRobot() instanceof Tireur) {
-          if (this.estRobot(i, j) == 1) {
+          if (this.estRobot(j, i) == 1) {
             ans.insert(ans.length(), "| T ");
+            if (j == this.plateau[0].length -1) {
+              ans.insert(ans.length(), "|");
+            }
           }
-          else if (this.estRobot(i, j) == 2) {
+          else if (this.estRobot(j, i) == 2) {
             ans.insert(ans.length(), "| t ");
+            if (j == this.plateau[0].length -1) {
+              ans.insert(ans.length(), "|");
+            }
           }
-          else {
+          else if (j != this.plateau[0].length -1) {
             ans.insert(ans.length(),"|   ");
+            
+          }
+          else{
+            ans.insert(ans.length(),"|");
           }
         }
         else if (this.plateau[i][j].getRobot() instanceof Char) {
-          if (this.estRobot(i, j) == 1) {
+          if (this.estRobot(j, i) == 1) {
             ans.insert(ans.length(), "| C ");
+            if (j == this.plateau[0].length -1) {
+              ans.insert(ans.length(), "|");
+            }
           }
-          else if (this.estRobot(i, j) == 2) {
+          else if (this.estRobot(j, i) == 2) {
             ans.insert(ans.length(), "| c ");
+            if (j == this.plateau[0].length -1) {
+              ans.insert(ans.length(), "|");
+            }
           }
-          else {
+          else if (j != this.plateau[0].length -1) {
             ans.insert(ans.length(),"|   ");
+          }
+          else{
+            ans.insert(ans.length(),"|");
           }
         }
         else if (this.plateau[i][j] instanceof Cellule){
