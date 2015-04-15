@@ -1,6 +1,7 @@
 package gameOfWar.config;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * Regroupe toute les constantes du projet.
@@ -11,11 +12,11 @@ public class Constante {
 
   // les données des robots.
   /** Correspond a l'énergie du Piegeur. */
-  public static final int ENERGIE_PIEGEUR = 30;
+  public static final int ENERGIE_PIEGEUR = 50;
   /** Correspond a l'énergie du Tireur. */
-  public static final int ENERGIE_TIREUR  = 20;
+  public static final int ENERGIE_TIREUR  = 40;
   /** Correspond a l'énergie du Char. */
-  public static final int ENERGIE_CHAR    = 50;
+  public static final int ENERGIE_CHAR    = 60;
   /** Correspond au nombre de robot maximun par equipe. */
   public static final int NB_MAX_ROBOTS_PAR_EQUIPE = 5;
   /** Correspond au soin donnees aux bases*/
@@ -43,9 +44,9 @@ public class Constante {
   /** Correspond au coup d'une action du Char. */
   public static final int COUP_ACTION_CHAR = 1;
   /** Correspond au degat d'une mine pour un Tireur. */
-  public static final int DEGATS_MINES_TIREUR = 0;
+  public static final int DEGATS_MINES_TIREUR = 3;
   /** Correspond au degat d'une mine pour un Char. */
-  public static final int DEGATS_MINES_CHAR = 0;
+  public static final int DEGATS_MINES_CHAR = 6;
   /** Correspond au degat d'un tir pour un Piegeur . */
   public static final int DEGATS_TIRS_PIEGEUR = 0;
    /** Correspond à la portée d'un tir pour un Tireur . */
@@ -103,6 +104,11 @@ public class Constante {
   public static List<Coordonnees> DEP_PIEGEUR;
   /** List des deplacement pour Char.*/
   public static List<Coordonnees> DEP_CHAR;
+  
+  /** List des coordonnees pouvant etre cible par char */
+  public static List<Coordonnees> L_PORTEE_CHAR;
+  /** List des coordonnees pouvant etre cible par tireur */
+  public static List<Coordonnees> L_PORTEE_TIREUR;
 
   /**
    * Ajout des deplacement a leurs listes.
@@ -126,5 +132,57 @@ public class Constante {
     DEP_CHAR.add(BAS_CHAR);
     DEP_CHAR.add(DROITE_CHAR);
     DEP_CHAR.add(GAUCHE_CHAR);
+    
+    L_PORTEE_CHAR = new ArrayList<Coordonnees>();
+    L_PORTEE_TIREUR = new ArrayList<Coordonnees>();    
+    for (int i = 0; i < PORTEE_CHAR; i++) {
+      L_PORTEE_CHAR.add(new Coordonnees(0, i));
+    }for (int i = 0; i < PORTEE_CHAR; i++) {
+      L_PORTEE_CHAR.add(new Coordonnees(i, 0));
+    }for (int i = 0; i < PORTEE_CHAR; i++) {
+      L_PORTEE_CHAR.add(new Coordonnees(0, 0-i));
+    }for (int i = 0; i < PORTEE_CHAR; i++) {
+      L_PORTEE_CHAR.add(new Coordonnees(0-i, 0));
+    }
+    
+    for (int i = 0; i < PORTEE_TIREUR; i++) {
+      L_PORTEE_TIREUR.add(new Coordonnees(0, i));
+    }for (int i = 0; i < PORTEE_TIREUR; i++) {
+      L_PORTEE_TIREUR.add(new Coordonnees(i, 0));
+    }for (int i = 0; i < PORTEE_TIREUR; i++) {
+      L_PORTEE_TIREUR.add(new Coordonnees(0, 0-i));
+    }for (int i = 0; i < PORTEE_TIREUR; i++) {
+      L_PORTEE_TIREUR.add(new Coordonnees(0-i, 0));
+    }
+  }
+  
+  @SuppressWarnings("resource")
+  public static int secureInput(int min, int max) {
+    Scanner sc = new Scanner(System.in); // impossible de fermer car re appeler plus tard
+    int ans;
+    do {
+      System.out.println("\nentrez un nombre compris entre "+min+" inclus et "+max+" inclus");
+      while (!sc.hasNextInt()) {
+        sc.next();
+        System.err.println("bad input");
+      }
+      ans = sc.nextInt();
+    } while (ans < min || ans > max);
+    return ans;
+  }
+  
+  @SuppressWarnings("resource")
+  public static int secureInput(int min, int max, String string) {
+    Scanner sc = new Scanner(System.in); // impossible de fermer car re appeler plus tard
+    int ans;
+    do {
+      System.out.println(string);
+      while (!sc.hasNextInt()) {
+        sc.next();
+        System.err.println("bad input");
+      }
+      ans = sc.nextInt();
+    } while (ans < min || ans > max);
+    return ans;
   }
 }
