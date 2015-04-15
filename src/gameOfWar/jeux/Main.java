@@ -1,6 +1,7 @@
 package gameOfWar.jeux;
 
 import gameOfWar.action.Action;
+import gameOfWar.affichage.Menu;
 import gameOfWar.config.Constante;
 import gameOfWar.config.Coordonnees;
 import gameOfWar.robot.Char;
@@ -14,16 +15,51 @@ import gameOfWar.robot.Tireur;
  * @author Clement, Mathieu.
  *
  */
-public class Main {
+public class Main extends Menu {
 
+  /**
+   * 
+   */
+  private static final long serialVersionUID = 1L;
+
+  public Main(String nom) {
+    super(nom);
+    // TODO Auto-generated constructor stub
+  }
+
+  
   public static void main(String[] args) {
-
-    Plateau plateau = new Plateau(10, 10, 20);
+    //Menu test = new Menu("Game of War.");
+    
+    /*javax.swing.SwingUtilities.invokeLater(new Runnable() {
+      @Override
+      public void run(){
+        // TODO Auto-generated method stub
+        new Menu("Game Of War");
+      }
+    });*/
+    
+    int x = Constante.secureInput(Constante.X_MIN, Constante.X_MAX, "Entrez la largeur du plateau entre "
+        +Constante.X_MIN
+        +" et "
+        +Constante.X_MAX);
+    int y = Constante.secureInput(Constante.Y_MIN, Constante.Y_MAX, "Entrez la longueur du plateau entre "
+        +Constante.Y_MIN
+        +" et "
+        +Constante.Y_MAX);
+    int nb = Constante.secureInput(Constante.OBSTACLES_MIN, Constante.OBSTACLES_MAX
+        ,"Entrez le % d'obstacles du plateau entre "
+        +Constante.OBSTACLES_MIN
+        +" et "
+        +Constante.OBSTACLES_MAX);
+    
+    Plateau plateau = new Plateau(/*test.getX()*/x, y/*test.getY()*/, nb);
+    System.out.println(plateau);
     
     Equipe[] equipes = new Equipe[] {
         new Equipe("joueur1", plateau, Constante.EQUIPE_UN, new Coordonnees(0, 0)),
-        new Equipe("joueur2", plateau, Constante.EQUIPE_DEUX, new Coordonnees(plateau.getLongueur()-1, 
-                                                                              plateau.getLargeur()-1))
+        new Equipe("joueur2", plateau, Constante.EQUIPE_DEUX, new Coordonnees(plateau.getLargeur()-1, 
+                                                                              plateau.getLongueur()-1))
     };
     for (Equipe joueur : equipes) {
       joueur.addRobot(new Tireur(joueur.getVue(), joueur));
@@ -36,59 +72,26 @@ public class Main {
     Action action;
     int i = 0;
     while (!finis) {
+      System.out.println(equipes[i%2].getNom()+", a vous de jouer");
       neo = equipes[i%2].choisitRobot();
+      System.out.println(neo.getVue().toString());
       action = neo.choisitAction();
-      action.agit();
+      if (action != null) {
+        action.agit();
+      }      
       i += 1;
       for (Equipe joueur : equipes) {
         if (joueur.perdu()) {
           finis = true;
+        }for (Robot r : joueur.getRobots()) {
+          if (r.estMort()) {
+            r.disparait();
+          }
+          if (r.estSurBase()) {
+            r.estSoigne();
+          }
         }
       }
     }
-    
-    
-
-//    equipeDeux.setMine(new Piegeur(equipeDeux, equipes[1].getEquipe()), new Coordonnees(3, 0));
-//
-//    equipeUne.setMine(new Piegeur(equipeUne, equipes[0].getEquipe()), new Coordonnees(0, 5));
-//    
-//    equipeDeux.setMine(new Piegeur(equipeDeux, equipes[1].getEquipe()), new Coordonnees(5, 0));
-//
-//    equipeDeux.setMine(new Piegeur(equipeDeux, equipes[1].getEquipe()), new Coordonnees(0, 5));
-//    
-//    System.out.println(equipeUne);
-//    System.out.println(equipeDeux);
-//    System.out.println(plateau);
-//    
-//    Piegeur testPiegeur = new Piegeur(equipeUne, equipes[0].getEquipe());
-//    equipeUne.poserRobot(testPiegeur, equipes[0].getCoordBase());
-//    Action dep = new Deplacement(testPiegeur, new Coordonnees(0,1));
-//    System.out.println(plateau);
-//    dep.agit(new Cellule(0, 1));
-//    System.out.println(plateau);
-//    for (Equipe equipe : equipes) {
-//      System.out.println(equipe.toString());
-//    }
-//    
-//    boolean fini = false;
-//    int joueur = 0;
-//    Robot neo;
-//    Action act;
-//    Equipe current;
-//    while (!fini) {
-//      joueur++;
-//      current = equipes[joueur%2];
-//      neo = current.choisitRobot();
-//      System.out.println(neo);
-//      act = neo.choisitAction();
-//      if (equipes[joueur%2].perdu() || equipes[(joueur+1)%2].perdu()) {
-//        fini = true;
-//      }
-//    }
-    
-    //System.out.println(equipeVue1);
-    //System.out.println(equipeVue2);
   }
-
 }
