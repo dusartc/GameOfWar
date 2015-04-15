@@ -138,20 +138,21 @@ public class Piegeur extends Robot {
   private List<Coordonnees> initDep() {
     List<Coordonnees> dep = new ArrayList<Coordonnees>();
     List<Coordonnees> caillou = new ArrayList<Coordonnees>();
-    for (Coordonnees coordonnees : Constante.DEP_CHAR) {
+    for (Coordonnees coordonnees : Constante.DEP_PIEGEUR) {
       dep.add(this.getCoordonnees().ajout(coordonnees));
     }caillou.addAll(dep);
     for (Coordonnees c : caillou) {
       if (c.getHauteur() < 0 || c.getLargeur() < 0
           || c.getHauteur() >= this.getVue().getPlateau().getLongueur()
-          || c.getLargeur() >= this.getVue().getPlateau().getLargeur()) {
+          || c.getLargeur() >= this.getVue().getPlateau().getLargeur()
+          || getVue().getPlateau().getCelluleByCoordonnees(c).getRobot() != null) {
         dep.remove(c);
       }try {
         if (this.getVue().getPlateau().getCelluleByCoordonnees(c).estMur()) {
           dep.remove(c);
         }
       } catch (Exception e) {
-        System.err.print("null pointer ");
+        //System.err.print("null pointer ");
       }
     }
     return dep;

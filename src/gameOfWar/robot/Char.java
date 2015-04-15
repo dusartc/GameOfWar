@@ -142,7 +142,7 @@ public class Char extends Robot{
           cible2.add(c);
         }
       } catch (Exception e) {
-        System.err.print("@initCible ");
+        //System.err.print("@initCible ");
       }      
     }
     return cible2;
@@ -157,14 +157,15 @@ public class Char extends Robot{
     for (Coordonnees c : caillou) {
       if (c.getHauteur() < 0 || c.getLargeur() < 0
           || c.getHauteur() >= this.getVue().getPlateau().getLongueur()
-          || c.getLargeur() >= this.getVue().getPlateau().getLargeur()) {
+          || c.getLargeur() >= this.getVue().getPlateau().getLargeur()
+          || getVue().getPlateau().getCelluleByCoordonnees(c).getRobot() != null) {
         dep.remove(c);
       }try {
         if (this.getVue().getPlateau().getCelluleByCoordonnees(c).estMur()) {
           dep.remove(c);
         }
       } catch (Exception e) {
-        System.err.println("null pointer");
+        //System.err.println("null pointer");
       }
     }
     return dep;
