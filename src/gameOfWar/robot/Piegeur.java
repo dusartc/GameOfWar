@@ -10,8 +10,6 @@ import gameOfWar.jeux.Vue;
 
 import java.util.ArrayList;
 import java.util.List;
-//Touche moi cette belle ArrayList(I).
-import java.util.Scanner;
 
 /**
  * 
@@ -24,28 +22,46 @@ public class Piegeur extends Robot {
 
   private List<Coordonnees> coordonnees; //A mediter (voir : direction et objectif) CLEMENT !
 
+  
   public Piegeur(Vue vue, Equipe equipe) {
     super(vue, equipe);
     this.setEnergie(Constante.ENERGIE_PIEGEUR);
   }
 
-  public int getNbMines(){
-    return this.nbMines;
+  @Override
+  public Action choisitAction() {
+    System.out.println("Vous pouvez :\n\t1 - deplacer\n\t2 - mine");
+    List<Coordonnees> dep = initDep();
+    int i = Constante.secureInput(1, 2);
+    switch (i) {
+      case 1:
+        int j = 0;
+        System.out.println("vous pouvez aller en :");
+        for (Coordonnees c : dep) {
+          System.out.println(j+": "+c);
+          j += 1;
+        }
+        this.setObjectif(dep.get(Constante.secureInput(0, j-1)));
+        return new Deplacement(this);
+      case 2:
+        int h = 0;
+        System.out.println("vous pouvez poser une mine en :");
+        for (Coordonnees c : dep) {
+          System.out.println(h+": "+c);
+          h += 1;
+        }
+        this.setObjectif(dep.get(Constante.secureInput(0, h-1)));
+        new Mine(this);
+        return null;
+      default:
+        return null;
+    }
   }
   
-  public void setNbMines(int nbMines){
-    this.nbMines = nbMines;
-  }
   @Override
-  public int getDegatMine() {
-    return Constante.DEGATS_PIEGEUR;
+  public void estSoigne() {
+    this.setEnergie(Math.min(Constante.ENERGIE_PIEGEUR, getEnergie() + Constante.SOIN));
   }
-
-  @Override
-  public int getDegatTir() {
-    return Constante.DEGATS_TIRS_PIEGEUR; // Vaut 0
-  }
-
   @Override
   public int getCoupDep() {
     return Constante.COUP_DEPLACEMENTS_PIEGEUR;
@@ -57,18 +73,31 @@ public class Piegeur extends Robot {
   }
 
   @Override
+  public int getDegatMine() {
+    return Constante.DEGATS_PIEGEUR;
+  }
+
+  @Override
+  public int getDegatTir() {
+    return Constante.DEGATS_TIRS_PIEGEUR; // Vaut 0
+  }
+
+  @Override
   public List<Coordonnees> getDeplacements() {
     return this.coordonnees;
   }
 
-  @Override
-  public String getType() {
-    return this.getClass().getName();
+  public int getNbMines(){
+    return this.nbMines;
   }
 
   @Override
-  public boolean peutTirer() {
-    return false;
+  public String getType() {
+    return this.getClass().getName().substring(getClass().getName().lastIndexOf(".")+1);
+  }
+
+  public void perdUneMine() {
+    this.setNbMines(this.getNbMines()-1);
   }
 
   public boolean poseMine() {
@@ -76,11 +105,14 @@ public class Piegeur extends Robot {
       return false;
     }if (getVue().getPlateau().getCelluleByCoordonnees(getObjectif()).estVide()) {
       new Mine(this);
-      //getVue().getPlateau().getCelluleByCoordonnees(getCoordonnees()).poseMine(this.getNumEquipe());
       return true;
     }return false;
   }
 
+  public void setNbMines(int nbMines){
+    this.nbMines = nbMines;
+  }
+  
   @Override
   public void subitMine() {
        setEnergie(getEnergie()-Constante.DEGATS_PIEGEUR);
@@ -97,23 +129,13 @@ public class Piegeur extends Robot {
       System.err.println("Impossible de subir un Tir");
     }
   }
-
+  
   @Override
   public String toString() {
-    return this.getType() + ", " + super.toString();
+    return this.getType() + ", " + super.toString() + ", mines :"+getNbMines();
   }
   
-  public void perdUneMine() {
-    this.setNbMines(this.getNbMines()-1);
-  }
-  
-  public void perdEnergieApresAction() {
-    this.setEnergie(getEnergie() - getCoutAction());
-  }
-
-  @Override
-  public Action choisitAction() {
-    System.out.println("Vous pouvez :\n\t1 - deplacer\n\t2 - mine");
+  private List<Coordonnees> initDep() {
     List<Coordonnees> dep = new ArrayList<Coordonnees>();
     List<Coordonnees> caillou = new ArrayList<Coordonnees>();
     for (Coordonnees coordonnees : Constante.DEP_PIEGEUR) {
@@ -129,39 +151,10 @@ public class Piegeur extends Robot {
           dep.remove(c);
         }
       } catch (Exception e) {
-        System.err.println("null pointer");
+        //System.err.print("null pointer ");
       }
     }
-    Scanner sc = new Scanner(System.in);
-    int i = sc.nextInt();
-    switch (i) {
-      case 1:
-        int j = 0;
-        System.out.println("vous pouvez aller en :");
-        for (Coordonnees c : dep) {
-          System.out.println(j+": "+c);
-          j += 1;
-        }
-        this.setObjectif(dep.get(sc.nextInt()));
-        return new Deplacement(this);
-      case 2:
-        int h = 0;
-        System.out.println("vous pouvez poser une mine en :");
-        for (Coordonnees c : dep) {
-          System.out.println(h+": "+c);
-          h += 1;
-        }
-        this.setObjectif(dep.get(sc.nextInt()));
-        new Mine(this);
-        return null;
-      default:
-        return null;
-    }
-  }
-  
-  @Override
-  public void estSoigne() {
-    this.setEnergie(Math.min(Constante.ENERGIE_PIEGEUR, getEnergie() + Constante.SOIN));
+    return dep;
   }
 
 }
