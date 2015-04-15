@@ -161,9 +161,10 @@ public class Constante {
     Scanner sc = new Scanner(System.in); // impossible de fermer car re appeler plus tard
     int ans;
     do {
-      System.out.println("entrez un nombre compris entre "+min+" inclus et "+max+" inclus");
+      System.out.println("\nentrez un nombre compris entre "+min+" inclus et "+max+" inclus");
       while (!sc.hasNextInt()) {
         sc.next();
+        System.err.println("mauvais input");
       }
       ans = sc.nextInt();
     } while (ans < min || ans > max);
