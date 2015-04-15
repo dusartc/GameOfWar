@@ -17,6 +17,10 @@ import gameOfWar.robot.Tireur;
 public class Deplacement extends Action {
 
 
+  public Deplacement(Robot robot) {
+    this(robot, robot.getObjectif());
+  }
+  
   /**
    * On donne les directions en fonction du robot
    * @param robot
@@ -25,9 +29,31 @@ public class Deplacement extends Action {
   public Deplacement(Robot robot, Coordonnees direction) {
     super(robot, direction);
   }
-  
-  public Deplacement(Robot robot) {
-    this(robot, robot.getObjectif());
+
+  @Override
+  public void agit() {
+    agit(this.getRobot().getVue().getPlateau().getCelluleByCoordonnees(this.getRobot().getObjectif()));
+  }
+
+
+  /**
+   * Agit() produit le deplacement.
+   */
+  public void agit(Cellule c) {
+    if (this.getRobot() instanceof Tireur || this.getRobot() instanceof Piegeur || this.getRobot() instanceof Char) {
+      if(this.deplacementPossible(c)){
+        //si le deplacmeent est possible
+        this.getRobot().setEnergie(this.getRobot().getEnergie()-this.getRobot().getCoupDep());
+        //le robot perd de l'energie en se deplacant (energie du robot - cout de deplacement)
+        this.moveTo(c.getCoordonnees());
+        //les coordonnees du robot deviennent les coordonnees de la cellule sur laquelle il se deplace
+        if (c.contientMine() > 0) {
+          System.out.println("EEEEEH BOOOM !!!");
+          this.getRobot().subitMine();
+          c.retirerMine();
+        }
+      }
+    }
   }
 
   /**
@@ -67,28 +93,7 @@ public class Deplacement extends Action {
     }
     return false;
   }
-
-
-  /**
-   * Agit() produit le deplacement.
-   */
-  public void agit(Cellule c) {
-    if (this.getRobot() instanceof Tireur || this.getRobot() instanceof Piegeur || this.getRobot() instanceof Char) {
-      if(this.deplacementPossible(c)){
-        //si le deplacmeent est possible
-        this.getRobot().setEnergie(this.getRobot().getEnergie()-this.getRobot().getCoupDep());
-        //le robot perd de l'energie en se deplacant (energie du robot - cout de deplacement)
-        this.moveTo(c.getCoordonnees());
-        //les coordonnees du robot deviennent les coordonnees de la cellule sur laquelle il se deplace
-        if (c.contientMine() > 0) {
-          System.out.println("EEEEEH BOOOM !!!");
-          this.getRobot().subitMine();
-          c.retirerMine();
-        }
-      }
-    }
-  }
-
+  
   /**
    * Fait bouger le robot dans la coordonnees données.
    * @param c
@@ -97,11 +102,6 @@ public class Deplacement extends Action {
     this.getRobot().getVue().retirerRobot(this.getRobot().getCoordonnees());  
     this.getRobot().setCoordonnees(c);
     this.getRobot().getVue().poserRobot(getRobot(), c);
-  }
-  
-  @Override
-  public void agit() {
-    agit(this.getRobot().getVue().getPlateau().getCelluleByCoordonnees(this.getRobot().getObjectif()));
   }
 
 }

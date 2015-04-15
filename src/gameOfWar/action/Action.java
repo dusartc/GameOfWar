@@ -15,6 +15,10 @@ public abstract class Action {
   /** Le robot */
   private Robot robot;
   
+  public Action(Robot robot) {
+    this(robot, null);
+  }
+  
   /**
    * Construit un objet Action avec le robot et les coordonnees donnees
    * @param robot le robot qui devra effectuer l'action
@@ -26,13 +30,10 @@ public abstract class Action {
     this.objectif = robot.getObjectif();
   }
   
-  public Action(Robot robot) {
-    this(robot, null);
-  }
-  
-  public Robot getRobot() {
-    return this.robot;
-  }
+  /**
+   * agit realise l'action du robot
+   */
+  public abstract void agit();
   
   public Coordonnees getDirection() {
     return this.direction;
@@ -42,8 +43,7 @@ public abstract class Action {
     return this.objectif;
   }
   
-  /**
-   * agit realise l'action du robot
-   */
-  public abstract void agit();
+  public Robot getRobot() {
+    return this.robot;
+  }
 }

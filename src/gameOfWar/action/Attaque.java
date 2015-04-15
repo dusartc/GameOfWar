@@ -9,12 +9,12 @@ import gameOfWar.robot.Robot;
  */
 public class Attaque extends Action {
   
-  public Attaque(Robot robot, Coordonnees direction ) {
-    super(robot, direction);
-  }
-  
   public Attaque(Robot robot) {
     super(robot, robot.getObjectif());
+  }
+  
+  public Attaque(Robot robot, Coordonnees direction ) {
+    super(robot, direction);
   }
 
   @Override

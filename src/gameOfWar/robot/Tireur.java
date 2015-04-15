@@ -27,6 +27,51 @@ public class Tireur extends Robot {
   }
 
   @Override
+  public Action choisitAction() {
+    List<Coordonnees> dep = initDep();
+    List<Coordonnees> cible = initCible();
+    if (!cible.isEmpty()) {
+      System.out.println("Vous pouvez :\n\t1 - deplacer\n\t2 - Attaquer");
+      int i = Constante.secureInput(1, 2);
+      switch (i) {
+        case 1:
+          int j = 0;
+          System.out.println("Vous pouvez aller en :");
+          for (Coordonnees c : dep) {
+            System.out.println(j + " : " + c);
+            j += 1;
+          }this.setObjectif(dep.get(Constante.secureInput(0, j)));
+          return new Deplacement(this);
+        case 2:
+          int h = 0;
+          System.out.println("Vous pouvez attaquer :");
+          for (Coordonnees c : cible) {
+            System.out.println(h + " : " + c);
+          }this.setObjectif(cible.get(Constante.secureInput(0, h)));
+          return new Attaque(this);
+        default:
+          System.out.println("mauvais input @choisitAction()");
+          break;
+      }
+    }else {
+      System.out.println("Aucune cible disponible\nVous ne pouvez que vous deplacer");
+      int j = 0;
+      System.out.println("Vous pouvez aller en :");
+      for (Coordonnees c : dep) {
+        System.out.println(j + " : " + c);
+        j += 1;
+      }this.setObjectif(dep.get(Constante.secureInput(0, j)));
+      return new Deplacement(this);
+    }
+    return null;
+  }
+
+  @Override
+  public void estSoigne() {
+    this.setEnergie(Math.min(Constante.ENERGIE_TIREUR, getEnergie() + Constante.SOIN));
+  }
+
+  @Override
   public int getCoupDep() {
     return Constante.COUP_DEPLACEMENTS_TIREUR;
   }
@@ -75,50 +120,10 @@ public class Tireur extends Robot {
       System.err.println("Impossible de subir un Tir");
     }
   }
-
+  
   @Override
   public String toString() {
     return this.getType() + ", " + super.toString();
-  }
-
-  @Override
-  public Action choisitAction() {
-    List<Coordonnees> dep = initDep();
-    List<Coordonnees> cible = initCible();
-    if (!cible.isEmpty()) {
-      System.out.println("Vous pouvez :\n\t1 - deplacer\n\t2 - Attaquer");
-      int i = Constante.secureInput(1, 2);
-      switch (i) {
-        case 1:
-          int j = 0;
-          System.out.println("Vous pouvez aller en :");
-          for (Coordonnees c : dep) {
-            System.out.println(j + " : " + c);
-            j += 1;
-          }this.setObjectif(dep.get(Constante.secureInput(0, j)));
-          return new Deplacement(this);
-        case 2:
-          int h = 0;
-          System.out.println("Vous pouvez attaquer :");
-          for (Coordonnees c : cible) {
-            System.out.println(h + " : " + c);
-          }this.setObjectif(cible.get(Constante.secureInput(0, h)));
-          return new Attaque(this);
-        default:
-          System.out.println("mauvais input @choisitAction()");
-          break;
-      }
-    }else {
-      System.out.println("Aucune cible disponible\nVous ne pouvez que vous deplacer");
-      int j = 0;
-      System.out.println("Vous pouvez aller en :");
-      for (Coordonnees c : dep) {
-        System.out.println(j + " : " + c);
-        j += 1;
-      }this.setObjectif(dep.get(Constante.secureInput(0, j)));
-      return new Deplacement(this);
-    }
-    return null;
   }
   
   private List<Coordonnees> initCible() {
@@ -164,10 +169,5 @@ public class Tireur extends Robot {
       }
     }
     return dep;
-  }
-  
-  @Override
-  public void estSoigne() {
-    this.setEnergie(Math.min(Constante.ENERGIE_TIREUR, getEnergie() + Constante.SOIN));
   }
 }

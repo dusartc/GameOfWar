@@ -10,7 +10,6 @@ import gameOfWar.jeux.Vue;
 
 import java.util.ArrayList;
 import java.util.List;
-//Touche moi cette belle ArrayList(I).
 
 /**
  * 
@@ -23,81 +22,10 @@ public class Piegeur extends Robot {
 
   private List<Coordonnees> coordonnees; //A mediter (voir : direction et objectif) CLEMENT !
 
+  
   public Piegeur(Vue vue, Equipe equipe) {
     super(vue, equipe);
     this.setEnergie(Constante.ENERGIE_PIEGEUR);
-  }
-
-  public int getNbMines(){
-    return this.nbMines;
-  }
-  
-  public void setNbMines(int nbMines){
-    this.nbMines = nbMines;
-  }
-  @Override
-  public int getDegatMine() {
-    return Constante.DEGATS_PIEGEUR;
-  }
-
-  @Override
-  public int getDegatTir() {
-    return Constante.DEGATS_TIRS_PIEGEUR; // Vaut 0
-  }
-
-  @Override
-  public int getCoupDep() {
-    return Constante.COUP_DEPLACEMENTS_PIEGEUR;
-  }
-
-  @Override
-  public int getCoutAction() {
-    return Constante.COUP_ACTION_PIEGEUR;
-  }
-
-  @Override
-  public List<Coordonnees> getDeplacements() {
-    return this.coordonnees;
-  }
-
-  @Override
-  public String getType() {
-    return this.getClass().getName().substring(getClass().getName().lastIndexOf(".")+1);
-  }
-
-  public boolean poseMine() {
-    if (this.getNbMines() <= 0) {
-      return false;
-    }if (getVue().getPlateau().getCelluleByCoordonnees(getObjectif()).estVide()) {
-      new Mine(this);
-      return true;
-    }return false;
-  }
-
-  @Override
-  public void subitMine() {
-       setEnergie(getEnergie()-Constante.DEGATS_PIEGEUR);
-    }
-
-  @Override
-  public void subitTirDe(Robot robot) {
-    if(robot instanceof Tireur || robot instanceof Char){
-      if(robot.getEquipe() != this.getEquipe()){
-        this.setEnergie(this.getEnergie()-robot.getDegatTir());
-      }
-    }
-    else {
-      System.err.println("Impossible de subir un Tir");
-    }
-  }
-
-  @Override
-  public String toString() {
-    return this.getType() + ", " + super.toString();
-  }
-  
-  public void perdUneMine() {
-    this.setNbMines(this.getNbMines()-1);
   }
 
   @Override
@@ -133,6 +61,78 @@ public class Piegeur extends Robot {
   @Override
   public void estSoigne() {
     this.setEnergie(Math.min(Constante.ENERGIE_PIEGEUR, getEnergie() + Constante.SOIN));
+  }
+  @Override
+  public int getCoupDep() {
+    return Constante.COUP_DEPLACEMENTS_PIEGEUR;
+  }
+
+  @Override
+  public int getCoutAction() {
+    return Constante.COUP_ACTION_PIEGEUR;
+  }
+
+  @Override
+  public int getDegatMine() {
+    return Constante.DEGATS_PIEGEUR;
+  }
+
+  @Override
+  public int getDegatTir() {
+    return Constante.DEGATS_TIRS_PIEGEUR; // Vaut 0
+  }
+
+  @Override
+  public List<Coordonnees> getDeplacements() {
+    return this.coordonnees;
+  }
+
+  public int getNbMines(){
+    return this.nbMines;
+  }
+
+  @Override
+  public String getType() {
+    return this.getClass().getName().substring(getClass().getName().lastIndexOf(".")+1);
+  }
+
+  public void perdUneMine() {
+    this.setNbMines(this.getNbMines()-1);
+  }
+
+  public boolean poseMine() {
+    if (this.getNbMines() <= 0) {
+      return false;
+    }if (getVue().getPlateau().getCelluleByCoordonnees(getObjectif()).estVide()) {
+      new Mine(this);
+      return true;
+    }return false;
+  }
+
+  public void setNbMines(int nbMines){
+    this.nbMines = nbMines;
+  }
+  
+  @Override
+  public void subitMine() {
+       setEnergie(getEnergie()-Constante.DEGATS_PIEGEUR);
+    }
+
+  @Override
+  public void subitTirDe(Robot robot) {
+    if(robot instanceof Tireur || robot instanceof Char){
+      if(robot.getEquipe() != this.getEquipe()){
+        this.setEnergie(this.getEnergie()-robot.getDegatTir());
+      }
+    }
+    else {
+      System.err.println("Impossible de subir un Tir");
+    }
+  }
+  
+  @Override
+  public String toString() {
+    return this.getType() + ", " + super.toString();
   }
   
   private List<Coordonnees> initDep() {
