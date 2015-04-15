@@ -1,11 +1,11 @@
 package gameOfWar.jeux;
+import gameOfWar.config.Constante;
 import gameOfWar.config.Coordonnees;
 import gameOfWar.config.Mine;
 import gameOfWar.robot.Robot;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 
 /**
@@ -45,27 +45,11 @@ public class Equipe {
   }
 
   /**
-   * retourne le nom de l'equipe.
-   * @return
+   * Ajout une Mines passer en parametre.
+   * @param mine
    */
-  public String getNom() {
-    return this.nom;
-  }
-
-  /**
-   * Retourne la vue de l'equipe.
-   * @return
-   */
-  public Vue getVue() {
-    return this.vue;
-  }
-
-  /**
-   * Retour les coordonnees.
-   * @return
-   */
-  public Coordonnees getCoordBase() {
-    return this.coordBase;
+  public void addMines(Mine mine) {
+    this.mines.add(mine);
   }
 
   /** ajouter un robot le pose egalement sur le plateau */
@@ -74,46 +58,23 @@ public class Equipe {
     this.vue.poserRobot(robot, getCoordBase());
   }
 
-  /**
-   * Enleve le robot passer en parametre.
-   * @param robot
-   */
-  public void removeRobot(Robot robot) {
-    this.robots.remove(robot);
-  }
-  
-  /** parcourt de tous les robots et on renvoie celui avec les memes coordonnees */
-  public Robot getRobotByCoordonnees(Coordonnees coordonnees) {
+  /** Parcourt des robots, on le decris et lui fixe un numero et on renvoie celui correspondant au num */
+  public Robot choisitRobot() {
+    int i = 1;
     for (Robot robot : robots) {
-      if (robot.getCoordonnees().equals(coordonnees)) {
-        return robot;
-      }
-    }return null;
+      System.out.println("choix : " + i + "\n\t" + robot.toString());
+      i += 1;
+    }
+    i = Constante.secureInput(1, i-1);
+    return this.robots.get(i-1);
   }
 
   /**
-   * Retour le robot a l'indice i
-   * @param i
+   * Retour les coordonnees.
    * @return
    */
-  public Robot getRobotByIndex(int i) {
-    return this.robots.get(i);
-  }
-
-  /**
-   * Ajout une Mines passer en parametre.
-   * @param mine
-   */
-  public void addMines(Mine mine) {
-    this.mines.add(mine);
-  }
-
-  /**
-   * Enleve les Mines passer en parametre.
-   * @param mine
-   */
-  public void removeMines(Mine mine) {
-    this.mines.remove(mine);
+  public Coordonnees getCoordBase() {
+    return this.coordBase;
   }
 
   /**
@@ -125,14 +86,23 @@ public class Equipe {
   }
 
   /**
-   * Affiche le nom de l'equipe et les noms des robots et les coordonnees de la base.
+   * retourne le nom de l'equipe.
+   * @return
    */
-  @Override
-  public String toString() {
-    String ans = this.nom + "\n" + this.coordBase.toString() + " \n Robots : \n";
-    for (Robot ro : this.robots) {
-      ans += ro.toString()+"\n";
-    }return ans;
+  public String getNom() {
+    return this.nom;
+  }
+
+  public List<Robot> getRobots(){
+    return this.robots;
+  }
+
+  /**
+   * Retourne la vue de l'equipe.
+   * @return
+   */
+  public Vue getVue() {
+    return this.vue;
   }
 
   /**
@@ -143,15 +113,30 @@ public class Equipe {
     return this.robots.isEmpty();
   }
 
-  /** Parcourt des robots, on le decris et lui fixe un numero et on renvoie celui correspondant au num */
-  public Robot choisitRobot() {
-    int i = 1;
-    for (Robot robot : robots) {
-      System.out.println("choix : " + i + "\n\t" + robot.toString());
-      i += 1;
-    }
-    Scanner sc = new Scanner(System.in);
-    i = sc.nextInt();
-    return this.robots.get(i-1);
+  /**
+   * Enleve les Mines passer en parametre.
+   * @param mine
+   */
+  public void removeMines(Mine mine) {
+    this.mines.remove(mine);
+  }
+
+  /**
+   * Enleve le robot passer en parametre.
+   * @param robot
+   */
+  public void removeRobot(Robot robot) {
+    this.robots.remove(robot);
+  }
+  
+  /**
+   * Affiche le nom de l'equipe et les noms des robots et les coordonnees de la base.
+   */
+  @Override
+  public String toString() {
+    String ans = this.nom + "\n" + this.coordBase.toString() + " \n Robots : \n";
+    for (Robot ro : this.robots) {
+      ans += ro.toString()+"\n";
+    }return ans;
   }
 }
