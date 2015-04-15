@@ -30,6 +30,7 @@ public class Deplacement extends Action {
     super(robot, direction);
   }
 
+
 //  @Override
 //  public void agit() {
 //    agit(this.getRobot().getVue().getPlateau().getCelluleByCoordonnees(this.getRobot().getObjectif()));

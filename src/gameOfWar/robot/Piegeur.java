@@ -138,7 +138,7 @@ public class Piegeur extends Robot {
   private List<Coordonnees> initDep() {
     List<Coordonnees> dep = new ArrayList<Coordonnees>();
     List<Coordonnees> caillou = new ArrayList<Coordonnees>();
-    for (Coordonnees coordonnees : Constante.DEP_PIEGEUR) {
+    for (Coordonnees coordonnees : Constante.DEP_CHAR) {
       dep.add(this.getCoordonnees().ajout(coordonnees));
     }caillou.addAll(dep);
     for (Coordonnees c : caillou) {
