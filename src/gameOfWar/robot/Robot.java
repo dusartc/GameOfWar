@@ -30,6 +30,19 @@ public abstract class Robot {
     this.vue = vue;
   }
 
+  abstract public Action choisitAction();
+
+  public void disparait() {
+    this.vue.getPlateau().getCelluleByCoordonnees(this.coordonnees).videCase();
+    this.equipe.removeRobot(this);
+  }
+
+  public boolean estMort() {
+    return this.energie <= 0;
+  }
+
+  abstract public void estSoigne();
+
   public boolean estSurBase() {
     /** calcul des coordonnees de la base */
     return this.coordonnees.equals(new Coordonnees((equipe.getEquipe() == Constante.EQUIPE_UN) ? 0 : vue.getPlateau().getLargeur()-1, 
@@ -41,33 +54,29 @@ public abstract class Robot {
   }
 
   abstract public int getCoupDep();
-
+  
   abstract public int getCoutAction();
-
+  
   abstract public int getDegatMine();
 
   abstract public int getDegatTir();
 
   abstract public List<Coordonnees> getDeplacements();
   
-  public Coordonnees getObjectif() {
-    return this.objectif;
-  }
-  
-  public void setObjectif(Coordonnees objectif) {
-    this.objectif = objectif;
-  }
-
   public int getEnergie() {
     return this.energie;
+  }
+
+  public Equipe getEquipe() {
+    return this.equipe;
   }
 
   public int getNumEquipe() {
     return this.equipe.getEquipe();
   }
-  
-  public Equipe getEquipe() {
-    return this.equipe;
+
+  public Coordonnees getObjectif() {
+    return this.objectif;
   }
 
   abstract public String getType();
@@ -75,8 +84,9 @@ public abstract class Robot {
   public Vue getVue() {
     return this.vue;
   }
-
-  abstract public boolean peutTirer();
+  public void perdEnergieApresAction() {
+    this.setEnergie(getEnergie() - getCoutAction());
+  }
 
   public void setCoordonnees(Coordonnees coordonnees) {
     this.coordonnees = coordonnees;
@@ -86,23 +96,16 @@ public abstract class Robot {
     this.energie = energie;
   }
 
+  public void setObjectif(Coordonnees objectif) {
+    this.objectif = objectif;
+  }
+  
   abstract public void subitMine();
+  
   abstract public void subitTirDe(Robot robot);
-
-  abstract public void estSoigne();
-
+  
   @Override
   public String toString() {
     return "energie : " + this.energie + ", " + this.coordonnees.toString();
-  }
-
-  abstract public Action choisitAction();
-  
-  public boolean estMort() {
-    return this.energie <= 0;
-  }
-  
-  public void disparait() {
-    this.equipe.removeRobot(this);
   }
 }
