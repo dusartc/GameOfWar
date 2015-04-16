@@ -112,7 +112,7 @@ public class Constante {
   /** List des coordonnees pouvant etre cible par tireur */
   public static List<Coordonnees> L_PORTEE_TIREUR;
 
-  public static String[] pays = new String[] {"France", "Russie", "Allemagne", "Angleterre",
+  public static String[] PAYS = new String[] {"France", "Russie", "Allemagne", "Angleterre",
       "Etats-Unis", "Bresil", "Canada", "Chine", "Japon"};
 
   /**
