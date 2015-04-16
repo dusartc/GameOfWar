@@ -1,4 +1,5 @@
 package gameOfWar.jeux;
+
 import gameOfWar.config.Constante;
 import gameOfWar.config.Coordonnees;
 import gameOfWar.config.Mine;
@@ -10,8 +11,8 @@ import java.util.List;
 
 /**
  * La classe Equipe construit une Equipe
- * @author Clement.
- *
+ * 
+ * @author Clement
  */
 public class Equipe {
 
@@ -29,7 +30,9 @@ public class Equipe {
   private Coordonnees coordBase;
 
   /**
-   * Le constructeur construit une equipe entiere avec le nom de l'equipe, la vue, le numero de l'equipe, et les coordonnes.
+   * Le constructeur construit une equipe entiere avec le nom de l'equipe, la vue, le numero de
+   * l'equipe, et les coordonnes.
+   * 
    * @param nom
    * @param plateau
    * @param equipe
@@ -46,6 +49,7 @@ public class Equipe {
 
   /**
    * Ajout une Mines passer en parametre.
+   * 
    * @param mine
    */
   public void addMines(Mine mine) {
@@ -58,19 +62,23 @@ public class Equipe {
     this.vue.poserRobot(robot, getCoordBase());
   }
 
-  /** Parcourt des robots, on le decris et lui fixe un numero et on renvoie celui correspondant au num */
+  /**
+   * Parcourt des robots, on le decris et lui fixe un numero et on renvoie celui correspondant au
+   * num
+   */
   public Robot choisitRobot() {
     int i = 1;
     for (Robot robot : robots) {
       System.out.println("choix : " + i + "\n\t" + robot.toString());
       i += 1;
     }
-    i = Constante.secureInput(1, i-1);
-    return this.robots.get(i-1);
+    i = Constante.secureInput(1, i - 1);
+    return this.robots.get(i - 1);
   }
 
   /**
    * Retour les coordonnees.
+   * 
    * @return
    */
   public Coordonnees getCoordBase() {
@@ -79,6 +87,7 @@ public class Equipe {
 
   /**
    * Retourne le numero d'equipe.
+   * 
    * @return
    */
   public int getEquipe() {
@@ -87,18 +96,20 @@ public class Equipe {
 
   /**
    * retourne le nom de l'equipe.
+   * 
    * @return
    */
   public String getNom() {
     return this.nom;
   }
 
-  public List<Robot> getRobots(){
+  public List<Robot> getRobots() {
     return this.robots;
   }
 
   /**
    * Retourne la vue de l'equipe.
+   * 
    * @return
    */
   public Vue getVue() {
@@ -107,6 +118,7 @@ public class Equipe {
 
   /**
    * Perd la partie si perdu est a vrai.
+   * 
    * @return
    */
   public boolean perdu() {
@@ -115,6 +127,7 @@ public class Equipe {
 
   /**
    * Enleve les Mines passer en parametre.
+   * 
    * @param mine
    */
   public void removeMines(Mine mine) {
@@ -123,12 +136,13 @@ public class Equipe {
 
   /**
    * Enleve le robot passer en parametre.
+   * 
    * @param robot
    */
   public void removeRobot(Robot robot) {
     this.robots.remove(robot);
   }
-  
+
   /**
    * Affiche le nom de l'equipe et les noms des robots et les coordonnees de la base.
    */
@@ -136,7 +150,8 @@ public class Equipe {
   public String toString() {
     String ans = this.nom + "\n" + this.coordBase.toString() + " \n Robots : \n";
     for (Robot ro : this.robots) {
-      ans += ro.toString()+"\n";
-    }return ans;
+      ans += ro.toString() + "\n";
+    }
+    return ans;
   }
 }

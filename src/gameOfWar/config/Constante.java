@@ -1,12 +1,14 @@
 package gameOfWar.config;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 /**
  * Regroupe toute les constantes du projet.
- * @author Mathieu,Clement,Aurelia,Samantha,Mariam,Alexandre
- *
+ * 
+ * @author Mathieu,Aurelia,Samantha,Mariam,Alexandre
+ * @author Clement
  */
 public class Constante {
 
@@ -14,22 +16,22 @@ public class Constante {
   /** Correspond a l'énergie du Piegeur. */
   public static final int ENERGIE_PIEGEUR = 50;
   /** Correspond a l'énergie du Tireur. */
-  public static final int ENERGIE_TIREUR  = 40;
+  public static final int ENERGIE_TIREUR = 40;
   /** Correspond a l'énergie du Char. */
-  public static final int ENERGIE_CHAR    = 60;
+  public static final int ENERGIE_CHAR = 60;
   /** Correspond au nombre de robot maximun par equipe. */
   public static final int NB_MAX_ROBOTS_PAR_EQUIPE = 5;
-  /** Correspond au soin donnees aux bases*/
+  /** Correspond au soin donnees aux bases */
   public static final int SOIN = 2;
-  /** Correspond a l'equipe une*/
+  /** Correspond a l'equipe une */
   public static final int EQUIPE_UN = 1;
-  /** Correspond a l'equipe deux*/
+  /** Correspond a l'equipe deux */
   public static final int EQUIPE_DEUX = 2;
-  /** Correspond au degat produit par le Tireur.*/
+  /** Correspond au degat produit par le Tireur. */
   public static final int DEGATS_TIREUR = 3;
-  /** Correspond au degat produit par le Piegeur.*/
+  /** Correspond au degat produit par le Piegeur. */
   public static final int DEGATS_PIEGEUR = 2;
-  /** Correspond au degat produit par le Char.*/
+  /** Correspond au degat produit par le Char. */
   public static final int DEGATS_CHAR = 6;
   /** Correspond au coup de deplacement du Tireur. */
   public static final int COUP_DEPLACEMENTS_TIREUR = 1;
@@ -49,62 +51,62 @@ public class Constante {
   public static final int DEGATS_MINES_CHAR = 6;
   /** Correspond au degat d'un tir pour un Piegeur . */
   public static final int DEGATS_TIRS_PIEGEUR = 0;
-   /** Correspond à la portée d'un tir pour un Tireur . */
+  /** Correspond à la portée d'un tir pour un Tireur . */
   public static final int PORTEE_TIREUR = 3;
-   /** Correspond à la portée d'une mine pour un Piegeur . */
+  /** Correspond à la portée d'une mine pour un Piegeur . */
   public static final int PORTEE_PIEGEUR = 1;
   /** Correspond à la portée d'un tir pour un Char . */
   public static final int PORTEE_CHAR = 10;
-  
 
-  /// les données du plateau ///
-  /** Taille minimun en largeur du plateau.*/
+
+  // / les données du plateau ///
+  /** Taille minimun en largeur du plateau. */
   public static final int X_MIN = 5;
-  /** Taille maximun en largeur du plateau.*/
+  /** Taille maximun en largeur du plateau. */
   public static final int X_MAX = 25;
-  /** Taille minimun en longueur du plateau.*/
+  /** Taille minimun en longueur du plateau. */
   public static final int Y_MIN = 10;
-  /** Taille maximune en longueur du plateau.*/
+  /** Taille maximune en longueur du plateau. */
   public static final int Y_MAX = 25;
-  /** Obstacles minimun sur le plateau.*/
+  /** Obstacles minimun sur le plateau. */
   public static final int OBSTACLES_MIN = 20;
-  /** Obstacles maximun sur le plateau.*/
+  /** Obstacles maximun sur le plateau. */
   public static final int OBSTACLES_MAX = 50;
 
 
-  /// Déplacement pour Tireur et Piegeur et char///
-  /** Deplacement en haut pour Tireur et Piegeur.*/
+  // / Déplacement pour Tireur et Piegeur et char///
+  /** Deplacement en haut pour Tireur et Piegeur. */
   public static final Coordonnees HAUT = new Coordonnees(0, -1);
-  /** Deplacement diagonale en haut a droite pour Tireur et Piegeur.*/
+  /** Deplacement diagonale en haut a droite pour Tireur et Piegeur. */
   public static final Coordonnees HAUT_DROITE = new Coordonnees(1, -1);
-  /** Deplacement diagonale en haut a gauche pour Tireur et Piegeur.*/
+  /** Deplacement diagonale en haut a gauche pour Tireur et Piegeur. */
   public static final Coordonnees HAUT_GAUCHE = new Coordonnees(-1, -1);
-  /** Deplacement en bas pour Tireur et Piegeur.*/
+  /** Deplacement en bas pour Tireur et Piegeur. */
   public static final Coordonnees BAS = new Coordonnees(0, 1);
-  /** Deplacement diagonale en base a droite pour Tireur et Piegeur.*/
+  /** Deplacement diagonale en base a droite pour Tireur et Piegeur. */
   public static final Coordonnees BAS_DROITE = new Coordonnees(1, 1);
-  /** Deplacement diagonale en base a gauche pour Tireur et Piegeur.*/
+  /** Deplacement diagonale en base a gauche pour Tireur et Piegeur. */
   public static final Coordonnees BAS_GAUCHE = new Coordonnees(-1, 1);
-  /** Deplacement a gauche pour Tireur et Piegeur.*/
+  /** Deplacement a gauche pour Tireur et Piegeur. */
   public static final Coordonnees GAUCHE = new Coordonnees(-1, 0);
-  /** Deplacement a droite pour Tireur et Piegeur.*/
+  /** Deplacement a droite pour Tireur et Piegeur. */
   public static final Coordonnees DROITE = new Coordonnees(1, 0);
-  /** Deplacement a gauche pour char.*/
+  /** Deplacement a gauche pour char. */
   public static final Coordonnees GAUCHE_CHAR = new Coordonnees(-2, 0);
-  /** Deplacement a droite pour char.*/
+  /** Deplacement a droite pour char. */
   public static final Coordonnees DROITE_CHAR = new Coordonnees(2, 0);
-  /** Deplacement en bas pour char.*/
+  /** Deplacement en bas pour char. */
   public static final Coordonnees BAS_CHAR = new Coordonnees(0, 2);
-  /** Deplacement en haut pour char.*/
+  /** Deplacement en haut pour char. */
   public static final Coordonnees HAUT_CHAR = new Coordonnees(0, -2);
-  
-  /** List des deplacement pour Tireur.*/
+
+  /** List des deplacement pour Tireur. */
   public static List<Coordonnees> DEP_TIREUR;
-  /** List des deplacement pour Piegeur.*/
+  /** List des deplacement pour Piegeur. */
   public static List<Coordonnees> DEP_PIEGEUR;
-  /** List des deplacement pour Char.*/
+  /** List des deplacement pour Char. */
   public static List<Coordonnees> DEP_CHAR;
-  
+
   /** List des coordonnees pouvant etre cible par char */
   public static List<Coordonnees> L_PORTEE_CHAR;
   /** List des coordonnees pouvant etre cible par tireur */
@@ -113,7 +115,7 @@ public class Constante {
   /**
    * Ajout des deplacement a leurs listes.
    */
-  static{
+  static {
     DEP_TIREUR = new ArrayList<Coordonnees>();
     DEP_PIEGEUR = new ArrayList<Coordonnees>();
     DEP_TIREUR.add(HAUT);
@@ -132,36 +134,43 @@ public class Constante {
     DEP_CHAR.add(BAS_CHAR);
     DEP_CHAR.add(DROITE_CHAR);
     DEP_CHAR.add(GAUCHE_CHAR);
-    
+
     L_PORTEE_CHAR = new ArrayList<Coordonnees>();
-    L_PORTEE_TIREUR = new ArrayList<Coordonnees>();    
+    L_PORTEE_TIREUR = new ArrayList<Coordonnees>();
     for (int i = 0; i < PORTEE_CHAR; i++) {
       L_PORTEE_CHAR.add(new Coordonnees(0, i));
-    }for (int i = 0; i < PORTEE_CHAR; i++) {
-      L_PORTEE_CHAR.add(new Coordonnees(i, 0));
-    }for (int i = 0; i < PORTEE_CHAR; i++) {
-      L_PORTEE_CHAR.add(new Coordonnees(0, 0-i));
-    }for (int i = 0; i < PORTEE_CHAR; i++) {
-      L_PORTEE_CHAR.add(new Coordonnees(0-i, 0));
     }
-    
+    for (int i = 0; i < PORTEE_CHAR; i++) {
+      L_PORTEE_CHAR.add(new Coordonnees(i, 0));
+    }
+    for (int i = 0; i < PORTEE_CHAR; i++) {
+      L_PORTEE_CHAR.add(new Coordonnees(0, 0 - i));
+    }
+    for (int i = 0; i < PORTEE_CHAR; i++) {
+      L_PORTEE_CHAR.add(new Coordonnees(0 - i, 0));
+    }
+
     for (int i = 0; i < PORTEE_TIREUR; i++) {
       L_PORTEE_TIREUR.add(new Coordonnees(0, i));
-    }for (int i = 0; i < PORTEE_TIREUR; i++) {
+    }
+    for (int i = 0; i < PORTEE_TIREUR; i++) {
       L_PORTEE_TIREUR.add(new Coordonnees(i, 0));
-    }for (int i = 0; i < PORTEE_TIREUR; i++) {
-      L_PORTEE_TIREUR.add(new Coordonnees(0, 0-i));
-    }for (int i = 0; i < PORTEE_TIREUR; i++) {
-      L_PORTEE_TIREUR.add(new Coordonnees(0-i, 0));
+    }
+    for (int i = 0; i < PORTEE_TIREUR; i++) {
+      L_PORTEE_TIREUR.add(new Coordonnees(0, 0 - i));
+    }
+    for (int i = 0; i < PORTEE_TIREUR; i++) {
+      L_PORTEE_TIREUR.add(new Coordonnees(0 - i, 0));
     }
   }
-  
+
   @SuppressWarnings("resource")
   public static int secureInput(int min, int max) {
     Scanner sc = new Scanner(System.in); // impossible de fermer car re appeler plus tard
     int ans;
     do {
-      System.out.println("\nentrez un nombre compris entre "+min+" inclus et "+max+" inclus");
+      System.out.println("\nentrez un nombre compris entre " + min + " inclus et " + max
+          + " inclus");
       while (!sc.hasNextInt()) {
         sc.next();
         System.err.println("bad input");
@@ -170,7 +179,7 @@ public class Constante {
     } while (ans < min || ans > max);
     return ans;
   }
-  
+
   @SuppressWarnings("resource")
   public static int secureInput(int min, int max, String string) {
     Scanner sc = new Scanner(System.in); // impossible de fermer car re appeler plus tard

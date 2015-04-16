@@ -1,4 +1,5 @@
 package gameOfWar.robot;
+
 import gameOfWar.action.Action;
 import gameOfWar.config.Constante;
 import gameOfWar.config.Coordonnees;
@@ -9,9 +10,8 @@ import java.util.List;
 
 
 /**
- * 
- * @author Alexandre, Clement
- *
+ * @author Alexandre
+ * @author Clement
  */
 public abstract class Robot {
 
@@ -24,8 +24,10 @@ public abstract class Robot {
 
   public Robot(Vue vue, Equipe equipe) {
     /** calcul des coordonnees de la base en fonction de son num d'equipe */
-    this.coordonnees = new Coordonnees((equipe.getEquipe() == Constante.EQUIPE_UN) ? 0 : vue.getPlateau().getLargeur()-1,
-        (equipe.getEquipe() == Constante.EQUIPE_UN) ? 0 : vue.getPlateau().getLongueur()-1);
+    this.coordonnees =
+        new Coordonnees((equipe.getEquipe() == Constante.EQUIPE_UN) ? 0 : vue.getPlateau()
+            .getLargeur() - 1, (equipe.getEquipe() == Constante.EQUIPE_UN) ? 0 : vue.getPlateau()
+            .getLongueur() - 1);
     this.equipe = equipe;
     this.vue = vue;
   }
@@ -45,8 +47,9 @@ public abstract class Robot {
 
   public boolean estSurBase() {
     /** calcul des coordonnees de la base */
-    return this.coordonnees.equals(new Coordonnees((equipe.getEquipe() == Constante.EQUIPE_UN) ? 0 : vue.getPlateau().getLargeur()-1, 
-        (equipe.getEquipe() == Constante.EQUIPE_UN) ? 0 : vue.getPlateau().getLongueur()-1));
+    return this.coordonnees.equals(new Coordonnees((equipe.getEquipe() == Constante.EQUIPE_UN) ? 0
+        : vue.getPlateau().getLargeur() - 1, (equipe.getEquipe() == Constante.EQUIPE_UN) ? 0 : vue
+        .getPlateau().getLongueur() - 1));
   }
 
   public Coordonnees getCoordonnees() {
@@ -54,15 +57,15 @@ public abstract class Robot {
   }
 
   abstract public int getCoupDep();
-  
+
   abstract public int getCoutAction();
-  
+
   abstract public int getDegatMine();
 
   abstract public int getDegatTir();
 
   abstract public List<Coordonnees> getDeplacements();
-  
+
   public int getEnergie() {
     return this.energie;
   }
@@ -84,6 +87,7 @@ public abstract class Robot {
   public Vue getVue() {
     return this.vue;
   }
+
   public void perdEnergieApresAction() {
     this.setEnergie(getEnergie() - getCoutAction());
   }
@@ -99,11 +103,11 @@ public abstract class Robot {
   public void setObjectif(Coordonnees objectif) {
     this.objectif = objectif;
   }
-  
+
   abstract public void subitMine();
-  
+
   abstract public void subitTirDe(Robot robot);
-  
+
   @Override
   public String toString() {
     return "energie : " + this.energie + ", " + this.coordonnees.toString();

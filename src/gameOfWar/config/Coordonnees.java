@@ -2,11 +2,11 @@ package gameOfWar.config;
 
 /**
  * La classe Coordonnees correspond au coordonne a m'anipuler avec Cellule.
+ * 
  * @author Mathieu
- *
  */
 public class Coordonnees {
-  
+
   /** La largeur ou x d'une coordonnees sur l'axe des abscisses. */
   private int x;
   /** La longeur ou y d'une coordonnees sur l'axe des ordonnees. */
@@ -14,6 +14,7 @@ public class Coordonnees {
 
   /**
    * Construit un point de l'axe.
+   * 
    * @param largeur
    * @param hauteur
    */
@@ -24,30 +25,33 @@ public class Coordonnees {
 
   /**
    * Ajout des coordonnees par rapport a l'initial.
+   * 
    * @param coord
    * @return
    */
-  public Coordonnees ajout(Coordonnees coord){
+  public Coordonnees ajout(Coordonnees coord) {
     return new Coordonnees(coord.x + this.x, coord.y + this.y);
   }
-  
+
   /**
    * Calcule les coordonnees.
+   * 
    * @param c
    * @return
    */
-  public Coordonnees calculCoordonnees(Coordonnees c){
+  public Coordonnees calculCoordonnees(Coordonnees c) {
     Coordonnees inter = new Coordonnees(this.x - c.x, this.y - c.y);
     return inter;
   }
 
   /**
    * Verifie si les coordonnees sont egales.
+   * 
    * @param c
    * @return
    */
-  public boolean equals(Coordonnees c){
-    if(this.x == c.x && this.y == c.y) {
+  public boolean equals(Coordonnees c) {
+    if (this.x == c.x && this.y == c.y) {
       return true;
     }
     return false;
@@ -65,8 +69,8 @@ public class Coordonnees {
    * Affiche les coordonnees.
    */
   @Override
-  public String toString(){
-    return "Coordonnées : ("+this.x+","+this.y+")";
+  public String toString() {
+    return "Coordonnées : (" + this.x + "," + this.y + ")";
   }
 
 
