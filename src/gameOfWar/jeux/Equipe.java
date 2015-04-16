@@ -28,6 +28,7 @@ public class Equipe {
   private int equipe;
   /** Correspond au coordonnees de base de l'equipe */
   private Coordonnees coordBase;
+  private boolean estIa = false;
 
   /**
    * Le constructeur construit une equipe entiere avec le nom de l'equipe, la vue, le numero de
@@ -45,6 +46,11 @@ public class Equipe {
     this.robots = new ArrayList<Robot>();
     this.mines = new ArrayList<Mine>();
     this.vue = new Vue(plateau, equipe);
+  }
+
+  public Equipe(String nom, Plateau plateau, int equipe, Coordonnees coord, boolean estIa) {
+    this(nom, plateau, equipe, coord);
+    this.estIa = estIa;
   }
 
   /**
