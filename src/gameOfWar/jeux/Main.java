@@ -2,6 +2,7 @@ package gameOfWar.jeux;
 
 import gameOfWar.action.Action;
 import gameOfWar.affichage.Menu;
+import gameOfWar.affichage.MenuTexte;
 import gameOfWar.config.Constante;
 import gameOfWar.config.Coordonnees;
 import gameOfWar.robot.Char;
@@ -40,19 +41,7 @@ public class Main extends Menu {
      * });
      */
 
-    int x =
-        Constante.secureInput(Constante.X_MIN, Constante.X_MAX,
-            "Entrez la largeur du plateau entre " + Constante.X_MIN + " et " + Constante.X_MAX);
-    int y =
-        Constante.secureInput(Constante.Y_MIN, Constante.Y_MAX,
-            "Entrez la longueur du plateau entre " + Constante.Y_MIN + " et " + Constante.Y_MAX);
-    int nb =
-        Constante.secureInput(Constante.OBSTACLES_MIN, Constante.OBSTACLES_MAX,
-            "Entrez le % d'obstacles du plateau entre " + Constante.OBSTACLES_MIN + " et "
-                + Constante.OBSTACLES_MAX);
-
-    Plateau plateau = new Plateau(/* test.getX() */x, y/* test.getY() */, nb);
-    System.out.println(plateau);
+    Plateau plateau = MenuTexte.initialisationPlateau();
 
     Equipe[] equipes =
         new Equipe[] {
@@ -70,7 +59,7 @@ public class Main extends Menu {
     Action action;
     int i = 0;
     while (!finis) {
-      System.out.println(equipes[i % 2].getNom() + ", a vous de jouer");
+      System.out.println("\n" + equipes[i % 2].getNom() + ", a vous de jouer :\n");
       neo = equipes[i % 2].choisitRobot();
       System.out.println(neo.getVue().toString());
       action = neo.choisitAction();
