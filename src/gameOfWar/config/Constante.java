@@ -69,7 +69,7 @@ public class Constante {
   /** Taille maximune en longueur du plateau. */
   public static final int Y_MAX = 25;
   /** Obstacles minimun sur le plateau. */
-  public static final int OBSTACLES_MIN = 20;
+  public static final int OBSTACLES_MIN = 0;
   /** Obstacles maximun sur le plateau. */
   public static final int OBSTACLES_MAX = 50;
 

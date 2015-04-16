@@ -33,13 +33,6 @@ public class Plateau {
     this.largeur = largeur;
     this.x = largeur;
     this.y = longueur;
-    /*
-     * if (pourcentageObstacle > Constante.OBSTACLES_MAX) { System.err.println("trop d'obstacles ; "
-     * + Constante.OBSTACLES_MAX + " sera utilise"); pourcentageObstacle = Constante.OBSTACLES_MAX;
-     * } if (pourcentageObstacle < Constante.OBSTACLES_MIN) {
-     * System.err.println("pas assez d'obstacles ; " + Constante.OBSTACLES_MIN + " sera utilise");
-     * pourcentageObstacle = Constante.OBSTACLES_MIN; }
-     */
     this.plateau = new Cellule[y][x];
     for (int i = 0; i < plateau.length; i++) { //
       for (int j = 0; j < plateau[0].length; j++) { // Remplissage vide
