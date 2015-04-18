@@ -7,6 +7,7 @@ import gameOfWar.robot.Robot;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 
 /**
@@ -48,11 +49,6 @@ public class Equipe {
     this.vue = new Vue(plateau, equipe);
   }
 
-  public Equipe(String nom, Plateau plateau, int equipe, Coordonnees coord, boolean estIa) {
-    this(nom, plateau, equipe, coord);
-    this.estIa = estIa;
-  }
-
   /**
    * Ajout une Mines passer en parametre.
    * 
@@ -78,7 +74,7 @@ public class Equipe {
       System.out.println("choix : " + i + "\n\t" + robot.toString());
       i += 1;
     }
-    i = Constante.secureInput(1, i - 1);
+    i = secureInput(1, i - 1);
     return this.robots.get(i - 1);
   }
 
@@ -159,5 +155,23 @@ public class Equipe {
       ans += ro.toString() + "\n";
     }
     return ans;
+  }
+
+  public boolean estIa() {
+    return this.estIa;
+  }
+
+  public void setIa(boolean estIa) {
+    this.estIa = estIa;
+  }
+
+  public int secureInput(int min, int max) {
+    if (estIa) {
+      if (max - min <= 0) {
+        return min;
+      }
+      return new Random().nextInt(max - min) + min;
+    }
+    return Constante.secureInput(min, max);
   }
 }

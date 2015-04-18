@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class Piegeur extends Robot {
 
-  private int nbMines = 10;
+  private int nbMines = Constante.NB_MINES_MAX;
 
   private List<Coordonnees> coordonnees; // A mediter (voir : direction et objectif) CLEMENT !
 
@@ -32,7 +32,7 @@ public class Piegeur extends Robot {
     List<Coordonnees> mines = initMines();
     if (!mines.isEmpty() && this.getNbMines() > 0) {
       System.out.println("Vous pouvez :\n\t1 - deplacer\n\t2 - mine");
-      int i = Constante.secureInput(1, 2);
+      int i = this.getEquipe().secureInput(1, 2);
       switch (i) {
         case 1:
           return choisitDep(dep);
@@ -43,7 +43,7 @@ public class Piegeur extends Robot {
             System.out.println(h + ": " + c);
             h += 1;
           }
-          this.setObjectif(dep.get(Constante.secureInput(0, h - 1)));
+          this.setObjectif(dep.get(this.getEquipe().secureInput(0, h - 1)));
           new Mine(this);
           return null;
         default:
@@ -58,6 +58,7 @@ public class Piegeur extends Robot {
   @Override
   public void estSoigne() {
     this.setEnergie(Math.min(Constante.ENERGIE_PIEGEUR, getEnergie() + Constante.SOIN));
+    this.setNbMines(Constante.NB_MINES_MAX);
   }
 
   @Override
@@ -166,9 +167,13 @@ public class Piegeur extends Robot {
     }
     mines2.addAll(mines);
     for (Coordonnees coordonnees : mines2) {
-      if (!this.getVue().getPlateau().getCelluleByCoordonnees(coordonnees).estVide()) {
-        mines.remove(coordonnees);
-      }
+      try {
+        if (!this.getVue().getPlateau().getCelluleByCoordonnees(coordonnees).estVide()) {
+          mines.remove(coordonnees);
+        }
+      } catch (Exception e) {
+        //System.err.println("null pointer");
+      }      
     }
     return mines;
   }

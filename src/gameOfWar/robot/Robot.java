@@ -166,7 +166,7 @@ public abstract class Robot {
       System.out.println(j + ": " + c + " " + direction(c));
       j += 1;
     }
-    this.setObjectif(dep.get(Constante.secureInput(0, j - 1)));
+    this.setObjectif(dep.get(this.getEquipe().secureInput(0, j - 1)));
     return new Deplacement(this);
   }
 }

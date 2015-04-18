@@ -32,7 +32,7 @@ public class Tireur extends Robot {
     List<Coordonnees> cible = initCible();
     if (!cible.isEmpty()) {
       System.out.println("Vous pouvez :\n\t1 - deplacer\n\t2 - Attaquer");
-      int i = Constante.secureInput(1, 2);
+      int i = this.getEquipe().secureInput(1, 2);
       switch (i) {
         case 1:
           return choisitDep(dep);
@@ -42,7 +42,7 @@ public class Tireur extends Robot {
           for (Coordonnees c : cible) {
             System.out.println(h + " : " + c + " " + direction(c));
           }
-          this.setObjectif(cible.get(Constante.secureInput(0, h - 1)));
+          this.setObjectif(cible.get(this.getEquipe().secureInput(0, h - 1)));
           return new Attaque(this);
         default:
           System.out.println("mauvais input @choisitAction()");
