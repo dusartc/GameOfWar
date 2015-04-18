@@ -169,6 +169,10 @@ public class Constante {
 
   @SuppressWarnings("resource")
   public static int secureInput(int min, int max) {
+    if (max < min) {
+      System.out.println("Un seul choix possible");
+      return min;
+    }
     Scanner sc = new Scanner(System.in); // impossible de fermer car re appeler plus tard
     int ans;
     do {
