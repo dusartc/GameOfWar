@@ -1,7 +1,6 @@
 package gameOfWar.robot;
 
 import gameOfWar.action.Action;
-import gameOfWar.action.Deplacement;
 import gameOfWar.config.Constante;
 import gameOfWar.config.Coordonnees;
 import gameOfWar.config.Mine;
@@ -29,31 +28,30 @@ public class Piegeur extends Robot {
 
   @Override
   public Action choisitAction() {
-    System.out.println("Vous pouvez :\n\t1 - deplacer\n\t2 - mine");
     List<Coordonnees> dep = initDep();
-    int i = Constante.secureInput(1, 2);
-    switch (i) {
-      case 1:
-        int j = 0;
-        System.out.println("vous pouvez aller en :");
-        for (Coordonnees c : dep) {
-          System.out.println(j + ": " + c);
-          j += 1;
-        }
-        this.setObjectif(dep.get(Constante.secureInput(0, j - 1)));
-        return new Deplacement(this);
-      case 2:
-        int h = 0;
-        System.out.println("vous pouvez poser une mine en :");
-        for (Coordonnees c : dep) {
-          System.out.println(h + ": " + c);
-          h += 1;
-        }
-        this.setObjectif(dep.get(Constante.secureInput(0, h - 1)));
-        new Mine(this);
-        return null;
-      default:
-        return null;
+    List<Coordonnees> mines = initMines();
+    if (!mines.isEmpty() && this.getNbMines() > 0) {
+      System.out.println("Vous pouvez :\n\t1 - deplacer\n\t2 - mine");
+      int i = Constante.secureInput(1, 2);
+      switch (i) {
+        case 1:
+          return choisitDep(dep);
+        case 2:
+          int h = 0;
+          System.out.println("vous pouvez poser une mine en :");
+          for (Coordonnees c : dep) {
+            System.out.println(h + ": " + c);
+            h += 1;
+          }
+          this.setObjectif(dep.get(Constante.secureInput(0, h - 1)));
+          new Mine(this);
+          return null;
+        default:
+          return null;
+      }
+    } else {
+      System.out.println("Vous ne pouvez pas poser de mines\nVous ne pouvez que vous deplacez");
+      return choisitDep(dep);
     }
   }
 
@@ -158,6 +156,21 @@ public class Piegeur extends Robot {
       }
     }
     return dep;
+  }
+
+  private List<Coordonnees> initMines() {
+    List<Coordonnees> mines = new ArrayList<Coordonnees>();
+    List<Coordonnees> mines2 = new ArrayList<Coordonnees>();
+    for (Coordonnees coordonnees : Constante.DEP_PIEGEUR) {
+      mines.add(this.getCoordonnees().ajout(coordonnees));
+    }
+    mines2.addAll(mines);
+    for (Coordonnees coordonnees : mines2) {
+      if (!this.getVue().getPlateau().getCelluleByCoordonnees(coordonnees).estVide()) {
+        mines.remove(coordonnees);
+      }
+    }
+    return mines;
   }
 
 }
