@@ -3,6 +3,7 @@ package gameOfWar.affichage;
 import gameOfWar.config.Constante;
 import gameOfWar.config.Coordonnees;
 import gameOfWar.jeux.Equipe;
+import gameOfWar.jeux.IA;
 import gameOfWar.jeux.Plateau;
 
 public class MenuTexte {
@@ -36,7 +37,9 @@ public class MenuTexte {
     switch (i) {
       case 1:
         System.out.println("Vous allez affronter un ordinateur facile");
-        // ans[1] = new IA();
+        ans[1] =
+            new IA("IA", p, Constante.EQUIPE_DEUX, new Coordonnees(p.getLargeur() - 1,
+                p.getLongueur() - 1));
         return ans;
       case 2:
         ans[1] =
