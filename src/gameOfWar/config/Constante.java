@@ -57,6 +57,7 @@ public class Constante {
   public static final int PORTEE_PIEGEUR = 1;
   /** Correspond à la portée d'un tir pour un Char . */
   public static final int PORTEE_CHAR = 10;
+  public static final int NB_MINES_MAX = 10;
 
 
   // / les données du plateau ///
