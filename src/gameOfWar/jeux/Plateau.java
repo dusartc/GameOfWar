@@ -41,18 +41,18 @@ public class Plateau {
     }
     this.plateau[0][0] = new Base(0, 0, Constante.EQUIPE_UN); //
     this.plateau[this.y - 1][this.x - 1] = // base par default
-        new Base(this.y - 1, this.x - 1, Constante.EQUIPE_DEUX); //
+        new Base(this.x - 1, this.y - 1, Constante.EQUIPE_DEUX); //
 
     double nbObstacles =
         ((double) pourcentageObstacle / 100) * (this.plateau[0].length * this.plateau.length);
     int currentObstacles = 0;
     Random rd = new Random();
     while (currentObstacles < nbObstacles) {
-      int rdX = rd.nextInt(this.longueur - 2) + 1;
-      int rdY = rd.nextInt(this.largeur - 2) + 1;
-      if (!getCellule(rdY, rdX).estMur() && getCellule(rdY, rdX).estBase() == 0
-          && getCellule(rdY, rdX).contientMine() == 0 && getCellule(rdY, rdX).estRobot() == 0) {
-        this.plateau[rdX][rdY] = new Mur(rdX, rdY);
+      int rdX = rd.nextInt(this.largeur - 2) + 1;
+      int rdY = rd.nextInt(this.longueur - 2) + 1;
+      if (!getCellule(rdX, rdY).estMur() && getCellule(rdX, rdY).estBase() == 0
+          && getCellule(rdX, rdY).contientMine() == 0 && getCellule(rdX, rdY).estRobot() == 0) {
+        this.plateau[rdY][rdX] = new Mur(rdX, rdY);
         currentObstacles += 1;
       }
     }
