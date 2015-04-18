@@ -21,8 +21,14 @@ public class Attaque extends Action {
 
   @Override
   public void agit() {
+    System.out.println("Vous attaqué "
+        + this.getRobot().getVue().getPlateau().getCelluleByCoordonnees(getObjectif()).getRobot()
+        + " pour un montant de " + this.getRobot().getDegatTir());
     this.getRobot().getVue().getPlateau().getCelluleByCoordonnees(getObjectif()).getRobot()
         .subitTirDe(this.getRobot());
+    System.out.println("Il lui reste desormais "
+        + this.getRobot().getVue().getPlateau().getCelluleByCoordonnees(getDirection()).getRobot()
+            .getEnergie() + " energie");
     this.getRobot().perdEnergieApresAction();
   }
 
