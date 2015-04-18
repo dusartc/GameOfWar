@@ -156,10 +156,7 @@ public class Cellule {
    * @return
    */
   public boolean estVide() {
-    if (this.estMur() || this.estBase() > 0 || this.estRobot() != 0 || contientMine() > 0) {
-      return false;
-    }
-    return true;
+    return !(this.estMur() || this.estBase() > 0 || this.estRobot() != 0 || contientMine() > 0);
   }
 
   /**
