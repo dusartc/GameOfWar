@@ -2,7 +2,6 @@ package gameOfWar.robot;
 
 import gameOfWar.action.Action;
 import gameOfWar.action.Attaque;
-import gameOfWar.action.Deplacement;
 import gameOfWar.config.Constante;
 import gameOfWar.config.Coordonnees;
 import gameOfWar.jeux.Equipe;
@@ -39,19 +38,12 @@ public class Char extends Robot {
       int i = Constante.secureInput(1, 2);
       switch (i) {
         case 1:
-          int j = 0;
-          System.out.println("Vous pouvez aller en :");
-          for (Coordonnees c : dep) {
-            System.out.println(j + " : " + c);
-            j += 1;
-          }
-          this.setObjectif(dep.get(Constante.secureInput(0, j - 1)));
-          return new Deplacement(this);
+          return choisitDep(dep);
         case 2:
           int h = 0;
           System.out.println("Vous pouvez attaquer :");
           for (Coordonnees c : cible) {
-            System.out.println(h + " : " + c);
+            System.out.println(h + " : " + c + " " + direction(c));
           }
           this.setObjectif(cible.get(Constante.secureInput(0, h - 1)));
           return new Attaque(this);
@@ -61,14 +53,7 @@ public class Char extends Robot {
       }
     } else {
       System.out.println("Aucune cible disponible\nVous ne pouvez que vous deplacer");
-      int j = 0;
-      System.out.println("Vous pouvez aller en :");
-      for (Coordonnees c : dep) {
-        System.out.println(j + " : " + c);
-        j += 1;
-      }
-      this.setObjectif(dep.get(Constante.secureInput(0, j - 1)));
-      return new Deplacement(this);
+      return choisitDep(dep);
     }
     return null;
   }
