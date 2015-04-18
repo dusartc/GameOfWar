@@ -24,17 +24,36 @@ public class MenuTexte {
   }
 
   public static Equipe[] initialisationEquipes(Plateau p) {
+    Equipe[] ans = new Equipe[2];
     clearScreen();
     System.out.println(quadrillage("INITIALISATION DES EQUIPES"));
+    ans[0] = new Equipe(choisitPays(), p, Constante.EQUIPE_UN, new Coordonnees(0, 0));
+    // TODO 2eme equipe soit joueur ou IA
+    clearScreen();
+    System.out
+        .println("Voulez-vous affronter l'ordinateur ou un autre joueur ?\n\t1 - Ordinateur\n\t2 - Joueur");
+    int i = Constante.secureInput(1, 2);
+    switch (i) {
+      case 1:
+        System.out.println("Vous allez affronter un ordinateur facile");
+        // ans[1] = new IA();
+        return ans;
+      case 2:
+        ans[1] =
+            new Equipe(choisitPays(), p, Constante.EQUIPE_DEUX, new Coordonnees(p.getLargeur() - 1,
+                p.getLongueur() - 1));
+        return ans;
+      default:
+        return ans;
+    }
+  }
+
+  private static String choisitPays() {
     System.out.println("Veuillez choisir votre pays parmis ceux-ci :");
-    Equipe[] ans = new Equipe[2];
     for (int i = 0; i < Constante.PAYS.length; i++) {
       System.out.println("\t" + i + " - " + Constante.PAYS[i]);
     }
-    String nom = Constante.PAYS[Constante.secureInput(0, Constante.PAYS.length - 1)];
-    ans[0] = new Equipe(nom, p, Constante.EQUIPE_UN, new Coordonnees(0, 0));
-    //TODO 2eme equipe soit joueur ou IA
-    return ans;
+    return Constante.PAYS[Constante.secureInput(0, Constante.PAYS.length - 1)];
   }
 
   private static String quadrillage(String message) {
