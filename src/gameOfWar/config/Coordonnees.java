@@ -32,6 +32,10 @@ public class Coordonnees {
   public Coordonnees ajout(Coordonnees coord) {
     return new Coordonnees(coord.x + this.x, coord.y + this.y);
   }
+  
+  public Coordonnees difference(Coordonnees coordonnees) {
+    return new Coordonnees(coordonnees.x - this.x, coordonnees.y - this.y);
+  }
 
   /**
    * Calcule les coordonnees.
@@ -51,10 +55,7 @@ public class Coordonnees {
    * @return
    */
   public boolean equals(Coordonnees c) {
-    if (this.x == c.x && this.y == c.y) {
-      return true;
-    }
-    return false;
+    return this.x == c.x && this.y == c.y;
   }
 
   public int getHauteur() {
