@@ -1,6 +1,7 @@
 package gameOfWar.robot;
 
 import gameOfWar.action.Action;
+import gameOfWar.action.Deplacement;
 import gameOfWar.config.Constante;
 import gameOfWar.config.Coordonnees;
 import gameOfWar.jeux.Equipe;
@@ -92,6 +93,10 @@ public abstract class Robot {
     this.setEnergie(getEnergie() - getCoutAction());
   }
 
+  public void perdEnergieApresDep() {
+    this.setEnergie(getEnergie() - getCoupDep());
+  }
+
   public void setCoordonnees(Coordonnees coordonnees) {
     this.coordonnees = coordonnees;
   }
@@ -111,5 +116,57 @@ public abstract class Robot {
   @Override
   public String toString() {
     return "energie : " + this.energie + ", " + this.coordonnees.toString();
+  }
+
+  public String direction(Coordonnees c) {
+    Coordonnees arrive = this.getCoordonnees().difference(c);
+    if (arrive.equals(Constante.BAS_CHAR)) {
+      return "SUD";
+    }
+    if (arrive.equals(Constante.HAUT_CHAR)) {
+      return "NORD";
+    }
+    if (arrive.equals(Constante.DROITE_CHAR)) {
+      return "EST";
+    }
+    if (arrive.equals(Constante.GAUCHE_CHAR)) {
+      return "OUEST";
+    }
+    if (arrive.equals(Constante.BAS)) {
+      return "SUD";
+    }
+    if (arrive.equals(Constante.HAUT)) {
+      return "NORD";
+    }
+    if (arrive.equals(Constante.DROITE)) {
+      return "EST";
+    }
+    if (arrive.equals(Constante.GAUCHE)) {
+      return "OUEST";
+    }
+    if (arrive.equals(Constante.HAUT_DROITE)) {
+      return "NORD EST";
+    }
+    if (arrive.equals(Constante.HAUT_GAUCHE)) {
+      return "NORD OUEST";
+    }
+    if (arrive.equals(Constante.BAS_DROITE)) {
+      return "SUD EST";
+    }
+    if (arrive.equals(Constante.BAS_GAUCHE)) {
+      return "SUD OUEST";
+    }
+    return "unknown";
+  }
+
+  public Action choisitDep(List<Coordonnees> dep) {
+    int j = 0;
+    System.out.println("vous pouvez aller en :");
+    for (Coordonnees c : dep) {
+      System.out.println(j + ": " + c + " " + direction(c));
+      j += 1;
+    }
+    this.setObjectif(dep.get(Constante.secureInput(0, j - 1)));
+    return new Deplacement(this);
   }
 }
