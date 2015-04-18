@@ -3,12 +3,12 @@ package gameOfWar.jeux;
 import gameOfWar.action.Action;
 import gameOfWar.affichage.Menu;
 import gameOfWar.affichage.MenuTexte;
-import gameOfWar.config.Constante;
-import gameOfWar.config.Coordonnees;
 import gameOfWar.robot.Char;
 import gameOfWar.robot.Piegeur;
 import gameOfWar.robot.Robot;
 import gameOfWar.robot.Tireur;
+
+import java.util.ArrayList;
 
 
 /**
@@ -43,11 +43,8 @@ public class Main extends Menu {
 
     Plateau plateau = MenuTexte.initialisationPlateau();
 
-    Equipe[] equipes =
-        new Equipe[] {
-            new Equipe("joueur1", plateau, Constante.EQUIPE_UN, new Coordonnees(0, 0)),
-            new Equipe("joueur2", plateau, Constante.EQUIPE_DEUX, new Coordonnees(
-                plateau.getLargeur() - 1, plateau.getLongueur() - 1))};
+    Equipe[] equipes = MenuTexte.initialisationEquipes(plateau);
+
     for (Equipe joueur : equipes) {
       joueur.addRobot(new Tireur(joueur.getVue(), joueur));
       joueur.addRobot(new Piegeur(joueur.getVue(), joueur));
@@ -58,8 +55,10 @@ public class Main extends Menu {
     Robot neo;
     Action action;
     int i = 0;
+    ArrayList<Robot> robotATuer = new ArrayList<Robot>();
     while (!finis) {
-      System.out.println(plateau + "\n" + equipes[i % 2].getNom() + ", a vous de jouer :\n");
+      System.out.println(equipes[i % 2].getVue().toString() + "\n" + equipes[i % 2].getNom()
+          + ", a vous de jouer :\n");
       neo = equipes[i % 2].choisitRobot();
       System.out.println(neo.getVue().toString());
       action = neo.choisitAction();
@@ -73,13 +72,29 @@ public class Main extends Menu {
         }
         for (Robot r : joueur.getRobots()) {
           if (r.estMort()) {
-            r.disparait();
-          }
-          if (r.estSurBase()) {
-            r.estSoigne();
+            robotATuer.add(r);
           }
         }
       }
+      for (Robot r : equipes[i % 2].getRobots()) {
+        if (r.estSurBase()) {// on soigne que les robots de l'equipe courante
+          r.estSoigne();
+        }
+      }
+      if (!robotATuer.isEmpty()) {
+        for (Robot r : robotATuer) {
+          r.disparait();
+        }
+        robotATuer.clear();
+      }
+    }
+    MenuTexte.clearScreen();
+    if (equipes[0].perdu() && equipes[1].perdu()) {
+      System.out.println("Aucun joueur n'a gagner");
+    } else if (equipes[0].perdu()) {
+      System.out.println(equipes[1].getNom() + " a gagne");
+    } else {
+      System.out.println(equipes[0].getNom() + " a gagne");
     }
   }
 }
