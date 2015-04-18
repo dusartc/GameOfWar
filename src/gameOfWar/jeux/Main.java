@@ -3,6 +3,8 @@ package gameOfWar.jeux;
 import gameOfWar.action.Action;
 import gameOfWar.affichage.Menu;
 import gameOfWar.affichage.MenuTexte;
+import gameOfWar.config.Constante;
+import gameOfWar.config.Coordonnees;
 import gameOfWar.robot.Char;
 import gameOfWar.robot.Piegeur;
 import gameOfWar.robot.Robot;
@@ -43,7 +45,12 @@ public class Main extends Menu {
 
     Plateau plateau = MenuTexte.initialisationPlateau();
 
-    Equipe[] equipes = MenuTexte.initialisationEquipes(plateau);
+    // Equipe[] equipes = MenuTexte.initialisationEquipes(plateau);
+    Equipe[] equipes =
+        new Equipe[] {
+            new IA("ia1", plateau, Constante.EQUIPE_UN, new Coordonnees(0, 0)),
+            new IA("ia2", plateau, Constante.EQUIPE_DEUX, new Coordonnees(plateau.getLargeur() - 1,
+                plateau.getLongueur() - 1))};
 
     for (Equipe joueur : equipes) {
       joueur.addRobot(new Tireur(joueur.getVue(), joueur));
