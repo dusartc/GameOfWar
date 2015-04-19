@@ -11,24 +11,37 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-// import java.util.ArrayList;import java.util.List;t;
+// import java.util.ArrayList;import java.util.List;
 // Touche moi cette belle ArrayList(I
 
 
 /**
- * @author Aurelia, Mathieu
+ * Modélise un Char
+ * 
+ * @author Aurelia
+ * @author Mathieu
  * @author Clement
  *
  */
 public class Char extends Robot {
 
-  private List<Coordonnees> coordonnees; // A mediter (voir : direction et objectif) CLEMENT !
+  private List<Coordonnees> coordonnees;
 
+  /**
+   * Construit un char
+   * 
+   * @param vue
+   * @param equipe
+   * @see Robot
+   */
   public Char(Vue vue, Equipe equipe) {
     super(vue, equipe);
     this.setEnergie(Constante.ENERGIE_CHAR);
   }
 
+  /**
+   * @see Robot
+   */
   @Override
   public Action choisitAction() {
     List<Coordonnees> dep = initDep();
@@ -58,26 +71,41 @@ public class Char extends Robot {
     return null;
   }
 
+  /**
+   * @see Robot
+   */
   @Override
   public void estSoigne() {
     this.setEnergie(Math.min(Constante.ENERGIE_CHAR, getEnergie() + Constante.SOIN));
   }
 
+  /**
+   * @see Robot
+   */
   @Override
   public int getCoupDep() {
     return Constante.COUP_DEPLACEMENTS_CHAR;
   }
 
+  /**
+   * @see Robot
+   */
   @Override
   public int getCoutAction() {
     return Constante.COUP_ACTION_CHAR;
   }
 
+  /**
+   * @see Robot
+   */
   @Override
   public int getDegatMine() {
     return Constante.DEGATS_MINES_CHAR;
   }
 
+  /**
+   * @see Robot
+   */
   @Override
   public int getDegatTir() {
     return Constante.DEGATS_CHAR;
@@ -88,16 +116,25 @@ public class Char extends Robot {
     return this.coordonnees;
   }
 
+  /**
+   * @see Robot
+   */
   @Override
   public String getType() {
     return this.getClass().getName().substring(getClass().getName().lastIndexOf(".") + 1);
   }
 
+  /**
+   * @see Robot
+   */
   @Override
   public void subitMine() {
     setEnergie(getEnergie() - Constante.DEGATS_PIEGEUR);
   }
 
+  /**
+   * @see Robot
+   */
   @Override
   public void subitTirDe(Robot robot) {
     if (robot instanceof Tireur || robot instanceof Char) {

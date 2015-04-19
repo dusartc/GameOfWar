@@ -22,9 +22,14 @@ public abstract class Robot {
   private Vue vue;
   private Coordonnees objectif;
 
-
+  /**
+   * Contruit un Robot
+   * 
+   * @param vue
+   * @param equipe
+   */
   public Robot(Vue vue, Equipe equipe) {
-    /** calcul des coordonnees de la base en fonction de son num d'equipe */
+    /* calcul des coordonnees de la base en fonction de son num d'equipe */
     this.coordonnees =
         new Coordonnees((equipe.getEquipe() == Constante.EQUIPE_UN) ? 0 : vue.getPlateau()
             .getLargeur() - 1, (equipe.getEquipe() == Constante.EQUIPE_UN) ? 0 : vue.getPlateau()
@@ -33,6 +38,11 @@ public abstract class Robot {
     this.vue = vue;
   }
 
+  /**
+   * Demande a l'utilisateur une action pour son char
+   * 
+   * @return Action
+   */
   abstract public Action choisitAction();
 
   public void disparait() {
@@ -44,6 +54,9 @@ public abstract class Robot {
     return this.energie <= 0;
   }
 
+  /**
+   * Permet de soigner le Robot
+   */
   abstract public void estSoigne();
 
   public boolean estSurBase() {
@@ -53,16 +66,41 @@ public abstract class Robot {
         .getPlateau().getLongueur() - 1));
   }
 
+  /**
+   * renvoie l'emplacement du Robot
+   * 
+   * @return Coordonnees
+   */
   public Coordonnees getCoordonnees() {
     return this.coordonnees;
   }
 
+  /**
+   * renvoie le coup de deplacement du Robot
+   * 
+   * @return int
+   */
   abstract public int getCoupDep();
 
+  /**
+   * Renvoie le cout de l'action du Robot
+   * 
+   * @return int
+   */
   abstract public int getCoutAction();
 
+  /**
+   * Renvoie les degats que le Robot subira s'il marche sur une mine
+   * 
+   * @return int
+   */
   abstract public int getDegatMine();
 
+  /**
+   * Renvoie les degats d'un tir du Robot
+   * 
+   * @return
+   */
   abstract public int getDegatTir();
 
   abstract public List<Coordonnees> getDeplacements();
@@ -75,6 +113,11 @@ public abstract class Robot {
     return this.equipe;
   }
 
+  /**
+   * Renvoie le numero de l'equipe du Robot
+   * 
+   * @return
+   */
   public int getNumEquipe() {
     return this.equipe.getEquipe();
   }
@@ -83,16 +126,27 @@ public abstract class Robot {
     return this.objectif;
   }
 
+  /**
+   * Renvoie le type de Robot (ie piegeur, char, tireur)
+   * 
+   * @return String
+   */
   abstract public String getType();
 
   public Vue getVue() {
     return this.vue;
   }
 
+  /**
+   * Fait perdre de l'energie au Robot apres avoir effectue une action
+   */
   public void perdEnergieApresAction() {
     this.setEnergie(getEnergie() - getCoutAction());
   }
 
+  /**
+   * Fait perdre de l'energie au Robot apres avoir effectue un deplacement
+   */
   public void perdEnergieApresDep() {
     this.setEnergie(getEnergie() - getCoupDep());
   }
@@ -109,8 +163,16 @@ public abstract class Robot {
     this.objectif = objectif;
   }
 
+  /**
+   * Fait perdre de l'energie au Robot quand il marche sur une mine
+   */
   abstract public void subitMine();
 
+  /**
+   * Fait perdre de l'energie au Robot apres avoir prit un tir d'un autre Robot
+   * 
+   * @param robot le Robot qui a tiré
+   */
   abstract public void subitTirDe(Robot robot);
 
   @Override
@@ -118,6 +180,13 @@ public abstract class Robot {
     return "energie : " + this.energie + ", " + this.coordonnees.toString();
   }
 
+  /**
+   * Renvoie la direction des coordonnees par rapport aux coordonnees du Robot (ie NORD SUD EST
+   * OUEST)
+   * 
+   * @param Coordonnees
+   * @return String
+   */
   public String direction(Coordonnees c) {
     Coordonnees arrive = this.getCoordonnees().difference(c);
     if (arrive.equals(Constante.BAS_CHAR)) {
@@ -159,6 +228,12 @@ public abstract class Robot {
     return "unknown";
   }
 
+  /**
+   * Demande a l'utilisateur de choisir un deplacement parmis la liste passée en parametre
+   * 
+   * @param dep List de coordonnees des deplacements possible
+   * @return Action
+   */
   public Action choisitDep(List<Coordonnees> dep) {
     int j = 0;
     System.out.println("vous pouvez aller en :");

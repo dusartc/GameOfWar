@@ -21,11 +21,21 @@ public class Tireur extends Robot {
 
   private List<Coordonnees> coordonnees; // A mediter (voir : direction et objectif) CLEMENT !
 
+  /**
+   * Construit un Tireur
+   * 
+   * @param vue
+   * @param equipe
+   * @see Robot
+   */
   public Tireur(Vue vue, Equipe equipe) {
     super(vue, equipe);
     this.setEnergie(Constante.ENERGIE_TIREUR);
   }
 
+  /**
+   * @see Robot
+   */
   @Override
   public Action choisitAction() {
     List<Coordonnees> dep = initDep();
@@ -55,26 +65,41 @@ public class Tireur extends Robot {
     return null;
   }
 
+  /**
+   * @see Robot
+   */
   @Override
   public void estSoigne() {
     this.setEnergie(Math.min(Constante.ENERGIE_TIREUR, getEnergie() + Constante.SOIN));
   }
 
+  /**
+   * @see Robot
+   */
   @Override
   public int getCoupDep() {
     return Constante.COUP_DEPLACEMENTS_TIREUR;
   }
 
+  /**
+   * @see Robot
+   */
   @Override
   public int getCoutAction() {
     return Constante.COUP_ACTION_TIREUR;
   }
 
+  /**
+   * @see Robot
+   */
   @Override
   public int getDegatMine() {
     return Constante.DEGATS_MINES_TIREUR;
   }
 
+  /**
+   * @see Robot
+   */
   @Override
   public int getDegatTir() {
     return Constante.DEGATS_TIREUR;
@@ -85,16 +110,25 @@ public class Tireur extends Robot {
     return this.coordonnees;
   }
 
+  /**
+   * @see Robot
+   */
   @Override
   public String getType() {
     return this.getClass().getName().substring(getClass().getName().lastIndexOf(".") + 1);
   }
 
+  /**
+   * @see Robot
+   */
   @Override
   public void subitMine() {
     setEnergie(getEnergie() - Constante.DEGATS_PIEGEUR);
   }
 
+  /**
+   * @see Robot
+   */
   @Override
   public void subitTirDe(Robot robot) {
     if (robot instanceof Tireur || robot instanceof Char) {

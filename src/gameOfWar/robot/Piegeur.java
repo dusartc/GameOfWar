@@ -18,14 +18,23 @@ public class Piegeur extends Robot {
 
   private int nbMines = Constante.NB_MINES_MAX;
 
-  private List<Coordonnees> coordonnees; // A mediter (voir : direction et objectif) CLEMENT !
+  private List<Coordonnees> coordonnees;
 
-
+  /**
+   * Construit un Piegeur
+   * 
+   * @param vue
+   * @param equipe
+   * @see Robot
+   */
   public Piegeur(Vue vue, Equipe equipe) {
     super(vue, equipe);
     this.setEnergie(Constante.ENERGIE_PIEGEUR);
   }
 
+  /**
+   * @see Robot
+   */
   @Override
   public Action choisitAction() {
     List<Coordonnees> dep = initDep();
@@ -55,27 +64,42 @@ public class Piegeur extends Robot {
     }
   }
 
+  /**
+   * @see Robot
+   */
   @Override
   public void estSoigne() {
     this.setEnergie(Math.min(Constante.ENERGIE_PIEGEUR, getEnergie() + Constante.SOIN));
     this.setNbMines(Constante.NB_MINES_MAX);
   }
 
+  /**
+   * @see Robot
+   */
   @Override
   public int getCoupDep() {
     return Constante.COUP_DEPLACEMENTS_PIEGEUR;
   }
 
+  /**
+   * @see Robot
+   */
   @Override
   public int getCoutAction() {
     return Constante.COUP_ACTION_PIEGEUR;
   }
 
+  /**
+   * @see Robot
+   */
   @Override
   public int getDegatMine() {
     return Constante.DEGATS_PIEGEUR;
   }
 
+  /**
+   * @see Robot
+   */
   @Override
   public int getDegatTir() {
     return Constante.DEGATS_TIRS_PIEGEUR; // Vaut 0
@@ -86,10 +110,18 @@ public class Piegeur extends Robot {
     return this.coordonnees;
   }
 
+  /**
+   * Renvoie le nombre de mines que le pigeur possede
+   * 
+   * @return int
+   */
   public int getNbMines() {
     return this.nbMines;
   }
 
+  /**
+   * @see Robot
+   */
   @Override
   public String getType() {
     return this.getClass().getName().substring(getClass().getName().lastIndexOf(".") + 1);
@@ -99,6 +131,9 @@ public class Piegeur extends Robot {
     this.setNbMines(this.getNbMines() - 1);
   }
 
+  /**
+   * retourne vrai si le Robot a reussis a poser une mine
+   */
   public boolean poseMine() {
     if (this.getNbMines() <= 0) {
       return false;
@@ -114,11 +149,17 @@ public class Piegeur extends Robot {
     this.nbMines = nbMines;
   }
 
+  /**
+   * @see Robot
+   */
   @Override
   public void subitMine() {
     setEnergie(getEnergie() - Constante.DEGATS_PIEGEUR);
   }
 
+  /**
+   * @see Robot
+   */
   @Override
   public void subitTirDe(Robot robot) {
     if (robot instanceof Tireur || robot instanceof Char) {
@@ -172,8 +213,8 @@ public class Piegeur extends Robot {
           mines.remove(coordonnees);
         }
       } catch (Exception e) {
-        //System.err.println("null pointer");
-      }      
+        // System.err.println("null pointer");
+      }
     }
     return mines;
   }
