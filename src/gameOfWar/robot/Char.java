@@ -186,7 +186,8 @@ public class Char extends Robot {
     for (Coordonnees c : caillou) {
       if (c.getHauteur() < 0 || c.getLargeur() < 0
           || c.getHauteur() >= this.getVue().getPlateau().getLongueur()
-          || c.getLargeur() >= this.getVue().getPlateau().getLargeur()) {
+          || c.getLargeur() >= this.getVue().getPlateau().getLargeur()
+          || this.getVue().getPlateau().getCelluleByCoordonnees(c).getRobot() != null) {
         dep.remove(c);
       }
       try {
