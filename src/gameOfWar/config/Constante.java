@@ -7,7 +7,11 @@ import java.util.Scanner;
 /**
  * Regroupe toute les constantes du projet.
  * 
- * @author Mathieu,Aurelia,Samantha,Mariam,Alexandre
+ * @author Mathieu
+ * @author Aurelia
+ * @author Samantha
+ * @author Mariam
+ * @author Alexandre
  * @author Clement
  */
 public class Constante {
@@ -57,6 +61,7 @@ public class Constante {
   public static final int PORTEE_PIEGEUR = 1;
   /** Correspond à la portée d'un tir pour un Char . */
   public static final int PORTEE_CHAR = 10;
+  /** Correspond au nombre de mines que le piegeur peut porter */
   public static final int NB_MINES_MAX = 10;
 
 
@@ -112,7 +117,7 @@ public class Constante {
   public static List<Coordonnees> L_PORTEE_CHAR;
   /** List des coordonnees pouvant etre cible par tireur */
   public static List<Coordonnees> L_PORTEE_TIREUR;
-
+  /** Tableau des pays que le joueur peut selectionner */
   public static String[] PAYS = new String[] {"France", "Russie", "Allemagne", "Angleterre",
       "Etats-Unis", "Bresil", "Canada", "Chine", "Japon"};
 
@@ -168,6 +173,13 @@ public class Constante {
     }
   }
 
+  /**
+   * Demande a l'utilisateur un nombre entre min et max
+   * 
+   * @param min la borne minimale
+   * @param max la borne maximale
+   * @return int
+   */
   @SuppressWarnings("resource")
   public static int secureInput(int min, int max) {
     if (max < min) {
@@ -188,6 +200,14 @@ public class Constante {
     return ans;
   }
 
+  /**
+   * Demande a l'utilisateur un nombre entre min et max avec la String passée en parametre
+   * 
+   * @param min la borne minimale
+   * @param max la borne maximale
+   * @param string ce qui va etre demander a l'utilisateur
+   * @return int
+   */
   @SuppressWarnings("resource")
   public static int secureInput(int min, int max, String string) {
     Scanner sc = new Scanner(System.in); // impossible de fermer car re appeler plus tard

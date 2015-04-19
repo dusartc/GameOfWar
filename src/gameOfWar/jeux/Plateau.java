@@ -14,6 +14,8 @@ import java.util.Random;
 
 
 /**
+ * Permet de modeliser un plateau
+ * 
  * @author Clement
  */
 public class Plateau {
@@ -24,8 +26,15 @@ public class Plateau {
   private int x;
   private int y;
 
+  /**
+   * Construit un plateau longueur*largeur avec un certain pourcentage d'obstacles
+   * 
+   * @param longueur la longueur du plateau
+   * @param largeur la largeur du plateau
+   * @param pourcentageObstacle
+   */
   public Plateau(int longueur, int largeur, int pourcentageObstacle) {
-    /**
+    /*
      * on doit avoir un chemin entre les deux bases : on met des murs seulements au coordonnees 0+1
      * et max-1 pour avoir un chemin qui fait le tour
      */
@@ -56,10 +65,6 @@ public class Plateau {
         currentObstacles += 1;
       }
     }
-  }
-
-  public Plateau(int longueur, int largeur, int x, int y, int direction) {
-    this.plateau = new Cellule[largeur][longueur];
   }
 
   public Cellule getCellule(int x, int y) {
@@ -104,14 +109,27 @@ public class Plateau {
     return plateau[y][x].estRobot();
   }
 
+  /**
+   * Vide la Cellule en x, y
+   * 
+   * @param x
+   * @param y
+   */
   public void libereCellule(int x, int y) {
     this.plateau[y][x].videCase();
   }
 
+  /**
+   * pose un Robot en x, y
+   * 
+   * @param x
+   * @param y
+   * @param robot
+   */
   public void poserRobot(int x, int y, Robot robot) {
-    /**
-     * on peut poser un robot seulement sur une base on test si la cellule passer en param n'est pas
-     * un mur, qu'elle ne contienne pas de mine et que cela correspond bien a une base
+    /*
+     * on peut poser un robot si la cellule passer en param n'est pas un mur, qu'elle ne contienne
+     * pas de mine
      */
     if (!this.estMur(x, y)) {
       this.getCellule(x, y).poserRobot(robot);

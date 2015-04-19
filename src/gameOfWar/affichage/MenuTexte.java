@@ -6,24 +6,34 @@ import gameOfWar.jeux.Equipe;
 import gameOfWar.jeux.IA;
 import gameOfWar.jeux.Plateau;
 
+/**
+ * Affiche des menus en mode texte
+ * 
+ * @author clement
+ */
 public class MenuTexte {
 
-  public static Plateau initialisationPlateau() {
-    clearScreen();
-    System.out.println(quadrillage("INITIALISATION DU PLATEAU"));
-    int x =
-        Constante.secureInput(Constante.X_MIN, Constante.X_MAX,
-            "Entrez la largeur du plateau entre " + Constante.X_MIN + " et " + Constante.X_MAX);
-    int y =
-        Constante.secureInput(Constante.Y_MIN, Constante.Y_MAX,
-            "Entrez la longueur du plateau entre " + Constante.Y_MIN + " et " + Constante.Y_MAX);
-    int nb =
-        Constante.secureInput(Constante.OBSTACLES_MIN, Constante.OBSTACLES_MAX,
-            "Entrez le % d'obstacles du plateau entre " + Constante.OBSTACLES_MIN + " et "
-                + Constante.OBSTACLES_MAX);
-    return new Plateau(x, y, nb);
+  private static String choisitPays() {
+    System.out.println("Veuillez choisir votre pays parmis ceux-ci :");
+    for (int i = 0; i < Constante.PAYS.length; i++) {
+      System.out.println("\t" + i + " - " + Constante.PAYS[i]);
+    }
+    return Constante.PAYS[Constante.secureInput(0, Constante.PAYS.length - 1)];
   }
 
+  /**
+   * Efface l'écran si la console associé prend en charge les codes ANSI
+   */
+  public static void clearScreen() {
+    System.out.print("\u001b[2J");
+  }
+
+  /**
+   * Demande a l'utilisateur l'Equipe qu'il souhaite et l'adversaire qu'il souhaite
+   * 
+   * @param plateau le plateau qui servira a creer la vue de l'equipe
+   * @return Equipe[] les equipes qui s'affronteront sur le plateau
+   */
   public static Equipe[] initialisationEquipes(Plateau p) {
     Equipe[] ans = new Equipe[2];
     clearScreen();
@@ -51,12 +61,25 @@ public class MenuTexte {
     }
   }
 
-  private static String choisitPays() {
-    System.out.println("Veuillez choisir votre pays parmis ceux-ci :");
-    for (int i = 0; i < Constante.PAYS.length; i++) {
-      System.out.println("\t" + i + " - " + Constante.PAYS[i]);
-    }
-    return Constante.PAYS[Constante.secureInput(0, Constante.PAYS.length - 1)];
+  /**
+   * Demande a l'utilisateur la taille du plateau qu'il souhaite
+   * 
+   * @return Plateau le plateau voulu
+   */
+  public static Plateau initialisationPlateau() {
+    clearScreen();
+    System.out.println(quadrillage("INITIALISATION DU PLATEAU"));
+    int x =
+        Constante.secureInput(Constante.X_MIN, Constante.X_MAX,
+            "Entrez la largeur du plateau entre " + Constante.X_MIN + " et " + Constante.X_MAX);
+    int y =
+        Constante.secureInput(Constante.Y_MIN, Constante.Y_MAX,
+            "Entrez la longueur du plateau entre " + Constante.Y_MIN + " et " + Constante.Y_MAX);
+    int nb =
+        Constante.secureInput(Constante.OBSTACLES_MIN, Constante.OBSTACLES_MAX,
+            "Entrez le % d'obstacles du plateau entre " + Constante.OBSTACLES_MIN + " et "
+                + Constante.OBSTACLES_MAX);
+    return new Plateau(x, y, nb);
   }
 
   private static String quadrillage(String message) {
@@ -70,10 +93,6 @@ public class MenuTexte {
       ans += "*";
     }
     return "\t" + ans + "\n";
-  }
-
-  public static void clearScreen() {
-    System.out.print("\u001b[2J");
   }
 
 }

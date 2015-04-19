@@ -18,12 +18,4 @@ public class Mur extends Cellule {
     this.setMur(true);
   }
 
-  /**
-   * Regarde si c'est possible de passer.
-   * 
-   * @return
-   */
-  public boolean estPassable() {
-    return !this.estMur();
-  }
 }

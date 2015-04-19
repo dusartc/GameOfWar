@@ -4,24 +4,31 @@ import gameOfWar.config.Coordonnees;
 import gameOfWar.robot.Robot;
 
 /**
- * La classe Attaque permet de produire une action de tir ou de poser une mine.
+ * Permet Ã  un robot de tirer
  * 
- * @author (Samantha, Mariam)
+ * @author Samantha
+ * @author Mariam
  * @author Clement
  */
 public class Attaque extends Action {
 
+  /**
+   * @see Action
+   */
   public Attaque(Robot robot) {
-    super(robot, robot.getObjectif());
+    super(robot);
   }
 
-  public Attaque(Robot robot, Coordonnees direction) {
-    super(robot, direction);
-  }
+//  public Attaque(Robot robot, Coordonnees direction) {
+//    super(robot, direction);
+//  }
 
+  /**
+   * @see Action
+   */
   @Override
   public void agit() {
-    System.out.println("Vous attaqué "
+    System.out.println("Vous attaquï¿½ "
         + this.getRobot().getVue().getPlateau().getCelluleByCoordonnees(getObjectif()).getRobot()
         + " pour un montant de " + this.getRobot().getDegatTir());
     this.getRobot().getVue().getPlateau().getCelluleByCoordonnees(getObjectif()).getRobot()

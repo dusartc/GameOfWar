@@ -11,62 +11,52 @@ import java.util.Random;
 
 
 /**
- * La classe Equipe construit une Equipe
+ * Permet de gerer une Equipe (joueur ou ordinateur)
  * 
  * @author Clement
  */
 public class Equipe {
 
-  /** Correspond au nom de l'equipe */
   private String nom;
-  /** Correspond a la liste des robots de l'equipe */
   private List<Robot> robots;
-  /** Correspond a la liste de mine de l'equipe */
   private List<Mine> mines;
-  /** Correspond a la vue de l'equipe */
   private Vue vue;
-  /** Correspond au numero de l'equipe */
   private int equipe;
-  /** Correspond au coordonnees de base de l'equipe */
   private Coordonnees coordBase;
   private boolean estIa = false;
 
   /**
-   * Le constructeur construit une equipe entiere avec le nom de l'equipe, la vue, le numero de
-   * l'equipe, et les coordonnes.
+   * Construit une equipe d'apres son nom, le plateau dans lequel le jeu est joué, son numero
+   * d'equipe et les coordonnees de sa base
    * 
    * @param nom
    * @param plateau
    * @param equipe
-   * @param coord
+   * @param coordBase
    */
-  public Equipe(String nom, Plateau plateau, int equipe, Coordonnees coord) {
+  public Equipe(String nom, Plateau plateau, int equipe, Coordonnees coordBase) {
     this.nom = nom;
     this.equipe = equipe;
-    this.coordBase = coord;
+    this.coordBase = coordBase;
     this.robots = new ArrayList<Robot>();
     this.mines = new ArrayList<Mine>();
     this.vue = new Vue(plateau, equipe);
   }
 
-  /**
-   * Ajout une Mines passer en parametre.
-   * 
-   * @param mine
-   */
   public void addMines(Mine mine) {
     this.mines.add(mine);
   }
 
-  /** ajouter un robot le pose egalement sur le plateau */
+  /** Ajoute un robot pour l'equipe et le pose sur sa base */
   public void addRobot(Robot robot) {
     this.robots.add(robot);
     this.vue.poserRobot(robot, getCoordBase());
   }
 
   /**
-   * Parcourt des robots, on le decris et lui fixe un numero et on renvoie celui correspondant au
-   * num
+   * Demande a l'utilisateur de choisir un robot parmis ceux de son equipe
+   * 
+   * @return Robot le robot choisit
    */
   public Robot choisitRobot() {
     int i = 1;
@@ -78,17 +68,12 @@ public class Equipe {
     return this.robots.get(i - 1);
   }
 
-  /**
-   * Retour les coordonnees.
-   * 
-   * @return
-   */
   public Coordonnees getCoordBase() {
     return this.coordBase;
   }
 
   /**
-   * Retourne le numero d'equipe.
+   * Retourne le numero de l'equipe.
    * 
    * @return
    */
@@ -96,11 +81,6 @@ public class Equipe {
     return this.equipe;
   }
 
-  /**
-   * retourne le nom de l'equipe.
-   * 
-   * @return
-   */
   public String getNom() {
     return this.nom;
   }
@@ -109,44 +89,31 @@ public class Equipe {
     return this.robots;
   }
 
-  /**
-   * Retourne la vue de l'equipe.
-   * 
-   * @return
-   */
   public Vue getVue() {
     return this.vue;
   }
 
   /**
-   * Perd la partie si perdu est a vrai.
+   * Retourne vrai si le joueur a perdu (ie n'a plus de robots)
    * 
-   * @return
+   * @return boolean
    */
   public boolean perdu() {
     return this.robots.isEmpty();
   }
 
-  /**
-   * Enleve les Mines passer en parametre.
-   * 
-   * @param mine
-   */
   public void removeMines(Mine mine) {
     this.mines.remove(mine);
   }
 
-  /**
-   * Enleve le robot passer en parametre.
-   * 
-   * @param robot
-   */
   public void removeRobot(Robot robot) {
     this.robots.remove(robot);
   }
 
   /**
-   * Affiche le nom de l'equipe et les noms des robots et les coordonnees de la base.
+   * Affiche le nom de l'equipe, les noms des robots et les coordonnees de la base.
+   * 
+   * @see Robot
    */
   @Override
   public String toString() {
@@ -165,6 +132,14 @@ public class Equipe {
     this.estIa = estIa;
   }
 
+  /**
+   * Demande a l'utilisateur d'entre un nombre entre min et max ou renvoie un random entre min et max
+   * si l'equipe est une IA
+   * 
+   * @param min la borne minimale
+   * @param max la borne maximale
+   * @return int un nombre entre min et max
+   */
   public int secureInput(int min, int max) {
     if (estIa) {
       if (max - min <= 0) {

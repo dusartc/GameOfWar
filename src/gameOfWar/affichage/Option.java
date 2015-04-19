@@ -13,7 +13,7 @@ import gameOfWar.jeux.*;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-public class Option extends JPanel{
+public class Option extends JPanel {
   /**
    * 
    */
@@ -27,36 +27,39 @@ public class Option extends JPanel{
     } catch (IOException exception) {
       exception.printStackTrace();
     }
-    Graphics2D graphics2d = (Graphics2D)g;
-    GradientPaint gradientPaint3 = new GradientPaint(0, 0, new Color(0xFF, 0xFF, 0xFF), 0, 90, new Color(110, 110, 110), true);
+    Graphics2D graphics2d = (Graphics2D) g;
+    GradientPaint gradientPaint3 =
+        new GradientPaint(0, 0, new Color(0xFF, 0xFF, 0xFF), 0, 90, new Color(110, 110, 110), true);
     graphics2d.setPaint(gradientPaint3);
     graphics2d.fillRoundRect(-(1), 0, 1025, 75, 20, 20);
     g.setColor(Color.BLACK);
     g.drawRoundRect(-(1), 0, 1025, 75, 20, 20);
-    Font titre = new Font("DÈj‡ Vu", Font.ROMAN_BASELINE, 40);
+    Font titre = new Font("D√©j√† Vu", Font.ROMAN_BASELINE, 40);
     g.setFont(titre);
-    g.setColor(new Color(0x80,0x80,0x80));
-    g.drawString("GAME OF WAR", (this.getWidth()/3)+20, this.getHeight()/12);
-    
-    Font copyright = new Font("DÈj‡ Vu", Font.BOLD, 16);
+    g.setColor(new Color(0x80, 0x80, 0x80));
+    g.drawString("GAME OF WAR", (this.getWidth() / 3) + 20, this.getHeight() / 12);
+
+    Font copyright = new Font("D√©j√† Vu", Font.BOLD, 16);
     g.setFont(copyright);
     g.setColor(Color.black);
-    g.drawString("© Copyright.", 12, 680);
-   // g.g
-    GradientPaint gradientPaint = new GradientPaint(0, -(180), new Color(80, 80, 80), 0, 90, new Color(40, 40, 40), true);
+    g.drawString("@ Copyright.", 12, 680);
+    // g.g
+    GradientPaint gradientPaint =
+        new GradientPaint(0, -(180), new Color(80, 80, 80), 0, 90, new Color(40, 40, 40), true);
     graphics2d.setPaint(gradientPaint);
     graphics2d.fillRoundRect(160, 120, 700, 500, 20, 20);
-    GradientPaint gradientPaint2 = new GradientPaint(0, 0, new Color(0xFF, 0xFF, 0xFF), 0, 90,  new Color(110, 110, 110), true);
+    GradientPaint gradientPaint2 =
+        new GradientPaint(0, 0, new Color(0xFF, 0xFF, 0xFF), 0, 90, new Color(110, 110, 110), true);
     graphics2d.setPaint(gradientPaint2);
     graphics2d.fillRoundRect(160, 120, 700, 100, 20, 20);
-    Font sousTitre = new Font("DÈj‡ Vu", Font.ROMAN_BASELINE, 40);
+    Font sousTitre = new Font("D√©j√† Vu", Font.ROMAN_BASELINE, 40);
     g.setFont(sousTitre);
-    g.setColor(new Color(0x80,0x80,0x80));
-    g.drawString("OPTIONS", (this.getWidth()/3)+80, (this.getHeight()/4)+15);
-    Font textPlateau = new Font("DÈj‡ Vu", Font.ROMAN_BASELINE, 24);
+    g.setColor(new Color(0x80, 0x80, 0x80));
+    g.drawString("OPTIONS", (this.getWidth() / 3) + 80, (this.getHeight() / 4) + 15);
+    Font textPlateau = new Font("D√©j√† Vu", Font.ROMAN_BASELINE, 24);
     g.setFont(textPlateau);
-    g.setColor(new Color(0xFF,0xFF,0xFF));
-    g.drawString("Taille du Plateau", (this.getWidth()/4)-25, (this.getHeight()/2)-35);
+    g.setColor(new Color(0xFF, 0xFF, 0xFF));
+    g.drawString("Taille du Plateau", (this.getWidth() / 4) - 25, (this.getHeight() / 2) - 35);
     g.setColor(Color.BLACK);
     g.drawRoundRect(160, 120, 700, 500, 20, 20);
   }

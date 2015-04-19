@@ -12,6 +12,8 @@ import gameOfWar.robot.Tireur;
 
 
 /**
+ * Represente un affichage du plateau avec seulement les mines de l'equipe qui possede la vue
+ * 
  * @author Mathieu
  * @author Clement
  */
@@ -20,11 +22,23 @@ public class Vue {
   private Plateau plateau;
   private int equipe;
 
+  /**
+   * Construit une vue en fonction du plateau et du numero de l'equipe la possedant
+   * 
+   * @param plateau
+   * @param equipe
+   */
   public Vue(Plateau plateau, int equipe) {
     this.plateau = plateau;
     this.equipe = equipe;
   }
 
+  /**
+   * Renvoie vrai si les coordonnees sont bien compris entre largueur et longueur
+   * 
+   * @param coordonnees
+   * @return
+   */
   public boolean estOK(Coordonnees coordonnees) {
     return coordonnees.getLargeur() > 0 && coordonnees.getHauteur() > 0
         && coordonnees.getLargeur() < this.plateau.getLargeur()

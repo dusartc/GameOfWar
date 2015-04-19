@@ -10,26 +10,28 @@ import gameOfWar.robot.Tireur;
 
 
 /**
- * La classe Deplacement permet de produire une action de deplacement des robots.
+ * Permet de deplacer un robot
  * 
  * @author Aurelia
  */
 public class Deplacement extends Action {
 
-
-  public Deplacement(Robot robot) {
-    this(robot, robot.getObjectif());
-  }
-
   /**
-   * On donne les directions en fonction du robot
-   * 
-   * @param robot
-   * @param direction
+   * @see Action
    */
-  public Deplacement(Robot robot, Coordonnees direction) {
-    super(robot, direction);
+  public Deplacement(Robot robot) {
+    super(robot);
   }
+
+//  /**
+//   * On donne les directions en fonction du robot
+//   * 
+//   * @param robot
+//   * @param direction
+//   */
+//  public Deplacement(Robot robot, Coordonnees direction) {
+//    super(robot, direction);
+//  }
 
 
   // @Override
@@ -39,7 +41,7 @@ public class Deplacement extends Action {
 
 
   /**
-   * Agit() produit le deplacement.
+   * @see Action
    */
   public void agit() {
     moveTo(getObjectif());
@@ -90,12 +92,7 @@ public class Deplacement extends Action {
 //    return false;
 //  }
 
-  /**
-   * Fait bouger le robot dans la coordonnees données.
-   * 
-   * @param c
-   */
-  public void moveTo(Coordonnees c) {
+  private void moveTo(Coordonnees c) {
     this.getRobot().getVue().retirerRobot(this.getRobot().getCoordonnees());
     this.getRobot().setCoordonnees(c);
     this.getRobot().getVue().poserRobot(getRobot(), c);

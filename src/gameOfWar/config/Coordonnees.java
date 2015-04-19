@@ -1,15 +1,13 @@
 package gameOfWar.config;
 
 /**
- * La classe Coordonnees correspond au coordonne a m'anipuler avec Cellule.
+ * Correspond au coordonnee a manipuler avec Cellule.
  * 
  * @author Mathieu
  */
 public class Coordonnees {
 
-  /** La largeur ou x d'une coordonnees sur l'axe des abscisses. */
   private int x;
-  /** La longeur ou y d'une coordonnees sur l'axe des ordonnees. */
   private int y;
 
   /**
@@ -32,7 +30,13 @@ public class Coordonnees {
   public Coordonnees ajout(Coordonnees coord) {
     return new Coordonnees(coord.x + this.x, coord.y + this.y);
   }
-  
+
+  /**
+   * Soustrait les coordonnees par rapport aux coordonnees courantes
+   * 
+   * @param coordonnees
+   * @return Coordonnees 
+   */
   public Coordonnees difference(Coordonnees coordonnees) {
     return new Coordonnees(coordonnees.x - this.x, coordonnees.y - this.y);
   }
@@ -48,12 +52,6 @@ public class Coordonnees {
     return inter;
   }
 
-  /**
-   * Verifie si les coordonnees sont egales.
-   * 
-   * @param c
-   * @return
-   */
   public boolean equals(Coordonnees c) {
     return this.x == c.x && this.y == c.y;
   }
