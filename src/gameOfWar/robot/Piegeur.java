@@ -71,7 +71,8 @@ public class Piegeur extends Robot {
   public void estSoigne() {
     this.setEnergie(Math.min(Constante.ENERGIE_PIEGEUR, getEnergie() + Constante.SOIN));
     this.setNbMines(Constante.NB_MINES_MAX);
-    System.out.println(getType()+" a ete soigne de "+Constante.SOIN+" et a recuperer "+Constante.NB_MINES_MAX+" mines");
+    System.out.println(getType() + " a ete soigne de " + Constante.SOIN + " et a recuperer "
+        + Constante.NB_MINES_MAX + " mines");
   }
 
   /**

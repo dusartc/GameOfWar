@@ -71,7 +71,7 @@ public class Tireur extends Robot {
   @Override
   public void estSoigne() {
     this.setEnergie(Math.min(Constante.ENERGIE_TIREUR, getEnergie() + Constante.SOIN));
-    System.out.println(getType()+" a ete soigne de "+Constante.SOIN);
+    System.out.println(getType() + " a ete soigne de " + Constante.SOIN);
   }
 
   /**
