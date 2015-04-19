@@ -62,9 +62,11 @@ public class Main extends Menu {
     int i = 0;
     ArrayList<Robot> robotATuer = new ArrayList<Robot>();
     while (!finis) {
+      MenuTexte.clearScreen();
       System.out.println(equipes[i % 2].getVue().toString() + "\n" + equipes[i % 2].getNom()
           + ", a vous de jouer :\n");
       neo = equipes[i % 2].choisitRobot();
+      MenuTexte.clearScreen();
       System.out.println(neo.getVue().toString());
       action = neo.choisitAction();
       if (action != null) {
@@ -92,6 +94,7 @@ public class Main extends Menu {
         }
         robotATuer.clear();
       }
+      MenuTexte.clearScreen();
     }
     MenuTexte.clearScreen();
     if (equipes[0].perdu() && equipes[1].perdu()) {
