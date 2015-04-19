@@ -1,5 +1,5 @@
-Project Game Of War.
-Fait par :
+Projet Game Of War
+
 Avanessova Mariam.
 Catrice AurÃ©lia.
 Cotton Alexandre.
@@ -7,4 +7,9 @@ Debaerdemaeker Mathieu.
 Dusart ClÃ©ment
 Ngoutane Samantha.
 
-ENJOY !
+Fonctionnalité implémentait :
+  - Char, Tireur, Piegeur
+  - deplacements
+  - gestion energie
+  - Equipe -> IA ou joueur
+  - Obstacles
