@@ -1,5 +1,7 @@
 package gameOfWar.config;
 
+import gameOfWar.affichage.MenuTexte;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -197,6 +199,7 @@ public class Constante {
       }
       ans = sc.nextInt();
     } while (ans < min || ans > max);
+    MenuTexte.clearScreen();
     return ans;
   }
 
