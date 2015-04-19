@@ -171,7 +171,7 @@ public abstract class Robot {
   /**
    * Fait perdre de l'energie au Robot apres avoir prit un tir d'un autre Robot
    * 
-   * @param robot le Robot qui a tiré
+   * @param robot le Robot qui a tire
    */
   abstract public void subitTirDe(Robot robot);
 
@@ -184,7 +184,7 @@ public abstract class Robot {
    * Renvoie la direction des coordonnees par rapport aux coordonnees du Robot (ie NORD SUD EST
    * OUEST)
    * 
-   * @param c les coordonnees associés
+   * @param c les coordonnees associes
    * @return String
    */
   public String direction(Coordonnees c) {
@@ -229,7 +229,7 @@ public abstract class Robot {
   }
 
   /**
-   * Demande a l'utilisateur de choisir un deplacement parmis la liste passée en parametre
+   * Demande a l'utilisateur de choisir un deplacement parmis la liste passee en parametre
    * 
    * @param dep List de coordonnees des deplacements possible
    * @return Action

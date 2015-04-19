@@ -16,7 +16,7 @@ import java.util.List;
 
 
 /**
- * Modélise un Char
+ * Modelise un Char
  * 
  * @author Aurelia
  * @author Mathieu
