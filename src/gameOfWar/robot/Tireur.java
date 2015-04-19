@@ -24,8 +24,8 @@ public class Tireur extends Robot {
   /**
    * Construit un Tireur
    * 
-   * @param vue
-   * @param equipe
+   * @param vue la vue du tireur
+   * @param equipe l'equipe du tireur
    * @see Robot
    */
   public Tireur(Vue vue, Equipe equipe) {

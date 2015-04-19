@@ -10,8 +10,8 @@ public class Base extends Cellule {
   /**
    * Construit une base par rapport aux coordonnees donnees et au numero de l'equipe
    * 
-   * @param largeur
-   * @param hauteur
+   * @param largeur l'indice sur l'axe x
+   * @param hauteur l'indice sur l'axe y
    * @param equipe, le numero de l'equipe de la base
    * @see Cellule
    */

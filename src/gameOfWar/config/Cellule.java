@@ -62,7 +62,7 @@ public class Cellule {
   /**
    * Pose une Base par rapport a une numéro de l'equipe
    * 
-   * @param int numero de l'equipe
+   * @param equipe numero de l'equipe
    */
   public void poseBase(int equipe) {
     this.base = equipe;
@@ -75,7 +75,7 @@ public class Cellule {
   /**
    * Pose une robot sur la Cellule courante
    * 
-   * @param robot
+   * @param robot le Robot a poser
    */
   public void poserRobot(Robot robot) {
     this.robot = robot;

@@ -25,8 +25,8 @@ public abstract class Robot {
   /**
    * Contruit un Robot
    * 
-   * @param vue
-   * @param equipe
+   * @param vue la vue du robot
+   * @param equipe l'equipe du robot
    */
   public Robot(Vue vue, Equipe equipe) {
     /* calcul des coordonnees de la base en fonction de son num d'equipe */
@@ -99,7 +99,7 @@ public abstract class Robot {
   /**
    * Renvoie les degats d'un tir du Robot
    * 
-   * @return
+   * @return int
    */
   abstract public int getDegatTir();
 
@@ -116,7 +116,7 @@ public abstract class Robot {
   /**
    * Renvoie le numero de l'equipe du Robot
    * 
-   * @return
+   * @return int
    */
   public int getNumEquipe() {
     return this.equipe.getEquipe();
@@ -184,7 +184,7 @@ public abstract class Robot {
    * Renvoie la direction des coordonnees par rapport aux coordonnees du Robot (ie NORD SUD EST
    * OUEST)
    * 
-   * @param Coordonnees
+   * @param c les coordonnees associés
    * @return String
    */
   public String direction(Coordonnees c) {

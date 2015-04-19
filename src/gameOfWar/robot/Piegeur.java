@@ -23,8 +23,8 @@ public class Piegeur extends Robot {
   /**
    * Construit un Piegeur
    * 
-   * @param vue
-   * @param equipe
+   * @param vue la vue du piegeur
+   * @param equipe l'equipe du piegeur
    * @see Robot
    */
   public Piegeur(Vue vue, Equipe equipe) {
@@ -133,6 +133,8 @@ public class Piegeur extends Robot {
 
   /**
    * retourne vrai si le Robot a reussis a poser une mine
+   * 
+   * @return boolean
    */
   public boolean poseMine() {
     if (this.getNbMines() <= 0) {

@@ -25,8 +25,8 @@ public class Vue {
   /**
    * Construit une vue en fonction du plateau et du numero de l'equipe la possedant
    * 
-   * @param plateau
-   * @param equipe
+   * @param plateau le plateau associé
+   * @param equipe l'equipe associée
    */
   public Vue(Plateau plateau, int equipe) {
     this.plateau = plateau;
@@ -36,8 +36,8 @@ public class Vue {
   /**
    * Renvoie vrai si les coordonnees sont bien compris entre largueur et longueur
    * 
-   * @param coordonnees
-   * @return
+   * @param coordonnees les coordonnees a test
+   * @return boolean
    */
   public boolean estOK(Coordonnees coordonnees) {
     return coordonnees.getLargeur() > 0 && coordonnees.getHauteur() > 0

@@ -17,7 +17,7 @@ public abstract class Action {
 
 
   /**
-   * Construit une Action avec le robot et les coordonnees donnees
+   * Construit une Action
    * 
    * @param robot le robot qui devra effectuer l'action
    */

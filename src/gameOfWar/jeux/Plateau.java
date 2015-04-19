@@ -31,7 +31,7 @@ public class Plateau {
    * 
    * @param longueur la longueur du plateau
    * @param largeur la largeur du plateau
-   * @param pourcentageObstacle
+   * @param pourcentageObstacle le pourcentage d'obstacles que le plateau doit avoir
    */
   public Plateau(int longueur, int largeur, int pourcentageObstacle) {
     /*
@@ -112,8 +112,8 @@ public class Plateau {
   /**
    * Vide la Cellule en x, y
    * 
-   * @param x
-   * @param y
+   * @param x indice sur l'axe x
+   * @param y indice sur l'axe y
    */
   public void libereCellule(int x, int y) {
     this.plateau[y][x].videCase();
@@ -122,9 +122,9 @@ public class Plateau {
   /**
    * pose un Robot en x, y
    * 
-   * @param x
-   * @param y
-   * @param robot
+   * @param x indice sur l'axe x
+   * @param y indice sur l'axe y
+   * @param robot le Robot a poser
    */
   public void poserRobot(int x, int y, Robot robot) {
     /*

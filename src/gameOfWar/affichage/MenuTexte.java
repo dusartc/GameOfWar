@@ -31,7 +31,7 @@ public class MenuTexte {
   /**
    * Demande a l'utilisateur l'Equipe qu'il souhaite et l'adversaire qu'il souhaite
    * 
-   * @param plateau le plateau qui servira a creer la vue de l'equipe
+   * @param p le plateau qui servira a creer la vue de l'equipe
    * @return Equipe[] les equipes qui s'affronteront sur le plateau
    */
   public static Equipe[] initialisationEquipes(Plateau p) {

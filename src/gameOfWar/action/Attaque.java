@@ -1,6 +1,5 @@
 package gameOfWar.action;
 
-import gameOfWar.config.Coordonnees;
 import gameOfWar.robot.Robot;
 
 /**
@@ -13,6 +12,7 @@ import gameOfWar.robot.Robot;
 public class Attaque extends Action {
 
   /**
+   * @param robot le robot qui doit effectuer l'action
    * @see Action
    */
   public Attaque(Robot robot) {

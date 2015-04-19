@@ -30,8 +30,8 @@ public class Char extends Robot {
   /**
    * Construit un char
    * 
-   * @param vue
-   * @param equipe
+   * @param vue la vue du char
+   * @param equipe l'equipe du char
    * @see Robot
    */
   public Char(Vue vue, Equipe equipe) {

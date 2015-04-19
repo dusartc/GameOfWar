@@ -29,10 +29,10 @@ public class Equipe {
    * Construit une equipe d'apres son nom, le plateau dans lequel le jeu est joué, son numero
    * d'equipe et les coordonnees de sa base
    * 
-   * @param nom
-   * @param plateau
-   * @param equipe
-   * @param coordBase
+   * @param nom le nom de l'equipe
+   * @param plateau le plateau qui servira a creer la vue de l'equipe
+   * @param equipe le numero de l'equipe
+   * @param coordBase les coordonnees de la base de l'equipe
    */
   public Equipe(String nom, Plateau plateau, int equipe, Coordonnees coordBase) {
     this.nom = nom;
@@ -47,7 +47,11 @@ public class Equipe {
     this.mines.add(mine);
   }
 
-  /** Ajoute un robot pour l'equipe et le pose sur sa base */
+  /**
+   * Ajoute un robot pour l'equipe et le pose sur sa base
+   * 
+   * @param robot le robot a ajouter
+   */
   public void addRobot(Robot robot) {
     this.robots.add(robot);
     this.vue.poserRobot(robot, getCoordBase());
@@ -75,7 +79,7 @@ public class Equipe {
   /**
    * Retourne le numero de l'equipe.
    * 
-   * @return
+   * @return int
    */
   public int getEquipe() {
     return this.equipe;
@@ -133,8 +137,8 @@ public class Equipe {
   }
 
   /**
-   * Demande a l'utilisateur d'entre un nombre entre min et max ou renvoie un random entre min et max
-   * si l'equipe est une IA
+   * Demande a l'utilisateur d'entre un nombre entre min et max ou renvoie un random entre min et
+   * max si l'equipe est une IA
    * 
    * @param min la borne minimale
    * @param max la borne maximale

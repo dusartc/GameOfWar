@@ -13,8 +13,8 @@ public class Coordonnees {
   /**
    * Construit un point de l'axe.
    * 
-   * @param largeur
-   * @param hauteur
+   * @param x indice sur l'axe x
+   * @param y indice sur l'axe y
    */
   public Coordonnees(int x, int y) {
     this.x = x;
@@ -24,8 +24,8 @@ public class Coordonnees {
   /**
    * Ajout des coordonnees par rapport a l'initial.
    * 
-   * @param coord
-   * @return
+   * @param coord les coordonnees a ajouter
+   * @return Coordonnees
    */
   public Coordonnees ajout(Coordonnees coord) {
     return new Coordonnees(coord.x + this.x, coord.y + this.y);
@@ -34,7 +34,7 @@ public class Coordonnees {
   /**
    * Soustrait les coordonnees par rapport aux coordonnees courantes
    * 
-   * @param coordonnees
+   * @param coordonnees les coordonnees dont on doit faire la difference
    * @return Coordonnees 
    */
   public Coordonnees difference(Coordonnees coordonnees) {
@@ -44,8 +44,8 @@ public class Coordonnees {
   /**
    * Calcule les coordonnees.
    * 
-   * @param c
-   * @return
+   * @param c chabada
+   * @return Coordonnees
    */
   public Coordonnees calculCoordonnees(Coordonnees c) {
     Coordonnees inter = new Coordonnees(this.x - c.x, this.y - c.y);
