@@ -25,8 +25,8 @@ public class Vue {
   /**
    * Construit une vue en fonction du plateau et du numero de l'equipe la possedant
    * 
-   * @param plateau le plateau associé
-   * @param equipe l'equipe associée
+   * @param plateau le plateau associe
+   * @param equipe l'equipe associee
    */
   public Vue(Plateau plateau, int equipe) {
     this.plateau = plateau;
