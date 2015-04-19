@@ -14,7 +14,7 @@ public class Cellule {
   private int mine = 0;
   private int base = 0;
   private boolean mur;
-  private Robot robot;
+  private Robot robot = null;
   private Coordonnees coordonnees;
 
   /**
