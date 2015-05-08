@@ -13,14 +13,6 @@ import gameOfWar.jeux.Plateau;
  */
 public class MenuTexte {
 
-  private static String choisitPays() {
-    System.out.println("Veuillez choisir votre pays parmis ceux-ci :");
-    for (int i = 0; i < Constante.PAYS.length; i++) {
-      System.out.println("\t" + i + " - " + Constante.PAYS[i]);
-    }
-    return Constante.PAYS[Constante.secureInput(0, Constante.PAYS.length - 1)];
-  }
-
   /**
    * Efface l'écran si la console associé prend en charge les codes ANSI
    */
@@ -80,6 +72,14 @@ public class MenuTexte {
             "Entrez le % d'obstacles du plateau entre " + Constante.OBSTACLES_MIN + " et "
                 + Constante.OBSTACLES_MAX);
     return new Plateau(x, y, nb);
+  }
+
+  private static String choisitPays() {
+    System.out.println("Veuillez choisir votre pays parmis ceux-ci :");
+    for (int i = 0; i < Constante.PAYS.length; i++) {
+      System.out.println("\t" + i + " - " + Constante.PAYS[i]);
+    }
+    return Constante.PAYS[Constante.secureInput(0, Constante.PAYS.length - 1)];
   }
 
   private static String quadrillage(String message) {
