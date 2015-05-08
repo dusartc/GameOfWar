@@ -1,7 +1,10 @@
 package gameOfWar.config;
 
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import java.util.Scanner;
 
 /**
@@ -15,65 +18,78 @@ import java.util.Scanner;
  * @author Clement
  */
 public class Constante {
-
+  
+  private static final Properties PROPERTIES = new Properties();
+  
+  static {
+ // chargement de properties
+    try {
+      PROPERTIES.load(new FileReader("gameOfWar.properties"));
+    } catch (IOException e) {
+      System.err.println("Fichier gameOfWar.properties introuvable, v�rifier son orthographe");
+      e.printStackTrace();
+      System.exit(1);
+    }
+  }
+  
   // les données des robots.
   /** Correspond a l'énergie du Piegeur. */
-  public static final int ENERGIE_PIEGEUR = 50;
+  public static final int ENERGIE_PIEGEUR = Integer.parseInt((String) PROPERTIES.get("p_energie"));
   /** Correspond a l'énergie du Tireur. */
-  public static final int ENERGIE_TIREUR = 40;
+  public static final int ENERGIE_TIREUR = Integer.parseInt((String) PROPERTIES.get("t_energie"));
   /** Correspond a l'énergie du Char. */
-  public static final int ENERGIE_CHAR = 60;
+  public static final int ENERGIE_CHAR = Integer.parseInt((String) PROPERTIES.get("c_energie"));
   /** Correspond au nombre de robot maximun par equipe. */
-  public static final int NB_MAX_ROBOTS_PAR_EQUIPE = 5;
+  public static final int NB_MAX_ROBOTS_PAR_EQUIPE = Integer.parseInt((String) PROPERTIES.get("max_robot"));
   /** Correspond au soin donnees aux bases */
-  public static final int SOIN = 2;
+  public static final int SOIN = Integer.parseInt((String) PROPERTIES.get("soin"));
   /** Correspond a l'equipe une */
   public static final int EQUIPE_UN = 1;
   /** Correspond a l'equipe deux */
   public static final int EQUIPE_DEUX = 2;
   /** Correspond au degat produit par le Tireur. */
-  public static final int DEGATS_TIREUR = 3;
+  public static final int DEGATS_TIREUR = Integer.parseInt((String) PROPERTIES.get("t_degats"));
   /** Correspond au degat produit par le Piegeur. */
-  public static final int DEGATS_PIEGEUR = 2;
+  public static final int DEGATS_PIEGEUR = Integer.parseInt((String) PROPERTIES.get("p_degats"));
   /** Correspond au degat produit par le Char. */
-  public static final int DEGATS_CHAR = 6;
+  public static final int DEGATS_CHAR = Integer.parseInt((String) PROPERTIES.get("c_degats"));
   /** Correspond au coup de deplacement du Tireur. */
-  public static final int COUP_DEPLACEMENTS_TIREUR = 1;
+  public static final int COUP_DEPLACEMENTS_TIREUR = Integer.parseInt((String) PROPERTIES.get("t_coup_dep"));
   /** Correspond au coup de deplacement du Piegeur. */
-  public static final int COUP_DEPLACEMENTS_PIEGEUR = 2;
+  public static final int COUP_DEPLACEMENTS_PIEGEUR = Integer.parseInt((String) PROPERTIES.get("p_coup_dep"));
   /** Correspond au coup de deplacement du Char. */
-  public static final int COUP_DEPLACEMENTS_CHAR = 5;
+  public static final int COUP_DEPLACEMENTS_CHAR = Integer.parseInt((String) PROPERTIES.get("c_coup_dep"));
   /** Correspond au coup d'une action du Tireur. */
-  public static final int COUP_ACTION_TIREUR = 2;
+  public static final int COUP_ACTION_TIREUR = Integer.parseInt((String) PROPERTIES.get("t_coup_act"));
   /** Correspond au coup d'une action du Piegeur. */
-  public static final int COUP_ACTION_PIEGEUR = 2;
+  public static final int COUP_ACTION_PIEGEUR = Integer.parseInt((String) PROPERTIES.get("p_coup_act"));
   /** Correspond au coup d'une action du Char. */
-  public static final int COUP_ACTION_CHAR = 1;
+  public static final int COUP_ACTION_CHAR = Integer.parseInt((String) PROPERTIES.get("c_coup_act"));
   /** Correspond au degat d'une mine pour un Tireur. */
-  public static final int DEGATS_MINES_TIREUR = 3;
+  public static final int DEGATS_MINES_TIREUR = Integer.parseInt((String) PROPERTIES.get("t_degats_mines_subis"));
   /** Correspond au degat d'une mine pour un Char. */
-  public static final int DEGATS_MINES_CHAR = 6;
+  public static final int DEGATS_MINES_CHAR = Integer.parseInt((String) PROPERTIES.get("c_degats_mines_subis"));
   /** Correspond au degat d'un tir pour un Piegeur . */
-  public static final int DEGATS_TIRS_PIEGEUR = 0;
+  public static final int DEGATS_TIRS_PIEGEUR = Integer.parseInt((String) PROPERTIES.get("p_degats_mines_subis"));
   /** Correspond à la portée d'un tir pour un Tireur . */
-  public static final int PORTEE_TIREUR = 3;
+  public static final int PORTEE_TIREUR = Integer.parseInt((String) PROPERTIES.get("t_portee"));
   /** Correspond à la portée d'une mine pour un Piegeur . */
-  public static final int PORTEE_PIEGEUR = 1;
+  public static final int PORTEE_PIEGEUR = Integer.parseInt((String) PROPERTIES.get("p_portee"));
   /** Correspond à la portée d'un tir pour un Char . */
-  public static final int PORTEE_CHAR = 10;
+  public static final int PORTEE_CHAR = Integer.parseInt((String) PROPERTIES.get("c_portee"));
   /** Correspond au nombre de mines que le piegeur peut porter */
-  public static final int NB_MINES_MAX = 10;
+  public static final int NB_MINES_MAX = Integer.parseInt((String) PROPERTIES.get("p_mines"));
 
 
   // / les données du plateau ///
   /** Taille minimun en largeur du plateau. */
   public static final int X_MIN = 5;
   /** Taille maximun en largeur du plateau. */
-  public static final int X_MAX = 25;
+  public static final int X_MAX = Integer.parseInt((String) PROPERTIES.get("x_max"));
   /** Taille minimun en longueur du plateau. */
   public static final int Y_MIN = 10;
   /** Taille maximune en longueur du plateau. */
-  public static final int Y_MAX = 25;
+  public static final int Y_MAX = Integer.parseInt((String) PROPERTIES.get("y_max"));
   /** Obstacles minimun sur le plateau. */
   public static final int OBSTACLES_MIN = 0;
   /** Obstacles maximun sur le plateau. */
