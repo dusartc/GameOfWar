@@ -124,7 +124,7 @@ public class Tireur extends Robot {
    */
   @Override
   public void subitMine() {
-    setEnergie(getEnergie() - Constante.DEGATS_PIEGEUR);
+    setEnergie(getEnergie() - getDegatMine());
   }
 
   /**
