@@ -176,13 +176,7 @@ public class Piegeur extends Robot {
    */
   @Override
   public void subitTirDe(Robot robot) {
-    if (robot instanceof Tireur || robot instanceof Char) {
-      if (robot.getEquipe() != this.getEquipe()) {
-        this.setEnergie(this.getEnergie() - robot.getDegatTir());
-      }
-    } else {
-      System.err.println("Impossible de subir un Tir");
-    }
+    this.setEnergie(this.getEnergie() - robot.getDegatTir());
   }
 
   @Override
@@ -201,7 +195,7 @@ public class Piegeur extends Robot {
       if (c.getHauteur() < 0 || c.getLargeur() < 0
           || c.getHauteur() >= this.getVue().getPlateau().getLongueur()
           || c.getLargeur() >= this.getVue().getPlateau().getLargeur()
-          || this.getVue().getPlateau().getCelluleByCoordonnees(c).getRobot() != null) {
+          || this.getVue().getPlateau().getCelluleByCoordonnees(c).estImpassable()) {
         dep.remove(c);
       }
       try {

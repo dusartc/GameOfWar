@@ -57,6 +57,7 @@ public class Char extends Robot {
           System.out.println("Vous pouvez attaquer :");
           for (Coordonnees c : cible) {
             System.out.println(h + " : " + c + " " + direction(c));
+            h += 1;
           }
           this.setObjectif(cible.get(this.getEquipe().secureInput(0, h - 1)));
           return new Attaque(this);
@@ -80,7 +81,7 @@ public class Char extends Robot {
     this.setEnergie(Math.min(Constante.ENERGIE_CHAR, getEnergie() + Constante.SOIN));
     if (prev != getEnergie()) {
       System.out.println(getType() + " a ete soigne de " + Constante.SOIN);
-    }    
+    }
   }
 
   /**
@@ -141,13 +142,7 @@ public class Char extends Robot {
    */
   @Override
   public void subitTirDe(Robot robot) {
-    if (robot instanceof Tireur || robot instanceof Char) {
-      if (robot.getEquipe().getEquipe() != this.getEquipe().getEquipe()) {
-        this.setEnergie(this.getEnergie() - robot.getDegatTir());
-      }
-    } else {
-      System.err.println("Impossible de subir un Tir");
-    }
+    this.setEnergie(this.getEnergie() - robot.getDegatTir());
   }
 
   @Override
@@ -190,7 +185,7 @@ public class Char extends Robot {
       if (c.getHauteur() < 0 || c.getLargeur() < 0
           || c.getHauteur() >= this.getVue().getPlateau().getLongueur()
           || c.getLargeur() >= this.getVue().getPlateau().getLargeur()
-          || this.getVue().getPlateau().getCelluleByCoordonnees(c).getRobot() != null) {
+          || this.getVue().getPlateau().getCelluleByCoordonnees(c).estImpassable()) {
         dep.remove(c);
       }
       try {
