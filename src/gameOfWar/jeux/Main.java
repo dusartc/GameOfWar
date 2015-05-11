@@ -32,7 +32,7 @@ public class Main extends Menu {
 
 
   public static void main(String[] args) {
-    // Menu test = new Menu("Game of War.");
+    //Menu test = new Menu("Game of War.");
 
     /*
      * javax.swing.SwingUtilities.invokeLater(new Runnable() {
@@ -50,11 +50,11 @@ public class Main extends Menu {
 //            new IA("ia2", plateau, Constante.EQUIPE_DEUX, new Coordonnees(plateau.getLargeur() - 1,
 //                plateau.getLongueur() - 1))};
 
-    for (Equipe joueur : equipes) {
+    /*for (Equipe joueur : equipes) {
       joueur.addRobot(new Tireur(joueur.getVue(), joueur));
       joueur.addRobot(new Piegeur(joueur.getVue(), joueur));
       joueur.addRobot(new Char(joueur.getVue(), joueur));
-    }
+    }*/
 
     boolean finis = false;
     Robot neo;
