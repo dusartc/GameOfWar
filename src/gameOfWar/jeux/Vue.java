@@ -170,7 +170,7 @@ public class Vue {
     }
     ans += "+\n";
     ans += "|\tMAJUSCULES\t%\tminuscules\t\t\t|\n";
-    String[] chabadabada = new String[] {"base", "tireur", "piegeur", "char", "mine"};
+    String[] chabadabada = new String[] {"base", "tireur", "piegeur", "char", "mine", "factory"};
     for (int i = 0; i < chabadabada.length; i++) {
       ans +=
           "|\t\t" + chabadabada[i].substring(0, 1).toUpperCase() + "\t|\t\t"

@@ -3,9 +3,11 @@ package gameOfWar.robot;
 import gameOfWar.action.Action;
 import gameOfWar.config.Constante;
 import gameOfWar.config.Coordonnees;
+import gameOfWar.config.Factory;
 import gameOfWar.jeux.Equipe;
 import gameOfWar.jeux.Vue;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Worker extends Robot {
@@ -17,14 +19,45 @@ public class Worker extends Robot {
 
   @Override
   public Action choisitAction() {
-    // TODO Auto-generated method stub
-    return null;
+    List<Coordonnees> dep = initDep();
+    List<Coordonnees> nearBy = nearBy();
+    System.out.println("Vous pouvez :\n\t1 - deplacer\n\t2 - poser une factory");
+    if (!nearBy.isEmpty()) {
+      System.out.println("\t3 - reparer");
+    }
+    int i = this.getEquipe().secureInput(1, (!nearBy.isEmpty() ? 3 : 2));
+    switch (i) {
+      case 1:
+        return choisitDep(dep);
+      case 2:
+        int h = 0;
+        System.out.println("Vous pouvez reparer :");
+        for (Coordonnees c : nearBy) {
+          System.out.println(h + " : " + c + " " + direction(c));
+          h += 1;
+        }
+        this.getVue().getPlateau()
+            .getCelluleByCoordonnees(nearBy.get(this.getEquipe().secureInput(0, h - 1))).getRobot()
+            .estSoigne();
+        return null;
+      case 3:
+        int j = 0;
+        System.out.println("Vous pouvez placer une factory sur :");
+        for (Coordonnees c : dep) {
+          System.out.println(j + " : " + c + " " + direction(c));
+          j += 1;
+        }
+        this.setObjectif(dep.get(this.getEquipe().secureInput(0, j - 1)));
+        new Factory(this);
+        return null;
+      default:
+        return null;
+    }
   }
 
   @Override
   public void estSoigne() {
     // inutile car OS
-
   }
 
   @Override
@@ -44,12 +77,11 @@ public class Worker extends Robot {
 
   @Override
   public int getDegatTir() {
-    return 0;
+    return 0; // impossible de tirer
   }
 
   @Override
   public List<Coordonnees> getDeplacements() {
-    // TODO Auto-generated method stub
     return null;
   }
 
@@ -60,14 +92,55 @@ public class Worker extends Robot {
 
   @Override
   public void subitMine() {
-    // TODO Auto-generated method stub
-
+    setEnergie(getEnergie() - getDegatMine());
   }
 
   @Override
   public void subitTirDe(Robot robot) {
-    // TODO Auto-generated method stub
+    setEnergie(getEnergie() - robot.getDegatTir());
+  }
 
+  private List<Coordonnees> initDep() {
+    List<Coordonnees> dep = new ArrayList<Coordonnees>();
+    List<Coordonnees> caillou = new ArrayList<Coordonnees>();
+    for (Coordonnees coordonnees : Constante.DEP_WORKER) {
+      dep.add(this.getCoordonnees().ajout(coordonnees));
+    }
+    caillou.addAll(dep);
+    for (Coordonnees c : caillou) {
+      if (c.getHauteur() < 0 || c.getLargeur() < 0
+          || c.getHauteur() >= this.getVue().getPlateau().getLongueur()
+          || c.getLargeur() >= this.getVue().getPlateau().getLargeur()
+          || this.getVue().getPlateau().getCelluleByCoordonnees(c).estImpassable()) {
+        dep.remove(c);
+      }
+      try {
+        if (this.getVue().getPlateau().getCelluleByCoordonnees(c).estMur()) {
+          dep.remove(c);
+        }
+      } catch (Exception e) {
+        // System.err.println("null pointer"); // normal car hors map
+      }
+    }
+    return dep;
+  }
+
+  private List<Coordonnees> nearBy() {
+    List<Coordonnees> ans = new ArrayList<Coordonnees>();
+    List<Coordonnees> notAns = new ArrayList<Coordonnees>();
+    for (Coordonnees coordonnees : Constante.DEP_WORKER) {
+      notAns.add(this.getCoordonnees().ajout(coordonnees));
+    }
+    for (Coordonnees coordonnees : notAns) {
+      try {
+        if (this.getVue().getPlateau().getCelluleByCoordonnees(coordonnees).estRobot() != 0) {
+          ans.add(coordonnees);
+        }
+      } catch (Exception e) {
+        // sortie de map
+      }
+    }
+    return ans;
   }
 
 }

@@ -16,6 +16,7 @@ public class Cellule {
   private boolean mur;
   private Robot robot = null;
   private Coordonnees coordonnees;
+  private Factory factory = null;
 
   /**
    * Le constructeur Cellule qui construit une Cellule avec des coordonnees donnees.
@@ -105,6 +106,14 @@ public class Cellule {
     this.coordonnees = coord;
   }
 
+  public Factory getFactory() {
+    return factory;
+  }
+
+  public void setFactory(Factory factory) {
+    this.factory = factory;
+  }
+
   /**
    * Affiche ce que possede la Cellule.
    */
@@ -116,6 +125,10 @@ public class Cellule {
 
   public boolean estVide() {
     return !(this.estMur() || this.estBase() > 0 || this.estRobot() != 0 || contientMine() > 0);
+  }
+  
+  public boolean estImpassable() {
+    return this.mur || this.factory != null || this.robot != null;
   }
 
   /**

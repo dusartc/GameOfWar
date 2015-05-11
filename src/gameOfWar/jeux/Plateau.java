@@ -241,7 +241,7 @@ public class Plateau {
     }
     ans += "+\n";
     ans += "|\tMAJUSCULES\t%\tminuscules\t\t\t|\n";
-    String[] legende = new String[] {"base", "tireur", "piegeur", "char", "mine"};
+    String[] legende = new String[] {"base", "tireur", "piegeur", "char", "mine", "factory"};
     for (int i = 0; i < legende.length; i++) {
       ans +=
           "|\t\t" + legende[i].substring(0, 1).toUpperCase() + "\t|\t\t"
