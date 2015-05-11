@@ -69,10 +69,20 @@ public class Piegeur extends Robot {
    */
   @Override
   public void estSoigne() {
+    int prevE = getEnergie();
+    int prevM = getNbMines();
     this.setEnergie(Math.min(Constante.ENERGIE_PIEGEUR, getEnergie() + Constante.SOIN));
     this.setNbMines(Constante.NB_MINES_MAX);
-    System.out.println(getType() + " a ete soigne de " + Constante.SOIN + " et a recuperer "
-        + Constante.NB_MINES_MAX + " mines");
+    if (prevE != getEnergie()) {
+      if (prevM != getNbMines()) {
+        System.out.println(getType() + " a ete soigne de " + Constante.SOIN + " et a recupere "
+            + Constante.NB_MINES_MAX + " mines");
+      } else {
+        System.out.println(getType() + " a ete soigne de " + Constante.SOIN);
+      }
+    } else if (prevM != getNbMines()) {
+      System.out.println(getType() + " a recupere " + Constante.NB_MINES_MAX + "mines");
+    }
   }
 
   /**

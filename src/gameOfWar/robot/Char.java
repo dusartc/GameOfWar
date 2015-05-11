@@ -76,8 +76,11 @@ public class Char extends Robot {
    */
   @Override
   public void estSoigne() {
+    int prev = getEnergie();
     this.setEnergie(Math.min(Constante.ENERGIE_CHAR, getEnergie() + Constante.SOIN));
-    System.out.println(getType() + " a ete soigne de " + Constante.SOIN);
+    if (prev != getEnergie()) {
+      System.out.println(getType() + " a ete soigne de " + Constante.SOIN);
+    }    
   }
 
   /**
