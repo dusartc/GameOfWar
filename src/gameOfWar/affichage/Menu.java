@@ -46,7 +46,7 @@ public class Menu extends JFrame implements ActionListener{
 		jPanel = new JPanel(new GridBagLayout());
 		jPanel.setPreferredSize(new Dimension(1024,600));
 		jPanel.setLocation(0, 120);
-		//this.setLayout(new GridBagLayout());
+		this.setLayout(new GridBagLayout());
 	    GridBagConstraints constraints = new GridBagConstraints();
 	    
 	    getBoutonJeu(constraints, "Jeu", 250,100,90,0,0);
