@@ -4,11 +4,13 @@ import gameOfWar.config.Base;
 import gameOfWar.config.Cellule;
 import gameOfWar.config.Constante;
 import gameOfWar.config.Coordonnees;
+import gameOfWar.config.Factory;
 import gameOfWar.config.Mur;
 import gameOfWar.robot.Char;
 import gameOfWar.robot.Piegeur;
 import gameOfWar.robot.Robot;
 import gameOfWar.robot.Tireur;
+import gameOfWar.robot.Worker;
 
 
 /**
@@ -90,8 +92,17 @@ public class Vue {
           } else if (this.plateau.estBase(j, i) == 2) {
             ans.insert(ans.length(), "| b |\n");
           }
-        } else if (this.plateau.getCellule(j, i).contientMine() > 0) {
-          // Mine testMine = (Mine) this.plateau.getCellule(i, j);
+        } 
+        else if (this.plateau.estFactory(j, i) > 0) {
+            if (this.plateau.estFactory(j, i) == 1) {
+              ans.insert(ans.length(), "\n| F ");
+            } else if (this.plateau.estFactory(j, i) == 2) {
+              ans.insert(ans.length(), "| f ");
+            }
+            else {
+                ans.insert(ans.length(), "|");
+              }
+          } else if (this.plateau.getCellule(j, i).contientMine() > 0) {
           String res = "";
           if (this.equipe == Constante.EQUIPE_UN) {
             res += "| M ";
@@ -99,6 +110,9 @@ public class Vue {
             res += "| m ";
           }
           ans.insert(ans.length(), (this.plateau.estMine(j, i) == this.getEquipe()) ? res : "|   ");
+          if (j == this.plateau.getLargeur() - 1) {
+              ans.insert(ans.length(), "|");
+            }
         } else if (this.plateau.getCellule(j, i).getRobot() instanceof Piegeur) {
           if (this.plateau.estRobot(j, i) == 1) {
             ans.insert(ans.length(), "| P ");
@@ -130,8 +144,24 @@ public class Vue {
             ans.insert(ans.length(), "|   ");
           } else {
             ans.insert(ans.length(), "|");
-          }
-        } else if (this.plateau.getCellule(j, i).getRobot() instanceof Char) {
+          } 
+        } else if (this.plateau.getCellule(j, i).getRobot() instanceof Worker) {
+            if (this.plateau.estRobot(j, i) == 1) {
+                ans.insert(ans.length(), "| W ");
+                if (j == this.plateau.getLargeur() - 1) {
+                  ans.insert(ans.length(), "|");
+                }
+              } else if (this.plateau.estRobot(j, i) == 2) {
+                ans.insert(ans.length(), "| w ");
+                if (j == this.plateau.getLargeur() - 1) {
+                  ans.insert(ans.length(), "|");
+                }
+              } else if (j != this.plateau.getLargeur() - 1) {
+                ans.insert(ans.length(), "|   ");
+              } else {
+                ans.insert(ans.length(), "|");
+              }
+        	}else if (this.plateau.getCellule(j, i).getRobot() instanceof Char) {
           if (this.plateau.estRobot(j, i) == 1) {
             ans.insert(ans.length(), "| C ");
             if (j == this.plateau.getLargeur() - 1) {
