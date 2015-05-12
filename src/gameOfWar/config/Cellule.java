@@ -106,9 +106,16 @@ public class Cellule {
     this.coordonnees = coord;
   }
 
-  public Factory getFactory() {
+ public Factory getFactory() {
     return factory;
   }
+ 
+ public int getNumFacto(){
+	 if (this.factory == null) {
+		return 0;
+	}
+	 return this.factory.getEquipe().getEquipe();
+ }
 
   public void setFactory(Factory factory) {
     this.factory = factory;
