@@ -20,6 +20,7 @@ public class Factory {
     equipe.addFactory(this);
     worker.getVue().getPlateau().getCelluleByCoordonnees(worker.getObjectif()).setFactory(this);
     this.spawningTime = Constante.SPAWNING_TIME;
+    worker.getVue().getPlateau().getCelluleByCoordonnees(worker.getObjectif()).setImage(worker.getNumEquipe() == 0 ? "f" : "F");
   }
 
   public Equipe getEquipe() {

@@ -33,7 +33,7 @@ public class Main extends Menu {
 
 
   public static void main(String[] args) {
-    // Menu test = new Menu("Game of War.");
+    //Menu test = new Menu("Game of War.");
 
     /*
      * javax.swing.SwingUtilities.invokeLater(new Runnable() {

@@ -17,6 +17,7 @@ public class Cellule {
   private Robot robot = null;
   private Coordonnees coordonnees;
   private Factory factory = null;
+  private String image = " ";
 
   /**
    * Le constructeur Cellule qui construit une Cellule avec des coordonnees donnees.
@@ -135,7 +136,7 @@ public class Cellule {
   }
   
   public boolean estImpassable() {
-    return this.mur || this.factory != null || this.robot != null;
+    return !(getNumFacto() == 0 || estRobot() == 0 || mur);
   }
 
   /**
@@ -146,6 +147,10 @@ public class Cellule {
     this.mine = 0;
     this.mur = false;
     this.robot = null;
+  }
+  
+  public void setImage(String image) {
+    this.image = image;
   }
 
 

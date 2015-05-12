@@ -194,12 +194,11 @@ public class Piegeur extends Robot {
     for (Coordonnees c : caillou) {
       if (c.getHauteur() < 0 || c.getLargeur() < 0
           || c.getHauteur() >= this.getVue().getPlateau().getLongueur()
-          || c.getLargeur() >= this.getVue().getPlateau().getLargeur()
-          || this.getVue().getPlateau().getCelluleByCoordonnees(c).estImpassable()) {
+          || c.getLargeur() >= this.getVue().getPlateau().getLargeur()) {
         dep.remove(c);
       }
       try {
-        if (this.getVue().getPlateau().getCelluleByCoordonnees(c).estMur()) {
+        if (this.getVue().getPlateau().getCelluleByCoordonnees(c).estImpassable()) {
           dep.remove(c);
         }
       } catch (Exception e) {

@@ -21,11 +21,15 @@ public class Worker extends Robot {
   public Action choisitAction() {
     List<Coordonnees> dep = initDep();
     List<Coordonnees> nearBy = nearBy();
-    System.out.println("Vous pouvez :\n\t1 - deplacer\n\t2 - poser une factory");
+    List<Coordonnees> facto = initFacto();
+    System.out.println("Vous pouvez :\n\t1 - deplacer");
+    if (!facto.isEmpty()) {
+      System.out.println("\t2 - poser une factory");
+    }
     if (!nearBy.isEmpty()) {
       System.out.println("\t3 - reparer");
     }
-    int i = this.getEquipe().secureInput(1, (!nearBy.isEmpty() ? 3 : 2));
+    int i = this.getEquipe().secureInput(1, (!nearBy.isEmpty() ? 3 : (!facto.isEmpty() ? 2 : 1)));
     switch (i) {
       case 1:
         return choisitDep(dep);
@@ -43,7 +47,7 @@ public class Worker extends Robot {
       case 2:
         int j = 0;
         System.out.println("Vous pouvez placer une factory sur :");
-        for (Coordonnees c : dep) {
+        for (Coordonnees c : facto) {
           System.out.println(j + " : " + c + " " + direction(c));
           j += 1;
         }
@@ -53,6 +57,34 @@ public class Worker extends Robot {
       default:
         return null;
     }
+  }
+
+  private List<Coordonnees> initFacto() {
+    List<Coordonnees> toto = initDep();
+    List<Coordonnees> tmp = new ArrayList<Coordonnees>();
+    tmp.addAll(toto);
+    int px = getVue().getPlateau().getLargeur();
+    int py = getVue().getPlateau().getLongueur();
+    for (Coordonnees coordonnees : toto) {
+      if (coordonnees.equals(new Coordonnees(0, 1))) {
+        tmp.remove(coordonnees);
+      } else if (coordonnees.equals(new Coordonnees(1, 0))) {
+        tmp.remove(coordonnees);
+      } else if (coordonnees.equals(new Coordonnees(1, 1))) {
+        tmp.remove(coordonnees);
+      } else if (coordonnees.equals(new Coordonnees(px - 1, py - 2))) {
+        tmp.remove(coordonnees);
+      } else if (coordonnees.equals(new Coordonnees(px - 2, py - 1))) {
+        tmp.remove(coordonnees);
+      } else if (coordonnees.equals(new Coordonnees(px - 2, py - 2))) {
+        tmp.remove(coordonnees);
+      } else if (coordonnees.equals(new Coordonnees(px - 1, py - 1))) {
+        tmp.remove(coordonnees);
+      } else if (coordonnees.equals(new Coordonnees(0, 0))) {
+        tmp.remove(coordonnees);
+      }
+    }
+    return tmp;
   }
 
   @Override
@@ -110,12 +142,11 @@ public class Worker extends Robot {
     for (Coordonnees c : caillou) {
       if (c.getHauteur() < 0 || c.getLargeur() < 0
           || c.getHauteur() >= this.getVue().getPlateau().getLongueur()
-          || c.getLargeur() >= this.getVue().getPlateau().getLargeur()
-          || this.getVue().getPlateau().getCelluleByCoordonnees(c).estImpassable()) {
+          || c.getLargeur() >= this.getVue().getPlateau().getLargeur()) {
         dep.remove(c);
       }
       try {
-        if (this.getVue().getPlateau().getCelluleByCoordonnees(c).estMur()) {
+        if (this.getVue().getPlateau().getCelluleByCoordonnees(c).estImpassable()) {
           dep.remove(c);
         }
       } catch (Exception e) {
@@ -142,7 +173,7 @@ public class Worker extends Robot {
     }
     return ans;
   }
-  
+
   @Override
   public String toString() {
     return this.getType() + ", " + super.toString();

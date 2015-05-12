@@ -244,4 +244,11 @@ public abstract class Robot {
     this.setObjectif(dep.get(this.getEquipe().secureInput(0, j - 1)));
     return new Deplacement(this);
   }
+  
+  public String getText() {
+    if (equipe.getEquipe() == 0) {
+      return getType().substring(1,2);
+    }
+    return getType().substring(1,2).toLowerCase();
+  }
 }

@@ -34,7 +34,7 @@ public class Attaque extends Action {
     this.getRobot().getVue().getPlateau().getCelluleByCoordonnees(getObjectif()).getRobot()
         .subitTirDe(this.getRobot());
     System.out.println("Il lui reste desormais "
-        + this.getRobot().getVue().getPlateau().getCelluleByCoordonnees(getDirection()).getRobot()
+        + this.getRobot().getVue().getPlateau().getCelluleByCoordonnees(getObjectif()).getRobot()
             .getEnergie() + " energie");
     this.getRobot().perdEnergieApresAction();
   }

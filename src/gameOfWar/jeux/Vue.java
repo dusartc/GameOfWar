@@ -92,17 +92,20 @@ public class Vue {
           } else if (this.plateau.estBase(j, i) == 2) {
             ans.insert(ans.length(), "| b |\n");
           }
-        } 
-        else if (this.plateau.estFactory(j, i) > 0) {
-            if (this.plateau.estFactory(j, i) == 1) {
-              ans.insert(ans.length(), "| F ");
-            } else if (this.plateau.estFactory(j, i) == 2) {
-              ans.insert(ans.length(), "| f ");
+        } else if (this.plateau.estFactory(j, i) > 0) {
+          if (this.plateau.estFactory(j, i) == 1) {
+            ans.insert(ans.length(), "| F ");
+            if (j == this.plateau.getLargeur() - 1) {
+              ans.insert(ans.length(), "|");
             }
-            else {
-                ans.insert(ans.length(), "|");
-              }
-          } else if (this.plateau.getCellule(j, i).contientMine() > 0) {
+          } else if (this.plateau.estFactory(j, i) == 2) {
+            ans.insert(ans.length(), "| f ");
+            if (j == this.plateau.getLargeur() - 1) {
+              ans.insert(ans.length(), "|");
+            }
+          }
+
+        } else if (this.plateau.getCellule(j, i).contientMine() > 0) {
           String res = "";
           if (this.equipe == Constante.EQUIPE_UN) {
             res += "| M ";
@@ -111,8 +114,8 @@ public class Vue {
           }
           ans.insert(ans.length(), (this.plateau.estMine(j, i) == this.getEquipe()) ? res : "|   ");
           if (j == this.plateau.getLargeur() - 1) {
-              ans.insert(ans.length(), "|");
-            }
+            ans.insert(ans.length(), "|");
+          }
         } else if (this.plateau.getCellule(j, i).getRobot() instanceof Piegeur) {
           if (this.plateau.estRobot(j, i) == 1) {
             ans.insert(ans.length(), "| P ");
@@ -144,24 +147,24 @@ public class Vue {
             ans.insert(ans.length(), "|   ");
           } else {
             ans.insert(ans.length(), "|");
-          } 
+          }
         } else if (this.plateau.getCellule(j, i).getRobot() instanceof Worker) {
-            if (this.plateau.estRobot(j, i) == 1) {
-                ans.insert(ans.length(), "| W ");
-                if (j == this.plateau.getLargeur() - 1) {
-                  ans.insert(ans.length(), "|");
-                }
-              } else if (this.plateau.estRobot(j, i) == 2) {
-                ans.insert(ans.length(), "| w ");
-                if (j == this.plateau.getLargeur() - 1) {
-                  ans.insert(ans.length(), "|");
-                }
-              } else if (j != this.plateau.getLargeur() - 1) {
-                ans.insert(ans.length(), "|   ");
-              } else {
-                ans.insert(ans.length(), "|");
-              }
-        	}else if (this.plateau.getCellule(j, i).getRobot() instanceof Char) {
+          if (this.plateau.estRobot(j, i) == 1) {
+            ans.insert(ans.length(), "| W ");
+            if (j == this.plateau.getLargeur() - 1) {
+              ans.insert(ans.length(), "|");
+            }
+          } else if (this.plateau.estRobot(j, i) == 2) {
+            ans.insert(ans.length(), "| w ");
+            if (j == this.plateau.getLargeur() - 1) {
+              ans.insert(ans.length(), "|");
+            }
+          } else if (j != this.plateau.getLargeur() - 1) {
+            ans.insert(ans.length(), "|   ");
+          } else {
+            ans.insert(ans.length(), "|");
+          }
+        } else if (this.plateau.getCellule(j, i).getRobot() instanceof Char) {
           if (this.plateau.estRobot(j, i) == 1) {
             ans.insert(ans.length(), "| C ");
             if (j == this.plateau.getLargeur() - 1) {
@@ -200,7 +203,8 @@ public class Vue {
     }
     ans += "+\n";
     ans += "|\tMAJUSCULES\t%\tminuscules\t\t\t|\n";
-    String[] chabadabada = new String[] {"base", "tireur", "piegeur", "char", "mine", "factory"};
+    String[] chabadabada =
+        new String[] {"base", "tireur", "piegeur", "char", "mine", "factory", "worker"};
     for (int i = 0; i < chabadabada.length; i++) {
       ans +=
           "|\t\t" + chabadabada[i].substring(0, 1).toUpperCase() + "\t|\t\t"
