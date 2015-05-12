@@ -142,5 +142,10 @@ public class Worker extends Robot {
     }
     return ans;
   }
+  
+  @Override
+  public String toString() {
+    return this.getType() + ", " + super.toString();
+  }
 
 }

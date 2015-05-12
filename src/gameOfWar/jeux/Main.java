@@ -3,6 +3,7 @@ package gameOfWar.jeux;
 import gameOfWar.action.Action;
 import gameOfWar.affichage.Menu;
 import gameOfWar.affichage.MenuTexte;
+import gameOfWar.config.Factory;
 import gameOfWar.robot.Char;
 import gameOfWar.robot.Piegeur;
 import gameOfWar.robot.Robot;
@@ -67,6 +68,11 @@ public class Main extends Menu {
           + ", a vous de jouer :\n");
       neo = equipes[i % 2].choisitRobot();
       MenuTexte.clearScreen();
+      if (!equipes[i%2].getFactories().isEmpty()) {
+        for (Factory f : equipes[i%2].getFactories()) {
+          f.choisitUnRobotASpawn();
+        }
+      }
       System.out.println(neo.getVue().toString());
       action = neo.choisitAction();
       if (action != null) {

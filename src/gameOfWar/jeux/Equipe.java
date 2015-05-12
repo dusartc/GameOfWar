@@ -2,6 +2,7 @@ package gameOfWar.jeux;
 
 import gameOfWar.config.Constante;
 import gameOfWar.config.Coordonnees;
+import gameOfWar.config.Factory;
 import gameOfWar.config.Mine;
 import gameOfWar.robot.Robot;
 
@@ -20,6 +21,7 @@ public class Equipe {
   private String nom;
   private List<Robot> robots;
   private List<Mine> mines;
+  private List<Factory> factories;
   private Vue vue;
   private int equipe;
   private Coordonnees coordBase;
@@ -152,5 +154,13 @@ public class Equipe {
       return new Random().nextInt(max - min) + min;
     }
     return Constante.secureInput(min, max);
+  }
+  
+  public void addFactory(Factory factory){
+    this.factories.add(factory);
+  }
+  
+  public List<Factory> getFactories(){
+    return this.factories;
   }
 }
