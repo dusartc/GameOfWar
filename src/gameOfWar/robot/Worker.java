@@ -29,7 +29,7 @@ public class Worker extends Robot {
     switch (i) {
       case 1:
         return choisitDep(dep);
-      case 2:
+      case 3:
         int h = 0;
         System.out.println("Vous pouvez reparer :");
         for (Coordonnees c : nearBy) {
@@ -40,7 +40,7 @@ public class Worker extends Robot {
             .getCelluleByCoordonnees(nearBy.get(this.getEquipe().secureInput(0, h - 1))).getRobot()
             .estSoigne();
         return null;
-      case 3:
+      case 2:
         int j = 0;
         System.out.println("Vous pouvez placer une factory sur :");
         for (Coordonnees c : dep) {

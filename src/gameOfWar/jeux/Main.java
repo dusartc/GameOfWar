@@ -33,7 +33,7 @@ public class Main extends Menu {
 
 
   public static void main(String[] args) {
-    //Menu test = new Menu("Game of War.");
+    // Menu test = new Menu("Game of War.");
 
     /*
      * javax.swing.SwingUtilities.invokeLater(new Runnable() {
@@ -45,17 +45,17 @@ public class Main extends Menu {
     Plateau plateau = MenuTexte.initialisationPlateau();
 
     Equipe[] equipes = MenuTexte.initialisationEquipes(plateau);
-//    Equipe[] equipes =
-//        new Equipe[] {
-//            new IA("ia1", plateau, Constante.EQUIPE_UN, new Coordonnees(0, 0)),
-//            new IA("ia2", plateau, Constante.EQUIPE_DEUX, new Coordonnees(plateau.getLargeur() - 1,
-//                plateau.getLongueur() - 1))};
+    // Equipe[] equipes =
+    // new Equipe[] {
+    // new IA("ia1", plateau, Constante.EQUIPE_UN, new Coordonnees(0, 0)),
+    // new IA("ia2", plateau, Constante.EQUIPE_DEUX, new Coordonnees(plateau.getLargeur() - 1,
+    // plateau.getLongueur() - 1))};
 
-    /*for (Equipe joueur : equipes) {
-      joueur.addRobot(new Tireur(joueur.getVue(), joueur));
-      joueur.addRobot(new Piegeur(joueur.getVue(), joueur));
-      joueur.addRobot(new Char(joueur.getVue(), joueur));
-    }*/
+    /*
+     * for (Equipe joueur : equipes) { joueur.addRobot(new Tireur(joueur.getVue(), joueur));
+     * joueur.addRobot(new Piegeur(joueur.getVue(), joueur)); joueur.addRobot(new
+     * Char(joueur.getVue(), joueur)); }
+     */
 
     boolean finis = false;
     Robot neo;
@@ -68,15 +68,15 @@ public class Main extends Menu {
           + ", a vous de jouer :\n");
       neo = equipes[i % 2].choisitRobot();
       MenuTexte.clearScreen();
-      if (!equipes[i%2].getFactories().isEmpty()) {
-        for (Factory f : equipes[i%2].getFactories()) {
-          f.choisitUnRobotASpawn();
-        }
-      }
       System.out.println(neo.getVue().toString());
       action = neo.choisitAction();
       if (action != null) {
         action.agit();
+      }
+      if (!equipes[i % 2].getFactories().isEmpty()) {
+        for (Factory f : equipes[i % 2].getFactories()) {
+          f.choisitUnRobotASpawn();
+        }
       }
       i += 1;
       for (Equipe joueur : equipes) {

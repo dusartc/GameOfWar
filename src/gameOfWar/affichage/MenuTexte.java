@@ -141,17 +141,17 @@ public class MenuTexte {
     return Constante.PAYS[Constante.secureInput(0, Constante.PAYS.length - 1)];
   }
 
-	private static String quadrillage(String message) {
-		message = "\t| " + message + " |\n";
-		String ans = "";
-		for (int i = 0; i < message.length() - 2; i++) {
-			ans += "*";
-		}
-		ans += "\n" + message + "\t";
-		for (int i = 0; i < message.length() - 2; i++) {
-			ans += "*";
-		}
-		return "\t" + ans + "\n";
-	}
+  private static String quadrillage(String message) {
+    message = "\t| " + message + " |\n";
+    String ans = "";
+    for (int i = 0; i < message.length() - 2; i++) {
+      ans += "*";
+    }
+    ans += "\n" + message + "\t";
+    for (int i = 0; i < message.length() - 2; i++) {
+      ans += "*";
+    }
+    return "\t" + ans + "\n";
+  }
 
 }

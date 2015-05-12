@@ -42,6 +42,7 @@ public class Equipe {
     this.coordBase = coordBase;
     this.robots = new ArrayList<Robot>();
     this.mines = new ArrayList<Mine>();
+    this.factories = new ArrayList<Factory>();
     this.vue = new Vue(plateau, equipe);
   }
 
