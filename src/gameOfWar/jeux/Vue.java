@@ -95,7 +95,7 @@ public class Vue {
         } 
         else if (this.plateau.estFactory(j, i) > 0) {
             if (this.plateau.estFactory(j, i) == 1) {
-              ans.insert(ans.length(), "\n| F ");
+              ans.insert(ans.length(), "| F ");
             } else if (this.plateau.estFactory(j, i) == 2) {
               ans.insert(ans.length(), "| f ");
             }
