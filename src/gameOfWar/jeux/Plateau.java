@@ -108,6 +108,10 @@ public class Plateau {
   public int estRobot(int x, int y) {
     return plateau[y][x].estRobot();
   }
+  
+  public int estFactory(int x, int y) {
+	    return plateau[y][x].getNumFacto();
+	  }
 
   /**
    * Vide la Cellule en x, y
