@@ -194,7 +194,10 @@ public class Vue {
     for (Cellule[] cellules : this.plateau.getPlateau()) {
       ans.insert(ans.length(), "\n" + quadrillage() + "\n| ");
       for (Cellule cellule : cellules) {
-        ans.insert(ans.length(), cellule.getImage() + " | ");
+        ans.insert(ans.length(),
+            (cellule.contientMine() == 0 ? cellule.getImage()
+                : cellule.contientMine() == equipe ? cellule.getImage() : " ")
+                + " | ");
       }
     }
     ans.insert(ans.length(), "\n" + quadrillage() + "\n\n" + legende());

@@ -151,6 +151,10 @@ public abstract class Robot {
     this.setEnergie(getEnergie() - getCoupDep());
   }
 
+  public void perdEnergie(int i) {
+    this.setEnergie(getEnergie() - i);
+  }
+
   public void setCoordonnees(Coordonnees coordonnees) {
     this.coordonnees = coordonnees;
   }
@@ -244,13 +248,13 @@ public abstract class Robot {
     this.setObjectif(dep.get(this.getEquipe().secureInput(0, j - 1)));
     return new Deplacement(this);
   }
-  
+
   public String getText() {
     if (equipe.getEquipe() == 1) {
-      return getType().substring(0,1).toLowerCase();
+      return getType().substring(0, 1).toLowerCase();
     }
-    return getType().substring(0,1);
+    return getType().substring(0, 1);
   }
-  
+
   abstract public List<Coordonnees> initDep();
 }

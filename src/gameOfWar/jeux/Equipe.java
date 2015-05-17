@@ -10,8 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import javax.swing.RootPaneContainer;
-
 
 /**
  * Permet de gerer une Equipe (joueur ou ordinateur)
@@ -28,6 +26,7 @@ public class Equipe {
   private int equipe;
   private Coordonnees coordBase;
   private boolean estIa = false;
+  private int nbFacto = 0;
 
   /**
    * Construit une equipe d'apres son nom, le plateau dans lequel le jeu est joué, son numero
@@ -73,12 +72,12 @@ public class Equipe {
     for (Robot robot : robots) {
       if (robot.initDep().isEmpty()) {
         indisponibles.add(robot);
-      }else {
+      } else {
         disponibles.add(robot);
       }
     }
     for (Robot r : indisponibles) {
-      System.out.println(r.toString()+" ne peut pas se deplacer :(");
+      System.out.println(r.toString() + " ne peut pas se deplacer :(");
     }
     int i = 1;
     for (Robot robot : disponibles) {
@@ -173,12 +172,22 @@ public class Equipe {
     }
     return Constante.secureInput(min, max);
   }
-  
-  public void addFactory(Factory factory){
+
+  public void addFactory(Factory factory) {
     this.factories.add(factory);
+    this.nbFacto += 1;
   }
-  
-  public List<Factory> getFactories(){
+
+  public List<Factory> getFactories() {
     return this.factories;
+  }
+
+  public int getNbFacto() {
+    return this.nbFacto;
+  }
+
+  public void perdEnergieRandom() {
+    Random rd = new Random();
+    robots.get(rd.nextInt(robots.size() - 1)).perdEnergie(5);
   }
 }

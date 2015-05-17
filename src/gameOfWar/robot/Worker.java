@@ -22,9 +22,10 @@ public class Worker extends Robot {
     List<Coordonnees> dep = initDep();
     List<Coordonnees> nearBy = nearBy();
     List<Coordonnees> facto = initFacto();
-    final int chabada = nearBy.isEmpty() ? 2 : 3;
+    int nbFacto = this.getEquipe().getNbFacto();
+    int chabada = nearBy.isEmpty() ? 2 : 3;
     System.out.println("Vous pouvez :\n\t1 - deplacer");
-    if (!facto.isEmpty()) {
+    if (!facto.isEmpty() && nbFacto < Constante.NB_FACTO_MAX) {
       System.out.println("\t" + (nearBy.isEmpty() ? 2 : 3) + " - poser une factory");
     }
     if (!nearBy.isEmpty()) {
@@ -48,15 +49,17 @@ public class Worker extends Robot {
           return null;
         }
       case 3:
-        int j = 0;
-        System.out.println("Vous pouvez placer une factory sur :");
-        for (Coordonnees c : facto) {
-          System.out.println(j + " : " + c + " " + direction(c));
-          j += 1;
+        if (nbFacto < Constante.NB_FACTO_MAX) {
+          int j = 0;
+          System.out.println("Vous pouvez placer une factory sur :");
+          for (Coordonnees c : facto) {
+            System.out.println(j + " : " + c + " " + direction(c));
+            j += 1;
+          }
+          this.setObjectif(facto.get(this.getEquipe().secureInput(0, j - 1)));
+          new Factory(this);
+          return null;
         }
-        this.setObjectif(facto.get(this.getEquipe().secureInput(0, j - 1)));
-        new Factory(this);
-        return null;
       default:
         return null;
     }

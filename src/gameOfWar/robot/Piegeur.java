@@ -49,7 +49,7 @@ public class Piegeur extends Robot {
           int h = 0;
           System.out.println("vous pouvez poser une mine en :");
           for (Coordonnees c : dep) {
-            System.out.println(h + ": " + c);
+            System.out.println(h + ": " + c + " " + direction(c));
             h += 1;
           }
           this.setObjectif(dep.get(this.getEquipe().secureInput(0, h - 1)));

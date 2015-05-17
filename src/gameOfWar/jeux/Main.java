@@ -4,10 +4,7 @@ import gameOfWar.action.Action;
 import gameOfWar.affichage.Menu;
 import gameOfWar.affichage.MenuTexte;
 import gameOfWar.config.Factory;
-import gameOfWar.robot.Char;
-import gameOfWar.robot.Piegeur;
 import gameOfWar.robot.Robot;
-import gameOfWar.robot.Tireur;
 
 import java.util.ArrayList;
 
@@ -75,7 +72,8 @@ public class Main extends Menu {
           action.agit();
         }
       }else {
-        System.out.println("aucun robot disponible :(");
+        System.out.println("aucun robot disponible, un de vos robots va perdre de l'energie");
+        equipes[i % 2].perdEnergieRandom();
       }      
       if (!equipes[i % 2].getFactories().isEmpty()) {
         for (Factory f : equipes[i % 2].getFactories()) {

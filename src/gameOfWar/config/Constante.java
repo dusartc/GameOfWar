@@ -165,6 +165,7 @@ public class Constante {
 
   public static int SPAWNING_TIME = Integer.parseInt((String) PROPERTIES
       .getProperty("spawning_time"));
+  public static int NB_FACTO_MAX = 2;
 
   /**
    * Ajout des deplacement a leurs listes.
