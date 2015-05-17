@@ -1,5 +1,6 @@
 package gameOfWar.action;
 
+import gameOfWar.config.Base;
 import gameOfWar.config.Coordonnees;
 import gameOfWar.robot.Robot;
 
@@ -30,13 +31,28 @@ public class Deplacement extends Action {
 
   private void moveTo(Coordonnees c) {
     this.getRobot().getVue().retirerRobot(this.getRobot().getCoordonnees());
-    this.getRobot().getVue().getPlateau().getCelluleByCoordonnees(this.getRobot().getCoordonnees())
-        .setImage(" ");
+    this.getRobot()
+        .getVue()
+        .getPlateau()
+        .getCelluleByCoordonnees(this.getRobot().getCoordonnees())
+        .setImage(
+            this.getRobot().getVue().getPlateau()
+                .getCelluleByCoordonnees(this.getRobot().getCoordonnees()) instanceof Base ? this
+                .getRobot().getVue().getPlateau()
+                .getCelluleByCoordonnees(this.getRobot().getCoordonnees()).getImage() : " ");
     this.getRobot().setCoordonnees(c);
     this.getRobot().getVue().poserRobot(getRobot(), c);
     this.getRobot().perdEnergieApresDep();
-    this.getRobot().getVue().getPlateau().getCelluleByCoordonnees(c)
-        .setImage(this.getRobot().getText());
+    this.getRobot()
+        .getVue()
+        .getPlateau()
+        .getCelluleByCoordonnees(this.getRobot().getCoordonnees())
+        .setImage(
+            this.getRobot().getVue().getPlateau()
+                .getCelluleByCoordonnees(this.getRobot().getCoordonnees()) instanceof Base ? this
+                .getRobot().getVue().getPlateau()
+                .getCelluleByCoordonnees(this.getRobot().getCoordonnees()).getImage() : this
+                .getRobot().getText());
     if (this.getRobot().getVue().getPlateau().getCelluleByCoordonnees(c).contientMine() > 0) {
       System.out.println("EEEEEH BOOOM !!!");
       this.getRobot().subitMine();

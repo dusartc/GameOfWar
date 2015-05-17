@@ -1,16 +1,8 @@
 package gameOfWar.jeux;
 
-import gameOfWar.config.Base;
 import gameOfWar.config.Cellule;
-import gameOfWar.config.Constante;
 import gameOfWar.config.Coordonnees;
-import gameOfWar.config.Factory;
-import gameOfWar.config.Mur;
-import gameOfWar.robot.Char;
-import gameOfWar.robot.Piegeur;
 import gameOfWar.robot.Robot;
-import gameOfWar.robot.Tireur;
-import gameOfWar.robot.Worker;
 
 
 /**
@@ -76,123 +68,136 @@ public class Vue {
     return this.equipe;
   }
 
+  // @Override
+  // public String toString() {
+  // StringBuilder ans = new StringBuilder();
+  // ans.insert(ans.length(), quadrillage());
+  // for (int i = 0; i < this.plateau.getLongueur(); i++) {
+  // for (int j = 0; j < this.plateau.getLargeur(); j++) {
+  // if (this.plateau.getCellule(j, i) instanceof Mur) {
+  // if (this.plateau.getCellule(j, i).estMur()) {
+  // ans.insert(ans.length(), "| O ");
+  // }
+  // } else if (this.plateau.getCellule(j, i) instanceof Base) {
+  // if (this.plateau.estBase(j, i) == 1) {
+  // ans.insert(ans.length(), "\n| B ");
+  // } else if (this.plateau.estBase(j, i) == 2) {
+  // ans.insert(ans.length(), "| b |\n");
+  // }
+  // } else if (this.plateau.estFactory(j, i) > 0) {
+  // if (this.plateau.estFactory(j, i) == 1) {
+  // ans.insert(ans.length(), "| F ");
+  // if (j == this.plateau.getLargeur() - 1) {
+  // ans.insert(ans.length(), "|");
+  // }
+  // } else if (this.plateau.estFactory(j, i) == 2) {
+  // ans.insert(ans.length(), "| f ");
+  // if (j == this.plateau.getLargeur() - 1) {
+  // ans.insert(ans.length(), "|");
+  // }
+  // }
+  //
+  // } else if (this.plateau.getCellule(j, i).contientMine() > 0) {
+  // String res = "";
+  // if (this.equipe == Constante.EQUIPE_UN) {
+  // res += "| M ";
+  // } else if (this.equipe == Constante.EQUIPE_DEUX) {
+  // res += "| m ";
+  // }
+  // ans.insert(ans.length(), (this.plateau.estMine(j, i) == this.getEquipe()) ? res : "|   ");
+  // if (j == this.plateau.getLargeur() - 1) {
+  // ans.insert(ans.length(), "|");
+  // }
+  // } else if (this.plateau.getCellule(j, i).getRobot() instanceof Piegeur) {
+  // if (this.plateau.estRobot(j, i) == 1) {
+  // ans.insert(ans.length(), "| P ");
+  // if (j == this.plateau.getLargeur() - 1) {
+  // ans.insert(ans.length(), "|");
+  // }
+  // } else if (this.plateau.estRobot(j, i) == 2) {
+  // ans.insert(ans.length(), "| p ");
+  // if (j == this.plateau.getLargeur() - 1) {
+  // ans.insert(ans.length(), "|");
+  // }
+  // } else if (j != this.plateau.getLargeur() - 1) {
+  // ans.insert(ans.length(), "|   ");
+  // } else {
+  // ans.insert(ans.length(), "|");
+  // }
+  // } else if (this.plateau.getCellule(j, i).getRobot() instanceof Tireur) {
+  // if (this.plateau.estRobot(j, i) == 1) {
+  // ans.insert(ans.length(), "| T ");
+  // if (j == this.plateau.getLargeur() - 1) {
+  // ans.insert(ans.length(), "|");
+  // }
+  // } else if (this.plateau.estRobot(j, i) == 2) {
+  // ans.insert(ans.length(), "| t ");
+  // if (j == this.plateau.getLargeur() - 1) {
+  // ans.insert(ans.length(), "|");
+  // }
+  // } else if (j != this.plateau.getLargeur() - 1) {
+  // ans.insert(ans.length(), "|   ");
+  // } else {
+  // ans.insert(ans.length(), "|");
+  // }
+  // } else if (this.plateau.getCellule(j, i).getRobot() instanceof Worker) {
+  // if (this.plateau.estRobot(j, i) == 1) {
+  // ans.insert(ans.length(), "| W ");
+  // if (j == this.plateau.getLargeur() - 1) {
+  // ans.insert(ans.length(), "|");
+  // }
+  // } else if (this.plateau.estRobot(j, i) == 2) {
+  // ans.insert(ans.length(), "| w ");
+  // if (j == this.plateau.getLargeur() - 1) {
+  // ans.insert(ans.length(), "|");
+  // }
+  // } else if (j != this.plateau.getLargeur() - 1) {
+  // ans.insert(ans.length(), "|   ");
+  // } else {
+  // ans.insert(ans.length(), "|");
+  // }
+  // } else if (this.plateau.getCellule(j, i).getRobot() instanceof Char) {
+  // if (this.plateau.estRobot(j, i) == 1) {
+  // ans.insert(ans.length(), "| C ");
+  // if (j == this.plateau.getLargeur() - 1) {
+  // ans.insert(ans.length(), "|");
+  // }
+  // } else if (this.plateau.estRobot(j, i) == 2) {
+  // ans.insert(ans.length(), "| c ");
+  // if (j == this.plateau.getLargeur() - 1) {
+  // ans.insert(ans.length(), "|");
+  // }
+  // } else if (j != this.plateau.getLargeur() - 1) {
+  // ans.insert(ans.length(), "|   ");
+  // } else {
+  // ans.insert(ans.length(), "|");
+  // }
+  // } else if (this.plateau.getCellule(j, i) instanceof Cellule) {
+  // ans.insert(ans.length(), "|   ");
+  // if (j == this.plateau.getLargeur() - 1) {
+  // ans.insert(ans.length(), "|");
+  // }
+  // }
+  //
+  // }
+  // if (i < this.plateau.getLongueur() - 1) {
+  // ans.insert(ans.length(), "\n" + quadrillage() + "\n");
+  // }
+  // }
+  // ans.insert(ans.length(), quadrillage() + "\n\n" + legende());
+  // return ans.toString();
+  // }
+
   @Override
   public String toString() {
     StringBuilder ans = new StringBuilder();
-    ans.insert(ans.length(), quadrillage());
-    for (int i = 0; i < this.plateau.getLongueur(); i++) {
-      for (int j = 0; j < this.plateau.getLargeur(); j++) {
-        if (this.plateau.getCellule(j, i) instanceof Mur) {
-          if (this.plateau.getCellule(j, i).estMur()) {
-            ans.insert(ans.length(), "| O ");
-          }
-        } else if (this.plateau.getCellule(j, i) instanceof Base) {
-          if (this.plateau.estBase(j, i) == 1) {
-            ans.insert(ans.length(), "\n| B ");
-          } else if (this.plateau.estBase(j, i) == 2) {
-            ans.insert(ans.length(), "| b |\n");
-          }
-        } else if (this.plateau.estFactory(j, i) > 0) {
-          if (this.plateau.estFactory(j, i) == 1) {
-            ans.insert(ans.length(), "| F ");
-            if (j == this.plateau.getLargeur() - 1) {
-              ans.insert(ans.length(), "|");
-            }
-          } else if (this.plateau.estFactory(j, i) == 2) {
-            ans.insert(ans.length(), "| f ");
-            if (j == this.plateau.getLargeur() - 1) {
-              ans.insert(ans.length(), "|");
-            }
-          }
-
-        } else if (this.plateau.getCellule(j, i).contientMine() > 0) {
-          String res = "";
-          if (this.equipe == Constante.EQUIPE_UN) {
-            res += "| M ";
-          } else if (this.equipe == Constante.EQUIPE_DEUX) {
-            res += "| m ";
-          }
-          ans.insert(ans.length(), (this.plateau.estMine(j, i) == this.getEquipe()) ? res : "|   ");
-          if (j == this.plateau.getLargeur() - 1) {
-            ans.insert(ans.length(), "|");
-          }
-        } else if (this.plateau.getCellule(j, i).getRobot() instanceof Piegeur) {
-          if (this.plateau.estRobot(j, i) == 1) {
-            ans.insert(ans.length(), "| P ");
-            if (j == this.plateau.getLargeur() - 1) {
-              ans.insert(ans.length(), "|");
-            }
-          } else if (this.plateau.estRobot(j, i) == 2) {
-            ans.insert(ans.length(), "| p ");
-            if (j == this.plateau.getLargeur() - 1) {
-              ans.insert(ans.length(), "|");
-            }
-          } else if (j != this.plateau.getLargeur() - 1) {
-            ans.insert(ans.length(), "|   ");
-          } else {
-            ans.insert(ans.length(), "|");
-          }
-        } else if (this.plateau.getCellule(j, i).getRobot() instanceof Tireur) {
-          if (this.plateau.estRobot(j, i) == 1) {
-            ans.insert(ans.length(), "| T ");
-            if (j == this.plateau.getLargeur() - 1) {
-              ans.insert(ans.length(), "|");
-            }
-          } else if (this.plateau.estRobot(j, i) == 2) {
-            ans.insert(ans.length(), "| t ");
-            if (j == this.plateau.getLargeur() - 1) {
-              ans.insert(ans.length(), "|");
-            }
-          } else if (j != this.plateau.getLargeur() - 1) {
-            ans.insert(ans.length(), "|   ");
-          } else {
-            ans.insert(ans.length(), "|");
-          }
-        } else if (this.plateau.getCellule(j, i).getRobot() instanceof Worker) {
-          if (this.plateau.estRobot(j, i) == 1) {
-            ans.insert(ans.length(), "| W ");
-            if (j == this.plateau.getLargeur() - 1) {
-              ans.insert(ans.length(), "|");
-            }
-          } else if (this.plateau.estRobot(j, i) == 2) {
-            ans.insert(ans.length(), "| w ");
-            if (j == this.plateau.getLargeur() - 1) {
-              ans.insert(ans.length(), "|");
-            }
-          } else if (j != this.plateau.getLargeur() - 1) {
-            ans.insert(ans.length(), "|   ");
-          } else {
-            ans.insert(ans.length(), "|");
-          }
-        } else if (this.plateau.getCellule(j, i).getRobot() instanceof Char) {
-          if (this.plateau.estRobot(j, i) == 1) {
-            ans.insert(ans.length(), "| C ");
-            if (j == this.plateau.getLargeur() - 1) {
-              ans.insert(ans.length(), "|");
-            }
-          } else if (this.plateau.estRobot(j, i) == 2) {
-            ans.insert(ans.length(), "| c ");
-            if (j == this.plateau.getLargeur() - 1) {
-              ans.insert(ans.length(), "|");
-            }
-          } else if (j != this.plateau.getLargeur() - 1) {
-            ans.insert(ans.length(), "|   ");
-          } else {
-            ans.insert(ans.length(), "|");
-          }
-        } else if (this.plateau.getCellule(j, i) instanceof Cellule) {
-          ans.insert(ans.length(), "|   ");
-          if (j == this.plateau.getLargeur() - 1) {
-            ans.insert(ans.length(), "|");
-          }
-        }
-
-      }
-      if (i < this.plateau.getLongueur() - 1) {
-        ans.insert(ans.length(), "\n" + quadrillage() + "\n");
+    for (Cellule[] cellules : this.plateau.getPlateau()) {
+      ans.insert(ans.length(), "\n" + quadrillage() + "\n| ");
+      for (Cellule cellule : cellules) {
+        ans.insert(ans.length(), cellule.getImage() + " | ");
       }
     }
-    ans.insert(ans.length(), quadrillage() + "\n\n" + legende());
+    ans.insert(ans.length(), "\n" + quadrillage() + "\n\n" + legende());
     return ans.toString();
   }
 

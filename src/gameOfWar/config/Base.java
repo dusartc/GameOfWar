@@ -18,5 +18,6 @@ public class Base extends Cellule {
   public Base(int largeur, int hauteur, int equipe) {
     super(largeur, hauteur);
     this.poseBase(equipe);
+    this.setImage(largeur == 0 ? "b" : "B");
   }
 }

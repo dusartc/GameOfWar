@@ -270,5 +270,9 @@ public class Plateau {
     }
     return ans;
   }
+  
+  public Cellule[][] getPlateau(){
+    return this.plateau;
+  }
 
 }

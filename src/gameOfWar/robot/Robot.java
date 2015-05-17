@@ -246,9 +246,9 @@ public abstract class Robot {
   }
   
   public String getText() {
-    if (equipe.getEquipe() == 0) {
-      return getType().substring(1,2);
+    if (equipe.getEquipe() == 1) {
+      return getType().substring(0,1).toLowerCase();
     }
-    return getType().substring(1,2).toLowerCase();
+    return getType().substring(0,1);
   }
 }

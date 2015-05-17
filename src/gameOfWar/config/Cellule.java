@@ -153,5 +153,8 @@ public class Cellule {
     this.image = image;
   }
 
+  public String getImage() {
+    return this.image;
+  }
 
 }
