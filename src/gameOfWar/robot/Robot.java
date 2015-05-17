@@ -250,7 +250,7 @@ public abstract class Robot {
   }
 
   public String getText() {
-    if (equipe.getEquipe() == 1) {
+    if (equipe.getEquipe() == 2) {
       return getType().substring(0, 1).toLowerCase();
     }
     return getType().substring(0, 1);

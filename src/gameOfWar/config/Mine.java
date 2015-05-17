@@ -20,6 +20,6 @@ public class Mine {
     piegeur.perdUneMine();
     piegeur.perdEnergieApresAction();
     piegeur.getVue().getPlateau().getCelluleByCoordonnees(piegeur.getObjectif())
-        .setImage((piegeur.getNumEquipe() == Constante.EQUIPE_UN ? "m" : "M"));
+        .setImage((piegeur.getNumEquipe() == Constante.EQUIPE_UN ? "M" : "m"));
   }
 }

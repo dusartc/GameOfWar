@@ -21,7 +21,7 @@ public class Factory {
     worker.getVue().getPlateau().getCelluleByCoordonnees(worker.getObjectif()).setFactory(this);
     this.spawningTime = Constante.SPAWNING_TIME;
     worker.getVue().getPlateau().getCelluleByCoordonnees(worker.getObjectif())
-        .setImage(worker.getNumEquipe() == Constante.EQUIPE_UN ? "f" : "F");
+        .setImage(worker.getNumEquipe() == Constante.EQUIPE_UN ? "F" : "f");
   }
 
   public Equipe getEquipe() {
