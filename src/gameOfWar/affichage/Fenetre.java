@@ -43,6 +43,7 @@ public class Fenetre extends JFrame {
     music.addActionListener(new ac());
     this.getContentPane().add(music);
     JButton quitter = new Bouton("X", 920, 20);
+    quitter.setBounds(950,650,48,48);
     try {
       File fond = new File("src/gameOfWar/jeux/Images/quitter.png");
       Image img = ImageIO.read(fond);
