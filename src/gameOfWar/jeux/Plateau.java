@@ -49,7 +49,6 @@ public class Plateau {
     this.plateau[0][0] = new Base(0, 0, Constante.EQUIPE_UN); //
     this.plateau[this.y - 1][this.x - 1] = // base par default
         new Base(this.x - 1, this.y - 1, Constante.EQUIPE_DEUX); //
-
     double nbObstacles =
         ((double) pourcentageObstacle / 100) * (this.plateau[0].length * this.plateau.length);
     int currentObstacles = 0;
@@ -87,7 +86,7 @@ public class Plateau {
           default:
             break;
         }
-      } else if (searchPath.getLargeur() != this.x) {
+      } else if (searchPath.getLargeur() != fin.getLargeur()) {
         searchPath = searchPath.ajout(new Coordonnees(1, 0));
       } else
         searchPath = searchPath.ajout(new Coordonnees(0, 1));

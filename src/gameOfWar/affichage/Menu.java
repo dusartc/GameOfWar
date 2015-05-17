@@ -1,7 +1,5 @@
 package gameOfWar.affichage;
 
-import gameOfWar.affichage.ac;
-
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -52,7 +50,7 @@ public class Menu extends JPanel{
 
   private void getBoutonJeu(GridBagConstraints constraints, String nom, int x, int y, int fill,
       int insetsTop, int gridx, int gridy) {
-    toutLesBoutons = new Bouton(nom,0,0);
+    toutLesBoutons = new Bouton(nom);
     toutLesBoutons.setPreferredSize(new Dimension(x, y));
     constraints.fill = fill;
     constraints.weightx = 1;

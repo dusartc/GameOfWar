@@ -30,7 +30,7 @@ public class Fenetre extends JFrame {
     this.setLocationRelativeTo(null);
     this.setContentPane(new Fond());
     this.afficheLabelTitre("Game of War");
-    JButton music = new Bouton("Play", 900, 20);
+    JButton music = new Bouton("Play");
     try {
       File fond = new File("src/gameOfWar/jeux/Images/music.gif");
       Image img = ImageIO.read(fond);
@@ -42,7 +42,8 @@ public class Fenetre extends JFrame {
     music.setActionCommand("Play");
     music.addActionListener(new ac());
     this.getContentPane().add(music);
-    JButton quitter = new Bouton("X", 920, 20);
+    JButton quitter = new Bouton("X");
+    quitter.setBounds(950,650,48,48);
     try {
       File fond = new File("src/gameOfWar/jeux/Images/quitter.png");
       Image img = ImageIO.read(fond);
