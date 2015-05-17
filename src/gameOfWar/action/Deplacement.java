@@ -1,6 +1,7 @@
 package gameOfWar.action;
 
 import gameOfWar.config.Base;
+import gameOfWar.config.Constante;
 import gameOfWar.config.Coordonnees;
 import gameOfWar.robot.Robot;
 
@@ -39,7 +40,12 @@ public class Deplacement extends Action {
             this.getRobot().getVue().getPlateau()
                 .getCelluleByCoordonnees(this.getRobot().getCoordonnees()) instanceof Base ? this
                 .getRobot().getVue().getPlateau()
-                .getCelluleByCoordonnees(this.getRobot().getCoordonnees()).getImage() : " ");
+                .getCelluleByCoordonnees(this.getRobot().getCoordonnees()).getImage()
+                : this.getRobot().getVue().getPlateau()
+                    .getCelluleByCoordonnees(getRobot().getCoordonnees()).getNumFacto() == 0 ? " "
+                    : this.getRobot().getVue().getPlateau()
+                        .getCelluleByCoordonnees(getRobot().getCoordonnees()).getNumFacto() == Constante.EQUIPE_UN ? "F"
+                        : "f");
     this.getRobot().setCoordonnees(c);
     this.getRobot().getVue().poserRobot(getRobot(), c);
     this.getRobot().perdEnergieApresDep();

@@ -142,7 +142,7 @@ public class Cellule {
   }
 
   public boolean estImpassable() {
-    return this.mur || this.factory != null || this.robot != null;
+    return this.mur || this.robot != null;
   }
 
   /**
