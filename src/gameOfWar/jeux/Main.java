@@ -1,12 +1,17 @@
 package gameOfWar.jeux;
 
 import gameOfWar.action.Action;
+import gameOfWar.affichage.Fenetre;
 import gameOfWar.affichage.Menu;
 import gameOfWar.affichage.MenuTexte;
 import gameOfWar.config.Factory;
 import gameOfWar.robot.Robot;
 
+import java.io.IOException;
 import java.util.ArrayList;
+
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 
 /**
@@ -16,43 +21,20 @@ import java.util.ArrayList;
  * @author Clement
  */
 
-public class Main extends Menu {
-
-  /**
-   * 
-   */
-  private static final long serialVersionUID = 1L;
-
-  public Main(String nom) {
-    super(nom);
-    // TODO Auto-generated constructor stub
-  }
+public class Main {
 
 
   public static void main(String[] args) {
-    //Menu test = new Menu("Game of War.");
-
-    /*
-     * javax.swing.SwingUtilities.invokeLater(new Runnable() {
-     * 
-     * @Override public void run(){ // TODO Auto-generated method stub new Menu("Game Of War"); }
-     * });
-     */
-
+    try {
+      @SuppressWarnings("unused")
+      Fenetre test = new Fenetre("Game of War.");
+    } catch (UnsupportedAudioFileException | IOException | LineUnavailableException exception) {
+      // TODO Auto-generated catch block
+      exception.printStackTrace();
+    }
     Plateau plateau = MenuTexte.initialisationPlateau();
 
     Equipe[] equipes = MenuTexte.initialisationEquipes(plateau);
-    // Equipe[] equipes =
-    // new Equipe[] {
-    // new IA("ia1", plateau, Constante.EQUIPE_UN, new Coordonnees(0, 0)),
-    // new IA("ia2", plateau, Constante.EQUIPE_DEUX, new Coordonnees(plateau.getLargeur() - 1,
-    // plateau.getLongueur() - 1))};
-
-    /*
-     * for (Equipe joueur : equipes) { joueur.addRobot(new Tireur(joueur.getVue(), joueur));
-     * joueur.addRobot(new Piegeur(joueur.getVue(), joueur)); joueur.addRobot(new
-     * Char(joueur.getVue(), joueur)); }
-     */
 
     boolean finis = false;
     Robot neo;
