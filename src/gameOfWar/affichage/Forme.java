@@ -28,9 +28,5 @@ public class Forme extends JPanel{
     GradientPaint gradientPaint2 = new GradientPaint(0, 0, new Color(0xFF, 0xFF, 0xFF), 0, 90,  new Color(110, 110, 110), true);
     graphics2d.setPaint(gradientPaint2);
     graphics2d.fillRoundRect(140, 30, 740, 80, 20, 20);
-    /*Font sousTitre = new Font("Deja Vu", Font.ROMAN_BASELINE, 40);
-    g.setFont(sousTitre);
-    g.setColor(new Color(0x80,0x80,0x80));
-    g.drawString("OPTIONS", (this.getWidth()/3)+80, (this.getHeight()/4)+15);*/
   }
 }
