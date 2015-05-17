@@ -136,7 +136,7 @@ public class Cellule {
   }
   
   public boolean estImpassable() {
-    return !(getNumFacto() == 0 || estRobot() == 0 || mur);
+    return this.mur || this.factory != null || this.robot != null;
   }
 
   /**
