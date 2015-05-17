@@ -1,15 +1,17 @@
 Projet Game Of War
 
 Avanessova Mariam.
-Catrice AurÃ©lia.
+Catrice Aurelia.
 Cotton Alexandre.
 Debaerdemaeker Mathieu.
-Dusart ClÃ©ment
+Dusart Clement
 Ngoutane Samantha.
 
 Fonctionnalités implémentées :
-  - Char, Tireur, Piegeur
+  - Char, Tireur, Piegeur, Worker, Factory
   - deplacements
   - gestion energie
-  - Equipe -> IA ou joueur
+  - Equipe -> IA vs IA, IA vs Joueur, Joueur vs Joueur
   - Obstacles
+  - properties
+  - IA random
