@@ -11,7 +11,6 @@ import gameOfWar.robot.Robot;
  */
 public abstract class Action {
 
-  private Coordonnees direction;
   private Coordonnees objectif;
   private Robot robot;
 
@@ -30,10 +29,6 @@ public abstract class Action {
    * Realise l'action du robot
    */
   public abstract void agit();
-
-  public Coordonnees getDirection() {
-    return this.direction;
-  }
 
   public Coordonnees getObjectif() {
     return this.objectif;

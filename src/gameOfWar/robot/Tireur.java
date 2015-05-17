@@ -109,11 +109,6 @@ public class Tireur extends Robot {
     return Constante.DEGATS_TIREUR;
   }
 
-  @Override
-  public List<Coordonnees> getDeplacements() {
-    return this.coordonnees;
-  }
-
   /**
    * @see Robot
    */
@@ -168,6 +163,9 @@ public class Tireur extends Robot {
     return cible2;
   }
 
+  /**
+   * @see Robot
+   */
   public List<Coordonnees> initDep() {
     List<Coordonnees> dep = new ArrayList<Coordonnees>();
     List<Coordonnees> caillou = new ArrayList<Coordonnees>();

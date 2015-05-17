@@ -26,7 +26,6 @@ public class Equipe {
   private int equipe;
   private Coordonnees coordBase;
   private boolean estIa = false;
-  private int nbFacto = 0;
 
   /**
    * Construit une equipe d'apres son nom, le plateau dans lequel le jeu est joué, son numero
@@ -175,17 +174,24 @@ public class Equipe {
 
   public void addFactory(Factory factory) {
     this.factories.add(factory);
-    this.nbFacto += 1;
   }
 
   public List<Factory> getFactories() {
     return this.factories;
   }
 
+  /**
+   * Renvoie le nombre de factory que possede l'equipe
+   * 
+   * @return int
+   */
   public int getNbFacto() {
-    return this.nbFacto;
+    return this.factories.size();
   }
-
+  
+  /**
+   * Fait perdre 5 energies a un robot aleatoire
+   */
   public void perdEnergieRandom() {
     Random rd = new Random();
     robots.get(rd.nextInt(robots.size() - 1)).perdEnergie(5);

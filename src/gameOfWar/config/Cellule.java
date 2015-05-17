@@ -107,16 +107,22 @@ public class Cellule {
     this.coordonnees = coord;
   }
 
- public Factory getFactory() {
+  public Factory getFactory() {
     return factory;
   }
- 
- public int getNumFacto(){
-	 if (this.factory == null) {
-		return 0;
-	}
-	 return this.factory.getEquipe().getEquipe();
- }
+
+  /**
+   * Renvoie 0 s'il n'y a pas de factory dans la cellule, sinon renvoie le numero de l'equipe
+   * possedant la factory
+   * 
+   * @return int
+   */
+  public int getNumFacto() {
+    if (this.factory == null) {
+      return 0;
+    }
+    return this.factory.getEquipe().getEquipe();
+  }
 
   public void setFactory(Factory factory) {
     this.factory = factory;
@@ -134,7 +140,7 @@ public class Cellule {
   public boolean estVide() {
     return !(this.estMur() || this.estBase() > 0 || this.estRobot() != 0 || contientMine() > 0);
   }
-  
+
   public boolean estImpassable() {
     return this.mur || this.factory != null || this.robot != null;
   }
@@ -148,7 +154,7 @@ public class Cellule {
     this.mur = false;
     this.robot = null;
   }
-  
+
   public void setImage(String image) {
     this.image = image;
   }

@@ -163,8 +163,10 @@ public class Constante {
   public static String[] PAYS = new String[] {"France", "Russie", "Allemagne", "Angleterre",
       "Etats-Unis", "Bresil", "Canada", "Chine", "Japon"};
 
+  /** Temps que doit mettre un robot avant d'apparaitre*/
   public static int SPAWNING_TIME = Integer.parseInt((String) PROPERTIES
       .getProperty("spawning_time"));
+  /** Nombre de factory maximum par equipe*/
   public static int NB_FACTO_MAX = 2;
 
   /**

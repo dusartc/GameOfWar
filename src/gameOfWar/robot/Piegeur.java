@@ -117,11 +117,6 @@ public class Piegeur extends Robot {
     return Constante.DEGATS_TIRS_PIEGEUR; // Vaut 0
   }
 
-  @Override
-  public List<Coordonnees> getDeplacements() {
-    return this.coordonnees;
-  }
-
   /**
    * Renvoie le nombre de mines que le pigeur possede
    * 
@@ -184,6 +179,9 @@ public class Piegeur extends Robot {
     return this.getType() + ", " + super.toString() + ", mines :" + getNbMines();
   }
 
+  /**
+   * @see Robot
+   */
   public List<Coordonnees> initDep() {
     List<Coordonnees> dep = new ArrayList<Coordonnees>();
     List<Coordonnees> caillou = new ArrayList<Coordonnees>();
