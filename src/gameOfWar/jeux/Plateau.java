@@ -54,8 +54,8 @@ public class Plateau {
     int currentObstacles = 0;
     Random rd = new Random();
     while (currentObstacles < nbObstacles) {
-      int rdX = rd.nextInt(this.largeur - 2) + 1;
-      int rdY = rd.nextInt(this.longueur - 2) + 1;
+      int rdX = rd.nextInt(this.largeur - 1);
+      int rdY = rd.nextInt(this.longueur - 1);
       if (!getCellule(rdX, rdY).estMur() && getCellule(rdX, rdY).estBase() == 0
           && getCellule(rdX, rdY).contientMine() == 0 && getCellule(rdX, rdY).estRobot() == 0) {
         this.plateau[rdY][rdX] = new Mur(rdX, rdY);
