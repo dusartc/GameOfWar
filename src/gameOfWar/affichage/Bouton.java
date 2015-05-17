@@ -19,15 +19,8 @@ public class Bouton extends JButton{
   private Icon name;
   private String names;
   
-  public Bouton(String str, int x, int y){
+  public Bouton(String str){
     super(str);
-    this.setLocation(x, y);
     this.names=str;
-  }
-  
-  public Bouton(Icon str, int x, int y){
-    super(str);
-    this.setLocation(x, y);
-    this.name=str;
   }
 }
