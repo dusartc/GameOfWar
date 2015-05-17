@@ -19,10 +19,6 @@ public class Attaque extends Action {
     super(robot);
   }
 
-//  public Attaque(Robot robot, Coordonnees direction) {
-//    super(robot, direction);
-//  }
-
   /**
    * @see Action
    */

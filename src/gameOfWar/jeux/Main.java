@@ -42,17 +42,6 @@ public class Main extends Menu {
     Plateau plateau = MenuTexte.initialisationPlateau();
 
     Equipe[] equipes = MenuTexte.initialisationEquipes(plateau);
-    // Equipe[] equipes =
-    // new Equipe[] {
-    // new IA("ia1", plateau, Constante.EQUIPE_UN, new Coordonnees(0, 0)),
-    // new IA("ia2", plateau, Constante.EQUIPE_DEUX, new Coordonnees(plateau.getLargeur() - 1,
-    // plateau.getLongueur() - 1))};
-
-    /*
-     * for (Equipe joueur : equipes) { joueur.addRobot(new Tireur(joueur.getVue(), joueur));
-     * joueur.addRobot(new Piegeur(joueur.getVue(), joueur)); joueur.addRobot(new
-     * Char(joueur.getVue(), joueur)); }
-     */
 
     boolean finis = false;
     Robot neo;

@@ -103,8 +103,6 @@ public abstract class Robot {
    */
   abstract public int getDegatTir();
 
-  abstract public List<Coordonnees> getDeplacements();
-
   public int getEnergie() {
     return this.energie;
   }
@@ -249,6 +247,11 @@ public abstract class Robot {
     return new Deplacement(this);
   }
 
+  /**
+   * Renvoie la premiere lettre du nom du robot
+   * 
+   * @return String minuscule si equipe une, majuscule sinon
+   */
   public String getText() {
     if (equipe.getEquipe() == 1) {
       return getType().substring(0, 1).toLowerCase();
@@ -256,5 +259,10 @@ public abstract class Robot {
     return getType().substring(0, 1);
   }
 
+  /**
+   * Coordonnees de deplacements possible
+   * 
+   * @return List<Coordonnees>
+   */
   abstract public List<Coordonnees> initDep();
 }

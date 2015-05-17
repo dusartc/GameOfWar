@@ -12,11 +12,21 @@ import java.util.List;
 
 public class Worker extends Robot {
 
+  /**
+   * Construit un Worker
+   * 
+   * @param vue la vue du Worker
+   * @param equipe l'equipe du Worker
+   * @see Robot
+   */
   public Worker(Vue vue, Equipe equipe) {
     super(vue, equipe);
     this.setEnergie(Constante.ENERGIE_WORKER);
   }
 
+  /**
+   * @see Robot
+   */
   @Override
   public Action choisitAction() {
     List<Coordonnees> dep = initDep();
@@ -93,51 +103,73 @@ public class Worker extends Robot {
     return tmp;
   }
 
+  /**
+   * @see Robot
+   */
   @Override
   public void estSoigne() {
     // inutile car OS
   }
 
+  /**
+   * @see Robot
+   */
   @Override
   public int getCoupDep() {
     return Constante.COUP_DEPLACEMENTS_WORKER;
   }
 
+  /**
+   * @see Robot
+   */
   @Override
   public int getCoutAction() {
     return Constante.COUP_ACTION_WORKER;
   }
 
+  /**
+   * @see Robot
+   */
   @Override
   public int getDegatMine() {
     return Constante.DEGATS_MINES_WORKER;
   }
 
+  /**
+   * @see Robot
+   */
   @Override
   public int getDegatTir() {
     return 0; // impossible de tirer
   }
 
-  @Override
-  public List<Coordonnees> getDeplacements() {
-    return null;
-  }
-
+  /**
+   * @see Robot
+   */
   @Override
   public String getType() {
     return this.getClass().getName().substring(getClass().getName().lastIndexOf(".") + 1);
   }
 
+  /**
+   * @see Robot
+   */
   @Override
   public void subitMine() {
     setEnergie(getEnergie() - getDegatMine());
   }
 
+  /**
+   * @see Robot
+   */
   @Override
   public void subitTirDe(Robot robot) {
     setEnergie(getEnergie() - robot.getDegatTir());
   }
 
+  /**
+   * @see Robot
+   */
   public List<Coordonnees> initDep() {
     List<Coordonnees> dep = new ArrayList<Coordonnees>();
     List<Coordonnees> caillou = new ArrayList<Coordonnees>();

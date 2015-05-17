@@ -7,7 +7,11 @@ import gameOfWar.robot.Robot;
 import gameOfWar.robot.Tireur;
 import gameOfWar.robot.Worker;
 
-
+/**
+ * Place une Factory
+ * 
+ * @author Clement
+ */
 public class Factory {
 
   private Equipe equipe;
@@ -15,6 +19,11 @@ public class Factory {
   private Robot toSpawn = null;
   private int spawningTime;
 
+  /**
+   * Place une mine aux coordonnees de l'objectif du worker
+   * 
+   * @param worker Celui qui pose la mine
+   */
   public Factory(Worker worker) {
     this.equipe = worker.getEquipe();
     equipe.addFactory(this);
@@ -28,6 +37,11 @@ public class Factory {
     return equipe;
   }
 
+  /**
+   * Renvoie True si un robot doit apparaitre
+   * 
+   * @return boolean
+   */
   public boolean spawningRobot() {
     return toSpawn != null;
   }
@@ -43,6 +57,9 @@ public class Factory {
     }
   }
 
+  /**
+   * Demande a l'utilisateur de choisir un Robot a faire apparaitre sur le plateau
+   */
   public void choisitUnRobotASpawn() {
     if (toSpawn == null) {
       System.out.println("Voulez-vous fabriquer un nouveau robot ?\n\t1 - oui\n\t2 - non");
