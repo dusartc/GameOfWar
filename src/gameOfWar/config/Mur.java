@@ -16,6 +16,7 @@ public class Mur extends Cellule {
   public Mur(int largeur, int hauteur) {
     super(largeur, hauteur);
     this.setMur(true);
+    this.setImage("O");
   }
 
 }
