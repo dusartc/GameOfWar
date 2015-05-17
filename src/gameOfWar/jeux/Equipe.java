@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import javax.swing.RootPaneContainer;
+
 
 /**
  * Permet de gerer une Equipe (joueur ou ordinateur)
@@ -66,13 +68,28 @@ public class Equipe {
    * @return Robot le robot choisit
    */
   public Robot choisitRobot() {
-    int i = 1;
+    List<Robot> indisponibles = new ArrayList<Robot>();
+    List<Robot> disponibles = new ArrayList<Robot>();
     for (Robot robot : robots) {
+      if (robot.initDep().isEmpty()) {
+        indisponibles.add(robot);
+      }else {
+        disponibles.add(robot);
+      }
+    }
+    for (Robot r : indisponibles) {
+      System.out.println(r.toString()+" ne peut pas se deplacer :(");
+    }
+    int i = 1;
+    for (Robot robot : disponibles) {
       System.out.println("choix : " + i + "\n\t" + robot.toString());
       i += 1;
     }
     i = secureInput(1, i - 1);
-    return this.robots.get(i - 1);
+    if (disponibles.isEmpty()) {
+      return null;
+    }
+    return disponibles.get(i - 1);
   }
 
   public Coordonnees getCoordBase() {

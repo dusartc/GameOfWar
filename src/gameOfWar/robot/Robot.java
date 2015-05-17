@@ -251,4 +251,6 @@ public abstract class Robot {
     }
     return getType().substring(0,1);
   }
+  
+  abstract public List<Coordonnees> initDep();
 }

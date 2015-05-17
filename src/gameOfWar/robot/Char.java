@@ -174,7 +174,7 @@ public class Char extends Robot {
     return cible2;
   }
 
-  private List<Coordonnees> initDep() {
+  public List<Coordonnees> initDep() {
     List<Coordonnees> dep = new ArrayList<Coordonnees>();
     List<Coordonnees> caillou = new ArrayList<Coordonnees>();
     for (Coordonnees coordonnees : Constante.DEP_CHAR) {

@@ -68,11 +68,15 @@ public class Main extends Menu {
           + ", a vous de jouer :\n");
       neo = equipes[i % 2].choisitRobot();
       MenuTexte.clearScreen();
-      System.out.println(neo.getVue().toString());
-      action = neo.choisitAction();
-      if (action != null) {
-        action.agit();
-      }
+      if (neo != null) {
+        System.out.println(neo.getVue().toString());
+        action = neo.choisitAction();
+        if (action != null) {
+          action.agit();
+        }
+      }else {
+        System.out.println("aucun robot disponible :(");
+      }      
       if (!equipes[i % 2].getFactories().isEmpty()) {
         for (Factory f : equipes[i % 2].getFactories()) {
           f.choisitUnRobotASpawn();

@@ -184,7 +184,7 @@ public class Piegeur extends Robot {
     return this.getType() + ", " + super.toString() + ", mines :" + getNbMines();
   }
 
-  private List<Coordonnees> initDep() {
+  public List<Coordonnees> initDep() {
     List<Coordonnees> dep = new ArrayList<Coordonnees>();
     List<Coordonnees> caillou = new ArrayList<Coordonnees>();
     for (Coordonnees coordonnees : Constante.DEP_PIEGEUR) {
