@@ -262,7 +262,7 @@ public abstract class Robot {
   /**
    * Coordonnees de deplacements possible
    * 
-   * @return List<Coordonnees>
+   * @return List
    */
   abstract public List<Coordonnees> initDep();
 }
