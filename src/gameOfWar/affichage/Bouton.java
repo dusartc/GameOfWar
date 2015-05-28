@@ -23,4 +23,8 @@ public class Bouton extends JButton{
     super(str);
     this.names=str;
   }
+  
+  public Bouton(){
+
+  }
 }

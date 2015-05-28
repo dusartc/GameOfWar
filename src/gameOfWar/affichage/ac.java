@@ -7,9 +7,14 @@ import java.io.IOException;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
-class ac implements ActionListener {
+class ac extends JPanel implements ActionListener {
 
+  Fenetre test;
+  JPanel optionJPanel = new Option();
+  //JPanel menu = new Menu();
+  
   @Override
   public void actionPerformed(ActionEvent e) {
     if (e.getActionCommand().equals("Play")) {
@@ -35,6 +40,7 @@ class ac implements ActionListener {
       JOptionPane.showMessageDialog(null, "Noisette !");
     } else if (e.getActionCommand().equals("Option")) {
       JOptionPane.showMessageDialog(null, "Henri !");
+      new Fenetre("Game of War.", optionJPanel);
     } else if (e.getActionCommand().equals("X")) {
       int retour = JOptionPane.showConfirmDialog(null, "Quitter ?");
       if (retour == JOptionPane.OK_OPTION) {

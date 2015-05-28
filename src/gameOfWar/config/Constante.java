@@ -26,7 +26,7 @@ public class Constante {
     try {
       PROPERTIES.load(new FileReader("gameOfWar.properties"));
     } catch (IOException e) {
-      System.err.println("Fichier gameOfWar.properties introuvable, v�rifier son orthographe");
+      System.err.println("Fichier gameOfWar.properties introuvable, verifier son orthographe");
       e.printStackTrace();
       System.exit(1);
     }
@@ -39,7 +39,7 @@ public class Constante {
   public static final int ENERGIE_TIREUR = Integer.parseInt((String) PROPERTIES.get("t_energie"));
   /** Correspond a l'énergie du Char. */
   public static final int ENERGIE_CHAR = Integer.parseInt((String) PROPERTIES.get("c_energie"));
-  /** Correspond a l'�nergie du Worker. */
+  /** Correspond a l'�nergie du Worker. */
   public static final int ENERGIE_WORKER = Integer.parseInt((String) PROPERTIES.get("w_energie"));
   /** Correspond au nombre de robot maximun par equipe. */
   public static final int NB_MAX_ROBOTS_PAR_EQUIPE = Integer.parseInt((String) PROPERTIES
@@ -117,6 +117,12 @@ public class Constante {
   public static final int OBSTACLES_MIN = 0;
   /** Obstacles maximun sur le plateau. */
   public static final int OBSTACLES_MAX = 50;
+  /** Obstacles sur le plateau */
+  public static final int OBSTACLES_CHOICE = 25;
+  /** Taille en largeur du plateau */
+  public static final int X_CHOICE = 10;
+  /** Taille en longueur du plateau */
+  public static final int Y_CHOICE = 10;
 
 
   // / Déplacement pour Tireur et Piegeur et char///

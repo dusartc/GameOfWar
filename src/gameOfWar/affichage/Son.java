@@ -15,7 +15,7 @@ public class Son extends Thread {
 	private static boolean joue;
 	private static AudioInputStream audioln;
 	private static File song;
-	private static int lancement;
+	private static int lancement = 0;
 
 	public static void load() {
 		song = new File("src/gameOfWar/jeux/Sons/Test.wav");
@@ -31,7 +31,7 @@ public class Son extends Thread {
 
 	public static void jouer() throws UnsupportedAudioFileException,
 			IOException, LineUnavailableException {
-	    load();
+	      load();
 		if (!joue) {
 			clip.open(audioln);
 			clip.start();

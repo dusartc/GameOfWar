@@ -35,14 +35,5 @@ public class Fond extends JPanel{
     graphics2d.fillRoundRect(-(1), 0, 1025, 75, 20, 20);
     g.setColor(Color.BLACK);
     g.drawRoundRect(-(1), 0, 1025, 75, 20, 20);
-    /*Font Titre = new Font("Deja Vu", Font.ROMAN_BASELINE, 40);
-    g.setFont(Titre);
-    g.setColor(new Color(80,80,80));
-    g.drawString("Game of war.", (this.getWidth()/3)+20, this.getHeight()/12);
-    
-    Font copyright = new Font("D�j� Vu", Font.BOLD, 16);
-    g.setFont(copyright);
-    g.setColor(Color.white);
-    g.drawString("(c) Copyright.", 12, 680);*/
   }
 }
