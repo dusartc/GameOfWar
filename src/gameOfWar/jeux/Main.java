@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.tools.JavaCompiler;
 
 
 /**
@@ -25,13 +26,16 @@ public class Main {
 
 
   public static void main(String[] args) {
-    try {
-      @SuppressWarnings("unused")
-      Fenetre test = new Fenetre("Game of War.");
-    } catch (UnsupportedAudioFileException | IOException | LineUnavailableException exception) {
-      // TODO Auto-generated catch block
-      exception.printStackTrace();
-    }
+      System.out.println("poney");
+     javax.swing.SwingUtilities.invokeLater(new Runnable() {
+        
+        @Override
+        public void run() {
+          new Fenetre();
+          
+        }
+      });
+    //new Fenetre().setVisible(true);
     Plateau plateau = MenuTexte.initialisationPlateau();
 
     Equipe[] equipes = MenuTexte.initialisationEquipes(plateau);
