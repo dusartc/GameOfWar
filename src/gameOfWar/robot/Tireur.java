@@ -69,18 +69,6 @@ public class Tireur extends Robot {
    * @see Robot
    */
   @Override
-  public void estSoigne() {
-    int prev = getEnergie();
-    this.setEnergie(Math.min(Constante.ENERGIE_TIREUR, getEnergie() + Constante.SOIN));
-    if (prev != getEnergie()) {
-      System.out.println(getType() + " a ete soigne de " + Constante.SOIN);
-    }
-  }
-
-  /**
-   * @see Robot
-   */
-  @Override
   public int getCoupDep() {
     return Constante.COUP_DEPLACEMENTS_TIREUR;
   }
@@ -107,14 +95,6 @@ public class Tireur extends Robot {
   @Override
   public int getDegatTir() {
     return Constante.DEGATS_TIREUR;
-  }
-
-  /**
-   * @see Robot
-   */
-  @Override
-  public String getType() {
-    return this.getClass().getName().substring(getClass().getName().lastIndexOf(".") + 1);
   }
 
   /**
@@ -188,5 +168,10 @@ public class Tireur extends Robot {
       }
     }
     return dep;
+  }
+
+  @Override
+  public int getEnergieMax() {
+    return Constante.ENERGIE_TIREUR;
   }
 }

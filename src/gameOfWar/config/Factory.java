@@ -31,6 +31,7 @@ public class Factory {
     this.spawningTime = Constante.SPAWNING_TIME;
     worker.getVue().getPlateau().getCelluleByCoordonnees(worker.getObjectif())
         .setImage(worker.getNumEquipe() == Constante.EQUIPE_UN ? "F" : "f");
+    worker.perdEnergie(worker.getEnergieMax()/2);
   }
 
   public Equipe getEquipe() {

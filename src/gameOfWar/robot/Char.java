@@ -76,18 +76,6 @@ public class Char extends Robot {
    * @see Robot
    */
   @Override
-  public void estSoigne() {
-    int prev = getEnergie();
-    this.setEnergie(Math.min(Constante.ENERGIE_CHAR, getEnergie() + Constante.SOIN));
-    if (prev != getEnergie()) {
-      System.out.println(getType() + " a ete soigne de " + Constante.SOIN);
-    }
-  }
-
-  /**
-   * @see Robot
-   */
-  @Override
   public int getCoupDep() {
     return Constante.COUP_DEPLACEMENTS_CHAR;
   }
@@ -114,14 +102,6 @@ public class Char extends Robot {
   @Override
   public int getDegatTir() {
     return Constante.DEGATS_CHAR;
-  }
-
-  /**
-   * @see Robot
-   */
-  @Override
-  public String getType() {
-    return this.getClass().getName().substring(getClass().getName().lastIndexOf(".") + 1);
   }
 
   /**
@@ -194,5 +174,10 @@ public class Char extends Robot {
       }
     }
     return dep;
+  }
+
+  @Override
+  public int getEnergieMax() {
+    return Constante.ENERGIE_CHAR;
   }
 }

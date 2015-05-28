@@ -107,14 +107,6 @@ public class Worker extends Robot {
    * @see Robot
    */
   @Override
-  public void estSoigne() {
-    // inutile car OS
-  }
-
-  /**
-   * @see Robot
-   */
-  @Override
   public int getCoupDep() {
     return Constante.COUP_DEPLACEMENTS_WORKER;
   }
@@ -141,14 +133,6 @@ public class Worker extends Robot {
   @Override
   public int getDegatTir() {
     return 0; // impossible de tirer
-  }
-
-  /**
-   * @see Robot
-   */
-  @Override
-  public String getType() {
-    return this.getClass().getName().substring(getClass().getName().lastIndexOf(".") + 1);
   }
 
   /**
@@ -215,6 +199,11 @@ public class Worker extends Robot {
   @Override
   public String toString() {
     return this.getType() + ", " + super.toString();
+  }
+
+  @Override
+  public int getEnergieMax() {
+    return Constante.ENERGIE_WORKER;
   }
 
 }

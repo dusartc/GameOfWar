@@ -71,7 +71,7 @@ public class Piegeur extends Robot {
   public void estSoigne() {
     int prevE = getEnergie();
     int prevM = getNbMines();
-    this.setEnergie(Math.min(Constante.ENERGIE_PIEGEUR, getEnergie() + Constante.SOIN));
+    this.setEnergie(Math.min(getEnergieMax(), getEnergie() + Constante.SOIN));
     this.setNbMines(Constante.NB_MINES_MAX);
     if (prevE != getEnergie()) {
       if (prevM != getNbMines()) {
@@ -124,14 +124,6 @@ public class Piegeur extends Robot {
    */
   public int getNbMines() {
     return this.nbMines;
-  }
-
-  /**
-   * @see Robot
-   */
-  @Override
-  public String getType() {
-    return this.getClass().getName().substring(getClass().getName().lastIndexOf(".") + 1);
   }
 
   public void perdUneMine() {
@@ -223,6 +215,11 @@ public class Piegeur extends Robot {
       }
     }
     return mines;
+  }
+
+  @Override
+  public int getEnergieMax() {
+    return Constante.ENERGIE_PIEGEUR;
   }
 
 }

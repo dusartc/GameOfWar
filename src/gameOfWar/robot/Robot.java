@@ -57,7 +57,13 @@ public abstract class Robot {
   /**
    * Permet de soigner le Robot
    */
-  abstract public void estSoigne();
+  public void estSoigne() {
+    int prev = getEnergie();
+    this.setEnergie(Math.min(getEnergieMax(), getEnergie() + Constante.SOIN));
+    if (prev != getEnergie()) {
+      System.out.println(getType() + " a ete soigne de " + Constante.SOIN);
+    }
+  }
 
   public boolean estSurBase() {
     /** calcul des coordonnees de la base */
@@ -129,7 +135,9 @@ public abstract class Robot {
    * 
    * @return String
    */
-  abstract public String getType();
+  public String getType() {
+    return this.getClass().getName().substring(getClass().getName().lastIndexOf(".") + 1);
+  }
 
   public Vue getVue() {
     return this.vue;
@@ -265,4 +273,6 @@ public abstract class Robot {
    * @return List
    */
   abstract public List<Coordonnees> initDep();
+  
+  abstract public int getEnergieMax();
 }
