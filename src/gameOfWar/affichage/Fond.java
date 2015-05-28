@@ -23,7 +23,7 @@ public class Fond extends JPanel{
   @Override
   protected void paintComponent(Graphics g) {
     try {
-    	File fond = new File("src/gameOfWar/jeux/Images/fond.jpg");
+    	File fond = new File("ressources/Images/fond.jpg");
     	Image img = ImageIO.read(fond);
     	g.drawImage(img, 0, 0, this);
     } catch (IOException exception) {

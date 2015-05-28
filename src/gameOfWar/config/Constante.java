@@ -24,7 +24,7 @@ public class Constante {
   static {
     // chargement de properties
     try {
-      PROPERTIES.load(new FileReader("gameOfWar.properties"));
+      PROPERTIES.load(new FileReader("ressources/gameOfWar.properties"));
     } catch (IOException e) {
       System.err.println("Fichier gameOfWar.properties introuvable, verifier son orthographe");
       e.printStackTrace();

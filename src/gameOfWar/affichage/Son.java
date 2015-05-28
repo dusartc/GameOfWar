@@ -18,7 +18,7 @@ public class Son extends Thread {
 	private static int lancement = 0;
 
 	public static void load() {
-		song = new File("src/gameOfWar/jeux/Sons/Test.wav");
+		song = new File("ressources/Sons/Test.wav");
 		try {
 			audioln = AudioSystem.getAudioInputStream(song);
 			clip = AudioSystem.getClip();

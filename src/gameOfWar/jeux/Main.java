@@ -31,7 +31,7 @@ public class Main {
         
         @Override
         public void run() {
-          new Fenetre();
+          new Fenetre().setvisible(true);
           
         }
       });

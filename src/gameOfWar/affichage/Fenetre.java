@@ -42,7 +42,7 @@ public class Fenetre extends JFrame {
     if (jPanel instanceof Menu) {
       JButton music = new Bouton();
       try {
-        File fond = new File("src/gameOfWar/jeux/Images/music.gif");
+        File fond = new File("ressources/Images/music.gif");
         Image img = ImageIO.read(fond);
         music.setIcon(new ImageIcon(img));
       } catch (IOException exception) {
@@ -55,7 +55,7 @@ public class Fenetre extends JFrame {
       JButton quitter = new Bouton();
       quitter.setBounds(950,650,48,48);
       try {
-        File fond = new File("src/gameOfWar/jeux/Images/quitter.png");
+        File fond = new File("ressources/Images/quitter.png");
         Image img = ImageIO.read(fond);
         quitter.setIcon(new ImageIcon(img));
       } catch (IOException exception) {
