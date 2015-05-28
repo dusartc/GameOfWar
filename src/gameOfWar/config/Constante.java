@@ -174,6 +174,9 @@ public class Constante {
       .getProperty("spawning_time"));
   /** Nombre de factory maximum par equipe*/
   public static int NB_FACTO_MAX = 2;
+  /** Nombre de population max */
+  public static int NB_POP_MAX = Integer.parseInt((String) PROPERTIES.get("pop_max"));
+  
 
   /**
    * Ajout des deplacement a leurs listes.

@@ -196,4 +196,8 @@ public class Equipe {
     Random rd = new Random();
     robots.get(rd.nextInt(robots.size() - 1)).perdEnergie(5);
   }
+  
+  public int getNbRobot() {
+    return this.robots.size();
+  }
 }
