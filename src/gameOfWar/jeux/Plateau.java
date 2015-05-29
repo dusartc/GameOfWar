@@ -102,7 +102,7 @@ public class Plateau {
   }
 
   public Cellule getCelluleByCoordonnees(Coordonnees coordonnees) {
-    /**
+    /*
      * un simple parcourt des cellules on renvoie celle possedant les memes coordonnees que param
      */
     for (Cellule[] cellules : plateau) {

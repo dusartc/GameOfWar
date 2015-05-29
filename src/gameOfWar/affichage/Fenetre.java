@@ -7,8 +7,6 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -77,7 +75,7 @@ public class Fenetre extends JFrame {
     }
     this.setLayout(null);
     //this.changePanel(menu);
-    this.changePanel(option);
+    this.changePanel(jPanel);
     //this.changePanel(jPanel, (jPanel instanceof Option)? true : false, (jPanel instanceof Menu)? true : false);
     this.setVisible(true);
   }

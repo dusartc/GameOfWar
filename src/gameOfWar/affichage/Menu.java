@@ -10,17 +10,17 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class Menu extends JPanel{
-  
+public class Menu extends JPanel {
+
   /**
    * 
    */
   private static final long serialVersionUID = 1L;
-  
+
   private JPanel jPanel = new Forme(new GridBagLayout());
   private JButton toutLesBoutons;
   private int nombreSousTitre = 0;
-  
+
   public Menu() {
     super(new GridBagLayout());
     GridBagConstraints constraints = new GridBagConstraints();
@@ -30,7 +30,7 @@ public class Menu extends JPanel{
     this.getBoutonJeu(constraints, "X", 50, 50, GridBagConstraints.EAST, 0, 0, 4);
     this.add(jPanel);
   }
-  
+
   public JPanel panel(JButton jButton, GridBagConstraints constraints) {
     jPanel.add(jButton, constraints);
     jPanel.setLocation(0, 0);
@@ -60,7 +60,7 @@ public class Menu extends JPanel{
     constraints.gridx = gridx;
     constraints.gridy = gridy;
     toutLesBoutons.setActionCommand(nom);
-    toutLesBoutons.addActionListener(new ac());
+    toutLesBoutons.addActionListener(new ac(jPanel));
     this.panel(toutLesBoutons, constraints);
   }
 }

@@ -11,9 +11,17 @@ import javax.swing.JPanel;
 
 class ac implements ActionListener {
 
+
+  private JPanel optionJPanel = new Option();
+  private JPanel to;
   
-  JPanel optionJPanel = new Option();
+  public ac() {
+  }
   
+  public ac(JPanel jPanel) {
+    this.to = jPanel;
+  }
+
   @Override
   public void actionPerformed(ActionEvent e) {
     if (e.getActionCommand().equals("Play")) {
@@ -38,8 +46,14 @@ class ac implements ActionListener {
     } else if (e.getActionCommand().equals("Parametre")) {
       JOptionPane.showMessageDialog(null, "Noisette !");
     } else if (e.getActionCommand().equals("Option")) {
-      new Fenetre("Game of War.", optionJPanel, true,false);
-      } else if (e.getActionCommand().equals("X")) {
+      new Fenetre("Game of War.", optionJPanel, true, false);
+      for (int i=0; i<to.getComponents().length;i++) {
+        System.out.println(to.getComponents()[i]);
+      }
+      to.remove(to.getComponentAt(397, 464));
+      to.revalidate();
+      to.repaint();
+    } else if (e.getActionCommand().equals("X")) {
       int retour = JOptionPane.showConfirmDialog(null, "Quitter ?");
       if (retour == JOptionPane.OK_OPTION) {
         System.exit(0);
