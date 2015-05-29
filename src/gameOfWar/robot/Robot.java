@@ -65,8 +65,12 @@ public abstract class Robot {
     }
   }
 
+  /**
+   * Renvoie si le robot est actuellement sur les coordonnees d'une base
+   * 
+   * @return boolean
+   */
   public boolean estSurBase() {
-    /** calcul des coordonnees de la base */
     return this.coordonnees.equals(new Coordonnees((equipe.getEquipe() == Constante.EQUIPE_UN) ? 0
         : vue.getPlateau().getLargeur() - 1, (equipe.getEquipe() == Constante.EQUIPE_UN) ? 0 : vue
         .getPlateau().getLongueur() - 1));
@@ -273,6 +277,6 @@ public abstract class Robot {
    * @return List
    */
   abstract public List<Coordonnees> initDep();
-  
+
   abstract public int getEnergieMax();
 }
