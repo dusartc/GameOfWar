@@ -38,7 +38,10 @@ public class Main {
           
         }
       });
-    //new Fenetre().setVisible(true);
+     File file = new File("ressources/plateau.properties");
+     if (file.exists()) {
+       file.delete();
+     }
     while(!MenuTexte.toto()){
       
     }

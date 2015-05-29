@@ -118,11 +118,11 @@ public class Constante {
   /** Obstacles maximun sur le plateau. */
   public static final int OBSTACLES_MAX = 50;
   /** Obstacles sur le plateau */
-  public static final int OBSTACLES_CHOICE = 25;
+  public static int OBSTACLES_CHOICE = 25;
   /** Taille en largeur du plateau */
-  public static final int X_CHOICE = 10;
+  public static int X_CHOICE = 10;
   /** Taille en longueur du plateau */
-  public static final int Y_CHOICE = 10;
+  public static int Y_CHOICE = 10;
 
 
   // / Déplacement pour Tireur et Piegeur et char///
