@@ -4,6 +4,7 @@ import gameOfWar.action.Action;
 import gameOfWar.affichage.Fenetre;
 import gameOfWar.affichage.Menu;
 import gameOfWar.affichage.MenuTexte;
+import gameOfWar.affichage.Son;
 import gameOfWar.config.Constante;
 import gameOfWar.config.Factory;
 import gameOfWar.robot.Robot;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.JOptionPane;
 import javax.tools.JavaCompiler;
 
 
@@ -29,23 +31,40 @@ public class Main {
 
 
   public static void main(String[] args) {
-     System.out.println("poney");
-     javax.swing.SwingUtilities.invokeLater(new Runnable() {
-        
-        @Override
-        public void run() {
-          new Fenetre();
-          
-        }
-      });
-     File file = new File("ressources/plateau.properties");
-     if (file.exists()) {
-       file.delete();
-     }
-    while(!MenuTexte.toto()){
-      
+    boolean graphique = false;
+    int retour = JOptionPane.showConfirmDialog(null, "Joueur en mode graphique ?");
+    if (retour == JOptionPane.OK_OPTION) {
+      JOptionPane.showMessageDialog(null, "Vous allez jouer en mode graphique !");
+        graphique = true;
+    } else if (retour == JOptionPane.NO_OPTION) {
+      JOptionPane.showMessageDialog(null, "Vous allez jouer en mode texte !");
+        graphique = false;
+    } else {
+      JOptionPane.showMessageDialog(null, "Par defaut : Vous allez jouer en mode texte !");
+        graphique = false;
     }
-     Plateau plateau = MenuTexte.initialisationPlateau();
+    if (graphique) {
+      File file = new File("ressources/plateau.properties");
+      if (file.exists()) {
+        file.delete();
+      }
+      /////////////////Partie IHM/////////////////////////
+       javax.swing.SwingUtilities.invokeLater(new Runnable() {
+          
+          @Override
+          public void run() {
+            new Fenetre();
+
+          }
+        });
+      while(!MenuTexte.toto()){
+        
+      }
+    }
+
+    
+    /////////////////Partie TEXTE/////////////////////////
+     Plateau plateau = MenuTexte.initialisationPlateau(graphique);
     Equipe[] equipes = MenuTexte.initialisationEquipes(plateau);
     
     boolean finis = false;

@@ -1,21 +1,29 @@
 package gameOfWar.affichage;
 
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Properties;
+import java.util.Random;
+
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 import gameOfWar.config.Constante;
 import gameOfWar.config.Coordonnees;
 import gameOfWar.jeux.Equipe;
 import gameOfWar.jeux.IA;
 import gameOfWar.jeux.Plateau;
+import gameOfWar.jeux.Vue;
 import gameOfWar.robot.Char;
 import gameOfWar.robot.Piegeur;
+import gameOfWar.robot.Robot;
 import gameOfWar.robot.Tireur;
 import gameOfWar.robot.Worker;
-
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.Properties;
-import java.util.Random;
-
-import javax.swing.JOptionPane;
 
 /**
  * Affiche des menus en mode texte
@@ -90,13 +98,18 @@ public class MenuTexte {
    * 
    * @return Plateau le plateau voulu
    */
-  public static Plateau initialisationPlateau(/*Integer x, Integer y, Integer ob*/) {
+  public static Plateau initialisationPlateau(/*Integer x, Integer y, Integer ob*/boolean graphique) {
     clearScreen();
     System.out.println(quadrillage("INITIALISATION DU PLATEAU"));
-    int  x1 = Constante.X_CHOICE;
-    int  y1 = Constante.Y_CHOICE;
-    int  nb = Constante.OBSTACLES_CHOICE;
-    JOptionPane.showMessageDialog(null, "Les dimensions du plateaux sont donc ("+Constante.X_CHOICE+","+Constante.Y_CHOICE+"), et le pourcentage d'obstacles de : "+Constante.OBSTACLES_CHOICE);
+    int  x1 = (!graphique) ? Constante.secureInput(Constante.X_MIN, Constante.X_MAX,
+        "Entrez la largeur du plateau entre " + Constante.X_MIN + " et " + Constante.X_MAX) : Constante.X_CHOICE;
+    int  y1 = (!graphique) ?     Constante.secureInput(Constante.Y_MIN, Constante.Y_MAX,
+        "Entrez la longueur du plateau entre " + Constante.Y_MIN + " et " + Constante.Y_MAX) : Constante.Y_CHOICE;
+
+    int  nb = (!graphique) ? Constante.secureInput(Constante.OBSTACLES_MIN, Constante.OBSTACLES_MAX,
+        "Entrez le % d'obstacles du plateau entre " + Constante.OBSTACLES_MIN + " et "
+            + Constante.OBSTACLES_MAX) : Constante.OBSTACLES_CHOICE;
+    JOptionPane.showMessageDialog(null, "Les dimensions du plateaux sont donc ("+x1+","+y1+"), et le pourcentage d'obstacles de : "+nb);
       return new Plateau(x1, y1, nb);
   }
 

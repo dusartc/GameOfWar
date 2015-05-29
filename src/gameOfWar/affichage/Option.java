@@ -1,5 +1,6 @@
 package gameOfWar.affichage;
 
+import gameOfWar.affichage.Son;
 import gameOfWar.config.Constante;
 
 import java.awt.Color;
@@ -10,9 +11,12 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -37,10 +41,6 @@ public class Option extends JPanel {
   private JButton b = new Bouton("Musique");
   private JButton b2 = new Bouton("Son");
   private JButton b3 = new Bouton("Retour");
-
-  private String defx = Constante.X_CHOICE + "";
-  private String defy = Constante.Y_CHOICE + "";
-  private String defob = Constante.OBSTACLES_CHOICE + "";
 
   public Option() {
 
@@ -139,25 +139,41 @@ public class Option extends JPanel {
 
       b3.setPreferredSize(new Dimension(120, 100));
       toutLesPanel.add(b3);
-      b3.addActionListener(new java.awt.event.ActionListener() {
+      b3.setActionCommand("Retour");
+      b3.addActionListener(new ac(jPanel, tx, ty, ob));/*new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
           b3ActionPerformed(evt);
         }
-      });
+      });*/
 
     }
     this.panel(toutLesPanel, constraints);
   }
 
   private void bActionPerformed(ActionEvent evt) {
-    JOptionPane.showMessageDialog(null, "Musique");
+    int retour = JOptionPane.showConfirmDialog(null, "Jouer la musique ?");
+    if (retour == JOptionPane.OK_OPTION) {
+      try {
+        Son.jouer();
+      } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
+        e1.printStackTrace();
+      }
+    } else if (retour == JOptionPane.NO_OPTION) {
+      try {
+        Son.arreter();
+      } catch (UnsupportedAudioFileException | IOException | LineUnavailableException exception) {
+        exception.printStackTrace();
+      }
+    } else {
+      JOptionPane.showMessageDialog(null, "Chocolat !");
+    }
   }
 
   private void b2ActionPerformed(ActionEvent evt) {
     JOptionPane.showMessageDialog(null, "Son");
   }
 
-  private void b3ActionPerformed(ActionEvent evt) {
+  /*private void b3ActionPerformed(ActionEvent evt) {
     String s = "";
 
     try {
@@ -193,6 +209,7 @@ public class Option extends JPanel {
       JOptionPane.showMessageDialog(null, "Champ Incorrect");
     }
     this.initilisationPlateau();
+    
   }
 
   public void initilisationPlateau() {
@@ -206,6 +223,6 @@ public class Option extends JPanel {
       e.printStackTrace();
     }
     writer.close();
-  }
+  }*/
 
 }

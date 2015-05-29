@@ -18,6 +18,10 @@ public class Forme extends JPanel{
   public Forme(GridBagLayout gridBagLayout) {
     super(gridBagLayout);
   }
+  
+  public Forme() {
+    super();
+  }
 
   @Override
   protected void paintComponent(Graphics g) {
