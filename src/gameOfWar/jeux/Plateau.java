@@ -62,7 +62,7 @@ public class Plateau {
         currentObstacles += 1;
       }
     }
-    this.pathFinding(new Coordonnees(0, 0), new Coordonnees(this.x - 1, this.y - 1));
+    this.pathFinding(new Coordonnees(0, 1), new Coordonnees(this.x - 1, this.y - 1));
   }
 
   public void pathFinding(Coordonnees source, Coordonnees fin) {

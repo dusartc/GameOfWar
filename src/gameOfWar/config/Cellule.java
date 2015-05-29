@@ -50,6 +50,9 @@ public class Cellule {
 
   public void setMur(boolean mur) {
     this.mur = mur;
+    if (!mur) {
+      this.setImage(" ");
+    }
   }
 
   /**
