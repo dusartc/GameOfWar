@@ -1,7 +1,6 @@
 package gameOfWar.affichage;
 
 import gameOfWar.config.Constante;
-import gameOfWar.jeux.Plateau;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -11,11 +10,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
-import java.util.Properties;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -33,19 +29,18 @@ public class Option extends JPanel {
 
   private JPanel jPanel = new Forme(new GridBagLayout());
   private JPanel toutLesPanel;
-  Plateau plateau;
   private int nombreSousTitre = 0;
-  JTextField tx = new JTextField(Constante.X_CHOICE + "");
-  JTextField ty = new JTextField(Constante.Y_CHOICE + "");
-  JTextField ob = new JTextField(Constante.OBSTACLES_CHOICE + "");
+  private JTextField tx = new JTextField(Constante.X_CHOICE + "");
+  private JTextField ty = new JTextField(Constante.Y_CHOICE + "");
+  private JTextField ob = new JTextField(Constante.OBSTACLES_CHOICE + "");
 
-  JButton b = new Bouton("Musique");
-  JButton b2 = new Bouton("Son");
-  JButton b3 = new Bouton("Retour");
+  private JButton b = new Bouton("Musique");
+  private JButton b2 = new Bouton("Son");
+  private JButton b3 = new Bouton("Retour");
 
-  String defx = Constante.X_CHOICE + "";
-  String defy = Constante.Y_CHOICE + "";
-  String defob = Constante.OBSTACLES_CHOICE + "";
+  private String defx = Constante.X_CHOICE + "";
+  private String defy = Constante.Y_CHOICE + "";
+  private String defob = Constante.OBSTACLES_CHOICE + "";
 
   public Option() {
 
@@ -211,10 +206,6 @@ public class Option extends JPanel {
       e.printStackTrace();
     }
     writer.close();
-  }
-
-  public Plateau getPlateau() {
-    return this.plateau;
   }
 
 }
