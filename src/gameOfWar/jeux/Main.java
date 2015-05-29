@@ -4,10 +4,13 @@ import gameOfWar.action.Action;
 import gameOfWar.affichage.Fenetre;
 import gameOfWar.affichage.Menu;
 import gameOfWar.affichage.MenuTexte;
+import gameOfWar.config.Constante;
 import gameOfWar.config.Factory;
 import gameOfWar.robot.Robot;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 
 import javax.sound.sampled.LineUnavailableException;
@@ -26,20 +29,22 @@ public class Main {
 
 
   public static void main(String[] args) {
-      System.out.println("poney");
+     System.out.println("poney");
      javax.swing.SwingUtilities.invokeLater(new Runnable() {
         
         @Override
         public void run() {
-          new Fenetre().setvisible(true);
+          new Fenetre();
           
         }
       });
     //new Fenetre().setVisible(true);
-    Plateau plateau = MenuTexte.initialisationPlateau();
-
+    while(!MenuTexte.toto()){
+      
+    }
+     Plateau plateau = MenuTexte.initialisationPlateau();
     Equipe[] equipes = MenuTexte.initialisationEquipes(plateau);
-
+    
     boolean finis = false;
     Robot neo;
     Action action;

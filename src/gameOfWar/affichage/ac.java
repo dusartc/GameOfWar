@@ -9,11 +9,10 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-class ac extends JPanel implements ActionListener {
+class ac implements ActionListener {
 
-  Fenetre test;
+  
   JPanel optionJPanel = new Option();
-  //JPanel menu = new Menu();
   
   @Override
   public void actionPerformed(ActionEvent e) {
@@ -39,9 +38,8 @@ class ac extends JPanel implements ActionListener {
     } else if (e.getActionCommand().equals("Parametre")) {
       JOptionPane.showMessageDialog(null, "Noisette !");
     } else if (e.getActionCommand().equals("Option")) {
-      JOptionPane.showMessageDialog(null, "Henri !");
-      new Fenetre("Game of War.", optionJPanel);
-    } else if (e.getActionCommand().equals("X")) {
+      new Fenetre("Game of War.", optionJPanel, true,false);
+      } else if (e.getActionCommand().equals("X")) {
       int retour = JOptionPane.showConfirmDialog(null, "Quitter ?");
       if (retour == JOptionPane.OK_OPTION) {
         System.exit(0);

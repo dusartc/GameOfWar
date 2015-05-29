@@ -1,8 +1,16 @@
 package gameOfWar.affichage;
 
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.file.Files;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Properties;
 import java.util.Random;
+
+import javax.swing.JPanel;
 
 import gameOfWar.config.Constante;
 import gameOfWar.config.Coordonnees;
@@ -24,6 +32,8 @@ import gameOfWar.robot.Worker;
 public class MenuTexte {
 
   public static Equipe[] ans = new Equipe[2];
+  public static Option oJPanel = new Option();
+  private static Properties PROPERTIES = new Properties();
 
   /**
    * Efface l'écran si la console associé prend en charge les codes ANSI
@@ -87,20 +97,20 @@ public class MenuTexte {
    * 
    * @return Plateau le plateau voulu
    */
-  public static Plateau initialisationPlateau() {
+  public static Plateau initialisationPlateau(/*Integer x, Integer y, Integer ob*/) {
     clearScreen();
     System.out.println(quadrillage("INITIALISATION DU PLATEAU"));
-    int x =
-        Constante.secureInput(Constante.X_MIN, Constante.X_MAX,
-            "Entrez la largeur du plateau entre " + Constante.X_MIN + " et " + Constante.X_MAX);
-    int y =
-        Constante.secureInput(Constante.Y_MIN, Constante.Y_MAX,
-            "Entrez la longueur du plateau entre " + Constante.Y_MIN + " et " + Constante.Y_MAX);
-    int nb =
-        Constante.secureInput(Constante.OBSTACLES_MIN, Constante.OBSTACLES_MAX,
+    int x1 = Integer.parseInt((String) PROPERTIES.get("x"));
+        /*Constante.secureInput(Constante.X_MIN, Constante.X_MAX,
+            "Entrez la largeur du plateau entre " + Constante.X_MIN + " et " + Constante.X_MAX);*/
+    int y1 = Integer.parseInt((String) PROPERTIES.get("y"));
+        /*Constante.secureInput(Constante.Y_MIN, Constante.Y_MAX,
+            "Entrez la longueur du plateau entre " + Constante.Y_MIN + " et " + Constante.Y_MAX);*/
+    int nb = Integer.parseInt((String) PROPERTIES.get("Obstacles"));
+        /*Constante.secureInput(Constante.OBSTACLES_MIN, Constante.OBSTACLES_MAX,
             "Entrez le % d'obstacles du plateau entre " + Constante.OBSTACLES_MIN + " et "
-                + Constante.OBSTACLES_MAX);
-    return new Plateau(x, y, nb);
+                + Constante.OBSTACLES_MAX);*/
+    return new Plateau(x1, y1, nb);
   }
 
   /**
@@ -168,4 +178,18 @@ public class MenuTexte {
     return "\t" + ans + "\n";
   }
 
+  public static boolean toto(){
+    try {
+      File file = new File("ressources/plateau.properties");
+      if (file.exists()) {
+        file.delete();
+        return false;
+      }
+      PROPERTIES.load(new FileReader(file));
+      return true;
+    } catch (IOException e) {
+      System.err.println("Fichier plateau.properties introuvable, verifier son orthographe");
+      return false;
+    }
+  }
 }
