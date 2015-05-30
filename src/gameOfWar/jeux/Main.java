@@ -35,38 +35,38 @@ public class Main {
     int retour = JOptionPane.showConfirmDialog(null, "Joueur en mode graphique ?");
     if (retour == JOptionPane.OK_OPTION) {
       JOptionPane.showMessageDialog(null, "Vous allez jouer en mode graphique !");
-        graphique = true;
+      graphique = true;
     } else if (retour == JOptionPane.NO_OPTION) {
       JOptionPane.showMessageDialog(null, "Vous allez jouer en mode texte !");
-        graphique = false;
+      graphique = false;
     } else {
       JOptionPane.showMessageDialog(null, "Par defaut : Vous allez jouer en mode texte !");
-        graphique = false;
+      graphique = false;
     }
     if (graphique) {
       File file = new File("ressources/plateau.properties");
       if (file.exists()) {
         file.delete();
       }
-      /////////////////Partie IHM/////////////////////////
-       javax.swing.SwingUtilities.invokeLater(new Runnable() {
-          
-          @Override
-          public void run() {
-            new Fenetre();
+      // ///////////////Partie IHM/////////////////////////
+      javax.swing.SwingUtilities.invokeLater(new Runnable() {
 
-          }
-        });
-      while(!MenuTexte.toto()){
-        
+        @Override
+        public void run() {
+          new Fenetre();
+
+        }
+      });
+      while (!MenuTexte.toto()) {
+
       }
     }
 
-    
-    /////////////////Partie TEXTE/////////////////////////
-     Plateau plateau = MenuTexte.initialisationPlateau(graphique);
+
+    // ///////////////Partie TEXTE/////////////////////////
+    Plateau plateau = MenuTexte.initialisationPlateau(graphique);
     Equipe[] equipes = MenuTexte.initialisationEquipes(plateau);
-    
+
     boolean finis = false;
     Robot neo;
     Action action;
@@ -76,6 +76,7 @@ public class Main {
       MenuTexte.clearScreen();
       System.out.println(equipes[i % 2].getVue().toString() + "\n" + equipes[i % 2].getNom()
           + ", a vous de jouer :\n");
+      equipes[i % 2].sleep();
       neo = equipes[i % 2].choisitRobot();
       MenuTexte.clearScreen();
       if (neo != null) {
@@ -84,10 +85,10 @@ public class Main {
         if (action != null) {
           action.agit();
         }
-      }else {
+      } else {
         System.out.println("aucun robot disponible, un de vos robots va perdre de l'energie");
         equipes[i % 2].perdEnergieRandom();
-      }      
+      }
       if (!equipes[i % 2].getFactories().isEmpty()) {
         for (Factory f : equipes[i % 2].getFactories()) {
           f.choisitUnRobotASpawn();
