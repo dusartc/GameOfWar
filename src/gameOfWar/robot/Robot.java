@@ -252,7 +252,7 @@ public abstract class Robot {
     int j = 0;
     System.out.println("vous pouvez aller en :");
     for (Coordonnees c : dep) {
-      System.out.println(j + ": " + c + " " + direction(c));
+      System.out.println("\t" + j + " : " + c + " " + direction(c));
       j += 1;
     }
     this.setObjectif(dep.get(this.getEquipe().secureInput(0, j - 1)));

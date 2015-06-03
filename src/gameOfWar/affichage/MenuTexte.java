@@ -40,7 +40,7 @@ public class MenuTexte {
    * Efface l'écran si la console associé prend en charge les codes ANSI
    */
   public static void clearScreen() {
-    //System.out.print("\u001b[2J");
+    // System.out.print("\u001b[2J");
     for (int i = 0; i < 50; i++) {
       System.out.println("");
     }
@@ -56,9 +56,9 @@ public class MenuTexte {
     clearScreen();
     System.out.println(quadrillage("INITIALISATION DES EQUIPES"));
     System.out
-        .println("Qu'elle mode de jeux choisissez-vous ? 1) Joueur vs Joueur, 2) Joueur vs IA, 3) IA VS IA");
+        .println("Qu'elle mode de jeux choisissez-vous ?\n\t1 : Joueur vs Joueur, \n\t2 : Joueur vs IA, \n\t3 : IA VS IA");
     int choix = Constante.secureInput(1, 3);
-    System.out.println("A combien de robot sera fixer la partie ?");
+    System.out.print("A combien de robot sera fixer la partie ?");
     int nbRobot = Constante.secureInput(1, 5);
     switch (choix) {
       case 1:
@@ -98,19 +98,26 @@ public class MenuTexte {
    * 
    * @return Plateau le plateau voulu
    */
-  public static Plateau initialisationPlateau(/*Integer x, Integer y, Integer ob*/boolean graphique) {
+  public static Plateau initialisationPlateau(
+  /* Integer x, Integer y, Integer ob */boolean graphique) {
     clearScreen();
     System.out.println(quadrillage("INITIALISATION DU PLATEAU"));
-    int  x1 = (!graphique) ? Constante.secureInput(Constante.X_MIN, Constante.X_MAX,
-        "Entrez la largeur du plateau entre " + Constante.X_MIN + " et " + Constante.X_MAX) : Constante.X_CHOICE;
-    int  y1 = (!graphique) ?     Constante.secureInput(Constante.Y_MIN, Constante.Y_MAX,
-        "Entrez la longueur du plateau entre " + Constante.Y_MIN + " et " + Constante.Y_MAX) : Constante.Y_CHOICE;
+    int x1 =
+        (!graphique) ? Constante.secureInput(Constante.X_MIN, Constante.X_MAX,
+            "Entrez la largeur du plateau entre " + Constante.X_MIN + " et " + Constante.X_MAX)
+            : Constante.X_CHOICE;
+    int y1 =
+        (!graphique) ? Constante.secureInput(Constante.Y_MIN, Constante.Y_MAX,
+            "Entrez la longueur du plateau entre " + Constante.Y_MIN + " et " + Constante.Y_MAX)
+            : Constante.Y_CHOICE;
 
-    int  nb = (!graphique) ? Constante.secureInput(Constante.OBSTACLES_MIN, Constante.OBSTACLES_MAX,
-        "Entrez le % d'obstacles du plateau entre " + Constante.OBSTACLES_MIN + " et "
-            + Constante.OBSTACLES_MAX) : Constante.OBSTACLES_CHOICE;
-    JOptionPane.showMessageDialog(null, "Les dimensions du plateaux sont donc ("+x1+","+y1+"), et le pourcentage d'obstacles de : "+nb);
-      return new Plateau(x1, y1, nb);
+    int nb =
+        (!graphique) ? Constante.secureInput(Constante.OBSTACLES_MIN, Constante.OBSTACLES_MAX,
+            "Entrez le % d'obstacles du plateau entre " + Constante.OBSTACLES_MIN + " et "
+                + Constante.OBSTACLES_MAX) : Constante.OBSTACLES_CHOICE;
+    JOptionPane.showMessageDialog(null, "Les dimensions du plateaux sont donc (" + x1 + "," + y1
+        + "), et le pourcentage d'obstacles de : " + nb);
+    return new Plateau(x1, y1, nb);
   }
 
   /**
@@ -122,11 +129,11 @@ public class MenuTexte {
    */
   private static void choisirRobot(int nbRobot, int noEquipe, boolean bot) {
     Random rd = new Random();
-    String[] listeRobotPourLesfeignants = new String[] {"Tireur", "Piegeur", "Char","Worker"};
+    String[] listeRobotPourLesfeignants = new String[] {"Tireur", "Piegeur", "Char", "Worker"};
     while (nbRobot != 0) {
       System.out.println("Choisis entre la liste des robots pour constituer ton equipe : ");
       for (int i = 0; i < listeRobotPourLesfeignants.length; i++) {
-        System.out.println("N°" + (i + 1) + " " + listeRobotPourLesfeignants[i]);
+        System.out.println("\t" + (i + 1) + " : " + listeRobotPourLesfeignants[i]);
       }
 
       int choix =
@@ -160,7 +167,7 @@ public class MenuTexte {
   private static String choisitPays() {
     System.out.println("Veuillez choisir votre pays parmis ceux-ci :");
     for (int i = 0; i < Constante.PAYS.length; i++) {
-      System.out.println("\t" + i + " - " + Constante.PAYS[i]);
+      System.out.println("\t" + i + " : " + Constante.PAYS[i]);
     }
     return Constante.PAYS[Constante.secureInput(0, Constante.PAYS.length - 1)];
   }
@@ -178,12 +185,12 @@ public class MenuTexte {
     return "\t" + ans + "\n";
   }
 
-  public static boolean toto(){
+  public static boolean toto() {
     try {
       PROPERTIES.load(new FileReader("ressources/plateau.properties"));
       return true;
     } catch (IOException e) {
-      //System.err.println("Fichier plateau.properties introuvable, verifier son orthographe");
+      // System.err.println("Fichier plateau.properties introuvable, verifier son orthographe");
       return false;
     }
   }
