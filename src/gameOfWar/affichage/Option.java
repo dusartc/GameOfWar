@@ -9,8 +9,12 @@ import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -36,7 +40,8 @@ public class Option extends JPanel {
   private JLabel pourcentageObstacles;
   private JTextField valeurObstacles;
   private JButton retour = new Bouton("Retour");
-  private Fenetre f;
+  protected Fenetre f;
+  protected Map<String, Integer> option;
 
   public Option() {
     this.setLayout(null);
@@ -47,10 +52,15 @@ public class Option extends JPanel {
 
   public Option(Fenetre f) {
     // this();
+    this.option = new HashMap<String, Integer>();
+    this.option.put("x", 10);
+    this.option.put("y", 10);
+    this.option.put("o", 10);
     this.setF(f);
     this.setLayout(null);
     this.setPreferredSize(new Dimension(900, 600));
     this.setOpaque(false);
+    this.setLocation(60, 77);
     this.initComponent();
   }
 
@@ -80,8 +90,7 @@ public class Option extends JPanel {
     musicTexte.setFont(new Font("Deja vu", Font.BOLD, 24));
     music = new JButton("Musique");
     music.setBounds(450, 250, 220, 50);
-    music.setActionCommand("Play");
-    music.addActionListener(new ac(f));
+    music.addActionListener(new MusiquePlayer());
     sonText = new JLabel("Son :");
     sonText.setBounds(180, 350, 80, 50);
     sonText.setForeground(Color.WHITE);
@@ -106,7 +115,17 @@ public class Option extends JPanel {
       exception.printStackTrace();
     }
     retour.setActionCommand("Retour");
-    retour.addActionListener(new ac(this, valeurX, valeurY, valeurObstacles, f));
+    retour.addActionListener(new ActionListener() {
+      
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        option.clear();
+        option.put("x", Integer.parseInt(valeurX.getText()));
+        option.put("y", Integer.parseInt(valeurY.getText()));
+        option.put("o", Integer.parseInt(valeurObstacles.getText()));
+        f.showMenu();
+      }
+    });
 
     this.add(sousTitre);
     this.add(tailleDuPlateau);
@@ -143,5 +162,9 @@ public class Option extends JPanel {
 
   public void setF(Fenetre f) {
     this.f = f;
+  }
+  
+  public Map<String, Integer> getOption(){
+    return this.option;
   }
 }

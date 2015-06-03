@@ -41,6 +41,7 @@ public class Menu extends JPanel {
     this.setLayout(null);
     this.setPreferredSize(new Dimension(900, 600));
     this.setOpaque(false);
+    this.setLocation(60, 77);
     this.initComponent();
   }
 
@@ -49,7 +50,7 @@ public class Menu extends JPanel {
     sousTitre.setFont(new Font("Deja Vu", Font.ROMAN_BASELINE, 45));
     sousTitre.setBounds(410, 45, 150, 50);
     music = new Bouton();
-    music.setBounds(770, 60, 30, 30);
+    music.setBounds(770, 60, 20, 20);
     try {
       File fond = new File("ressources/Images/music.gif");
       Image img = ImageIO.read(fond);
@@ -57,11 +58,9 @@ public class Menu extends JPanel {
     } catch (IOException exception) {
       exception.printStackTrace();
     }
-    music.setPreferredSize(new Dimension(17, 16));
-    music.setActionCommand("Play");
-    music.addActionListener(new ac(f));
+    music.addActionListener(new MusiquePlayer());
     quitter = new Bouton();
-    quitter.setBounds(750, 500, 60, 60);
+    quitter.setBounds(750, 500, 48, 48);
     try {
       File fond = new File("ressources/Images/quitter.png");
       Image img = ImageIO.read(fond);
@@ -69,9 +68,7 @@ public class Menu extends JPanel {
     } catch (IOException exception) {
       exception.printStackTrace();
     }
-    quitter.setPreferredSize(new Dimension(48, 48));
-    quitter.setActionCommand("X");
-    quitter.addActionListener(new ac(f));
+    quitter.addActionListener(new Quitter());
     jeu = new JButton("Jeu");
     jeu.setBounds(350, 150, 250, 100);
     jeu.setActionCommand("Jeu");

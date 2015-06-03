@@ -2,6 +2,7 @@ package gameOfWar.affichage;
 
 import java.awt.Dimension;
 import java.awt.Font;
+import java.util.Map;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -12,9 +13,14 @@ public class Fenetre extends JFrame {
 
   private static final long serialVersionUID = 1L;
 
-  private JPanel main = new JPanel();
+  private JPanel main;
+  private Option option;
+  private Menu menu;
 
   public Fenetre() {
+    this.main = new JPanel();
+    this.option = new Option(this);
+    this.menu = new Menu(this);
     this.setPreferredSize(new Dimension(1024, 720));
     this.pack();
     this.setResizable(false);
@@ -46,11 +52,23 @@ public class Fenetre extends JFrame {
     this.revalidate();
     this.repaint();
   }
+  
+  public void showMenu() {
+    this.changePanel(menu);
+  }
+  
+  public void showOption() {
+    this.changePanel(option);
+  }
 
   public void afficheLabelTitre(String titre) {
     JLabel gameOfWar = new JLabel(titre);
     gameOfWar.setFont(new Font("Deja Vu", Font.ROMAN_BASELINE, 52));
     gameOfWar.setBounds(380, 5, 500, 80);
     this.getContentPane().add(gameOfWar);
+  }
+  
+  public Map<String, Integer> getOptionMap(){
+    return this.option.getOption();
   }
 }
