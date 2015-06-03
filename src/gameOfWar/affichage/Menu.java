@@ -28,13 +28,15 @@ public class Menu extends JPanel {
   private JButton jeu;
   private JButton parametre;
   private JButton option;
+  private Fenetre f;
 
-  public Menu() {
+  public Menu(Fenetre f) {
     this.setLayout(null);
     this.add(new Forme());
     if (!false) {
       initComponent();
     }
+    this.f = f;
   }
   
   public void initComponent(){
