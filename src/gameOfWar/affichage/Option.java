@@ -46,12 +46,12 @@ public class Option extends JPanel {
   }
 
   public Option(Fenetre f) {
-    //this();
+    // this();
     this.setF(f);
     this.setLayout(null);
     this.setPreferredSize(new Dimension(900, 600));
     this.setOpaque(false);
-    this.initComponent();    
+    this.initComponent();
   }
 
   public void initComponent() {
