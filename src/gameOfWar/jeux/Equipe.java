@@ -80,7 +80,7 @@ public class Equipe {
     }
     int i = 1;
     for (Robot robot : disponibles) {
-      System.out.println("choix : " + i + "\n\t" + robot.toString());
+      System.out.println("\t" + i + " : " + robot.toString());
       i += 1;
     }
     i = secureInput(1, i - 1);
@@ -188,7 +188,7 @@ public class Equipe {
   public int getNbFacto() {
     return this.factories.size();
   }
-  
+
   /**
    * Fait perdre 5 energies a un robot aleatoire
    */
@@ -196,8 +196,18 @@ public class Equipe {
     Random rd = new Random();
     robots.get(rd.nextInt(robots.size() - 1)).perdEnergie(5);
   }
-  
+
   public int getNbRobot() {
     return this.robots.size();
+  }
+
+  public void sleep() {
+    if (estIa) {
+      try {
+        Thread.sleep(1500);
+      } catch (Exception e) {
+        // TODO: handle exception
+      }
+    }
   }
 }
