@@ -25,23 +25,23 @@ class ac implements ActionListener {
   private JTextField tx;
   private JTextField ty;
   private JTextField ob;
-  private JFrame fenetre;
+  private Fenetre fenetre;
   
-  public ac() {
-    setFenetre(Fenetre.getJFrame());
+  public ac(Fenetre f) {
+    setFenetre(f);
   }
   
-  public ac(JPanel jPanel) {
+  public ac(JPanel jPanel, Fenetre f) {
+    this(f);
     this.to = jPanel;
-    setFenetre(Fenetre.getJFrame());
   }
   
-  public ac(JPanel jPanel, JTextField tx, JTextField ty, JTextField ob) {
+  public ac(JPanel jPanel, JTextField tx, JTextField ty, JTextField ob, Fenetre j) {
+    this(j);
     this.to = jPanel;
     this.tx = tx;
     this.ty = ty;
     this.ob = ob;
-    setFenetre(Fenetre.getJFrame());
   }
 
   @Override
@@ -69,7 +69,7 @@ class ac implements ActionListener {
       JOptionPane.showMessageDialog(null, "Noisette !");
     } else if (e.getActionCommand().equals("Option")) {
       to.setVisible(false);
-      Fenetre.testFenetre(fenetre.getTitle(), new Option());
+      fenetre.changePanel(new Option(fenetre));
     } else if (e.getActionCommand().equals("Retour")) {
         String s = "";
         try {
@@ -106,7 +106,7 @@ class ac implements ActionListener {
         }
         this.initilisationPlateau();
         to.setVisible(false);
-        Fenetre.testFenetre(fenetre.getTitle(), new Menu());
+        fenetre.changePanel(new Menu(fenetre));
     }
     
     else if (e.getActionCommand().equals("X")) {
@@ -139,7 +139,7 @@ class ac implements ActionListener {
     return fenetre;
   }
 
-  public void setFenetre(JFrame fenetre) {
+  public void setFenetre(Fenetre fenetre) {
     this.fenetre = fenetre;
   }
 

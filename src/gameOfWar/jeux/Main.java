@@ -34,7 +34,7 @@ public class Main {
       JOptionPane.showMessageDialog(null, "Par defaut : Vous allez jouer en mode texte !");
       graphique = false;
     }
-    
+
     // ///////////////Partie TEXTE/////////////////////////
     if (!graphique) {
       Plateau plateau = MenuTexte.initialisationPlateau(graphique);
@@ -98,8 +98,7 @@ public class Main {
       } else {
         System.out.println(equipes[0].getNom() + " a gagne");
       }
-    }
-    else {
+    } else {
       javax.swing.SwingUtilities.invokeLater(new Runnable() {
 
         @Override
@@ -108,6 +107,6 @@ public class Main {
 
         }
       });
-    }    
+    }
   }
 }

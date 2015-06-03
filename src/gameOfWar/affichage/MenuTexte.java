@@ -1,29 +1,21 @@
 package gameOfWar.affichage;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.nio.file.Files;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Properties;
-import java.util.Random;
-
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-
 import gameOfWar.config.Constante;
 import gameOfWar.config.Coordonnees;
 import gameOfWar.jeux.Equipe;
 import gameOfWar.jeux.IA;
 import gameOfWar.jeux.Plateau;
-import gameOfWar.jeux.Vue;
 import gameOfWar.robot.Char;
 import gameOfWar.robot.Piegeur;
-import gameOfWar.robot.Robot;
 import gameOfWar.robot.Tireur;
 import gameOfWar.robot.Worker;
+
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Properties;
+import java.util.Random;
+
+import javax.swing.JOptionPane;
 
 /**
  * Affiche des menus en mode texte
@@ -33,7 +25,7 @@ import gameOfWar.robot.Worker;
 public class MenuTexte {
 
   public static Equipe[] ans = new Equipe[2];
-  public static Option oJPanel = new Option();
+  //public static Option oJPanel = new Option();
   private static Properties PROPERTIES = new Properties();
 
   /**

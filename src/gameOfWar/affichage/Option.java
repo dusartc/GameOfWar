@@ -1,6 +1,5 @@
 package gameOfWar.affichage;
 
-import gameOfWar.affichage.Son;
 import gameOfWar.config.Constante;
 
 import java.awt.Color;
@@ -10,10 +9,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
@@ -41,10 +37,12 @@ public class Option extends JPanel {
   private JButton b = new Bouton("Musique");
   private JButton b2 = new Bouton("Son");
   private JButton b3 = new Bouton("Retour");
-
-  public Option() {
-
+  private Fenetre f;
+  
+  
+  public Option(Fenetre f) {
     super(new GridBagLayout());
+    this.f=f;    
     GridBagConstraints constraints = new GridBagConstraints();
     this.getJpanel(constraints, 400, 100, GridBagConstraints.VERTICAL, 50, 0, 1);
     this.getJpanel(constraints, 400, 100, GridBagConstraints.VERTICAL, 0, 0, 2);
@@ -140,7 +138,7 @@ public class Option extends JPanel {
       b3.setPreferredSize(new Dimension(120, 100));
       toutLesPanel.add(b3);
       b3.setActionCommand("Retour");
-      b3.addActionListener(new ac(jPanel, tx, ty, ob));/*new java.awt.event.ActionListener() {
+      b3.addActionListener(new ac(jPanel, tx, ty, ob,f));/*new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
           b3ActionPerformed(evt);
         }
