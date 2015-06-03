@@ -1,18 +1,29 @@
 package gameOfWar.affichage;
 
+import gameOfWar.affichage.Son;
 import gameOfWar.config.Constante;
 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GradientPaint;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 
+import javax.imageio.ImageIO;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -20,155 +31,116 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class Option extends JPanel {
-
-  /**
-   * 
-   */
+  
   private static final long serialVersionUID = 1L;
 
-
-  private JPanel jPanel = new Forme(new GridBagLayout());
-  private JPanel toutLesPanel;
-  private int nombreSousTitre = 0;
-  private JTextField tx = new JTextField(Constante.X_CHOICE + "");
-  private JTextField ty = new JTextField(Constante.Y_CHOICE + "");
-  private JTextField ob = new JTextField(Constante.OBSTACLES_CHOICE + "");
-
-  private JButton b = new Bouton("Musique");
-  private JButton b2 = new Bouton("Son");
-  private JButton b3 = new Bouton("Retour");
+  private JLabel sousTitre;
+  private JLabel tailleDuPlateau;
+  private JLabel X;
+  private JLabel Y;
+  private JTextField valeurX;
+  private JTextField valeurY;
+  private JLabel musicTexte;
+  private JButton music;
+  private JLabel sonText;
+  private JButton son;
+  private JLabel pourcentageObstacles;
+  private JTextField valeurObstacles;
+  private JButton retour = new Bouton("Retour");
   private Fenetre f;
-  
-  
+
+  public Option(){
+    this.setLayout(null);
+    this.setPreferredSize(new Dimension(900,600));
+    this.setOpaque(false);
+    this.initComponent();
+  }
+
   public Option(Fenetre f) {
-    super(new GridBagLayout());
-    this.f=f;    
-    GridBagConstraints constraints = new GridBagConstraints();
-    this.getJpanel(constraints, 400, 100, GridBagConstraints.VERTICAL, 50, 0, 1);
-    this.getJpanel(constraints, 400, 100, GridBagConstraints.VERTICAL, 0, 0, 2);
-    this.getJpanel(constraints, 400, 100, GridBagConstraints.VERTICAL, 0, 0, 3);
-    this.getJpanel(constraints, 800, 100, GridBagConstraints.VERTICAL, 0, 0, 4);
-    /*
-     * this.getBoutonJeu(constraints, "Jeu", 250, 100, GridBagConstraints.VERTICAL, 50, 0, 1);
-     * this.getBoutonJeu(constraints, "Parametre", 250, 100, GridBagConstraints.VERTICAL, 0, 0, 2);
-     * this.getBoutonJeu(constraints, "Option", 250, 100, GridBagConstraints.VERTICAL, 0, 0, 3);
-     * this.getBoutonJeu(constraints, "X", 50, 50, GridBagConstraints.EAST, 0, 0, 4);
-     */
-    this.add(jPanel);
-
+    this();
+    this.setF(f);
   }
-
-  public JPanel panel(JPanel toutLesPanel2, GridBagConstraints constraints) {
-
-    jPanel.add(toutLesPanel2, constraints);
-    jPanel.setLocation(0, 0);
-    jPanel.setMinimumSize(new Dimension(500, 500));
-    jPanel.setPreferredSize(new Dimension(1024, 720));
-    jPanel.setMaximumSize(new Dimension(1000, 650));
-    if (nombreSousTitre == 0) {
-      JLabel sousTitre = new JLabel("Option");
-      sousTitre.setFont(new Font("Deja Vu", Font.ROMAN_BASELINE, 45));
-      sousTitre.setLocation(150, 0);
-      jPanel.add(sousTitre);
-      nombreSousTitre++;
+  
+  public void initComponent() {
+    sousTitre = new JLabel("Option");
+    sousTitre.setFont(new Font("Deja Vu", Font.ROMAN_BASELINE, 45));
+    sousTitre.setBounds(410, 45, 150,50);
+    tailleDuPlateau = new JLabel("Taille du Plateau :");
+    tailleDuPlateau.setBounds(180,150,280,50);
+    tailleDuPlateau.setForeground(Color.WHITE);
+    tailleDuPlateau.setFont(new Font("Deja vu", Font.BOLD, 24));
+    X = new JLabel("X");
+    X.setBounds(493, 110, 40, 40);
+    X.setForeground(Color.WHITE);
+    X.setFont(new Font("Deja vu", Font.BOLD, 24));
+    valeurX = new JTextField(Constante.X_CHOICE + "");
+    valeurX.setBounds(480, 149, 50, 50);
+    Y = new JLabel("Y");
+    Y.setBounds(593, 110, 40, 40);
+    Y.setForeground(Color.WHITE);
+    Y.setFont(new Font("Deja vu", Font.BOLD, 24));
+    valeurY = new JTextField(Constante.Y_CHOICE + "");
+    valeurY.setBounds(580, 149, 50, 50);
+    musicTexte = new JLabel("Musique :");
+    musicTexte.setBounds(180, 250, 120, 50);
+    musicTexte.setForeground(Color.WHITE);
+    musicTexte.setFont(new Font("Deja vu", Font.BOLD, 24));
+    music = new JButton("Musique");
+    music.setBounds(450, 250, 220, 50);
+    music.setActionCommand("Play");
+    music.addActionListener(new ac());
+    sonText = new JLabel("Son :");
+    sonText.setBounds(180, 350, 80, 50);
+    sonText.setForeground(Color.WHITE);
+    sonText.setFont(new Font("Deja vu", Font.BOLD, 24));
+    son = new JButton("Son");
+    son.setBounds(450, 350, 220, 50);
+    son.setActionCommand("Son");
+    son.addActionListener(new ac());
+    pourcentageObstacles = new JLabel("Pourcentage d'obstacles :");
+    pourcentageObstacles.setBounds(180,450,320,50);
+    pourcentageObstacles.setForeground(Color.WHITE);
+    pourcentageObstacles.setFont(new Font("Deja vu", Font.BOLD, 24));
+    valeurObstacles = new JTextField(Constante.OBSTACLES_CHOICE + "");
+    valeurObstacles.setBounds(530, 449, 50, 50);
+    retour = new Bouton();
+    retour.setBounds(750, 500,50,50);
+    try {
+      File fond = new File("ressources/Images/retour.png");
+      Image img = ImageIO.read(fond);
+      retour.setIcon(new ImageIcon(img));
+    } catch (IOException exception) {
+      exception.printStackTrace();
     }
-    return jPanel;
+    retour.setActionCommand("Retour");
+    retour.addActionListener(new ac(this, valeurX, valeurY, valeurObstacles));
+
+    this.add(sousTitre);
+    this.add(tailleDuPlateau);
+    this.add(X);
+    this.add(valeurX);
+    this.add(Y);
+    this.add(valeurY);
+    this.add(musicTexte);
+    this.add(music);
+    this.add(sonText);
+    this.add(son);
+    this.add(pourcentageObstacles);
+    this.add(valeurObstacles);
+    this.add(retour);
   }
 
-
-  private void getJpanel(GridBagConstraints constraints, int x, int y, int fill, int insetsTop,
+  /*private void getJpanel(GridBagConstraints constraints, int x, int y, int fill, int insetsTop,
       int gridx, int gridy) {
-    toutLesPanel = new JPanel();
-    toutLesPanel.setPreferredSize(new Dimension(x, y));
-    constraints.fill = fill;
-    constraints.weightx = 1;
-    if (insetsTop > 0) {
-      constraints.insets = new Insets(insetsTop, 40, 0, 20);
-    }
-    constraints.gridx = gridx;
-    constraints.gridy = gridy;
-    toutLesPanel.setOpaque(false);
 
-    if (gridy == 1) {
-      JLabel l = new JLabel("Taille du Plateau");
-      l.setForeground(Color.white);
-      l.setFont(new Font("Deja Vu", Font.ROMAN_BASELINE, 20));
-      toutLesPanel.add(l);
-
-      tx.setPreferredSize(new Dimension(40, 40));
-      tx.setFont(new Font("Deja Vu", Font.ROMAN_BASELINE, 20));
-      toutLesPanel.add(tx);
-
-      JLabel l2 = new JLabel("X");
-      l2.setForeground(Color.white);
-      l2.setFont(new Font("Deja Vu", Font.ROMAN_BASELINE, 20));
-      toutLesPanel.add(l2);
-
-      ty.setPreferredSize(new Dimension(40, 40));
-      ty.setFont(new Font("Deja Vu", Font.ROMAN_BASELINE, 20));
-      toutLesPanel.add(ty);
-
-    } else if (gridy == 2) {
-      JLabel l = new JLabel("Pourcentage d'obstacle");
-      l.setForeground(Color.white);
-      l.setFont(new Font("Deja Vu", Font.ROMAN_BASELINE, 20));
-      toutLesPanel.add(l);
-
-      ob.setPreferredSize(new Dimension(40, 40));
-      ob.setFont(new Font("Deja Vu", Font.ROMAN_BASELINE, 20));
-      toutLesPanel.add(ob);
-    } else if (gridy == 3) {
-
-      b.setPreferredSize(new Dimension(120, 100));
-      toutLesPanel.add(b);
-      b.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-          bActionPerformed(evt);
-        }
-      });
-
-      b2.setPreferredSize(new Dimension(120, 100));
-      toutLesPanel.add(b2);
-      b2.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-          b2ActionPerformed(evt);
-        }
-      });
-
-      b3.setPreferredSize(new Dimension(120, 100));
-      toutLesPanel.add(b3);
-      b3.setActionCommand("Retour");
-      b3.addActionListener(new ac(jPanel, tx, ty, ob,f));/*new java.awt.event.ActionListener() {
+      retour.setPreferredSize(new Dimension(120, 100));
+      toutLesPanel.add(retour);
+      retour.setActionCommand("Retour");
+      retour.addActionListener(new ac());/*new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
           b3ActionPerformed(evt);
         }
-      });*/
-
-    }
-    this.panel(toutLesPanel, constraints);
-  }
-
-  private void bActionPerformed(ActionEvent evt) {
-    int retour = JOptionPane.showConfirmDialog(null, "Jouer la musique ?");
-    if (retour == JOptionPane.OK_OPTION) {
-      try {
-        Son.jouer();
-      } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
-        e1.printStackTrace();
-      }
-    } else if (retour == JOptionPane.NO_OPTION) {
-      try {
-        Son.arreter();
-      } catch (UnsupportedAudioFileException | IOException | LineUnavailableException exception) {
-        exception.printStackTrace();
-      }
-    } else {
-      JOptionPane.showMessageDialog(null, "Chocolat !");
-    }
-  }
-
-  private void b2ActionPerformed(ActionEvent evt) {
-    JOptionPane.showMessageDialog(null, "Son");
+      });
   }
 
   /*private void b3ActionPerformed(ActionEvent evt) {
@@ -208,19 +180,25 @@ public class Option extends JPanel {
     }
     this.initilisationPlateau();
     
-  }
-
-  public void initilisationPlateau() {
-    PrintWriter writer = null;
-    try {
-      writer = new PrintWriter("ressources/plateau.properties", "UTF-8");
-      writer.println("x: " + Constante.X_CHOICE + "\ny: " + Constante.Y_CHOICE + "\nObstacles: "
-          + Constante.OBSTACLES_CHOICE);
-    } catch (FileNotFoundException | UnsupportedEncodingException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
-    writer.close();
   }*/
 
+  @Override
+  protected void paintComponent(Graphics g) {
+    super.paintComponent(g);
+    Graphics2D graphics2d = (Graphics2D)g;
+    GradientPaint gradientPaint = new GradientPaint(0, -(180), new Color(80, 80, 80), 0, 90, new Color(40, 40, 40), true);
+    graphics2d.setPaint(gradientPaint);
+    graphics2d.fillRoundRect(100, 30, 740, 550, 20, 20);
+    GradientPaint gradientPaint2 = new GradientPaint(0, 0, new Color(0xFF, 0xFF, 0xFF), 0, 90,  new Color(110, 110, 110), true);
+    graphics2d.setPaint(gradientPaint2);
+    graphics2d.fillRoundRect(100, 30, 740, 80, 20, 20);
+  }
+
+  public Fenetre getF() {
+    return f;
+  }
+
+  public void setF(Fenetre f) {
+    this.f = f;
+  }
 }
