@@ -26,16 +26,16 @@ class ac implements ActionListener {
   private JTextField ty;
   private JTextField ob;
   private Fenetre fenetre;
-  
+
   public ac(Fenetre f) {
-    setFenetre(f);
+    this.fenetre = f;
   }
-  
+
   public ac(JPanel jPanel, Fenetre f) {
     this(f);
     this.to = jPanel;
   }
-  
+
   public ac(JPanel jPanel, JTextField tx, JTextField ty, JTextField ob, Fenetre j) {
     this(j);
     this.to = jPanel;
@@ -68,47 +68,47 @@ class ac implements ActionListener {
     } else if (e.getActionCommand().equals("Parametre")) {
       JOptionPane.showMessageDialog(null, "Noisette !");
     } else if (e.getActionCommand().equals("Option")) {
-      to.setVisible(false);
+      // to.setVisible(false);
       fenetre.changePanel(new Option(fenetre));
     } else if (e.getActionCommand().equals("Retour")) {
-        String s = "";
-        try {
-          Constante.X_CHOICE = Integer.parseInt(tx.getText());
-          Constante.Y_CHOICE = Integer.parseInt(ty.getText());
-          Constante.OBSTACLES_CHOICE = Integer.parseInt(ob.getText());
+      String s = "";
+      try {
+        Constante.X_CHOICE = Integer.parseInt(tx.getText());
+        Constante.Y_CHOICE = Integer.parseInt(ty.getText());
+        Constante.OBSTACLES_CHOICE = Integer.parseInt(ob.getText());
 
-          if (Constante.X_CHOICE > Constante.X_MAX || Constante.X_CHOICE < Constante.X_MIN
-              || Constante.Y_CHOICE > Constante.Y_MAX || Constante.Y_CHOICE < Constante.Y_MIN) {
-            s =
-                s + "La taille du plateau doit etre comprise entre " + Constante.X_MIN + " et "
-                    + Constante.X_MAX + "\n";
-            tx.setText(defx);
-            ty.setText(defy);
-          }
-          if (Constante.OBSTACLES_CHOICE > Constante.OBSTACLES_MAX
-              || Constante.OBSTACLES_CHOICE < Constante.OBSTACLES_MIN) {
-            s =
-                s + "Le pourcentage d'obstacles doit etre compris entre " + Constante.OBSTACLES_MIN
-                    + " et " + Constante.OBSTACLES_MAX;
-            ob.setText(defob);
-          }
-          if (s.equals("")) {
-            //JOptionPane.showMessageDialog(null, "Retour au menu principal !");
-          } else {
-            JOptionPane.showMessageDialog(null, s);
-          }
-
-        } catch (Exception e1) {
+        if (Constante.X_CHOICE > Constante.X_MAX || Constante.X_CHOICE < Constante.X_MIN
+            || Constante.Y_CHOICE > Constante.Y_MAX || Constante.Y_CHOICE < Constante.Y_MIN) {
+          s =
+              s + "La taille du plateau doit etre comprise entre " + Constante.X_MIN + " et "
+                  + Constante.X_MAX + "\n";
           tx.setText(defx);
           ty.setText(defy);
-          ob.setText(defob);
-          JOptionPane.showMessageDialog(null, "Champ Incorrect");
         }
-        this.initilisationPlateau();
-        to.setVisible(false);
-        fenetre.changePanel(new Menu(fenetre));
+        if (Constante.OBSTACLES_CHOICE > Constante.OBSTACLES_MAX
+            || Constante.OBSTACLES_CHOICE < Constante.OBSTACLES_MIN) {
+          s =
+              s + "Le pourcentage d'obstacles doit etre compris entre " + Constante.OBSTACLES_MIN
+                  + " et " + Constante.OBSTACLES_MAX;
+          ob.setText(defob);
+        }
+        if (s.equals("")) {
+          // JOptionPane.showMessageDialog(null, "Retour au menu principal !");
+        } else {
+          JOptionPane.showMessageDialog(null, s);
+        }
+
+      } catch (Exception e1) {
+        tx.setText(defx);
+        ty.setText(defy);
+        ob.setText(defob);
+        JOptionPane.showMessageDialog(null, "Champ Incorrect");
+      }
+      this.initilisationPlateau();
+      to.setVisible(false);
+      fenetre.changePanel(new Menu(fenetre));
     }
-    
+
     else if (e.getActionCommand().equals("X")) {
       int retour = JOptionPane.showConfirmDialog(null, "Quitter ?");
       if (retour == JOptionPane.OK_OPTION) {
@@ -121,7 +121,7 @@ class ac implements ActionListener {
     }
 
   }
-  
+
   public void initilisationPlateau() {
     PrintWriter writer = null;
     try {
@@ -138,9 +138,4 @@ class ac implements ActionListener {
   public JFrame getFenetre() {
     return fenetre;
   }
-
-  public void setFenetre(Fenetre fenetre) {
-    this.fenetre = fenetre;
-  }
-
 }

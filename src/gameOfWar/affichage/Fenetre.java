@@ -1,6 +1,5 @@
 package gameOfWar.affichage;
 
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 
@@ -14,7 +13,7 @@ public class Fenetre extends JFrame {
   private static final long serialVersionUID = 1L;
 
   private JPanel main = new JPanel();
-  
+
   public Fenetre() {
     this.setPreferredSize(new Dimension(1024, 720));
     this.pack();
@@ -25,11 +24,11 @@ public class Fenetre extends JFrame {
     this.afficheLabelTitre("Game of War");
     this.main.setBounds(0, 75, this.getWidth(), this.getHeight());
     this.getContentPane().add(main);
-    this.changePanel(new Menu(this)); 
+    this.changePanel(new Menu(this));
     this.setLayout(null);
     this.setVisible(true);
   }
-  
+
   public Fenetre(String nom) {
     this();
     this.setTitle(nom);
@@ -37,9 +36,13 @@ public class Fenetre extends JFrame {
 
   public void changePanel(JPanel jPanel) {
     this.main.removeAll();
-    for (Component c : jPanel.getComponents()) {
-      this.main.add(c);
-    }
+    this.main.setPreferredSize(jPanel.getPreferredSize());
+    this.main.setLocation(jPanel.getLocation());
+    this.main.setOpaque(false);
+    // for (Component c : jPanel.getComponents()) {
+    // this.main.add(c);
+    // }
+    this.main.add(jPanel);
     this.revalidate();
     this.repaint();
   }
