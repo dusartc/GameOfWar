@@ -79,19 +79,22 @@ public class Option extends JPanel {
     nombreRobot.setBounds(180, 225, 280, 50);
     nombreRobot.setForeground(Color.WHITE);
     nombreRobot.setFont(new Font("Deja vu", Font.BOLD, 24));
-    valeurNombreRobo = new JTextField(5);
+    valeurNombreRobo = new JTextField();
+    valeurNombreRobo.setDocument(new JTextFieldLimit(1));
     valeurNombreRobo.setBounds(530, 225, 50, 50);
     X = new JLabel("X");
     X.setBounds(493, 110, 40, 40);
     X.setForeground(Color.WHITE);
     X.setFont(new Font("Deja vu", Font.BOLD, 24));
     valeurX = new JTextField(Constante.X_CHOICE + "");
+    valeurX.setDocument(new JTextFieldLimit(2));
     valeurX.setBounds(480, 149, 50, 50);
     Y = new JLabel("Y");
     Y.setBounds(593, 110, 40, 40);
     Y.setForeground(Color.WHITE);
     Y.setFont(new Font("Deja vu", Font.BOLD, 24));
     valeurY = new JTextField(Constante.Y_CHOICE + "");
+    valeurY.setDocument(new JTextFieldLimit(2));
     valeurY.setBounds(580, 149, 50, 50);
     musicTexte = new JLabel("Musique :");
     musicTexte.setBounds(180, 300, 190, 50);
@@ -113,6 +116,7 @@ public class Option extends JPanel {
     pourcentageObstacles.setForeground(Color.WHITE);
     pourcentageObstacles.setFont(new Font("Deja vu", Font.BOLD, 24));
     valeurObstacles = new JTextField(Constante.OBSTACLES_CHOICE + "");
+    valeurObstacles.setDocument(new JTextFieldLimit(2));
     valeurObstacles.setBounds(530, 449, 50, 50);
     retour = new Retour(f);
     retour.addActionListener(new ActionListener() {

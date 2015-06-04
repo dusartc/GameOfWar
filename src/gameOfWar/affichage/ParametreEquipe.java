@@ -36,7 +36,7 @@ public class ParametreEquipe extends JPanel {
   private static final long serialVersionUID = 1L;
   private String[] pays = Constante.PAYS;
   private String paysChoisitUne;
-  private int numeroPays = 0;
+  private int numeroPays = pays.length * 50;
   private JLabel sousTitre;
   private JLabel equipeUne;
   private JLabel equipeDeux;
@@ -112,12 +112,11 @@ public class ParametreEquipe extends JPanel {
       
       @Override
       public void actionPerformed(ActionEvent arg0) {
-        System.out.println(paysChoisitUne);
         paysUne(arg0);
       }
     });
-    paysUne = new JLabel(this.getPaysChoisitPays());
-    paysUne.setBounds(250, 215, 100, 20);
+    paysUne = new JLabel(this.pays[0]);
+    paysUne.setBounds(200, 215, 190, 20);
     paysUne.setFont(new Font("Deja Vu", Font.ROMAN_BASELINE, 20));
     paysUne.setForeground(Color.white);
     incrementeUne = new JButton(">");
@@ -127,10 +126,83 @@ public class ParametreEquipe extends JPanel {
       
       @Override
       public void actionPerformed(ActionEvent arg0) {
-        System.out.println(paysChoisitUne);
         paysUne(arg0);
       }
     });
+    decrementeDeux = new JButton("<");
+    decrementeDeux.setBounds(505, 200, 50, 50);
+    decrementeDeux.setActionCommand("-");
+    decrementeDeux.addActionListener(new ActionListener() {
+      
+      @Override
+      public void actionPerformed(ActionEvent arg0) {
+        paysDeux(arg0);
+      }
+    });
+    paysDeux = new JLabel(this.pays[0]);
+    paysDeux.setBounds(565, 215, 190, 20);
+    paysDeux.setFont(new Font("Deja Vu", Font.ROMAN_BASELINE, 20));
+    paysDeux.setForeground(Color.white);
+    incrementeDeux = new JButton(">");
+    incrementeDeux.setBounds(745, 200, 50, 50);
+    incrementeDeux.setActionCommand("+");
+    incrementeDeux.addActionListener(new ActionListener() {
+      
+      @Override
+      public void actionPerformed(ActionEvent arg0) {
+        paysDeux(arg0);
+      }
+    });
+    joueurUn = new JToggleButton("Joueur");
+    joueurUn.setBounds(140, 300, 150, 50);
+    joueurUn.setFont(new Font("Deja vu", Font.ROMAN_BASELINE, 20));
+    joueurUn.addActionListener(new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			if (IAUn.isSelected()) {
+		          IAUn.setSelected(false);
+		        }
+		    //triAZ(e);
+		}
+	});
+    IAUn = new JToggleButton("Ordinateur");
+    IAUn.setBounds(310, 300, 150, 50);
+    IAUn.setFont(new Font("Deja vu", Font.ROMAN_BASELINE, 20));
+    IAUn.addActionListener(new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			if (joueurUn.isSelected()) {
+		          joueurUn.setSelected(false);
+		        }
+		}
+	});
+    joueurDeux = new JToggleButton("Joueur");
+    joueurDeux.setBounds(505, 300, 150, 50);
+    joueurDeux.setFont(new Font("Deja vu", Font.ROMAN_BASELINE, 20));
+    joueurDeux.addActionListener(new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			if (IADeux.isSelected()) {
+		          IADeux.setSelected(false);
+		        }
+		    //triAZ(e);
+		}
+	});
+    IADeux = new JToggleButton("Ordinateur");
+    IADeux.setBounds(675, 300, 150, 50);
+    IADeux.setFont(new Font("Deja vu", Font.ROMAN_BASELINE, 20));
+    IADeux.addActionListener(new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			if (joueurDeux.isSelected()) {
+		          joueurDeux.setSelected(false);
+		        }
+		}
+	});
     retour = new Retour(fenetre);
     retour.addActionListener(new ActionListener() {
       
@@ -147,6 +219,13 @@ public class ParametreEquipe extends JPanel {
     this.add(decrementeUne);
     this.add(paysUne);
     this.add(incrementeUne);
+    this.add(decrementeDeux);
+    this.add(paysDeux);
+    this.add(incrementeDeux);
+    this.add(joueurUn);
+    this.add(IAUn);
+    this.add(joueurDeux);
+    this.add(IADeux);
     this.add(retour);
   }
   
@@ -182,26 +261,21 @@ public class ParametreEquipe extends JPanel {
 
   public void paysUne(ActionEvent event){
     if (event.getActionCommand().equals("-")) {
-      if (numeroPays == 0) {
-        numeroPays = pays.length;
-      }
-      else{
-        --numeroPays;
-        paysChoisitUne = pays[numeroPays];
-        setPaysChoisitPays(paysChoisitUne);
-      }
+      numeroPays--;
+    }else{
+        numeroPays++;
     }
-    else if (event.getActionCommand().equals("+")) {
-      if (numeroPays == pays.length) {
-        numeroPays = 0;
-      }
-      else{
-        ++numeroPays;
-        paysChoisitUne = pays[numeroPays];
-        setPaysChoisitPays(paysChoisitUne);
-      }
-    }
+    paysUne.setText(pays[numeroPays%pays.length]);
   }
+  
+  public void paysDeux(ActionEvent event){
+	    if (event.getActionCommand().equals("-")) {
+	      numeroPays--;
+	    }else{
+	        numeroPays++;
+	    }
+	    paysDeux.setText(pays[numeroPays%pays.length]);
+	  } 
   /*this.setTitle("Parametre");
   this.setSize(new Dimension(1024,800));
   
