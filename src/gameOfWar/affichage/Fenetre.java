@@ -17,14 +17,14 @@ public class Fenetre extends JFrame {
   private JPanel main;
   private Option option;
   private Menu menu;
-  private Equipe equipe;
+  //private Parametre equipe;
   private ParametreEquipe parametre;
 
   public Fenetre() {
     this.main = new JPanel();
     this.option = new Option(this);
     this.menu = new Menu(this);
-    this.equipe = new Equipe(this);
+    //this.equipe = new Equipe(this);
     this.parametre = new ParametreEquipe(this);
     this.setPreferredSize(new Dimension(1024, 720));
     this.pack();
@@ -66,9 +66,9 @@ public class Fenetre extends JFrame {
     this.changePanel(option);
   }
   
-  public void showEquipe() {
+  /*public void showEquipe() {
     this.changePanel(equipe);
-  }
+  }*/
   
   public void showJeu(){
     this.changePanel(parametre);
