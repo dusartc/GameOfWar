@@ -31,8 +31,9 @@ public class Main {
       JOptionPane.showMessageDialog(null, "Vous allez jouer en mode texte !");
       graphique = false;
     } else {
-      JOptionPane.showMessageDialog(null, "Par defaut : Vous allez jouer en mode texte !");
-      graphique = false;
+      /*JOptionPane.showMessageDialog(null, "Par defaut : Vous allez jouer en mode texte !");
+      graphique = false;*/
+      System.exit(0);
     }
 
     // ///////////////Partie TEXTE/////////////////////////

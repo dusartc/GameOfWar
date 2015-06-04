@@ -29,6 +29,8 @@ public class Option extends JPanel {
 
   private JLabel sousTitre;
   private JLabel tailleDuPlateau;
+  private JLabel nombreRobot;
+  private JTextField valeurNombreRobo;
   private JLabel X;
   private JLabel Y;
   private JTextField valeurX;
@@ -47,6 +49,7 @@ public class Option extends JPanel {
     this.setLayout(null);
     this.setPreferredSize(new Dimension(900, 600));
     this.setOpaque(false);
+    this.setLocation(60, 77);
     this.initComponent();
   }
 
@@ -72,6 +75,12 @@ public class Option extends JPanel {
     tailleDuPlateau.setBounds(180, 150, 280, 50);
     tailleDuPlateau.setForeground(Color.WHITE);
     tailleDuPlateau.setFont(new Font("Deja vu", Font.BOLD, 24));
+    nombreRobot = new JLabel("Nombre de robot :");
+    nombreRobot.setBounds(130, 175, 280, 50);
+    nombreRobot.setForeground(Color.WHITE);
+    nombreRobot.setFont(new Font("Deja vu", Font.BOLD, 20));
+    valeurNombreRobo = new JTextField(5);
+    valeurNombreRobo.setBounds(450, 175, 50, 50);
     X = new JLabel("X");
     X.setBounds(493, 110, 40, 40);
     X.setForeground(Color.WHITE);
@@ -105,7 +114,7 @@ public class Option extends JPanel {
     pourcentageObstacles.setFont(new Font("Deja vu", Font.BOLD, 24));
     valeurObstacles = new JTextField(Constante.OBSTACLES_CHOICE + "");
     valeurObstacles.setBounds(530, 449, 50, 50);
-    retour = new Bouton();
+    retour = new JButton();
     retour.setBounds(750, 500, 50, 50);
     try {
       File fond = new File("ressources/Images/retour.png");
@@ -129,6 +138,8 @@ public class Option extends JPanel {
 
     this.add(sousTitre);
     this.add(tailleDuPlateau);
+    this.add(nombreRobot);
+    this.add(valeurNombreRobo);
     this.add(X);
     this.add(valeurX);
     this.add(Y);
