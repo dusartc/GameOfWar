@@ -100,17 +100,7 @@ public class ParametreEquipe extends JPanel {
     vertical = new JSeparator(JSeparator.VERTICAL);
     vertical.setBackground(Color.white);
     vertical.setBounds(475, 240, 2, 320);
-    
-    retour = new JButton();
-    retour.setBounds(750, 500, 50, 50);
-    try {
-      File fond = new File("ressources/Images/retour.png");
-      Image img = ImageIO.read(fond);
-      retour.setIcon(new ImageIcon(img));
-    } catch (IOException exception) {
-      exception.printStackTrace();
-    }
-    retour.setActionCommand("Retour");
+    retour = new Retour(fenetre);
     retour.addActionListener(new ActionListener() {
       
       @Override

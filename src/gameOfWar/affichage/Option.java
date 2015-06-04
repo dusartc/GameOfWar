@@ -114,16 +114,7 @@ public class Option extends JPanel {
     pourcentageObstacles.setFont(new Font("Deja vu", Font.BOLD, 24));
     valeurObstacles = new JTextField(Constante.OBSTACLES_CHOICE + "");
     valeurObstacles.setBounds(530, 449, 50, 50);
-    retour = new JButton();
-    retour.setBounds(750, 500, 50, 50);
-    try {
-      File fond = new File("ressources/Images/retour.png");
-      Image img = ImageIO.read(fond);
-      retour.setIcon(new ImageIcon(img));
-    } catch (IOException exception) {
-      exception.printStackTrace();
-    }
-    retour.setActionCommand("Retour");
+    retour = new Retour(f);
     retour.addActionListener(new ActionListener() {
       
       @Override

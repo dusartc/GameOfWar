@@ -18,9 +18,9 @@ class ac implements ActionListener {
   @Override
   public void actionPerformed(ActionEvent e) {
     if (e.getActionCommand().equals("Jeu")) {
-      fenetre.showJeu();
+      fenetre.showEquipe();
     } else if (e.getActionCommand().equals("Parametre")) {
-      JOptionPane.showMessageDialog(null, "Noisette !");
+      fenetre.showParametre();
     } else if (e.getActionCommand().equals("Option")) {
       fenetre.showOption();
     }
