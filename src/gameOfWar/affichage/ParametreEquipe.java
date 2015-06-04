@@ -1,5 +1,7 @@
 package gameOfWar.affichage;
 
+import gameOfWar.config.Constante;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -32,6 +34,7 @@ public class ParametreEquipe extends JPanel {
 	
   
   private static final long serialVersionUID = 1L;
+  private String[] pays = Constante.PAYS;
   private JLabel sousTitre;
   private JLabel equipeUne;
   private JLabel equipeDeux;
@@ -96,10 +99,12 @@ public class ParametreEquipe extends JPanel {
     equipeDeux.setBounds(650, 115, 180, 40);
     horizontal = new JSeparator(JSeparator.HORIZONTAL);
     horizontal.setBackground(Color.white);
-    horizontal.setBounds(120, 240, 700, 2);
+    horizontal.setBounds(120, 180, 700, 2);
     vertical = new JSeparator(JSeparator.VERTICAL);
     vertical.setBackground(Color.white);
     vertical.setBounds(475, 240, 2, 320);
+    decrementeUne = new JButton("<");
+    decrementeUne.setBounds(120, 200, 50, 50);
     retour = new Retour(fenetre);
     retour.addActionListener(new ActionListener() {
       
@@ -113,6 +118,7 @@ public class ParametreEquipe extends JPanel {
     this.add(equipeDeux);
     this.add(horizontal);
     this.add(vertical);
+    this.add(decrementeUne);
     this.add(retour);
   }
   
