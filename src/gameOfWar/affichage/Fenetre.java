@@ -1,5 +1,6 @@
 package gameOfWar.affichage;
 
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.util.Map;
@@ -16,11 +17,13 @@ public class Fenetre extends JFrame {
   private JPanel main;
   private Option option;
   private Menu menu;
+  private Equipe equipe;
 
   public Fenetre() {
     this.main = new JPanel();
     this.option = new Option(this);
     this.menu = new Menu(this);
+    this.equipe = new Equipe(this);
     this.setPreferredSize(new Dimension(1024, 720));
     this.pack();
     this.setResizable(false);
@@ -45,9 +48,9 @@ public class Fenetre extends JFrame {
     this.main.setPreferredSize(jPanel.getPreferredSize());
     this.main.setLocation(jPanel.getLocation());
     this.main.setOpaque(false);
-    // for (Component c : jPanel.getComponents()) {
-    // this.main.add(c);
-    // }
+//    for (Component c : jPanel.getComponents()) {
+//     this.main.add(c);
+//    }
     this.main.add(jPanel);
     this.revalidate();
     this.repaint();
@@ -59,6 +62,10 @@ public class Fenetre extends JFrame {
   
   public void showOption() {
     this.changePanel(option);
+  }
+  
+  public void showEquipe() {
+    this.changePanel(equipe);
   }
 
   public void afficheLabelTitre(String titre) {

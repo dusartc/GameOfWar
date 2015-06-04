@@ -64,10 +64,10 @@ public class Option extends JPanel {
     this.initComponent();
   }
 
-  public void initComponent() {
+  private void initComponent() {
     sousTitre = new JLabel("Option");
     sousTitre.setFont(new Font("Deja Vu", Font.ROMAN_BASELINE, 45));
-    sousTitre.setBounds(410, 45, 150, 50);
+    sousTitre.setBounds(410, 45, 175, 50);
     tailleDuPlateau = new JLabel("Taille du Plateau :");
     tailleDuPlateau.setBounds(180, 150, 280, 50);
     tailleDuPlateau.setForeground(Color.WHITE);
