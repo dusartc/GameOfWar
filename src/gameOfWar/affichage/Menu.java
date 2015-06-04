@@ -45,7 +45,7 @@ public class Menu extends JPanel {
     this.initComponent();
   }
 
-  public void initComponent() {
+  private void initComponent() {
     sousTitre = new JLabel("Menu");
     sousTitre.setFont(new Font("Deja Vu", Font.ROMAN_BASELINE, 45));
     sousTitre.setBounds(410, 45, 150, 50);

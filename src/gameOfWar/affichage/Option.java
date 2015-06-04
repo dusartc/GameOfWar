@@ -67,7 +67,7 @@ public class Option extends JPanel {
     this.initComponent();
   }
 
-  public void initComponent() {
+  private void initComponent() {
     sousTitre = new JLabel("Option");
     sousTitre.setFont(new Font("Deja Vu", Font.ROMAN_BASELINE, 45));
     sousTitre.setBounds(410, 45, 190, 50);
