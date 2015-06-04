@@ -18,12 +18,14 @@ public class Fenetre extends JFrame {
   private Option option;
   private Menu menu;
   private Equipe equipe;
+  private ParametreEquipe parametre;
 
   public Fenetre() {
     this.main = new JPanel();
     this.option = new Option(this);
     this.menu = new Menu(this);
     this.equipe = new Equipe(this);
+    this.parametre = new ParametreEquipe(this);
     this.setPreferredSize(new Dimension(1024, 720));
     this.pack();
     this.setResizable(false);
@@ -33,7 +35,7 @@ public class Fenetre extends JFrame {
     this.afficheLabelTitre("Game of War");
     this.main.setBounds(0, 75, this.getWidth(), this.getHeight());
     this.getContentPane().add(main);
-    this.changePanel(new Menu(this));
+    this.changePanel(new ParametreEquipe(this));
     this.setLayout(null);
     this.setVisible(true);
   }
@@ -66,6 +68,10 @@ public class Fenetre extends JFrame {
   
   public void showEquipe() {
     this.changePanel(equipe);
+  }
+  
+  public void showJeu(){
+    this.changePanel(parametre);
   }
 
   public void afficheLabelTitre(String titre) {
