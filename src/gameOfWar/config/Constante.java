@@ -117,12 +117,16 @@ public class Constante {
   public static final int OBSTACLES_MIN = 0;
   /** Obstacles maximun sur le plateau. */
   public static final int OBSTACLES_MAX = 50;
+  public static final int NB_ROBOT_MIN = 1;
+  public static final int NB_ROBOT_MAX = 5;
   /** Obstacles sur le plateau */
   public static int OBSTACLES_CHOICE = 25;
   /** Taille en largeur du plateau */
   public static int X_CHOICE = 10;
   /** Taille en longueur du plateau */
   public static int Y_CHOICE = 10;
+  /** Nombre de robot par equipe */
+  public static int NB_ROBOT_CHOICE = 5;
 
 
   // / Déplacement pour Tireur et Piegeur et char///

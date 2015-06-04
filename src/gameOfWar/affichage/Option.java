@@ -20,6 +20,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -124,10 +125,23 @@ public class Option extends JPanel {
       @Override
       public void actionPerformed(ActionEvent e) {
         option.clear();
-        option.put("x", Integer.parseInt(valeurX.getText()));
-        option.put("y", Integer.parseInt(valeurY.getText()));
-        option.put("o", Integer.parseInt(valeurObstacles.getText()));
-        f.showMenu();
+        if ((Integer.parseInt(valeurX.getText()) < Constante.X_MIN ||
+        		Integer.parseInt(valeurX.getText()) > Constante.X_MAX) ||
+        		(Integer.parseInt(valeurY.getText()) < Constante.Y_MIN ||
+        				Integer.parseInt(valeurY.getText()) > Constante.Y_MAX) ||
+        				(Integer.parseInt(valeurObstacles.getText()) < Constante.OBSTACLES_MIN ||
+        						Integer.parseInt(valeurObstacles.getText()) > Constante.OBSTACLES_MAX) ||
+        						(Integer.parseInt(valeurNombreRobo.getText()) < Constante.NB_ROBOT_MIN ||
+                						Integer.parseInt(valeurNombreRobo.getText()) > Constante.NB_ROBOT_MAX)){
+        	JOptionPane.showMessageDialog(null, "Valeur incorect");
+        }
+        else{
+            option.put("x", Integer.parseInt(valeurX.getText()));
+            option.put("y", Integer.parseInt(valeurY.getText()));
+            option.put("o", Integer.parseInt(valeurObstacles.getText()));
+            option.put("robot", Integer.parseInt(valeurNombreRobo.getText()));
+            f.showMenu();
+        }
       }
     });
 
