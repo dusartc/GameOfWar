@@ -35,6 +35,8 @@ public class ParametreEquipe extends JPanel {
   
   private static final long serialVersionUID = 1L;
   private String[] pays = Constante.PAYS;
+  private String paysChoisitUne;
+  private int numeroPays = 0;
   private JLabel sousTitre;
   private JLabel equipeUne;
   private JLabel equipeDeux;
@@ -102,9 +104,33 @@ public class ParametreEquipe extends JPanel {
     horizontal.setBounds(120, 180, 700, 2);
     vertical = new JSeparator(JSeparator.VERTICAL);
     vertical.setBackground(Color.white);
-    vertical.setBounds(475, 240, 2, 320);
+    vertical.setBounds(475, 180, 2, 380);
     decrementeUne = new JButton("<");
-    decrementeUne.setBounds(120, 200, 50, 50);
+    decrementeUne.setBounds(140, 200, 50, 50);
+    decrementeUne.setActionCommand("-");
+    decrementeUne.addActionListener(new ActionListener() {
+      
+      @Override
+      public void actionPerformed(ActionEvent arg0) {
+        System.out.println(paysChoisitUne);
+        paysUne(arg0);
+      }
+    });
+    paysUne = new JLabel(this.getPaysChoisitPays());
+    paysUne.setBounds(250, 215, 100, 20);
+    paysUne.setFont(new Font("Deja Vu", Font.ROMAN_BASELINE, 20));
+    paysUne.setForeground(Color.white);
+    incrementeUne = new JButton(">");
+    incrementeUne.setBounds(380, 200, 50, 50);
+    incrementeUne.setActionCommand("+");
+    incrementeUne.addActionListener(new ActionListener() {
+      
+      @Override
+      public void actionPerformed(ActionEvent arg0) {
+        System.out.println(paysChoisitUne);
+        paysUne(arg0);
+      }
+    });
     retour = new Retour(fenetre);
     retour.addActionListener(new ActionListener() {
       
@@ -119,6 +145,8 @@ public class ParametreEquipe extends JPanel {
     this.add(horizontal);
     this.add(vertical);
     this.add(decrementeUne);
+    this.add(paysUne);
+    this.add(incrementeUne);
     this.add(retour);
   }
   
@@ -143,7 +171,37 @@ public class ParametreEquipe extends JPanel {
   public void setF(Fenetre f) {
     this.fenetre = f;
   }
+  
+  public String getPaysChoisitPays(){
+    return this.paysChoisitUne;
+  }
+  
+  public void setPaysChoisitPays(String choisit){
+    this.paysChoisitUne = choisit;
+  }
 
+  public void paysUne(ActionEvent event){
+    if (event.getActionCommand().equals("-")) {
+      if (numeroPays == 0) {
+        numeroPays = pays.length;
+      }
+      else{
+        --numeroPays;
+        paysChoisitUne = pays[numeroPays];
+        setPaysChoisitPays(paysChoisitUne);
+      }
+    }
+    else if (event.getActionCommand().equals("+")) {
+      if (numeroPays == pays.length) {
+        numeroPays = 0;
+      }
+      else{
+        ++numeroPays;
+        paysChoisitUne = pays[numeroPays];
+        setPaysChoisitPays(paysChoisitUne);
+      }
+    }
+  }
   /*this.setTitle("Parametre");
   this.setSize(new Dimension(1024,800));
   
