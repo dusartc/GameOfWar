@@ -1,5 +1,7 @@
 package gameOfWar.affichage;
 
+import gameOfWar.config.Constante;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.util.HashMap;
@@ -26,9 +28,11 @@ public class RobotPanel extends JPanel {
   private Slider smineSubis;
   private Map<String, Integer> data;
   private Slider[] titi;
+  private String nom;
 
-  public RobotPanel() {
+  public RobotPanel(String s) {
     data = new HashMap<String, Integer>();
+    nom =s;
     setBackground(Color.black);
     setLayout(null);
     initComponent();
@@ -46,7 +50,7 @@ public class RobotPanel extends JPanel {
     scoupDep = new Slider("coupDep", 1, 6, 500, 110, 100, 50);
     scoupAct = new Slider("coupAct", 1, 6, 500, 160, 100, 50);
     sportee = new Slider("portee", 1, 10, 500, 210, 100, 50);
-    smineSubis = new Slider("mineSubis", 10, 100, 500, 260, 100, 50);
+    smineSubis = new Slider("mineSubis", 10, 20, 500, 260, 100, 50);
     JLabel[] toto = new JLabel[] {vie, degats, coupDep, coupAct, portee, mineSubis};
     titi = new Slider[] {svie, sdegats, scoupDep, scoupAct, sportee, smineSubis};
     int y = 10;
@@ -65,8 +69,48 @@ public class RobotPanel extends JPanel {
       add(toto[i]);
       add(titi[i]);
       y += 50;
+    }initConst();
+  }
+  
+  private void initConst() {
+    switch (nom) {
+      case "Char":
+        svie.setValue(Constante.ENERGIE_CHAR);
+        sdegats.setValue(Constante.DEGATS_CHAR);
+        scoupDep.setValue(Constante.COUP_DEPLACEMENTS_CHAR);
+        scoupAct.setValue(Constante.COUP_ACTION_CHAR);
+        sportee.setValue(Constante.PORTEE_CHAR);
+        smineSubis.setValue(Constante.DEGATS_MINES_CHAR);
+        break;
+      case "Piegeur":
+        svie.setValue(Constante.ENERGIE_PIEGEUR);
+        sdegats.setValue(Constante.DEGATS_PIEGEUR);
+        scoupDep.setValue(Constante.COUP_DEPLACEMENTS_PIEGEUR);
+        scoupAct.setValue(Constante.COUP_ACTION_PIEGEUR);
+        this.remove(sportee);
+        this.remove(portee);
+        smineSubis.setValue(Constante.DEGATS_PIEGEUR);
+        break;
+      case "Tireur":
+        svie.setValue(Constante.ENERGIE_TIREUR);
+        sdegats.setValue(Constante.DEGATS_TIREUR);
+        scoupDep.setValue(Constante.COUP_DEPLACEMENTS_TIREUR);
+        scoupAct.setValue(Constante.COUP_ACTION_TIREUR);
+        sportee.setValue(Constante.PORTEE_TIREUR);
+        smineSubis.setValue(Constante.DEGATS_MINES_TIREUR);
+        break;
+      case "Worker":
+        svie.setValue(Constante.ENERGIE_WORKER);
+        this.remove(sdegats);
+        this.remove(degats);
+        scoupDep.setValue(Constante.COUP_DEPLACEMENTS_WORKER);
+        scoupAct.setValue(Constante.COUP_ACTION_WORKER);
+        sportee.setValue(Constante.PORTEE_WORKER);
+        smineSubis.setValue(Constante.DEGATS_MINES_WORKER);
+        break;
+      default:
+        break;
     }
-
   }
 
   public Map<String, Integer> getDataMap() {
