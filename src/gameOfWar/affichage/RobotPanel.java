@@ -47,10 +47,10 @@ public class RobotPanel extends JPanel {
     mineSubis = new JLabel("Degats mine subis :");
     svie = new Slider("vie",10, 100, 500, 10, 100, 50);
     sdegats = new Slider("degats", 1, 10, 500, 60, 100, 50);
-    scoupDep = new Slider("coupDep", 1, 6, 500, 110, 100, 50);
-    scoupAct = new Slider("coupAct", 1, 6, 500, 160, 100, 50);
+    scoupDep = new Slider("coup_dep", 1, 6, 500, 110, 100, 50);
+    scoupAct = new Slider("coup_act", 1, 6, 500, 160, 100, 50);
     sportee = new Slider("portee", 1, 10, 500, 210, 100, 50);
-    smineSubis = new Slider("mineSubis", 10, 20, 500, 260, 100, 50);
+    smineSubis = new Slider("degats_mine_subis", 10, 20, 500, 260, 100, 50);
     JLabel[] toto = new JLabel[] {vie, degats, coupDep, coupAct, portee, mineSubis};
     titi = new Slider[] {svie, sdegats, scoupDep, scoupAct, sportee, smineSubis};
     int y = 10;
