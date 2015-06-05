@@ -39,40 +39,18 @@ public class ParametreEquipe extends JPanel {
   private static final long serialVersionUID = 1L;
   private String[] pays = Constante.PAYS;
   private String paysChoisitUne;
-  private int numeroPaysUne = pays.length * 50;
-  private int numeroPaysDeux = pays.length * 50;
-  private JLabel sousTitre;
-  private JLabel equipeUne;
-  private JLabel equipeDeux;
-  private JSeparator horizontal;
-  private JSeparator vertical;
-  private JButton decrementeUne;
-  private JLabel paysUne;
-  private JButton incrementeUne;
-  private JButton decrementeDeux;
-  private JLabel paysDeux;
-  private JButton incrementeDeux;
-  private JToggleButton joueurUn;
-  private JToggleButton IAUn;
-  private JToggleButton joueurDeux;
-  private JToggleButton IADeux;
-  private JLabel choisirUne;
-  private JLabel choisitUne;
-  private JLabel choisirDeux;
-  private JLabel choisitDeux;
-  private JList choisirListUne;
+  private int numeroPaysUne = pays.length * 50, numeroPaysDeux = pays.length * 50;
+  private JLabel sousTitre, equipeUne, equipeDeux, paysUne, paysDeux, choisirUne,
+  choisitUne, choisirDeux, choisitDeux;
+  private JSeparator horizontal, vertical;
+  private JButton decrementeUne, incrementeUne, decrementeDeux, incrementeDeux, jouerButton, retour;
+  private JToggleButton joueurUn, IAUn, joueurDeux, IADeux;
+  private JList choisirListUne, choisitListUne, choisirListDeux, choisitListDeux;
   private DefaultListModel defaultListModelUne = new DefaultListModel();
+  private DefaultListModel defaultListModelDeux = new DefaultListModel();
   private DefaultListModel defaultListModel1 = new DefaultListModel();
-  private JScrollPane jScrollPane1;
+  private JScrollPane jScrollPane1, jScrollPane2, jScrollPaneUne, jScrollPaneDeux;
   private DefaultListModel defaultListModel2 = new DefaultListModel();
-  private JScrollPane jScrollPane2;
-  private JScrollPane jScrollPaneUne;
-  private JList choisitListUne;
-  private JList choisirListDeux;
-  private JScrollPane jScrollPaneDeux;
-  private JList choisitListDeux;
-  private JButton jouerButton;
-  private JButton retour;
   private Map<String, List<Robot>> robot;
   private int equipeNumero;
   private String nom;
@@ -296,9 +274,13 @@ public class ParametreEquipe extends JPanel {
 		}
 	});
     choisirListDeux = new JList();
-    choisirListDeux.setModel(defaultListModelUne);
+    choisirListDeux.setModel(defaultListModelDeux);
     choisirListDeux.setBounds(505, 400, 125, 90);
     choisirListDeux.setBorder(BorderFactory.createLineBorder(Color.white, 2));
+    defaultListModelDeux.add(0, "Piegeur");
+    defaultListModelDeux.add(1, "Tireur");
+    defaultListModelDeux.add(2, "Char");
+    defaultListModelDeux.add(3, "Worker");
     choisirListDeux.addMouseListener(new MouseListener() {
 		
 		@Override
@@ -316,10 +298,10 @@ public class ParametreEquipe extends JPanel {
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
 	        if (arg0.getClickCount() == 2) {
-	            int index = choisirListUne.locationToIndex(arg0.getPoint());
+	            int index = choisirListDeux.locationToIndex(arg0.getPoint());
 	            System.out.println(index);
 	            if (defaultListModel2.getSize() < fenetre.getOptionMap().get("robot")) {
-					defaultListModel2.add(index, defaultListModelUne.getElementAt(index));
+					defaultListModel2.add(index, defaultListModelDeux.getElementAt(index));
 				}
 	        }
 		}
@@ -332,6 +314,31 @@ public class ParametreEquipe extends JPanel {
     choisitListUne.setModel(defaultListModel1);
     choisitListUne .setBounds(310, 400, 125, 90);
     choisitListUne .setBorder(BorderFactory.createLineBorder(Color.white, 2));
+    choisitListUne.addMouseListener(new MouseListener() {
+		
+		@Override
+		public void mouseReleased(MouseEvent arg0) {}
+		
+		@Override
+		public void mousePressed(MouseEvent arg0) {}
+		
+		@Override
+		public void mouseExited(MouseEvent arg0) {}
+		
+		@Override
+		public void mouseEntered(MouseEvent arg0) {}
+		
+		@Override
+		public void mouseClicked(MouseEvent arg0) {
+	        if (arg0.getClickCount() == 2) {
+	            int index = choisitListUne.locationToIndex(arg0.getPoint());
+	            System.out.println(index);
+	            if (defaultListModel1.getSize() > 0) {
+					defaultListModel1.removeElementAt(index);
+				}
+	        }
+		}
+	});
     jScrollPane1 = new JScrollPane();
     jScrollPane1.getViewport().add(choisitListUne);
     jScrollPane1.setBounds(310, 400, 125, 90);
@@ -340,6 +347,31 @@ public class ParametreEquipe extends JPanel {
     choisitListDeux.setModel(defaultListModel2);
     choisitListDeux .setBounds(675, 400, 125, 90);
     choisitListDeux .setBorder(BorderFactory.createLineBorder(Color.white, 2));
+    choisitListDeux.addMouseListener(new MouseListener() {
+		
+		@Override
+		public void mouseReleased(MouseEvent arg0) {}
+		
+		@Override
+		public void mousePressed(MouseEvent arg0) {}
+		
+		@Override
+		public void mouseExited(MouseEvent arg0) {}
+		
+		@Override
+		public void mouseEntered(MouseEvent arg0) {}
+		
+		@Override
+		public void mouseClicked(MouseEvent arg0) {
+	        if (arg0.getClickCount() == 2) {
+	            int index = choisitListDeux.locationToIndex(arg0.getPoint());
+	            System.out.println(index);
+	            if (defaultListModel2.getSize() > 0) {
+					defaultListModel2.removeElementAt(index);
+				}
+	        }
+		}
+	});
     jScrollPane2 = new JScrollPane();
     jScrollPane2.getViewport().add(choisitListDeux);
     jScrollPane2.setBounds(675, 400, 125, 90);
