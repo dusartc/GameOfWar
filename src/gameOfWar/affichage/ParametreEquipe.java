@@ -1,6 +1,7 @@
 package gameOfWar.affichage;
 
 import gameOfWar.config.Constante;
+import gameOfWar.robot.Piegeur;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -20,15 +21,19 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 public class ParametreEquipe extends JPanel {
 	
@@ -36,7 +41,8 @@ public class ParametreEquipe extends JPanel {
   private static final long serialVersionUID = 1L;
   private String[] pays = Constante.PAYS;
   private String paysChoisitUne;
-  private int numeroPays = pays.length * 50;
+  private int numeroPaysUne = pays.length * 50;
+  private int numeroPaysDeux = pays.length * 50;
   private JLabel sousTitre;
   private JLabel equipeUne;
   private JLabel equipeDeux;
@@ -57,12 +63,15 @@ public class ParametreEquipe extends JPanel {
   private JLabel choisirDeux;
   private JLabel choisitDeux;
   private JList choisirListUne;
-  private JLabel flecheDroitUne;
-  private JLabel flecheGaucheUne;
+  private DefaultListModel defaultListModelUne = new DefaultListModel();
+  private DefaultListModel defaultListModel1 = new DefaultListModel();
+  private JScrollPane jScrollPane1;
+  private DefaultListModel defaultListModel2 = new DefaultListModel();
+  private JScrollPane jScrollPane2;
+  private JScrollPane jScrollPaneUne;
   private JList choisitListUne;
   private JList choisirListDeux;
-  private JLabel flecheDroitDeux;
-  private JLabel flecheGaucheDeux;
+  private JScrollPane jScrollPaneDeux;
   private JList choisitListDeux;
   private JButton jouerButton;
   private JButton retour;
@@ -104,7 +113,7 @@ public class ParametreEquipe extends JPanel {
     horizontal.setBounds(120, 180, 700, 2);
     vertical = new JSeparator(JSeparator.VERTICAL);
     vertical.setBackground(Color.white);
-    vertical.setBounds(475, 180, 2, 380);
+    vertical.setBounds(475, 180, 2, 320);
     decrementeUne = new JButton("<");
     decrementeUne.setBounds(140, 200, 50, 50);
     decrementeUne.setActionCommand("-");
@@ -203,6 +212,106 @@ public class ParametreEquipe extends JPanel {
 		        }
 		}
 	});
+    choisirUne = new JLabel("<html><u>Choisit robot :</u></html>");
+    choisirUne.setBounds(140, 380, 150, 20);
+    choisirUne.setForeground(Color.white);
+    choisirUne.setFont(new Font("Deja vu", Font.ROMAN_BASELINE, 14));
+    choisitUne = new JLabel("<html><u>Robot choisit :</u></html>");
+    choisitUne.setBounds(310, 380, 150, 20);
+    choisitUne.setForeground(Color.white);
+    choisitUne.setFont(new Font("Deja vu", Font.ROMAN_BASELINE, 14));
+    choisirDeux = new JLabel("<html><u>Choisit robot :</u></html>");
+    choisirDeux.setBounds(505, 380, 150, 20);
+    choisirDeux.setForeground(Color.white);
+    choisirDeux.setFont(new Font("Deja vu", Font.ROMAN_BASELINE, 14));
+    choisitDeux = new JLabel("<html><u>Robot choisit :</u></html>");
+    choisitDeux.setBounds(675, 380, 150, 20);
+    choisitDeux.setForeground(Color.white);
+    choisitDeux.setFont(new Font("Deja vu", Font.ROMAN_BASELINE, 14));
+    choisirListUne = new JList();
+    choisirListUne.setModel(defaultListModelUne);
+    choisirListUne.setBounds(140, 400, 125, 90);
+    choisirListUne.setBorder(BorderFactory.createLineBorder(Color.white, 2));
+    jScrollPaneUne = new JScrollPane();
+    jScrollPaneUne.getViewport().add(choisirListUne);
+    jScrollPaneUne.setBounds(140, 400, 125, 90);
+    jScrollPaneUne.getVerticalScrollBar().setPreferredSize(new Dimension(0,0));
+    defaultListModelUne.add(0, "Piegeur");
+    defaultListModelUne.add(1, "Tireur");
+    defaultListModelUne.add(2, "Char");
+    defaultListModelUne.add(3, "Worker");
+    choisirListUne.addMouseListener(new MouseListener() {
+		
+		@Override
+		public void mouseReleased(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+		@Override
+		public void mousePressed(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+		@Override
+		public void mouseExited(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+		@Override
+		public void mouseEntered(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			//JList list = (JList)e.getSource();
+	        if (e.getClickCount() == 2) {
+	            int index = choisirListUne.locationToIndex(e.getPoint());
+	            if ((defaultListModel1.capacity() < 5 && defaultListModel1.capacity() >= 0)) {
+					defaultListModel1.addElement(defaultListModelUne.get(index));
+				}
+	            
+	        }
+		}
+	});
+    choisirListDeux = new JList();
+    choisirListDeux.setModel(defaultListModelUne);
+    choisirListDeux.setBounds(505, 400, 125, 90);
+    choisirListDeux.setBorder(BorderFactory.createLineBorder(Color.white, 2));
+    jScrollPaneDeux = new JScrollPane();
+    jScrollPaneDeux.getViewport().add(choisirListDeux);
+    jScrollPaneDeux.setBounds(505, 400, 125, 90);
+    jScrollPaneDeux.getVerticalScrollBar().setPreferredSize(new Dimension(0,0));
+    choisitListUne = new JList();
+    choisitListUne.setModel(defaultListModel1);
+    choisitListUne .setBounds(310, 400, 125, 90);
+    choisitListUne .setBorder(BorderFactory.createLineBorder(Color.white, 2));
+    jScrollPane1 = new JScrollPane();
+    jScrollPane1.getViewport().add(choisitListUne);
+    jScrollPane1.setBounds(310, 400, 125, 90);
+    jScrollPane1.getVerticalScrollBar().setPreferredSize(new Dimension(0,0));
+    choisitListDeux = new JList();
+    choisitListDeux.setModel(defaultListModel2);
+    choisitListDeux .setBounds(675, 400, 125, 90);
+    choisitListDeux .setBorder(BorderFactory.createLineBorder(Color.white, 2));
+    jScrollPane2 = new JScrollPane();
+    jScrollPane2.getViewport().add(choisitListDeux);
+    jScrollPane2.setBounds(675, 400, 125, 90);
+    jScrollPane2.getVerticalScrollBar().setPreferredSize(new Dimension(0,0));
+    jouerButton = new JButton("Jouer");
+    jouerButton.setBounds(400, 510, 150, 50);
+    jouerButton.addActionListener(new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+	});
     retour = new Retour(fenetre);
     retour.addActionListener(new ActionListener() {
       
@@ -226,6 +335,15 @@ public class ParametreEquipe extends JPanel {
     this.add(IAUn);
     this.add(joueurDeux);
     this.add(IADeux);
+    this.add(choisirUne);
+    this.add(choisitUne);
+    this.add(choisirDeux);
+    this.add(choisitDeux);
+    this.add(jScrollPaneUne);
+    this.add(jScrollPaneDeux);
+    this.add(jScrollPane1);
+    this.add(jScrollPane2);
+    this.add(jouerButton);
     this.add(retour);
   }
   
@@ -261,20 +379,20 @@ public class ParametreEquipe extends JPanel {
 
   public void paysUne(ActionEvent event){
     if (event.getActionCommand().equals("-")) {
-      numeroPays--;
+      numeroPaysUne--;
     }else{
-        numeroPays++;
+        numeroPaysUne++;
     }
-    paysUne.setText(pays[numeroPays%pays.length]);
+    paysUne.setText(pays[numeroPaysUne%pays.length]);
   }
   
   public void paysDeux(ActionEvent event){
 	    if (event.getActionCommand().equals("-")) {
-	      numeroPays--;
+	      numeroPaysDeux--;
 	    }else{
-	        numeroPays++;
+	        numeroPaysDeux++;
 	    }
-	    paysDeux.setText(pays[numeroPays%pays.length]);
+	    paysDeux.setText(pays[numeroPaysDeux%pays.length]);
 	  } 
   /*this.setTitle("Parametre");
   this.setSize(new Dimension(1024,800));
