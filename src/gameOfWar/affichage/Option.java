@@ -8,20 +8,14 @@ import java.awt.Font;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 public class Option extends JPanel {
 
@@ -30,17 +24,17 @@ public class Option extends JPanel {
   private JLabel sousTitre;
   private JLabel tailleDuPlateau;
   private JLabel nombreRobot;
-  private JTextField valeurNombreRobo;
+  private Slider valeurNombreRobo;
   private JLabel X;
   private JLabel Y;
-  private JTextField valeurX;
-  private JTextField valeurY;
+  private Slider valeurX;
+  private Slider valeurY;
   private JLabel musicTexte;
   private JButton music;
   private JLabel sonText;
   private JButton son;
   private JLabel pourcentageObstacles;
-  private JTextField valeurObstacles;
+  private Slider valeurObstacles;
   private JButton retour = new Bouton("Retour");
   protected Fenetre f;
   protected Map<String, Integer> option;
@@ -56,9 +50,9 @@ public class Option extends JPanel {
   public Option(Fenetre f) {
     // this();
     this.option = new HashMap<String, Integer>();
-    this.option.put("x", 10);
-    this.option.put("y", 10);
-    this.option.put("o", 10);
+    this.option.put("x", 15);
+    this.option.put("y", 15);
+    this.option.put("o", 15);
     this.setF(f);
     this.setLayout(null);
     this.setPreferredSize(new Dimension(900, 600));
@@ -79,23 +73,25 @@ public class Option extends JPanel {
     nombreRobot.setBounds(180, 225, 280, 50);
     nombreRobot.setForeground(Color.WHITE);
     nombreRobot.setFont(new Font("Deja vu", Font.BOLD, 24));
-    valeurNombreRobo = new JTextField();
-    valeurNombreRobo.setDocument(new JTextFieldLimit(1));
-    valeurNombreRobo.setBounds(530, 225, 50, 50);
+    valeurNombreRobo = new Slider(2, Constante.NB_MAX_ROBOTS_PAR_EQUIPE, 530, 225, 50, 150);
+    // valeurNombreRobo.setDocument(new JTextFieldLimit(1));
+    // valeurNombreRobo.setBounds(530, 225, 50, 50);
     X = new JLabel("X");
     X.setBounds(493, 110, 40, 40);
     X.setForeground(Color.WHITE);
     X.setFont(new Font("Deja vu", Font.BOLD, 24));
-    valeurX = new JTextField(Constante.X_CHOICE + "");
-    valeurX.setDocument(new JTextFieldLimit(2));
-    valeurX.setBounds(480, 149, 50, 50);
+    valeurX = new Slider(Constante.Y_MIN, Constante.Y_MAX, 480, 149, 50, 100);
+    // valeurX = new Slider(UNDEFINED_CONDITION, ERROR, ALLBITS, ABORT, WIDTH, HEIGHT)
+    // valeurX.setDocument(new JTextFieldLimit(2));
+    valeurX.setBounds(480, 149, 50, 150);
+
     Y = new JLabel("Y");
     Y.setBounds(593, 110, 40, 40);
     Y.setForeground(Color.WHITE);
     Y.setFont(new Font("Deja vu", Font.BOLD, 24));
-    valeurY = new JTextField(Constante.Y_CHOICE + "");
-    valeurY.setDocument(new JTextFieldLimit(2));
-    valeurY.setBounds(580, 149, 50, 50);
+    // valeurY = new JTextField();
+    // valeurY.setDocument(new JTextFieldLimit(2));
+    // valeurY.setBounds(580, 149, 50, 50);
     musicTexte = new JLabel("Musique :");
     musicTexte.setBounds(180, 300, 190, 50);
     musicTexte.setForeground(Color.WHITE);
@@ -115,18 +111,19 @@ public class Option extends JPanel {
     pourcentageObstacles.setBounds(180, 450, 320, 50);
     pourcentageObstacles.setForeground(Color.WHITE);
     pourcentageObstacles.setFont(new Font("Deja vu", Font.BOLD, 24));
-    valeurObstacles = new JTextField(Constante.OBSTACLES_CHOICE + "");
-    valeurObstacles.setDocument(new JTextFieldLimit(2));
-    valeurObstacles.setBounds(530, 449, 50, 50);
+    valeurObstacles =
+        new Slider(Constante.OBSTACLES_MIN, Constante.OBSTACLES_MAX, 530, 449, 50, 100);
+    // valeurObstacles.setDocument(new JTextFieldLimit(2));
+    // valeurObstacles.setBounds(530, 449, 50, 150);
     retour = new Retour(f);
     retour.addActionListener(new ActionListener() {
-      
+
       @Override
       public void actionPerformed(ActionEvent e) {
         option.clear();
-        option.put("x", Integer.parseInt(valeurX.getText()));
-        option.put("y", Integer.parseInt(valeurY.getText()));
-        option.put("o", Integer.parseInt(valeurObstacles.getText()));
+        option.put("x", valeurX.getValue());
+        option.put("y", valeurX.getValue());
+        option.put("o", valeurObstacles.getValue());
         f.showMenu();
       }
     });
@@ -138,7 +135,7 @@ public class Option extends JPanel {
     this.add(X);
     this.add(valeurX);
     this.add(Y);
-    this.add(valeurY);
+    // this.add(valeurY);
     this.add(musicTexte);
     this.add(music);
     this.add(sonText);
@@ -169,8 +166,8 @@ public class Option extends JPanel {
   public void setF(Fenetre f) {
     this.f = f;
   }
-  
-  public Map<String, Integer> getOption(){
+
+  public Map<String, Integer> getOption() {
     return this.option;
   }
 }

@@ -1,22 +1,19 @@
 package gameOfWar.affichage;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 
 public class Parametre extends JPanel {
 
@@ -25,6 +22,7 @@ public class Parametre extends JPanel {
   private JLabel sousTitre;
   private JButton retour;
   private Fenetre fenetre;
+  private JTabbedPane pane;
 
   public Parametre() {
     this.setLayout(null);
@@ -52,11 +50,44 @@ public class Parametre extends JPanel {
 
       @Override
       public void actionPerformed(ActionEvent e) {
-        fenetre.showMenu();
+        try {
+          writeProperties();
+          fenetre.showMenu();
+        } catch (Exception e1) {
+          // TODO Auto-generated catch block
+          e1.printStackTrace();
+        }
       }
     });
+    
+    initPane();
     this.add(sousTitre);
     this.add(retour);
+  }
+  
+  public void initPane() {
+    this.pane = new JTabbedPane();
+    this.pane.setBounds(125, 120, 700, 375);
+    this.pane.setBackground(Color.black);
+    this.pane.setForeground(Color.white);
+    this.pane.setOpaque(false);
+    String[] robot = new String[] {
+      "Char","Piegeur","Tireur","Worker"  
+    };
+    for (String string : robot) {
+      this.pane.addTab(string, new RobotPanel());
+    }this.add(pane);
+  }
+  
+  private void writeProperties() {
+    for (int i = 0; i < pane.getComponentCount(); i++) {
+      Component t = pane.getComponentAt(i);
+      if (t instanceof RobotPanel) {
+        System.out.println(((RobotPanel) t).getDataMap());
+      }else {
+        System.out.println(":(");
+      }
+    }
   }
 
   @Override

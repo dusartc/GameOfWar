@@ -97,16 +97,16 @@ public class MenuTexte {
     int x1 =
         (!graphique) ? Constante.secureInput(Constante.X_MIN, Constante.X_MAX,
             "Entrez la largeur du plateau entre " + Constante.X_MIN + " et " + Constante.X_MAX)
-            : Constante.X_CHOICE;
+            : 10;
     int y1 =
         (!graphique) ? Constante.secureInput(Constante.Y_MIN, Constante.Y_MAX,
             "Entrez la longueur du plateau entre " + Constante.Y_MIN + " et " + Constante.Y_MAX)
-            : Constante.Y_CHOICE;
+            : 10;
 
     int nb =
         (!graphique) ? Constante.secureInput(Constante.OBSTACLES_MIN, Constante.OBSTACLES_MAX,
             "Entrez le % d'obstacles du plateau entre " + Constante.OBSTACLES_MIN + " et "
-                + Constante.OBSTACLES_MAX) : Constante.OBSTACLES_CHOICE;
+                + Constante.OBSTACLES_MAX) : 10;
     JOptionPane.showMessageDialog(null, "Les dimensions du plateaux sont donc (" + x1 + "," + y1
         + "), et le pourcentage d'obstacles de : " + nb);
     return new Plateau(x1, y1, nb);
