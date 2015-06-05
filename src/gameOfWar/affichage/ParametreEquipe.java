@@ -1,6 +1,13 @@
 package gameOfWar.affichage;
 
 import gameOfWar.config.Constante;
+import gameOfWar.jeux.Equipe;
+import gameOfWar.robot.Char;
+import gameOfWar.robot.Piegeur;
+import gameOfWar.robot.Robot;
+import gameOfWar.robot.Tireur;
+import gameOfWar.robot.Worker;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -11,6 +18,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -61,17 +73,19 @@ public class ParametreEquipe extends JPanel {
   private JList choisitListDeux;
   private JButton jouerButton;
   private JButton retour;
+  private Map<String, List<Robot>> robot;
+  private int equipeNumero;
+  private String nom;
+  private boolean ia;
+  private Equipe[] equipe = new Equipe[2];
   protected Fenetre fenetre;
 
   public ParametreEquipe(){
-      this.setLayout(null);
-      this.setPreferredSize(new Dimension(900, 600));
-      this.setOpaque(false);
-      this.setLocation(60, 77);
-      this.initComponent();
-	}
+      robot = new HashMap<String, List<Robot>>();
+  }
   
   public ParametreEquipe(Fenetre fenetre){
+	this();
     this.fenetre = fenetre;
     this.setLayout(null);
     this.setPreferredSize(new Dimension(900, 600));
@@ -84,12 +98,12 @@ public class ParametreEquipe extends JPanel {
     sousTitre = new JLabel("Equipes");
     sousTitre.setFont(new Font("Deja Vu", Font.ROMAN_BASELINE, 45));
     sousTitre.setBounds(380, 45, 350, 50);
-    equipeUne = new JLabel("<html><center><b>Equipe Une</b></center></html>");
+    equipeUne = new JLabel("Equipe Une");
     equipeUne.setFont(new Font("Deja Vu", Font.ROMAN_BASELINE, 20));
     equipeUne.setBorder(BorderFactory.createLineBorder(Color.white, 1, true));
     equipeUne.setForeground(Color.white);
     equipeUne.setBounds(110, 115, 180, 40);
-    equipeDeux = new JLabel("<html><center><b>Equipe Deux</b></center></html>");
+    equipeDeux = new JLabel("Equipe Deux");
     equipeDeux.setFont(new Font("Deja Vu", Font.ROMAN_BASELINE, 20));
     equipeDeux.setBorder(BorderFactory.createLineBorder(Color.white, 1, true));
     equipeDeux.setForeground(Color.white);
@@ -125,7 +139,7 @@ public class ParametreEquipe extends JPanel {
       }
     });
     decrementeDeux = new JButton("<");
-    decrementeDeux.setBounds(505, 200, 50, 30);
+    decrementeDeux.setBounds(505, 200, 50, 50);
     decrementeDeux.setActionCommand("-");
     decrementeDeux.addActionListener(new ActionListener() {
       
@@ -135,7 +149,7 @@ public class ParametreEquipe extends JPanel {
       }
     });
     paysDeux = new JLabel(this.pays[0]);
-    paysDeux.setBounds(565, 215, 190, 50);
+    paysDeux.setBounds(565, 215, 190, 30);
     paysDeux.setFont(new Font("Deja Vu", Font.ROMAN_BASELINE, 20));
     paysDeux.setForeground(Color.white);
     incrementeDeux = new JButton(">");
@@ -149,6 +163,7 @@ public class ParametreEquipe extends JPanel {
       }
     });
     joueurUn = new JToggleButton("Joueur");
+    joueurUn.setSelected(true);
     joueurUn.setBounds(140, 300, 150, 50);
     joueurUn.setFont(new Font("Deja vu", Font.ROMAN_BASELINE, 20));
     joueurUn.addActionListener(new ActionListener() {
@@ -173,6 +188,7 @@ public class ParametreEquipe extends JPanel {
 		}
 	});
     joueurDeux = new JToggleButton("Joueur");
+    joueurDeux.setSelected(true);
     joueurDeux.setBounds(505, 300, 150, 50);
     joueurDeux.setFont(new Font("Deja vu", Font.ROMAN_BASELINE, 20));
     joueurDeux.addActionListener(new ActionListener() {
@@ -225,39 +241,56 @@ public class ParametreEquipe extends JPanel {
     defaultListModelUne.add(2, "Char");
     defaultListModelUne.add(3, "Worker");
     choisirListUne.addMouseListener(new MouseListener() {
+		@Override
+		public void mouseReleased(MouseEvent e) {}
 		
 		@Override
-		public void mouseReleased(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
+		public void mousePressed(MouseEvent e) {}
 		
 		@Override
-		public void mousePressed(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
+		public void mouseExited(MouseEvent e) {}
 		
 		@Override
-		public void mouseExited(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public void mouseEntered(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
+		public void mouseEntered(MouseEvent e) {}
 		
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			//JList list = (JList)e.getSource();
 	        if (e.getClickCount() == 2) {
 	            int index = choisirListUne.locationToIndex(e.getPoint());
-	            if ((defaultListModel1.capacity() < 5 && defaultListModel1.capacity() >= 0)) {
-					defaultListModel1.addElement(defaultListModelUne.get(index));
+	            System.out.println(index);
+	            if (defaultListModel1.getSize() < fenetre.getOptionMap().get("robot")) {
+					defaultListModel1.add(index, defaultListModelUne.getElementAt(index));
 				}
+
+					/*switch (index) {
+					case 1:
+						if (defaultListModelUne.getElementAt(index).equals("Piegeur")) {
+							robot.put("Equipe1", new ArrayList<Robot>());
+							robot.get("Equipe1").add(new Piegeur(equipe[1].getVue(), equipe[1]));
+						}
+						break;
+					case 2:
+						if (defaultListModelUne.getElementAt(index).equals("Tireur")) {
+							robot.put("Equipe1", new ArrayList<Robot>());
+							robot.get("Equipe1").add(new Tireur(equipe[1].getVue(), equipe[1]));
+						}
+						break;
+					case 3:
+						if (defaultListModelUne.getElementAt(index).equals("Char")) {
+							robot.put("Equipe1", new ArrayList<Robot>());
+							robot.get("Equipe1").add(new Char(equipe[1].getVue(), equipe[1]));
+						}
+						break;
+					case 4:
+						if (defaultListModelUne.getElementAt(index).equals("Worker")) {
+							robot.put("Equipe1", new ArrayList<Robot>());
+							robot.get("Equipe1").add(new Worker(equipe[1].getVue(), equipe[1]));
+						}
+						break;
+					default:
+						break;
+					}*/
+				//}
 	            
 	        }
 		}
@@ -266,6 +299,31 @@ public class ParametreEquipe extends JPanel {
     choisirListDeux.setModel(defaultListModelUne);
     choisirListDeux.setBounds(505, 400, 125, 90);
     choisirListDeux.setBorder(BorderFactory.createLineBorder(Color.white, 2));
+    choisirListDeux.addMouseListener(new MouseListener() {
+		
+		@Override
+		public void mouseReleased(MouseEvent arg0) {}
+		
+		@Override
+		public void mousePressed(MouseEvent arg0) {}
+		
+		@Override
+		public void mouseExited(MouseEvent arg0) {}
+		
+		@Override
+		public void mouseEntered(MouseEvent arg0) {}
+		
+		@Override
+		public void mouseClicked(MouseEvent arg0) {
+	        if (arg0.getClickCount() == 2) {
+	            int index = choisirListUne.locationToIndex(arg0.getPoint());
+	            System.out.println(index);
+	            if (defaultListModel2.getSize() < fenetre.getOptionMap().get("robot")) {
+					defaultListModel2.add(index, defaultListModelUne.getElementAt(index));
+				}
+	        }
+		}
+	});
     jScrollPaneDeux = new JScrollPane();
     jScrollPaneDeux.getViewport().add(choisirListDeux);
     jScrollPaneDeux.setBounds(505, 400, 125, 90);
@@ -292,7 +350,6 @@ public class ParametreEquipe extends JPanel {
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
 			
 		}
 	});
@@ -377,84 +434,18 @@ public class ParametreEquipe extends JPanel {
 	        numeroPaysDeux++;
 	    }
 	    paysDeux.setText(pays[numeroPaysDeux%pays.length]);
-	  } 
-  /*this.setTitle("Parametre");
-  this.setSize(new Dimension(1024,800));
+	  }
   
-//  ImageIcon exit = new ImageIcon("gameOfWar.affichage.img/exit.jpeg");
-  JPanel barreHaut= new JPanel();
-  JPanel selectParam1= new JPanel();
-  JPanel selectParam2= new JPanel();
-  JPanel mainParam= new JPanel();
-  JLabel lab2= new JLabel("Parametres");
-  JLabel lab1= new JLabel("Game of War");
-  
-
-  JButton equipe1= new JButton("Equipe 1");
-  JButton equipe2= new JButton("Equipe 2");
-  JButton ordi1= new JButton("ordinateur");
-  JButton ordi2= new JButton("ordinateur");
-  JButton joueur1= new JButton("joueur");
-  JButton joueur2= new JButton("joueur");
-
-  selectParam1.setSize(new Dimension(350,400));
-  selectParam2.setSize(new Dimension(350,400));
-  mainParam.setSize(new Dimension(710,100));
-  barreHaut.setSize(new Dimension(1024,100));
-  
-  Font font = new Font("Arial",Font.BOLD,30);
-  Font font2 = new Font("Arial",Font.BOLD,20);
-  Font font3 = new Font("Arial",Font.BOLD,15);
-  
-  lab1.setFont(font);
-  lab2.setFont(font);
-  equipe1.setFont(font3);
-  equipe2.setFont(font3);
-  joueur1.setFont(font3);
-  joueur2.setFont(font3);
-  
-  selectParam1.setBackground(Color.GRAY);
-  mainParam.setBackground(Color.GRAY);
-  selectParam2.setBackground(Color.GRAY);
-  barreHaut.setBackground(Color.GRAY);
-  
-  JButton quitter= new JButton();
-  quitter.setBounds(950,650,48,48);
-  try {
-        File fond = new File("src/gameOfWar/jeux/Images/quitter.png");
-        Image img = ImageIO.read(fond);
-        quitter.setIcon(new ImageIcon(img));
-  } 
-  catch (IOException exception) {
-        exception.printStackTrace();
+  public String getNom(){
+	  return this.nom;
   }
   
-  barreHaut.add(lab1);
-  mainParam.add(lab2);
+  public boolean getIA(){
+	  return this.ia;
+  }
   
-  
-  this.setLayout(new GridBagLayout());
-  GridBagConstraints gbc= new GridBagConstraints();
-  
-  gbc.gridx=0;
-  gbc.gridy=0;
-  gbc.gridheight=0;
-  gbc.gridwidth= 0;
-  gbc.fill= GridBagConstraints.HORIZONTAL;
-  this.add(barreHaut,gbc);
-  gbc.gridx=1;
-  gbc.gridy=3;
-  gbc.gridheight=4;
-  gbc.gridwidth= 3;
-  this.add(selectParam1,gbc);
-  gbc.gridx=3;
-  gbc.gridy=3;
-  gbc.gridheight=4;
-  gbc.gridwidth= 3;
-  this.add(selectParam2,gbc);
-  this.add(quitter);
-  this.setVisible(true);
-  this.setLocationRelativeTo(null);
-  this.getContentPane().setLayout(null);
-  this.setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);*/ 
+  public Map<String, List<Robot>> getRobot(){
+	  return this.robot;
+  }
+
 }

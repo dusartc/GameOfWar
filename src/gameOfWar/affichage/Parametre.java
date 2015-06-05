@@ -9,6 +9,12 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Properties;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -59,35 +65,42 @@ public class Parametre extends JPanel {
         }
       }
     });
-    
+
     initPane();
     this.add(sousTitre);
     this.add(retour);
   }
-  
+
   public void initPane() {
     this.pane = new JTabbedPane();
     this.pane.setBounds(125, 120, 700, 375);
     this.pane.setBackground(Color.black);
     this.pane.setForeground(Color.white);
     this.pane.setOpaque(false);
-    String[] robot = new String[] {
-      "Char","Piegeur","Tireur","Worker"  
-    };
+    String[] robot = new String[] {"Char", "Piegeur", "Tireur", "Worker"};
     for (String string : robot) {
-      this.pane.addTab(string, new RobotPanel());
-    }this.add(pane);
+      this.pane.addTab(string, new RobotPanel(string));
+    }
+    this.add(pane);
   }
-  
-  private void writeProperties() {
+
+  private void writeProperties() throws FileNotFoundException, IOException {
+    String[] robot = new String[] {"Char", "Piegeur", "Tireur", "Worker"};
+    Properties p = new Properties();
+    p.load(new FileReader("ressources/gameOfWar.properties"));
     for (int i = 0; i < pane.getComponentCount(); i++) {
       Component t = pane.getComponentAt(i);
       if (t instanceof RobotPanel) {
-        System.out.println(((RobotPanel) t).getDataMap());
-      }else {
-        System.out.println(":(");
+        for (String string : ((RobotPanel) t).getDataMap().keySet()) {
+          p.setProperty(robot[i].substring(0, 1).toLowerCase() + "_" + string, ((RobotPanel) t)
+              .getDataMap().get(string) + "");
+        }
       }
     }
+    File file = new File("ressources/gameOfWar.properties");
+    FileOutputStream output = new FileOutputStream(file);
+    p.store(output, "");
+    output.close();
   }
 
   @Override

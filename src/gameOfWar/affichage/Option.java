@@ -53,6 +53,7 @@ public class Option extends JPanel {
     this.option.put("x", 15);
     this.option.put("y", 15);
     this.option.put("o", 15);
+    this.option.put("robot", 3);
     this.setF(f);
     this.setLayout(null);
     this.setPreferredSize(new Dimension(900, 600));
@@ -115,7 +116,7 @@ public class Option extends JPanel {
     valeurObstacles =
         new Slider(Constante.OBSTACLES_MIN, Constante.OBSTACLES_MAX, 530, 449, 50, 100);
     // valeurObstacles.setDocument(new JTextFieldLimit(2));
-    valeurObstacles.setBounds(580, 400, 190, 150);
+    valeurObstacles.setBounds(580, 450, 190, 40);
     retour = new Retour(f);
     retour.addActionListener(new ActionListener() {
 
@@ -137,7 +138,6 @@ public class Option extends JPanel {
     this.add(X);
     this.add(valeurX);
     this.add(Y);
-    // this.add(valeurY);
     this.add(musicTexte);
     this.add(music);
     this.add(sonText);

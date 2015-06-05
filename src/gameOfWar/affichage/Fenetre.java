@@ -48,7 +48,7 @@ public class Fenetre extends JFrame {
   public void changePanel(JPanel jPanel) {
     this.main.removeAll();
     this.main.setPreferredSize(jPanel.getPreferredSize());
-    this.main.setLocation(jPanel.getLocation());
+    //this.main.setLocation(jPanel.getLocation());
     this.main.setOpaque(false);
     this.main.add(jPanel);
     this.revalidate();
