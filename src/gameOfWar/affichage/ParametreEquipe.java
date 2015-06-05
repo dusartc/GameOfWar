@@ -237,7 +237,7 @@ public class ParametreEquipe extends JPanel {
 	            int index = choisirListUne.locationToIndex(e.getPoint());
 	            System.out.println(index);
 	            if (defaultListModel1.getSize() < fenetre.getOptionMap().get("robot")) {
-					defaultListModel1.add(index, defaultListModelUne.getElementAt(index));
+	            	defaultListModel1.addElement(defaultListModelUne.getElementAt(index));
 				}
 
 					/*switch (index) {
@@ -274,13 +274,13 @@ public class ParametreEquipe extends JPanel {
 		}
 	});
     choisirListDeux = new JList();
-    choisirListDeux.setModel(defaultListModelDeux);
+    choisirListDeux.setModel(defaultListModelUne);
     choisirListDeux.setBounds(505, 400, 125, 90);
     choisirListDeux.setBorder(BorderFactory.createLineBorder(Color.white, 2));
-    defaultListModelDeux.add(0, "Piegeur");
-    defaultListModelDeux.add(1, "Tireur");
-    defaultListModelDeux.add(2, "Char");
-    defaultListModelDeux.add(3, "Worker");
+    jScrollPaneDeux = new JScrollPane();
+    jScrollPaneDeux.getViewport().add(choisirListDeux);
+    jScrollPaneDeux.setBounds(505, 400, 125, 90);
+    jScrollPaneDeux.getVerticalScrollBar().setPreferredSize(new Dimension(0,0));
     choisirListDeux.addMouseListener(new MouseListener() {
 		
 		@Override
@@ -298,18 +298,13 @@ public class ParametreEquipe extends JPanel {
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
 	        if (arg0.getClickCount() == 2) {
-	            int index = choisirListDeux.locationToIndex(arg0.getPoint());
-	            System.out.println(index);
+	            int index = choisirListUne.locationToIndex(arg0.getPoint());
 	            if (defaultListModel2.getSize() < fenetre.getOptionMap().get("robot")) {
-					defaultListModel2.add(index, defaultListModelDeux.getElementAt(index));
+					defaultListModel2.addElement(defaultListModelUne.getElementAt(index));
 				}
 	        }
 		}
 	});
-    jScrollPaneDeux = new JScrollPane();
-    jScrollPaneDeux.getViewport().add(choisirListDeux);
-    jScrollPaneDeux.setBounds(505, 400, 125, 90);
-    jScrollPaneDeux.getVerticalScrollBar().setPreferredSize(new Dimension(0,0));
     choisitListUne = new JList();
     choisitListUne.setModel(defaultListModel1);
     choisitListUne .setBounds(310, 400, 125, 90);
@@ -332,7 +327,6 @@ public class ParametreEquipe extends JPanel {
 		public void mouseClicked(MouseEvent arg0) {
 	        if (arg0.getClickCount() == 2) {
 	            int index = choisitListUne.locationToIndex(arg0.getPoint());
-	            System.out.println(index);
 	            if (defaultListModel1.getSize() > 0) {
 					defaultListModel1.removeElementAt(index);
 				}
