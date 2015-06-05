@@ -11,11 +11,10 @@ public class Quitter implements ActionListener {
   public void actionPerformed(ActionEvent arg0) {
     int retour = JOptionPane.showConfirmDialog(null, "Quitter ?");
     if (retour == JOptionPane.OK_OPTION) {
+    JOptionPane.showMessageDialog(null, "Adieu !");
       System.exit(0);
     } else if (retour == JOptionPane.NO_OPTION) {
-      JOptionPane.showMessageDialog(null, "Fait pas de connerie Billy !");
-    } else {
-      JOptionPane.showMessageDialog(null, "OUF !");
+      JOptionPane.showMessageDialog(null, "Anullation !");
     }
   }
 

@@ -1,39 +1,25 @@
 package gameOfWar.affichage;
 
 import gameOfWar.config.Constante;
-import gameOfWar.robot.Piegeur;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
-import javax.swing.JTextField;
 import javax.swing.JToggleButton;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 
 public class ParametreEquipe extends JPanel {
 	
@@ -125,7 +111,7 @@ public class ParametreEquipe extends JPanel {
       }
     });
     paysUne = new JLabel(this.pays[0]);
-    paysUne.setBounds(200, 215, 190, 20);
+    paysUne.setBounds(200, 215, 190, 30);
     paysUne.setFont(new Font("Deja Vu", Font.ROMAN_BASELINE, 20));
     paysUne.setForeground(Color.white);
     incrementeUne = new JButton(">");
@@ -139,7 +125,7 @@ public class ParametreEquipe extends JPanel {
       }
     });
     decrementeDeux = new JButton("<");
-    decrementeDeux.setBounds(505, 200, 50, 50);
+    decrementeDeux.setBounds(505, 200, 50, 30);
     decrementeDeux.setActionCommand("-");
     decrementeDeux.addActionListener(new ActionListener() {
       
@@ -149,7 +135,7 @@ public class ParametreEquipe extends JPanel {
       }
     });
     paysDeux = new JLabel(this.pays[0]);
-    paysDeux.setBounds(565, 215, 190, 20);
+    paysDeux.setBounds(565, 215, 190, 50);
     paysDeux.setFont(new Font("Deja Vu", Font.ROMAN_BASELINE, 20));
     paysDeux.setForeground(Color.white);
     incrementeDeux = new JButton(">");
@@ -172,7 +158,6 @@ public class ParametreEquipe extends JPanel {
 			if (IAUn.isSelected()) {
 		          IAUn.setSelected(false);
 		        }
-		    //triAZ(e);
 		}
 	});
     IAUn = new JToggleButton("Ordinateur");
@@ -197,7 +182,6 @@ public class ParametreEquipe extends JPanel {
 			if (IADeux.isSelected()) {
 		          IADeux.setSelected(false);
 		        }
-		    //triAZ(e);
 		}
 	});
     IADeux = new JToggleButton("Ordinateur");

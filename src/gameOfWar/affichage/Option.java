@@ -73,7 +73,8 @@ public class Option extends JPanel {
     nombreRobot.setBounds(180, 225, 280, 50);
     nombreRobot.setForeground(Color.WHITE);
     nombreRobot.setFont(new Font("Deja vu", Font.BOLD, 24));
-    valeurNombreRobo = new Slider(2, Constante.NB_MAX_ROBOTS_PAR_EQUIPE, 530, 225, 50, 150);
+    valeurNombreRobo = new Slider(1, Constante.NB_MAX_ROBOTS_PAR_EQUIPE, 530, 225, 50, 150);
+    valeurNombreRobo.setBounds(480, 185, 150, 150);
     // valeurNombreRobo.setDocument(new JTextFieldLimit(1));
     // valeurNombreRobo.setBounds(530, 225, 50, 50);
     X = new JLabel("X");
@@ -83,7 +84,7 @@ public class Option extends JPanel {
     valeurX = new Slider(Constante.Y_MIN, Constante.Y_MAX, 480, 149, 50, 100);
     // valeurX = new Slider(UNDEFINED_CONDITION, ERROR, ALLBITS, ABORT, WIDTH, HEIGHT)
     // valeurX.setDocument(new JTextFieldLimit(2));
-    valeurX.setBounds(480, 149, 50, 150);
+    valeurX.setBounds(480, 115, 150, 150);
 
     Y = new JLabel("Y");
     Y.setBounds(593, 110, 40, 40);
@@ -108,13 +109,13 @@ public class Option extends JPanel {
     son.setActionCommand("Son");
     son.addActionListener(new ac(f));
     pourcentageObstacles = new JLabel("Pourcentage d'obstacles :");
-    pourcentageObstacles.setBounds(180, 450, 320, 50);
+    pourcentageObstacles.setBounds(180, 450, 380, 50);
     pourcentageObstacles.setForeground(Color.WHITE);
     pourcentageObstacles.setFont(new Font("Deja vu", Font.BOLD, 24));
     valeurObstacles =
         new Slider(Constante.OBSTACLES_MIN, Constante.OBSTACLES_MAX, 530, 449, 50, 100);
     // valeurObstacles.setDocument(new JTextFieldLimit(2));
-    // valeurObstacles.setBounds(530, 449, 50, 150);
+    valeurObstacles.setBounds(580, 400, 190, 150);
     retour = new Retour(f);
     retour.addActionListener(new ActionListener() {
 
@@ -124,6 +125,7 @@ public class Option extends JPanel {
         option.put("x", valeurX.getValue());
         option.put("y", valeurX.getValue());
         option.put("o", valeurObstacles.getValue());
+        option.put("robot", valeurNombreRobo.getValue());
         f.showMenu();
       }
     });

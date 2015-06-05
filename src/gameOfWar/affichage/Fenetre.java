@@ -50,12 +50,10 @@ public class Fenetre extends JFrame {
     this.main.setPreferredSize(jPanel.getPreferredSize());
     this.main.setLocation(jPanel.getLocation());
     this.main.setOpaque(false);
-//    for (Component c : jPanel.getComponents()) {
-//     this.main.add(c);
-//    }
     this.main.add(jPanel);
     this.revalidate();
     this.repaint();
+    //jPanel.setLocation(20,20);
   }
   
   public void showMenu() {
