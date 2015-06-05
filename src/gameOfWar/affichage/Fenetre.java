@@ -1,6 +1,5 @@
 package gameOfWar.affichage;
 
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.util.Map;
@@ -28,6 +27,7 @@ public class Fenetre extends JFrame {
     this.parametre = new Parametre(this);
     this.setPreferredSize(new Dimension(1024, 720));
     this.pack();
+    this.setTitle("Game Of War");
     this.setResizable(false);
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setLocationRelativeTo(null);
