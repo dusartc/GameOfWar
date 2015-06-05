@@ -33,7 +33,7 @@ public class RobotPanel extends JPanel {
   public RobotPanel(String s) {
     data = new HashMap<String, Integer>();
     nom =s;
-    setBackground(Color.black);
+    setBackground(Color.darkGray);
     setLayout(null);
     initComponent();
   }

@@ -36,7 +36,7 @@ public class Fenetre extends JFrame {
     this.setLocationRelativeTo(null);
     this.setContentPane(new Fond());
     this.afficheLabelTitre("Game of War");
-    this.main.setBounds(0, 75, this.getWidth(), this.getHeight());
+    //this.main.setBounds(0, 75, this.getWidth(), this.getHeight());
     this.getContentPane().add(main);
     this.changePanel(new Menu(this));
     this.setLayout(null);
@@ -50,7 +50,7 @@ public class Fenetre extends JFrame {
 
   public void changePanel(JPanel jPanel) {
     this.main.removeAll();
-    this.main.setPreferredSize(jPanel.getPreferredSize());
+    //this.main.setPreferredSize(jPanel.getPreferredSize());
     //this.main.setLocation(jPanel.getLocation());
     this.main.setOpaque(false);
     this.main.add(jPanel);
@@ -77,8 +77,9 @@ public class Fenetre extends JFrame {
   
   public void showJeu(Equipe[] equipes, Plateau plateau) {
     Jeu jeu = new Jeu(this, equipes, plateau);
-    changePanel(jeu);
-    this.main.setLocation(jeu.getLocation());
+    jeu.setVisible(true);
+    this.dispose();
+    this.setVisible(false);
   }
 
   public void afficheLabelTitre(String titre) {

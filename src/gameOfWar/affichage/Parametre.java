@@ -74,7 +74,7 @@ public class Parametre extends JPanel {
   public void initPane() {
     this.pane = new JTabbedPane();
     this.pane.setBounds(125, 120, 700, 375);
-    this.pane.setBackground(Color.black);
+    this.pane.setBackground(Color.darkGray);
     this.pane.setForeground(Color.white);
     this.pane.setOpaque(false);
     String[] robot = new String[] {"Char", "Piegeur", "Tireur", "Worker"};
