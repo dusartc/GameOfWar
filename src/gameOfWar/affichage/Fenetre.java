@@ -9,6 +9,7 @@ import java.util.Map;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class Fenetre extends JFrame {
@@ -76,8 +77,9 @@ public class Fenetre extends JFrame {
   }
   
   public void showJeu(Equipe[] equipes, Plateau plateau) {
-    Jeu jeu = new Jeu(this, equipes, plateau);
-    jeu.setVisible(true);
+    //Jeu jeu = new Jeu(this, equipes, plateau);
+    //eu.setVisible(true);
+    JOptionPane.showMessageDialog(null, "incomplet");
     this.dispose();
     this.setVisible(false);
   }
