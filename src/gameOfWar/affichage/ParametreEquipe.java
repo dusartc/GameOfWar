@@ -2,11 +2,7 @@ package gameOfWar.affichage;
 
 import gameOfWar.config.Constante;
 import gameOfWar.jeux.Equipe;
-import gameOfWar.robot.Char;
-import gameOfWar.robot.Piegeur;
 import gameOfWar.robot.Robot;
-import gameOfWar.robot.Tireur;
-import gameOfWar.robot.Worker;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -18,7 +14,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,8 +29,8 @@ import javax.swing.JSeparator;
 import javax.swing.JToggleButton;
 
 public class ParametreEquipe extends JPanel {
-	
-  
+
+
   private static final long serialVersionUID = 1L;
   private String[] pays = Constante.PAYS;
   private String paysChoisitUne;
@@ -80,12 +75,12 @@ public class ParametreEquipe extends JPanel {
   private Equipe[] equipe = new Equipe[2];
   protected Fenetre fenetre;
 
-  public ParametreEquipe(){
-      robot = new HashMap<String, List<Robot>>();
+  public ParametreEquipe() {
+    robot = new HashMap<String, List<Robot>>();
   }
-  
-  public ParametreEquipe(Fenetre fenetre){
-	this();
+
+  public ParametreEquipe(Fenetre fenetre) {
+    this();
     this.fenetre = fenetre;
     this.setLayout(null);
     this.setPreferredSize(new Dimension(900, 600));
@@ -93,8 +88,8 @@ public class ParametreEquipe extends JPanel {
     this.setLocation(60, 77);
     this.initComponent();
   }
-  
-  public void initComponent(){
+
+  public void initComponent() {
     sousTitre = new JLabel("Equipes");
     sousTitre.setFont(new Font("Deja Vu", Font.ROMAN_BASELINE, 45));
     sousTitre.setBounds(380, 45, 350, 50);
@@ -118,7 +113,7 @@ public class ParametreEquipe extends JPanel {
     decrementeUne.setBounds(140, 200, 50, 50);
     decrementeUne.setActionCommand("-");
     decrementeUne.addActionListener(new ActionListener() {
-      
+
       @Override
       public void actionPerformed(ActionEvent arg0) {
         paysUne(arg0);
@@ -132,7 +127,7 @@ public class ParametreEquipe extends JPanel {
     incrementeUne.setBounds(380, 200, 50, 50);
     incrementeUne.setActionCommand("+");
     incrementeUne.addActionListener(new ActionListener() {
-      
+
       @Override
       public void actionPerformed(ActionEvent arg0) {
         paysUne(arg0);
@@ -142,7 +137,7 @@ public class ParametreEquipe extends JPanel {
     decrementeDeux.setBounds(505, 200, 50, 50);
     decrementeDeux.setActionCommand("-");
     decrementeDeux.addActionListener(new ActionListener() {
-      
+
       @Override
       public void actionPerformed(ActionEvent arg0) {
         paysDeux(arg0);
@@ -156,7 +151,7 @@ public class ParametreEquipe extends JPanel {
     incrementeDeux.setBounds(745, 200, 50, 50);
     incrementeDeux.setActionCommand("+");
     incrementeDeux.addActionListener(new ActionListener() {
-      
+
       @Override
       public void actionPerformed(ActionEvent arg0) {
         paysDeux(arg0);
@@ -167,51 +162,51 @@ public class ParametreEquipe extends JPanel {
     joueurUn.setBounds(140, 300, 150, 50);
     joueurUn.setFont(new Font("Deja vu", Font.ROMAN_BASELINE, 20));
     joueurUn.addActionListener(new ActionListener() {
-		
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			if (IAUn.isSelected()) {
-		          IAUn.setSelected(false);
-		        }
-		}
-	});
+
+      @Override
+      public void actionPerformed(ActionEvent arg0) {
+        if (IAUn.isSelected()) {
+          IAUn.setSelected(false);
+        }
+      }
+    });
     IAUn = new JToggleButton("Ordinateur");
     IAUn.setBounds(310, 300, 150, 50);
     IAUn.setFont(new Font("Deja vu", Font.ROMAN_BASELINE, 20));
     IAUn.addActionListener(new ActionListener() {
-		
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			if (joueurUn.isSelected()) {
-		          joueurUn.setSelected(false);
-		        }
-		}
-	});
+
+      @Override
+      public void actionPerformed(ActionEvent arg0) {
+        if (joueurUn.isSelected()) {
+          joueurUn.setSelected(false);
+        }
+      }
+    });
     joueurDeux = new JToggleButton("Joueur");
     joueurDeux.setSelected(true);
     joueurDeux.setBounds(505, 300, 150, 50);
     joueurDeux.setFont(new Font("Deja vu", Font.ROMAN_BASELINE, 20));
     joueurDeux.addActionListener(new ActionListener() {
-		
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			if (IADeux.isSelected()) {
-		          IADeux.setSelected(false);
-		        }
-		}
-	});
+
+      @Override
+      public void actionPerformed(ActionEvent arg0) {
+        if (IADeux.isSelected()) {
+          IADeux.setSelected(false);
+        }
+      }
+    });
     IADeux = new JToggleButton("Ordinateur");
     IADeux.setBounds(675, 300, 150, 50);
     IADeux.setFont(new Font("Deja vu", Font.ROMAN_BASELINE, 20));
     IADeux.addActionListener(new ActionListener() {
-		
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			if (joueurDeux.isSelected()) {
-		          joueurDeux.setSelected(false);
-		        }
-		}
-	});
+
+      @Override
+      public void actionPerformed(ActionEvent arg0) {
+        if (joueurDeux.isSelected()) {
+          joueurDeux.setSelected(false);
+        }
+      }
+    });
     choisirUne = new JLabel("<html><u>Choisit robot :</u></html>");
     choisirUne.setBounds(140, 380, 150, 20);
     choisirUne.setForeground(Color.white);
@@ -235,127 +230,112 @@ public class ParametreEquipe extends JPanel {
     jScrollPaneUne = new JScrollPane();
     jScrollPaneUne.getViewport().add(choisirListUne);
     jScrollPaneUne.setBounds(140, 400, 125, 90);
-    jScrollPaneUne.getVerticalScrollBar().setPreferredSize(new Dimension(0,0));
+    jScrollPaneUne.getVerticalScrollBar().setPreferredSize(new Dimension(0, 0));
     defaultListModelUne.add(0, "Piegeur");
     defaultListModelUne.add(1, "Tireur");
     defaultListModelUne.add(2, "Char");
     defaultListModelUne.add(3, "Worker");
     choisirListUne.addMouseListener(new MouseListener() {
-		@Override
-		public void mouseReleased(MouseEvent e) {}
-		
-		@Override
-		public void mousePressed(MouseEvent e) {}
-		
-		@Override
-		public void mouseExited(MouseEvent e) {}
-		
-		@Override
-		public void mouseEntered(MouseEvent e) {}
-		
-		@Override
-		public void mouseClicked(MouseEvent e) {
-	        if (e.getClickCount() == 2) {
-	            int index = choisirListUne.locationToIndex(e.getPoint());
-	            System.out.println(index);
-	            if (defaultListModel1.getSize() < fenetre.getOptionMap().get("robot")) {
-					defaultListModel1.add(index, defaultListModelUne.getElementAt(index));
-				}
+      @Override
+      public void mouseReleased(MouseEvent e) {}
 
-					/*switch (index) {
-					case 1:
-						if (defaultListModelUne.getElementAt(index).equals("Piegeur")) {
-							robot.put("Equipe1", new ArrayList<Robot>());
-							robot.get("Equipe1").add(new Piegeur(equipe[1].getVue(), equipe[1]));
-						}
-						break;
-					case 2:
-						if (defaultListModelUne.getElementAt(index).equals("Tireur")) {
-							robot.put("Equipe1", new ArrayList<Robot>());
-							robot.get("Equipe1").add(new Tireur(equipe[1].getVue(), equipe[1]));
-						}
-						break;
-					case 3:
-						if (defaultListModelUne.getElementAt(index).equals("Char")) {
-							robot.put("Equipe1", new ArrayList<Robot>());
-							robot.get("Equipe1").add(new Char(equipe[1].getVue(), equipe[1]));
-						}
-						break;
-					case 4:
-						if (defaultListModelUne.getElementAt(index).equals("Worker")) {
-							robot.put("Equipe1", new ArrayList<Robot>());
-							robot.get("Equipe1").add(new Worker(equipe[1].getVue(), equipe[1]));
-						}
-						break;
-					default:
-						break;
-					}*/
-				//}
-	            
-	        }
-		}
-	});
+      @Override
+      public void mousePressed(MouseEvent e) {}
+
+      @Override
+      public void mouseExited(MouseEvent e) {}
+
+      @Override
+      public void mouseEntered(MouseEvent e) {}
+
+      @Override
+      public void mouseClicked(MouseEvent e) {
+        if (e.getClickCount() == 2) {
+          int index = choisirListUne.locationToIndex(e.getPoint());
+          System.out.println(index);
+          if (defaultListModel1.getSize() < fenetre.getOptionMap().get("robot")) {
+            defaultListModel1.add(index, defaultListModelUne.getElementAt(index));
+          }
+
+          /*
+           * switch (index) { case 1: if (defaultListModelUne.getElementAt(index).equals("Piegeur"))
+           * { robot.put("Equipe1", new ArrayList<Robot>()); robot.get("Equipe1").add(new
+           * Piegeur(equipe[1].getVue(), equipe[1])); } break; case 2: if
+           * (defaultListModelUne.getElementAt(index).equals("Tireur")) { robot.put("Equipe1", new
+           * ArrayList<Robot>()); robot.get("Equipe1").add(new Tireur(equipe[1].getVue(),
+           * equipe[1])); } break; case 3: if
+           * (defaultListModelUne.getElementAt(index).equals("Char")) { robot.put("Equipe1", new
+           * ArrayList<Robot>()); robot.get("Equipe1").add(new Char(equipe[1].getVue(), equipe[1]));
+           * } break; case 4: if (defaultListModelUne.getElementAt(index).equals("Worker")) {
+           * robot.put("Equipe1", new ArrayList<Robot>()); robot.get("Equipe1").add(new
+           * Worker(equipe[1].getVue(), equipe[1])); } break; default: break; }
+           */
+          // }
+
+        }
+      }
+    });
     choisirListDeux = new JList();
     choisirListDeux.setModel(defaultListModelUne);
     choisirListDeux.setBounds(505, 400, 125, 90);
     choisirListDeux.setBorder(BorderFactory.createLineBorder(Color.white, 2));
     choisirListDeux.addMouseListener(new MouseListener() {
-		
-		@Override
-		public void mouseReleased(MouseEvent arg0) {}
-		
-		@Override
-		public void mousePressed(MouseEvent arg0) {}
-		
-		@Override
-		public void mouseExited(MouseEvent arg0) {}
-		
-		@Override
-		public void mouseEntered(MouseEvent arg0) {}
-		
-		@Override
-		public void mouseClicked(MouseEvent arg0) {
-	        if (arg0.getClickCount() == 2) {
-	            int index = choisirListUne.locationToIndex(arg0.getPoint());
-	            System.out.println(index);
-	            if (defaultListModel2.getSize() < fenetre.getOptionMap().get("robot")) {
-					defaultListModel2.add(index, defaultListModelUne.getElementAt(index));
-				}
-	        }
-		}
-	});
+
+      @Override
+      public void mouseReleased(MouseEvent arg0) {}
+
+      @Override
+      public void mousePressed(MouseEvent arg0) {}
+
+      @Override
+      public void mouseExited(MouseEvent arg0) {}
+
+      @Override
+      public void mouseEntered(MouseEvent arg0) {}
+
+      @Override
+      public void mouseClicked(MouseEvent arg0) {
+        if (arg0.getClickCount() == 2) {
+          int index = choisirListUne.locationToIndex(arg0.getPoint());
+          System.out.println(index);
+          if (defaultListModel2.getSize() < fenetre.getOptionMap().get("robot")) {
+            defaultListModel2.add(index, defaultListModelUne.getElementAt(index));
+          }
+        }
+      }
+    });
     jScrollPaneDeux = new JScrollPane();
     jScrollPaneDeux.getViewport().add(choisirListDeux);
     jScrollPaneDeux.setBounds(505, 400, 125, 90);
-    jScrollPaneDeux.getVerticalScrollBar().setPreferredSize(new Dimension(0,0));
+    jScrollPaneDeux.getVerticalScrollBar().setPreferredSize(new Dimension(0, 0));
     choisitListUne = new JList();
     choisitListUne.setModel(defaultListModel1);
-    choisitListUne .setBounds(310, 400, 125, 90);
-    choisitListUne .setBorder(BorderFactory.createLineBorder(Color.white, 2));
+    choisitListUne.setBounds(310, 400, 125, 90);
+    choisitListUne.setBorder(BorderFactory.createLineBorder(Color.white, 2));
     jScrollPane1 = new JScrollPane();
     jScrollPane1.getViewport().add(choisitListUne);
     jScrollPane1.setBounds(310, 400, 125, 90);
-    jScrollPane1.getVerticalScrollBar().setPreferredSize(new Dimension(0,0));
+    jScrollPane1.getVerticalScrollBar().setPreferredSize(new Dimension(0, 0));
     choisitListDeux = new JList();
     choisitListDeux.setModel(defaultListModel2);
-    choisitListDeux .setBounds(675, 400, 125, 90);
-    choisitListDeux .setBorder(BorderFactory.createLineBorder(Color.white, 2));
+    choisitListDeux.setBounds(675, 400, 125, 90);
+    choisitListDeux.setBorder(BorderFactory.createLineBorder(Color.white, 2));
     jScrollPane2 = new JScrollPane();
     jScrollPane2.getViewport().add(choisitListDeux);
     jScrollPane2.setBounds(675, 400, 125, 90);
-    jScrollPane2.getVerticalScrollBar().setPreferredSize(new Dimension(0,0));
+    jScrollPane2.getVerticalScrollBar().setPreferredSize(new Dimension(0, 0));
     jouerButton = new JButton("Jouer");
     jouerButton.setBounds(400, 510, 150, 50);
     jouerButton.addActionListener(new ActionListener() {
-		
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			
-		}
-	});
+
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        fenetre.showJeu(equipe, null);
+      }
+    });
     retour = new Retour(fenetre);
     retour.addActionListener(new ActionListener() {
-      
+
       @Override
       public void actionPerformed(ActionEvent e) {
         fenetre.showMenu();
@@ -387,7 +367,7 @@ public class ParametreEquipe extends JPanel {
     this.add(jouerButton);
     this.add(retour);
   }
-  
+
   @Override
   protected void paintComponent(Graphics g) {
     super.paintComponent(g);
@@ -401,7 +381,7 @@ public class ParametreEquipe extends JPanel {
     graphics2d.setPaint(gradientPaint2);
     graphics2d.fillRoundRect(100, 30, 740, 80, 20, 20);
   }
-  
+
   public Fenetre getF() {
     return fenetre;
   }
@@ -409,43 +389,43 @@ public class ParametreEquipe extends JPanel {
   public void setF(Fenetre f) {
     this.fenetre = f;
   }
-  
-  public String getPaysChoisitPays(){
+
+  public String getPaysChoisitPays() {
     return this.paysChoisitUne;
   }
-  
-  public void setPaysChoisitPays(String choisit){
+
+  public void setPaysChoisitPays(String choisit) {
     this.paysChoisitUne = choisit;
   }
 
-  public void paysUne(ActionEvent event){
+  public void paysUne(ActionEvent event) {
     if (event.getActionCommand().equals("-")) {
       numeroPaysUne--;
-    }else{
-        numeroPaysUne++;
+    } else {
+      numeroPaysUne++;
     }
-    paysUne.setText(pays[numeroPaysUne%pays.length]);
+    paysUne.setText(pays[numeroPaysUne % pays.length]);
   }
-  
-  public void paysDeux(ActionEvent event){
-	    if (event.getActionCommand().equals("-")) {
-	      numeroPaysDeux--;
-	    }else{
-	        numeroPaysDeux++;
-	    }
-	    paysDeux.setText(pays[numeroPaysDeux%pays.length]);
-	  }
-  
-  public String getNom(){
-	  return this.nom;
+
+  public void paysDeux(ActionEvent event) {
+    if (event.getActionCommand().equals("-")) {
+      numeroPaysDeux--;
+    } else {
+      numeroPaysDeux++;
+    }
+    paysDeux.setText(pays[numeroPaysDeux % pays.length]);
   }
-  
-  public boolean getIA(){
-	  return this.ia;
+
+  public String getNom() {
+    return this.nom;
   }
-  
-  public Map<String, List<Robot>> getRobot(){
-	  return this.robot;
+
+  public boolean getIA() {
+    return this.ia;
+  }
+
+  public Map<String, List<Robot>> getRobot() {
+    return this.robot;
   }
 
 }

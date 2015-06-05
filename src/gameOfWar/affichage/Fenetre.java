@@ -1,5 +1,8 @@
 package gameOfWar.affichage;
 
+import gameOfWar.jeux.Equipe;
+import gameOfWar.jeux.Plateau;
+
 import java.awt.Dimension;
 import java.awt.Font;
 import java.util.Map;
@@ -70,6 +73,12 @@ public class Fenetre extends JFrame {
   
   public void showParametre() {
     this.changePanel(parametre);
+  }
+  
+  public void showJeu(Equipe[] equipes, Plateau plateau) {
+    Jeu jeu = new Jeu(this, equipes, plateau);
+    changePanel(jeu);
+    this.main.setLocation(jeu.getLocation());
   }
 
   public void afficheLabelTitre(String titre) {
